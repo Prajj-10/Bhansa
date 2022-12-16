@@ -4,9 +4,17 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf33b20f-9bb0-49da-9eb9-3fc611fe96ce" name="Changes" comment="login auth">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cook_book/lib/app/loginpage/abcd.dart" afterDir="false" />
+    <list default="true" id="bf33b20f-9bb0-49da-9eb9-3fc611fe96ce" name="Changes" comment="authentication">
+      <change afterPath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/likebutton.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/myProfile.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/profileDetail.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/recipeListView.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/saveButton.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/savedGridView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/authentication/logged_in.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/authentication/logged_in.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,12 +47,22 @@
     <property name="cidr.known.project.marker" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/cook_book/lib/app" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="advanced.settings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\College\L5-2\Mobile app development\Final Assignment\Cook-Book\cook_book\lib\app" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\College\L5-2\Mobile app development\Final Assignment\Cook-Book\cook_book\lib\authentication" />
+      <recent name="E:\College\L5-2\Mobile app development\Final Assignment\Cook-Book\cook_book\lib\custom" />
+      <recent name="E:\College\L5-2\Mobile app development\Final Assignment\Cook-Book\cook_book\lib\app\loginpage" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter" temporary="true" nameIsGenerated="true">
@@ -87,7 +105,21 @@
       <option name="project" value="LOCAL" />
       <updated>1671172119265</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="2">
+      <created>1671173152896</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1671173152896</updated>
+    </task>
+    <task id="LOCAL-00005" summary="authentication">
+      <created>1671173399597</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1671173399597</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -103,6 +135,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="login auth" />
-    <option name="LAST_COMMIT_MESSAGE" value="login auth" />
+    <MESSAGE value="2" />
+    <MESSAGE value="authentication" />
+    <option name="LAST_COMMIT_MESSAGE" value="authentication" />
   </component>
 </project>
