@@ -160,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         print(user);
                         if (user !=null){
                           Program.user= user;
-                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) =>  LoggedInWidget(user)));
+                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) =>  const LoggedInWidget()));
                         }
                       },
                       child: Text("Login",

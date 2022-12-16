@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget{
         }
         else if(snapshot.hasData){
           var user = FirebaseAuth.instance.currentUser;
-          return  LoggedInWidget(user!);
+          return  const LoggedInWidget();
         }
         else{
           return const LoginScreen();
