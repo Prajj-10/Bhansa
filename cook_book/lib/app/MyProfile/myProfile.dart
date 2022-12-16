@@ -1,8 +1,8 @@
 
 import 'package:cook_book/app/MyProfile/profileDetail.dart';
-import 'package:cook_book/app/MyProfile/recipeListView.dart';
+import 'package:cook_book/custom/CustomListView/recipeListView.dart';
 import 'package:flutter/material.dart';
-import 'savedGridView.dart';
+import '../../custom/CustomGridView/savedGridView.dart';
 
 class MyProfile extends StatefulWidget {
   const MyProfile({Key? key}) : super(key: key);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 
-import 'likebutton.dart';
+import '../CustomButtons/likebutton.dart';
 
 
 class Recipe extends StatelessWidget {
