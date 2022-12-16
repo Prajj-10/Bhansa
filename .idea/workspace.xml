@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf33b20f-9bb0-49da-9eb9-3fc611fe96ce" name="Changes" comment="added myprofile and edit profile page">
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/likebutton.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomButtons/likebutton.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/myProfile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/myProfile.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/recipeListView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomListView/recipeListView.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/saveButton.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomButtons/saveButton.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/savedGridView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomGridView/savedGridView.dart" afterDir="false" />
+    <list default="true" id="bf33b20f-9bb0-49da-9eb9-3fc611fe96ce" name="Changes" comment="updated myprofile and edit profile page">
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/PostRecipe/post_recipe.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/PostRecipe/post_recipe.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,11 +51,11 @@
       <recent name="E:\College\L5-2\Mobile app development\Final Assignment\Cook-Book\cook_book\lib\custom" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\College\L5-2\Mobile app development\Final Assignment\Cook-Book\cook_book\lib\app" />
       <recent name="E:\College\L5-2\Mobile app development\Final Assignment\Cook-Book\cook_book\lib\custom\CustomGridView" />
       <recent name="E:\College\L5-2\Mobile app development\Final Assignment\Cook-Book\cook_book\lib\custom\CustomListView" />
       <recent name="E:\College\L5-2\Mobile app development\Final Assignment\Cook-Book\cook_book\lib\custom\CustomButtons" />
       <recent name="E:\College\L5-2\Mobile app development\Final Assignment\Cook-Book\cook_book\lib\authentication" />
-      <recent name="E:\College\L5-2\Mobile app development\Final Assignment\Cook-Book\cook_book\lib\custom" />
     </key>
   </component>
   <component name="RunManager">
@@ -124,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671175728094</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="updated myprofile and edit profile page">
+      <created>1671175909398</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1671175909398</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -143,6 +146,7 @@
     <MESSAGE value="2" />
     <MESSAGE value="authentication" />
     <MESSAGE value="added myprofile and edit profile page" />
-    <option name="LAST_COMMIT_MESSAGE" value="added myprofile and edit profile page" />
+    <MESSAGE value="updated myprofile and edit profile page" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated myprofile and edit profile page" />
   </component>
 </project>
