@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "213176669880",
+    "project_id": "cook-book-2",
+    "storage_bucket": "cook-book-2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:213176669880:android:464dabc366a7aa2877064d",
+        "android_client_info": {
+          "package_name": "com.example.cook_book"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "213176669880-a86puhk8cclurao1h9vfgofu7lq5a6do.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cook_book",
+            "certificate_hash": "dc8c2de0233030cb5b74a064fcc834fbb23c00d4"
+          }
+        },
+        {
+          "client_id": "213176669880-i2algig3kbc4j3rtpr9259et3ie984m3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cook_book",
+            "certificate_hash": "56dd467ac914d0d0d809ef0e2d6ce126914825a4"
+          }
+        },
+        {
+          "client_id": "213176669880-ibqmuvd2uhqjr7inoj22mpijhrio952m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cook_book",
+            "certificate_hash": "ea114318dc4c99c7ffd9c8b850bb96b051e2968e"
+          }
+        },
+        {
+          "client_id": "213176669880-4jo8pupe62ej3n6o7okcot79nla4ha47.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFmqJK80wVUzxj3kTej6mZ8Em1LxVkmS0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "213176669880-4jo8pupe62ej3n6o7okcot79nla4ha47.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
