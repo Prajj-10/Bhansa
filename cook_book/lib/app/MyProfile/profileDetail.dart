@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../custom/CustomButtons/btnEditProfile.dart';
+import '../EditProfile/btnEditProfile.dart';
 import '../../custom/ExpandedWidgets/expandedProfileDescription.dart';
 
 class ProfileDetail extends StatefulWidget {

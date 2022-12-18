@@ -46,6 +46,13 @@ dependencies:
   # State Management
   provider: ^6.0.3
 
+  readmore:
+  sticky_headers: ^0.3.0+2
+  like_button: ^2.0.5
+  image_picker: ^0.8.6
+
+  hexcolor:
+
 
 
   # The following adds the Cupertino Icons font to your application.

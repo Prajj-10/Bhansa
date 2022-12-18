@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../app/EditProfile/editProfile.dart';
+import 'editProfile.dart';
 
 class BtnEditProfile extends StatelessWidget {
   const BtnEditProfile({Key? key}) : super(key: key);
