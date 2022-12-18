@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf33b20f-9bb0-49da-9eb9-3fc611fe96ce" name="Changes" comment="updated myprofile and edit profile page">
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/PostRecipe/post_recipe.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/PostRecipe/post_recipe.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +40,7 @@
     <property name="cidr.known.project.marker" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/cook_book/lib/app" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/cook_book/assets" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -47,6 +49,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\L5\Assignment\Mobile Application\Assignment-2\Cook Book Codes\cook_book\assets" />
       <recent name="E:\College\L5-2\Mobile app development\Final Assignment\Cook-Book\cook_book\lib\app" />
       <recent name="E:\College\L5-2\Mobile app development\Final Assignment\Cook-Book\cook_book\lib\custom" />
     </key>
@@ -140,6 +143,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="login auth" />
