@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../app/MyProfile/myProfile.dart';
 import '../../app/PostRecipe/post_recipe.dart';
 import '../../app/Preferences/preferences.dart';
+import '../../app/registration_page/registration.dart';
 import '../home_page.dart';
 
 
@@ -20,7 +21,7 @@ class _NavigationState extends State<Navigation> {
   int index = 0;
 
   //Calling the pages (most be in sequential order)
-  List screen = [HomePage(), Preferences(), PostRecipe(), MyProfile() ];
+  List screen = [HomePage(), Preferences(), PostRecipe(), MyProfile(), SignUp() ];
 
 
 
