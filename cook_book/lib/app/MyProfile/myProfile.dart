@@ -25,9 +25,10 @@ class _MyProfileState extends State<MyProfile> {
                 end: Alignment.bottomCenter,
                 tileMode: TileMode.clamp,
                 colors: [
-                  Color(0xFF01231C).withOpacity(0.9),
+                  Color(0xFF01231C).withOpacity(1),
                   Color(0xFF131926).withOpacity(0.9),
-                  Color(0xFF0E2839).withOpacity(0.5),
+                  //Color(0xFF0E2839).withOpacity(0.5),
+                  Color(0xFF081017).withOpacity(0.8),
                 ]
             ),
         ),
