@@ -1,8 +1,29 @@
+import 'dart:io';
+
 import 'package:cook_book/app/EditProfile/imagePicker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-class EditProfile extends StatelessWidget {
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
+class EditProfile extends StatefulWidget {
   const EditProfile({super.key});
+
+  @override
+  State<EditProfile> createState() => _EditProfileState();
+}
+
+class _EditProfileState extends State<EditProfile> {
+  File? profilePicture;
+  Future imagePicker(ImageSource source) async{
+    try {
+      final img = await ImagePicker().pickImage(source: source);
+      if (img == null) return;
+      final imageTemporary = File(img.path);
+      setState(()=> this.profilePicture = imageTemporary);
+    } on PlatformException catch (e) {
+      print("Failed to pick image: $e");
+    }
+  }
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -33,20 +54,23 @@ class EditProfile extends StatelessWidget {
           ),
           child: Padding(
             padding: const EdgeInsets.all(15),
-            child: SizedBox(
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  color: Color(0xFF081017).withOpacity(0.7),
-                ),
-                
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: SingleChildScrollView(
+            child: SingleChildScrollView(
+              child: SizedBox(
+                height: size.height*0.85,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: Color(0xFF081017).withOpacity(0.7),
+                  ),
+
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
                     child: Form(
                       child: Column(
                         children: [
-                          SizedBox(
+                          profilePicture != null?
+                          ClipOval(child: Image.file(profilePicture!, width: size.width*0.35, height: size.width*0.35, fit: BoxFit.cover,))
+                          :SizedBox(
                             height: size.width*0.35,
                             width: size.width*0.35,
 
@@ -56,6 +80,7 @@ class EditProfile extends StatelessWidget {
                                 border: Border.all(width: 1, color: Colors.white),
                                 image: DecorationImage(
                                   image: NetworkImage("https://img.freepik.com/premium-vector/smiling-chef-cartoon-character_8250-10.jpg?w=2000"),
+
                                   fit: BoxFit.fill,
                                 ),
                               ),
@@ -64,31 +89,32 @@ class EditProfile extends StatelessWidget {
                           ),
 
                           TextButton(
-                              onPressed: (){
-                                showCupertinoModalPopup(
-                                    context: context,
-                                    builder: (builder)=>Image_Picker(),
-                                );
-                              },
-                              child: Text("Upload new profile", style: TextStyle(fontSize: 16),),
+                            onPressed: (){
+                              showCupertinoModalPopup(
+                                context: context,
+                                builder: (builder)=>Image_Picker(pickImage: imagePicker,),
+                              );
+                            },
+                            child: Text("Upload new profile", style: TextStyle(fontSize: 16),),
                           ),
 
                           //Name
-                          editProfile_InputField(txtLabel: "Name"),
+                          editProfile_InputField(txt_Label: "Name", max_Length: 25, max_Lines: 1,),
 
                           //Username
-                          editProfile_InputField(txtLabel: "Username"),
+                          editProfile_InputField(txt_Label: "Username", max_Length: 16, max_Lines: 1,),
 
                           //Description
-                          editProfile_InputField(txtLabel: "Description"),
+                          editProfile_InputField(txt_Label: "Description", max_Length: 1000, max_Lines: 5,),
 
                         ],
                       ),
                     ),
+
                   ),
                 ),
-              ),
 
+              ),
             ),
           ),
         ),
@@ -98,67 +124,31 @@ class EditProfile extends StatelessWidget {
 }
 
 
-//Choose image picker options
-/*Widget modal_chooseImagePicker(BuildContext context){
-  return SizedBox(
-    height: 200,
-    width: MediaQuery.of(context).size.width,
-    child: DecoratedBox(
-      decoration: BoxDecoration(
-        color: Color(0xFFFFFFFF).withOpacity(0.8),
-        borderRadius: BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(0)),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 30),
-        child: Column(
-          //crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text("Choose profile picture", style: TextStyle(fontSize: 18, decoration: TextDecoration.none, color: Colors.black),),
-            SizedBox(height: 20,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton.icon(
-                    onPressed: (){},
-                    icon: Icon(Icons.camera),
-                    label: Text("Camera", style: TextStyle(color: Colors.white),),
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                ElevatedButton.icon(
-                  style: ButtonStyle(
-                    backgroundColor: Colors.white,
-                  ),
-                  onPressed: (){},
-                  icon: Icon(Icons.camera),
-                  label: Text("Camera", style: TextStyle(color: Colors.white),),
-                ),
 
-
-              ],
-            )
-          ],
-        ),
-      ),
-    ),
-  );
-}*/
-
+//Text field
 class editProfile_InputField extends StatelessWidget {
-  var txtLabel;
+  var txt_Label;
+  int max_Length;
+  int max_Lines;
 
-  editProfile_InputField({super.key, required this.txtLabel});
+  editProfile_InputField({super.key, required this.txt_Label, required this.max_Length, required this.max_Lines});
 
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      style: TextStyle(color: Colors.white, fontSize: 14),
+      maxLength: max_Length,
+      maxLengthEnforcement: MaxLengthEnforcement.enforced,
+      maxLines: max_Lines,
+      /*onFieldSubmitted: (String value){
+        debugPrint(value);
+      },*/
+      style: TextStyle(color: Colors.white, fontSize: 12),
       decoration: InputDecoration(
-        labelStyle: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold, fontFamily: "Times New Roman"),
+        counterStyle: TextStyle(color: Colors.white),
+        labelStyle: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold, fontFamily: "Times New Roman"),
         //hintText: "Username",
-        labelText: txtLabel,
+        labelText: txt_Label,
         focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.green),
         ),

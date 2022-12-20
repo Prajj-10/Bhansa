@@ -20,8 +20,8 @@ class _ProfileDetailState extends State<ProfileDetail> {
             Row(
               children: [
                 Container(
-                  height: size.width/2.4,
-                  width: size.width/2.4,
+                  height: size.width/2.7,
+                  width: size.width/2.7,
 
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
@@ -46,10 +46,11 @@ class _ProfileDetailState extends State<ProfileDetail> {
                           children: [
                             SizedBox(width: size.width*0.05,),
                             Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: const [
 
                                 Text("Master Chef",
-                                  style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                                  style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(top: 5),
@@ -61,13 +62,13 @@ class _ProfileDetailState extends State<ProfileDetail> {
                             ),
                           ],
                         ),
-                        SizedBox(height: size.height*0.02,),
+                        SizedBox(height: size.height*0.01,),
                         Row(
                           children: [
                             SizedBox(width: size.width*0.03,),
-                            Expanded(child: FollowButton(btnHeight: 40, btnWidth: 85, number: "100K", name: "Followers")),
+                            Expanded(child: FollowButton(btnHeight: 35, btnWidth: 60, number: "100K", name: "Followers")),
                             SizedBox(width: size.width*0.02,),
-                            Expanded(child: FollowButton(btnHeight: 40, btnWidth: 85, number: "100K", name: "Following")),
+                            Expanded(child: FollowButton(btnHeight: 35, btnWidth: 60, number: "100K", name: "Following")),
                           ],
                         ),
                         Padding(
@@ -76,7 +77,7 @@ class _ProfileDetailState extends State<ProfileDetail> {
                             children: [
                               Expanded(child: BtnEditProfile()),
                               SizedBox(width: size.width*0.02,),
-                              Icon(Icons.settings, color: Colors.white, size: 40,),
+                              Icon(Icons.settings, color: Colors.white, size: 30,),
 
                             ],
                           ),
@@ -135,8 +136,8 @@ class FollowButton extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(number, style: TextStyle(fontSize: 14, color: Colors.white),),
-          Text(name, style: TextStyle(fontSize: 14, color: Colors.white),),
+          Text(number, style: TextStyle(fontSize: 12, color: Colors.white),),
+          Text(name, style: TextStyle(fontSize: 12, color: Colors.white),),
         ],
       ),
     );

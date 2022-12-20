@@ -16,7 +16,7 @@ class BtnEditProfile extends StatelessWidget {
           //backgroundColor: Colors.white,
           side: BorderSide(color: Colors.white),
           foregroundColor: Colors.orange,
-          fixedSize: Size(100, 40),
+          fixedSize: Size(100, 30),
         ),
 
 

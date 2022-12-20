@@ -1,9 +1,19 @@
+
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
+
 class Image_Picker extends StatelessWidget {
-  const Image_Picker({Key? key}) : super(key: key);
+  Function pickImage;
+
+  Image_Picker({super.key, required this.pickImage});
+
 
   @override
   Widget build(BuildContext context) {
+
     return SizedBox(
       height: 200,
       width: MediaQuery.of(context).size.width,
@@ -17,13 +27,13 @@ class Image_Picker extends StatelessWidget {
           child: Column(
             //crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("Choose profile", style: TextStyle(fontSize: 18, decoration: TextDecoration.none, color: Colors.black),),
+              Text("Choose profile", style: TextStyle(fontSize: 16, decoration: TextDecoration.none, color: Colors.black),),
               SizedBox(height: 20,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextButton.icon(
-                    onPressed: (){},
+                    onPressed: ()=>pickImage(ImageSource.camera),
                     icon: Icon(Icons.camera, size: 50, color: Color(0xFF08082b),),
                     label: Text("Camera", style: TextStyle(color: Colors.black, fontSize: 14),),
                   ),
@@ -34,7 +44,7 @@ class Image_Picker extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.transparent,
                     ),
-                    onPressed: (){},
+                    onPressed: ()=>pickImage(ImageSource.gallery),
                     icon: Icon(Icons.image, size: 50, color: Color(0xFF08082b),),
                     label: Text("Gallery", style: TextStyle(color: Colors.black),),
                   ),
@@ -49,3 +59,5 @@ class Image_Picker extends StatelessWidget {
     );
   }
 }
+
+
