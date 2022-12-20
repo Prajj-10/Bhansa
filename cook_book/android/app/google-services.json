@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "213176669880",
+    "firebase_url": "https://cook-book-2-default-rtdb.firebaseio.com",
     "project_id": "cook-book-2",
     "storage_bucket": "cook-book-2.appspot.com"
   },
@@ -22,6 +23,14 @@
           }
         },
         {
+          "client_id": "213176669880-eoesa3kamahb0070odt8eee86skth2q1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cook_book",
+            "certificate_hash": "e8e7c070c0c8c29cd09365622b2ec22d8f725ca9"
+          }
+        },
+        {
           "client_id": "213176669880-i2algig3kbc4j3rtpr9259et3ie984m3.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -35,6 +44,14 @@
           "android_info": {
             "package_name": "com.example.cook_book",
             "certificate_hash": "ea114318dc4c99c7ffd9c8b850bb96b051e2968e"
+          }
+        },
+        {
+          "client_id": "213176669880-qsrl329noh47gm7fsf7oililmos11pna.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cook_book",
+            "certificate_hash": "93a0f826598e9bfe6c47d66c5c0d823ffd0aa5ef"
           }
         },
         {

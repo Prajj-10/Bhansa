@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cook_book/app/registration_page/auth_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -28,6 +29,7 @@ class RegistrationPage extends StatefulWidget {
 
   @override
   State<RegistrationPage> createState() => _RegistrationPageState();
+
 }
 
 class _RegistrationPageState extends State<RegistrationPage> {
@@ -57,9 +59,14 @@ class _RegistrationPageState extends State<RegistrationPage> {
   var passController = new TextEditingController();
   var confirmPassController = new TextEditingController();
 
+  CollectionReference userRegistration = FirebaseFirestore.instance.collection('User Registration');
+  String? nametxt, addresstxt, emailtxt, passwordtxt, confirmPasswordtxt;
+
+
   final dbRef = FirebaseDatabase.instance.reference();
 
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
@@ -85,6 +92,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
             TextField(
 
               controller: nameController,
+              onChanged: (value){
+                nametxt = value;
+              },
 
               style: const TextStyle(fontSize: 25, color: Color(0xffAAAAAA)),
               decoration: const InputDecoration(
@@ -109,6 +119,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
             TextField(
 
               controller: addressController,
+
+              onChanged: (value){
+                addresstxt = value;
+              },
+
               style: TextStyle(fontSize: 25, color: Color(0xffAAAAAA)),
               decoration: InputDecoration(
                 prefixIcon: Icon(
@@ -132,6 +147,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
             TextField(
 
               controller: emailController,
+
+              onChanged: (value){
+                emailtxt = value;
+              },
               style: TextStyle(fontSize: 25, color: Color(0xffAAAAAA)),
               decoration: InputDecoration(
                 prefixIcon: Icon(
@@ -155,6 +174,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
             TextField(
 
               controller: passController,
+              onChanged: (value){
+                passwordtxt = value;
+              },
               style: TextStyle(fontSize: 25, color: Color(0xffAAAAAA)),
               decoration: InputDecoration(
                 prefixIcon: Icon(
@@ -182,6 +204,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
             TextField(
               controller: confirmPassController,
+              onChanged: (value){
+                confirmPasswordtxt = value;
+              },
               style: TextStyle(fontSize: 25, color: Color(0xffAAAAAA)),
               decoration: InputDecoration(
                 prefixIcon: Icon(
@@ -209,8 +234,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
             ElevatedButton(
               onPressed: (){
+                registerUsers();
                 //print("Hello World");
-                insertData(nameController.text, addressController.text, emailController.text, passController.text, confirmPassController.text);
+                // insertData(nameController.text, addressController.text, emailController.text, passController.text, confirmPassController.text);
                 //registerUser(context);
                 createUserWithEmailAndPassword();
                 print("Hello World");
@@ -237,9 +263,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
     );
   }
 
-  void insertData(String name, String address, String email, String password, String confirmPass){
+/*  void insertData(String name, String address, String email, String password, String confirmPass){
     try {
-      dbRef.child("path").push().set({
+      dbRef.child("users").push().set({
         "name": name,
         "address": address,
         "email": email,
@@ -253,7 +279,21 @@ class _RegistrationPageState extends State<RegistrationPage> {
     }
 
 
+  }*/
+  Future<void> registerUsers() {
+    // Call the user's CollectionReference to add a new user
+    return userRegistration
+        .add({
+      'Name': nametxt,
+      'Address': addresstxt,
+      'Email Address': emailtxt, // 42
+      'Password': passwordtxt,
+      'Confirm Password':confirmPasswordtxt
+    })
+        .then((value) => print("Posted"))
+        .catchError((error) => print("Failed to add Recipe: $error"));
   }
+
 
 /*void registerUser(context){
     final String email = emailController.text.trim();

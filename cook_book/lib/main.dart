@@ -1,4 +1,5 @@
 import 'package:cook_book/authentication/google_sign_in.dart';
+import 'package:cook_book/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       //home: HomePage(),
       
-      home: Navigation(), //Added for testing the bottom navigation bar
+      home: SplashPage() //Added for testing the bottom navigation bar
 
     ),
   );
