@@ -17,7 +17,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
   // Login Function
   static Future<User?> loginUsingEmail(String email, String password, BuildContext context ) async{
     FirebaseAuth auth = FirebaseAuth.instance;
@@ -61,6 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
+                //crossAxisAlignment: CrossAxisAlignment.start,
                 //mainAxisSize: MainAxisSize.max,
                 // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -69,14 +69,19 @@ class _LoginScreenState extends State<LoginScreen> {
                           textStyle: const TextStyle(fontWeight: FontWeight.bold,
                               fontSize: 70.0, color: Colors.white))
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 285.0, top: 20.0, bottom: 15.0),
-                    child: Text("Welcome !",
-                      style: GoogleFonts.roboto(
-                        textStyle: const TextStyle(color: Colors.white,
-                            fontSize: 30.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20.0, bottom: 15.0),
+                        child: Text("Welcome !",
+                          style: GoogleFonts.roboto(
+                            textStyle: const TextStyle(color: Colors.white,
+                                fontSize: 30.0),
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                   const SizedBox(
                     height: 15.0,
@@ -103,6 +108,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
                     ],
                   ),
+
+
+
                   const SizedBox(
                     height: 20.0,
                   ),

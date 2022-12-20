@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bf33b20f-9bb0-49da-9eb9-3fc611fe96ce" name="Changes" comment="updated myprofile and edit profile page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/EditProfile/btnEditProfile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/EditProfile/btnEditProfile.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/EditProfile/editProfile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/EditProfile/editProfile.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/EditProfile/imagePicker.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/EditProfile/imagePicker.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/profileDetail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/profileDetail.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/loginpage/login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/loginpage/login.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
