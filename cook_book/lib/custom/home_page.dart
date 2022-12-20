@@ -2,6 +2,7 @@ import 'package:cook_book/app/loginpage/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../app/loginpage/loginPage.dart';
 import '../authentication/logged_in.dart';
 
 class HomePage extends StatelessWidget{
@@ -25,7 +26,7 @@ class HomePage extends StatelessWidget{
           return  const LoggedInWidget();
         }
         else{
-          return const LoginScreen();
+          return const LoginPage();
         }
       },
     ),

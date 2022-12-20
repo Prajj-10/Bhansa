@@ -136,7 +136,7 @@ class FollowButton extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(number, style: TextStyle(fontSize: 12, color: Colors.white),),
+          Text(number, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white),),
           Text(name, style: TextStyle(fontSize: 12, color: Colors.white),),
         ],
       ),

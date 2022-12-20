@@ -40,7 +40,7 @@ class _MyProfileState extends State<MyProfile> {
               headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
                 return[
                   SliverList(delegate: SliverChildListDelegate([
-                    const ProfileDetail(),
+                    ProfileDetail(),
                   ]),)
                 ];
               },
