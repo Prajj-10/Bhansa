@@ -14,8 +14,12 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
+
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
+
 
   // This widget is the root of your application.
   @override
@@ -23,9 +27,10 @@ class MyApp extends StatelessWidget {
     create: (context) => GoogleSignInProvider(),
     child : const MaterialApp(
       debugShowCheckedModeBanner: false,
+
       //home: HomePage(),
       
-      home: SplashPage() //Added for testing the bottom navigation bar
+      home: SplashPage()
 
     ),
   );
