@@ -1,10 +1,14 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cook_book/app/loginpage/loginPage.dart';
 import 'package:cook_book/app/registration_page/auth_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import '../../model/user_model.dart';
+
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -34,6 +38,9 @@ class RegistrationPage extends StatefulWidget {
 
 class _RegistrationPageState extends State<RegistrationPage> {
 
+  final _formKey = GlobalKey<FormState>();
+  final _auth = FirebaseAuth.instance;
+
   Future<void> createUserWithEmailAndPassword() async {
     try {
       await Auth().createUserWithEmailAndPassword(
@@ -53,11 +60,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
     passController.clear();
     confirmPassController.clear();
   }
-  var nameController = new TextEditingController();
-  var addressController = new TextEditingController();
-  var emailController = new TextEditingController();
-  var passController = new TextEditingController();
-  var confirmPassController = new TextEditingController();
+  var nameController = TextEditingController();
+  var addressController = TextEditingController();
+  var emailController = TextEditingController();
+  var passController = TextEditingController();
+  var confirmPassController = TextEditingController();
 
   CollectionReference userRegistration = FirebaseFirestore.instance.collection('User Registration');
   String? nametxt, addresstxt, emailtxt, passwordtxt, confirmPasswordtxt;
@@ -79,7 +86,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
         child: Column(
 
           children:   [
-            SizedBox(height: 70,),
+            const SizedBox(height: 70,),
             const Align(
               alignment: Alignment.center,
               child: Text(
@@ -89,14 +96,24 @@ class _RegistrationPageState extends State<RegistrationPage> {
             ),
             const SizedBox(height: 70,),
 
-            TextField(
+            TextFormField(
+
 
               controller: nameController,
               onChanged: (value){
                 nametxt = value;
               },
-
+              validator: (value){
+                RegExp regex = RegExp(r'^.{3,}$');
+                if(value!.isEmpty){
+                  return("Name cannot be empty.");
+                }
+                if(!regex.hasMatch(value)){
+                  return "Enter a Valid Name of minimum 3 characters.";
+                }
+              },
               style: const TextStyle(fontSize: 25, color: Color(0xffAAAAAA)),
+              textInputAction: TextInputAction.next,
               decoration: const InputDecoration(
                 prefixIcon: Icon(
                   Icons.person_outline,
@@ -114,18 +131,28 @@ class _RegistrationPageState extends State<RegistrationPage> {
               ),
             ),
 
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
 
-            TextField(
+            TextFormField(
 
               controller: addressController,
 
               onChanged: (value){
                 addresstxt = value;
               },
-
-              style: TextStyle(fontSize: 25, color: Color(0xffAAAAAA)),
-              decoration: InputDecoration(
+              textInputAction: TextInputAction.next,
+              validator: (value){
+                RegExp regex = RegExp(r'^.{3,}$');
+                if(value!.isEmpty){
+                  return("Address cannot be empty.");
+                }
+                if(!regex.hasMatch(value)){
+                  return "Enter a Valid Address.";
+                }
+                return null;
+              },
+              style: const TextStyle(fontSize: 25, color: Color(0xffAAAAAA)),
+              decoration: const InputDecoration(
                 prefixIcon: Icon(
                   Icons.location_on,
                   color: Color(0xffAAAAAA),
@@ -142,17 +169,28 @@ class _RegistrationPageState extends State<RegistrationPage> {
               ),
             ),
 
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
 
-            TextField(
+            TextFormField(
 
               controller: emailController,
 
               onChanged: (value){
                 emailtxt = value;
               },
-              style: TextStyle(fontSize: 25, color: Color(0xffAAAAAA)),
-              decoration: InputDecoration(
+              validator: (value){
+                RegExp regex = RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]");
+                if(value!.isEmpty){
+                  return("Please enter your email address.");
+                }
+                if(!regex.hasMatch(value)){
+                  return "Please enter a valid email address";
+                }
+                return null;
+              },
+              textInputAction: TextInputAction.next,
+              style: const TextStyle(fontSize: 25, color: Color(0xffAAAAAA)),
+              decoration: const InputDecoration(
                 prefixIcon: Icon(
                   Icons.email_outlined,
                   color: Color(0xffAAAAAA),
@@ -169,16 +207,26 @@ class _RegistrationPageState extends State<RegistrationPage> {
               ),
             ),
 
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
 
-            TextField(
-
+            TextFormField(
               controller: passController,
               onChanged: (value){
                 passwordtxt = value;
               },
-              style: TextStyle(fontSize: 25, color: Color(0xffAAAAAA)),
-              decoration: InputDecoration(
+              validator: (value){
+                RegExp regex = RegExp(r'^.{8,}$');
+                if(value!.isEmpty){
+                  return("Password is empty.");
+                }
+                if(!regex.hasMatch(value)){
+                  return "Please enter password with 8 minimum characters.";
+                }
+                return null;
+              },
+              textInputAction: TextInputAction.next,
+              style: const TextStyle(fontSize: 25, color: Color(0xffAAAAAA)),
+              decoration: const InputDecoration(
                 prefixIcon: Icon(
                   Icons.lock_outline_rounded,
                   color: Color(0xffAAAAAA),
@@ -200,15 +248,24 @@ class _RegistrationPageState extends State<RegistrationPage> {
               ),
             ),
 
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
 
-            TextField(
+            TextFormField(
               controller: confirmPassController,
               onChanged: (value){
                 confirmPasswordtxt = value;
               },
-              style: TextStyle(fontSize: 25, color: Color(0xffAAAAAA)),
-              decoration: InputDecoration(
+              validator:(value){
+                if(confirmPassController.text.length>8 && passController!= value){
+                  return "Passwords don't match.";
+                }
+                else{
+                  return null;
+                }
+              },
+              style: const TextStyle(fontSize: 25, color: Color(0xffAAAAAA)),
+              textInputAction: TextInputAction.done,
+              decoration: const InputDecoration(
                 prefixIcon: Icon(
                   Icons.lock_outline_rounded,
                   color: Color(0xffAAAAAA),
@@ -230,30 +287,30 @@ class _RegistrationPageState extends State<RegistrationPage> {
               ),
             ),
 
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
 
             ElevatedButton(
               onPressed: (){
-                registerUsers();
+                signUp(emailController.text, passController.text);
                 //print("Hello World");
                 // insertData(nameController.text, addressController.text, emailController.text, passController.text, confirmPassController.text);
                 //registerUser(context);
-                createUserWithEmailAndPassword();
+                //createUserWithEmailAndPassword();
                 print("Hello World");
                 clearcontrollers();
               },
 
-              child: Text("Sign Up"),
+              child: const Text("Sign Up"),
             ),
 
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
 
             ElevatedButton(
               onPressed: (){
                 //Navigator.push(context, MaterialPageRoute(builder: (context) => PostRecipe()));
 
               },
-              child: Text("Post"),
+              child: const Text("Post"),
             ),
           ],
 
@@ -280,6 +337,48 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
 
   }*/
+
+  void signUp(String email, String password) async{
+    await _auth.createUserWithEmailAndPassword(email: email,
+        password:password).then((value)=> {
+      postDetailsToFireStore()
+    }).catchError((e){
+      Fluttertoast.showToast(msg: e!.message);
+    /*if(_formKey.currentState!.validate()){
+        });*/
+    });
+  }
+
+  postDetailsToFireStore() async{
+    // call FireStore
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+
+    // call user model
+    User? user = _auth.currentUser;
+    UserModel userModel = UserModel();
+
+    // writing all values
+    userModel.uid = user!.uid;
+    userModel.name = nametxt;
+    userModel.email = user.email;
+    userModel.address = addresstxt;
+    userModel.password = passwordtxt;
+
+    await firebaseFirestore
+    .collection("users")
+    .doc(user.uid)
+    .set(userModel.toMap());
+    Fluttertoast.showToast(msg: "Account created successfully");
+    /*Navigator.pushAndRemoveUntil(
+        context, MaterialPageRoute(
+        builder: (context)=>const LoginPage()),
+            (route) => false);*/
+
+
+  }
+
+  /*
+  register users in old way
   Future<void> registerUsers() {
     // Call the user's CollectionReference to add a new user
     return userRegistration
@@ -291,8 +390,12 @@ class _RegistrationPageState extends State<RegistrationPage> {
       'Confirm Password':confirmPasswordtxt
     })
         .then((value) => print("Posted"))
-        .catchError((error) => print("Failed to add Recipe: $error"));
-  }
+        .catchError((error){
+          Fluttertoast.showToast(msg: error!.message);
+    });
+  }*/
+
+
 
 
 /*void registerUser(context){
