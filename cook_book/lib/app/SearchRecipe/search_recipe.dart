@@ -52,7 +52,7 @@ class _SearchRecipeState extends State<SearchRecipe> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xFF061624).withOpacity(1.0),
+        //backgroundColor: Color(0xFF061624).withOpacity(1.0),
 
 
         body: Column(
@@ -68,10 +68,10 @@ class _SearchRecipeState extends State<SearchRecipe> {
             TextField(
              onChanged: (value)=> updateList(value),
               style: TextStyle(
-                color: Colors.black,
+                color: Colors.white,
               ),
               decoration: InputDecoration(
-                fillColor: Colors.white,
+                //fillColor: Colors.white,
                 filled: true,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8.0),
