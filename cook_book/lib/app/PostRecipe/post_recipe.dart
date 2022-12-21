@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 import 'package:cook_book/main.dart';
 import 'package:flutter/material.dart';
 import 'package:snippet_coder_utils/FormHelper.dart';
@@ -200,55 +202,29 @@ class _PostRecipeState extends State<PostRecipe> {
                       height: 10,
                     ),
 
-                    /*Container(
+                    Container(
+                      height: 50,
+                      child: const TextField(
 
+                        style: TextStyle(fontSize: 20, color: Colors.white),
 
-                      child: Stepper(
-                        //currentStep: currentStep,
-                        steps: const [
-                          Step(
-                              title: Text(
-                                  "Step 1",
-                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.white)),
-                              content: TextField(
-                                style: TextStyle(fontSize: 20, color: Colors.white),
-
-                                decoration: InputDecoration(
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      width: 2,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.white),
-                                  ),
-                                ),
-                              )
+                        decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              width: 2,
+                              color: Colors.white,
+                            ),
                           ),
 
-
-                        ],
-
-
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                          ),
+                        ),
                       ),
-                    ),*/
-
-
-
-
-                    const SizedBox(
-                      height: 20,
                     ),
 
-                    /*ElevatedButton(
-                      onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
 
-                      },
-                      child: const Text("Upload Image"),
-                    ),*/
+
 
                     Container(
                       child: Row(
@@ -265,13 +241,18 @@ class _PostRecipeState extends State<PostRecipe> {
                           IconButton(
                               onPressed: (){
                                 //print('Hello');
+                                _getFromGallery();
                               },
                               color: Colors.white,
-                              icon: Icon(Icons.camera_alt, size: 35,)
+                              icon: Icon(Icons.upload, size: 35,)
                           )
                         ],
                       ),
-                    )
+                    ),
+
+                    const SizedBox(
+                      height: 50,
+                    ),
 
 
 
@@ -287,5 +268,16 @@ class _PostRecipeState extends State<PostRecipe> {
       ),
 
     );
+  }
+
+  _getFromGallery() async {
+    PickedFile? pickedFile = await ImagePicker().getImage(
+      source: ImageSource.gallery,
+      maxWidth: 1800,
+      maxHeight: 1800,
+    );
+    if (pickedFile != null) {
+      File imageFile = File(pickedFile.path);
+    }
   }
 }
