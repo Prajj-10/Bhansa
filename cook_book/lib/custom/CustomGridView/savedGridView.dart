@@ -12,7 +12,7 @@ class Saved extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.all(10),
           child: SizedBox(
-            height: 80,
+            //height: 80,
             width: size.width*0.3,
             child: DecoratedBox(
               decoration: BoxDecoration(

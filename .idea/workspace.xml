@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf33b20f-9bb0-49da-9eb9-3fc611fe96ce" name="Changes" comment="updated myprofile and edit profile page">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/myProfile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/myProfile.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/profileDetail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/profileDetail.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/custom/home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/home_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/loginpage/loginPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/loginpage/loginPage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/custom/CustomGridView/savedGridView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomGridView/savedGridView.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
