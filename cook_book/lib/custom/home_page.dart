@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../app/loginpage/loginPage.dart';
 import '../authentication/logged_in.dart';
+import 'NavigationBar/navigation_bar.dart';
 
 class HomePage extends StatelessWidget{
   const HomePage({super.key});
@@ -23,7 +24,11 @@ class HomePage extends StatelessWidget{
         }
         else if(snapshot.hasData){
           var user = FirebaseAuth.instance.currentUser;
-          return  const LoggedInWidget();
+          //return  const LoggedInWidget();
+
+          //Testing redirecting to Navigation page
+          //Testing successful
+          return  const Navigation();
         }
         else{
           return const LoginPage();

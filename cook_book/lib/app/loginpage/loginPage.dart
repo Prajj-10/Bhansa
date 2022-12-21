@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../authentication/logged_in.dart';
+import '../../custom/NavigationBar/navigation_bar.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -186,6 +187,9 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
                                         if (user !=null){
                                           Program.user= user;
                                           Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) =>  const LoggedInWidget()));
+
+                                          //Testing navigation
+                                          //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) =>  const Navigation()));
                                         }
                                       },
                                       child: Text("Login",

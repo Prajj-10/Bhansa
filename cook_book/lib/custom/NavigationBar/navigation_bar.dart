@@ -4,6 +4,7 @@ import '../../app/MyProfile/myProfile.dart';
 import '../../app/PostRecipe/post_recipe.dart';
 import '../../app/SearchRecipe/search_recipe.dart';
 import '../../app/registration_page/registration.dart';
+import '../../authentication/logged_in.dart';
 import '../home_page.dart';
 
 
@@ -21,7 +22,7 @@ class _NavigationState extends State<Navigation> {
   int index = 0;
 
   //Calling the pages (most be in sequential order)
-  List screen = [HomePage(), SearchRecipe(), PostRecipe(), SignUp(), MyProfile() ];
+  List screen = [LoggedInWidget(), SearchRecipe(), PostRecipe(), SignUp(), MyProfile() ];
 
 
 

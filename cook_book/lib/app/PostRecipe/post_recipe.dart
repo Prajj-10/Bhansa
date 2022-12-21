@@ -22,7 +22,7 @@ class _PostRecipeState extends State<PostRecipe> {
     var height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      //backgroundColor: Colors.black,
       /*appBar: AppBar(
         title: const Text("Post Your Recipe"),
         centerTitle: true,

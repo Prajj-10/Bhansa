@@ -43,15 +43,15 @@ class LoggedInWidget extends StatelessWidget {
                 style: TextStyle(fontSize: 24),
               ),
               const SizedBox(height: 32),
-              /*CircleAvatar(
+              CircleAvatar(
                 radius: 40,
                 backgroundImage: NetworkImage(user.photoURL!),
               ),
-              const SizedBox(height: 8),*/
-              /*Text(
+              const SizedBox(height: 8),
+              Text(
                 'Name: ${user.displayName!}',
                 style: const TextStyle(color: Colors.white, fontSize: 16),
-              ),*/
+              ),
               const SizedBox(height: 8),
               Text(
                 'Email: ${user.email!}',
