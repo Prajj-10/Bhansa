@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../app/loginpage/login.dart';
 import '../main.dart';
+import 'logged_in.dart';
 
 class GoogleSignInProvider extends ChangeNotifier {
   final googleSignIn = GoogleSignIn();
@@ -31,12 +33,15 @@ class GoogleSignInProvider extends ChangeNotifier {
     }
 
     notifyListeners();
+    const LoggedInWidget();
+    Fluttertoast.showToast(msg: "Logged In successfully.");
   }
 
   Future logout() async {
     // await googleSignIn.currentUser?.clearAuthCache();
     await FirebaseAuth.instance.signOut();
     await googleSignIn.signOut();
+
 
   }
 }
