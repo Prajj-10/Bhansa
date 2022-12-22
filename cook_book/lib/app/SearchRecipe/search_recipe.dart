@@ -52,9 +52,8 @@ class _SearchRecipeState extends State<SearchRecipe> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+         resizeToAvoidBottomInset: false,
         //backgroundColor: Color(0xFF061624).withOpacity(1.0),
-
-
         body: Column(
           children: [
             SizedBox(height: 20,),

@@ -32,7 +32,7 @@ class _SplashPageState extends State<SplashPage> {
       navigator: const HomePage(),
 
       //Testing navigate to login page
-      //navigator: const LoginPage(),
+      //navigator: const Navigation(),
 
       durationInSeconds: 5,
     );

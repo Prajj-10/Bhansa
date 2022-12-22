@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 import '../../app/MyProfile/myProfile.dart';
@@ -5,7 +6,7 @@ import '../../app/PostRecipe/post_recipe.dart';
 import '../../app/SearchRecipe/search_recipe.dart';
 import '../../app/registration_page/registration.dart';
 import '../../authentication/logged_in.dart';
-import '../home_page.dart';
+
 
 
 
@@ -17,16 +18,14 @@ class Navigation extends StatefulWidget {
 }
 
 class _NavigationState extends State<Navigation> {
-
   @override
   int index = 0;
-
   //Calling the pages (most be in sequential order)
   List screen = [LoggedInWidget(), SearchRecipe(), PostRecipe(), SignUp(), MyProfile() ];
 
 
-
   Widget build(BuildContext context) {
+    bool isKeyboardOpen = MediaQuery.of(context).viewInsets.bottom != 0.0;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.black12,
@@ -44,7 +43,7 @@ class _NavigationState extends State<Navigation> {
         backgroundColor: Colors.cyan,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomAppBar(
+      bottomNavigationBar: isKeyboardOpen? null :  BottomAppBar(
         shape: CircularNotchedRectangle(),
         notchMargin: 5,
         color: Colors.blueGrey,
