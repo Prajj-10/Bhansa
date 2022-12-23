@@ -55,65 +55,69 @@ class _EditProfileState extends State<EditProfile> {
           child: Padding(
             padding: const EdgeInsets.all(15),
             child: SingleChildScrollView(
-              child: SizedBox(
-                height: size.height*0.85,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: Color(0xFF081017).withOpacity(0.7),
-                  ),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: size.height*0.85,
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: Color(0xFF081017).withOpacity(0.7),
+                      ),
 
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Form(
-                      child: Column(
-                        children: [
-                          profilePicture != null?
-                          ClipOval(child: Image.file(profilePicture!, width: size.width*0.35, height: size.width*0.35, fit: BoxFit.cover,))
-                          :SizedBox(
-                            height: size.width*0.35,
-                            width: size.width*0.35,
+                      child: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Form(
+                          child: Column(
+                            children: [
+                              profilePicture != null?
+                              ClipOval(child: Image.file(profilePicture!, width: 160, height: 160, fit: BoxFit.cover,))
+                              :SizedBox(
+                                height: 160,
+                                width: 160,
 
-                            child: DecoratedBox(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(width: 1, color: Colors.white),
-                                image: DecorationImage(
-                                  image: NetworkImage("https://img.freepik.com/premium-vector/smiling-chef-cartoon-character_8250-10.jpg?w=2000"),
+                                child: DecoratedBox(
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(width: 1, color: Colors.white),
+                                    image: DecorationImage(
+                                      image: NetworkImage("https://img.freepik.com/premium-vector/smiling-chef-cartoon-character_8250-10.jpg?w=2000"),
 
-                                  fit: BoxFit.fill,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
                                 ),
+
                               ),
-                            ),
 
+                              TextButton(
+                                onPressed: (){
+                                  showCupertinoModalPopup(
+                                    context: context,
+                                    builder: (builder)=>Image_Picker(pickImage: imagePicker,),
+                                  );
+                                },
+                                child: Text("Upload new profile", style: TextStyle(fontSize: 16),),
+                              ),
+
+                              //Name
+                              editProfile_InputField(txt_Label: "Name", max_Length: 25, max_Lines: 1,),
+
+                              //Username
+                              editProfile_InputField(txt_Label: "Username", max_Length: 16, max_Lines: 1,),
+
+                              //Description
+                              editProfile_InputField(txt_Label: "Description", max_Length: 1000, max_Lines: 5,),
+
+                            ],
                           ),
+                        ),
 
-                          TextButton(
-                            onPressed: (){
-                              showCupertinoModalPopup(
-                                context: context,
-                                builder: (builder)=>Image_Picker(pickImage: imagePicker,),
-                              );
-                            },
-                            child: Text("Upload new profile", style: TextStyle(fontSize: 16),),
-                          ),
-
-                          //Name
-                          editProfile_InputField(txt_Label: "Name", max_Length: 25, max_Lines: 1,),
-
-                          //Username
-                          editProfile_InputField(txt_Label: "Username", max_Length: 16, max_Lines: 1,),
-
-                          //Description
-                          editProfile_InputField(txt_Label: "Description", max_Length: 1000, max_Lines: 5,),
-
-                        ],
                       ),
                     ),
 
                   ),
-                ),
-
+                ],
               ),
             ),
           ),

@@ -1,3 +1,4 @@
+import 'package:cook_book/app/registration_page/signUp.dart';
 import 'package:cook_book/authentication/google_sign_in.dart';
 import 'package:cook_book/program.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -186,10 +187,9 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
                                       onPressed: () async{
                                         User? user = await loginUsingEmail(_emailController.text,_passwordController.text,context);
                                         print(user);
-                                        if (user !=null){
+                                        if (user != null){
                                           Program.user= user;
                                           Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) =>  const LoggedInWidget2()));
-
                                           //Testing navigation
                                           //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) =>  const Navigation()));
                                         }
@@ -237,12 +237,15 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
                                       onPressed: () {
                                         final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
                                         provider.googleLogin();
+                                        if(provider.googleLogin() ==true){
+                                          Navigator.push(context, MaterialPageRoute(builder: (context) =>  const LoggedInWidget()));
+                                        }
                                       },
                                     ),
                                   ),
                                 ],
                               ),
-                              Text("Hello"),
+                              Sign_Up(),
                             ],
                           ),
                         ),
