@@ -1,3 +1,5 @@
+//this is for dynamic text field
+
 class CookingStepsModel{
   List<String>? cooking_steps;
 

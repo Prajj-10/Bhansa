@@ -116,7 +116,13 @@ class _PostRecipeState extends State<PostRecipe> {
 
                     Container(
                       height: 50,
-                      child: const TextField(
+                      child:  TextField(
+
+                        onChanged: (value){
+                          recipe_title = value;
+                        },
+
+
 
                         style: TextStyle(fontSize: 20, color: Colors.white),
 
@@ -156,7 +162,12 @@ class _PostRecipeState extends State<PostRecipe> {
                       child: Container(
                         height: 50,
                         width: 180,
-                        child: const TextField(
+                        child: TextField(
+
+                          onChanged: (value){
+                            num_of_servings = int.parse(value);
+                            //num_of_servings = value;
+                          },
 
                           style: TextStyle(fontSize: 20, color: Colors.white),
 
@@ -194,7 +205,11 @@ class _PostRecipeState extends State<PostRecipe> {
 
                     Container(
                       height: 50,
-                      child: const TextField(
+                      child:  TextField(
+
+                        onChanged: (value){
+                          ingredients = value;
+                        },
 
                         style: TextStyle(fontSize: 20, color: Colors.white),
 
@@ -294,7 +309,9 @@ class _PostRecipeState extends State<PostRecipe> {
 
                               },
                               color: Colors.white,
-                              icon: const Icon(Icons.file_upload, size: 35,)
+                              icon: const Icon(Icons.file_upload, size: 35,),
+
+                            //onPressed: () {  },
                           ),
 
                         ],
@@ -310,6 +327,17 @@ class _PostRecipeState extends State<PostRecipe> {
 
                     const SizedBox(
                       height: 50,
+                    ),
+
+                    ElevatedButton(
+                        onPressed: () {
+                          addRecipe();
+                        },
+                        child: Text('Post Recipe')
+                    ),
+
+                    const SizedBox(
+                      height: 30,
                     ),
 
 
@@ -328,8 +356,19 @@ class _PostRecipeState extends State<PostRecipe> {
     );
   }
 
+  _getFromGallery() async {
+    PickedFile? pickedFile = await ImagePicker().getImage(
+      source: ImageSource.gallery,
+      maxWidth: 1800,
+      maxHeight: 1800,
+    );
+    if (pickedFile != null) {
+      File imageFile = File(pickedFile.path);
+    }
+  }
+
   Future<void> addRecipe() {
-    // Call the user's CollectionReference to add a new user
+
     return recipeDetails
         .add({
       'Title': recipe_title,
