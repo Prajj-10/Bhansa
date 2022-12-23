@@ -350,6 +350,7 @@ class _PostRecipeState extends State<PostRecipe> {
         children: [
           Flexible(
             child: FormHelper.inputFieldWidget(
+              textColor: Colors.white,
 
               context,
               "steps_$index",
@@ -368,6 +369,7 @@ class _PostRecipeState extends State<PostRecipe> {
               borderFocusColor: Colors.white,
               borderRadius: 0,
               fontSize: 16,
+
 
             ),
           ),
