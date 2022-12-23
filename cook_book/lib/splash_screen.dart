@@ -17,24 +17,24 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return EasySplashScreen(
-      logo: Image.network(
-          'https://cdn.dribbble.com/users/131733/screenshots/5472304/artboard_copy.png'),
-      title: const Text(
-        "Cook Book",
-        style: TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
+        logo: Image.asset('assets/CB2.png'),
+        title: const Text(
+          "Cook Book",
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-      ),
-      backgroundColor: Colors.grey.shade400,
-      showLoader: true,
-      loadingText: const Text("Loading..."),
-      navigator: const HomePage(),
+        showLoader: true,
+        backgroundColor: const Color(0xFF061624).withOpacity(1.0),
+        loaderColor: Colors.white,
+        loadingText: const Text("Loading..."),
+        navigator: const HomePage(),
 
-      //Testing navigate to login page
-      //navigator: const Navigation(),
+        //Testing navigate to login page
+        //navigator: const Navigation(),
 
-      durationInSeconds: 5,
-    );
+        durationInSeconds: 5,
+      );
   }
 }
