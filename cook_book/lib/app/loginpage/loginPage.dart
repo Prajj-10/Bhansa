@@ -2,11 +2,13 @@ import 'package:cook_book/authentication/google_sign_in.dart';
 import 'package:cook_book/program.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../authentication/logged_in.dart';
+import '../../authentication/logged_in2.dart';
 import '../../custom/NavigationBar/navigation_bar.dart';
 
 
@@ -186,7 +188,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
                                         print(user);
                                         if (user !=null){
                                           Program.user= user;
-                                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) =>  const LoggedInWidget()));
+                                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) =>  const LoggedInWidget2()));
 
                                           //Testing navigation
                                           //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) =>  const Navigation()));

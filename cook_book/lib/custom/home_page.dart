@@ -11,6 +11,7 @@ class HomePage extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) => Scaffold(
+    resizeToAvoidBottomInset: false,
     body: StreamBuilder(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot){
@@ -28,7 +29,7 @@ class HomePage extends StatelessWidget{
 
           //Testing redirecting to Navigation page
           //Testing successful
-          return  const Navigation();
+         return  const Navigation();
         }
         else{
           return const LoginPage();
