@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cook_book/main.dart';
 
 import 'storage_services.dart';
@@ -27,6 +28,8 @@ class _PostRecipeState extends State<PostRecipe> {
   String? ingredients, recipe_title;
   int? num_of_servings;
 
+  String image_url = "";
+
   GlobalKey<FormState> globalKey = new GlobalKey<FormState>();
   CookingStepsModel steps_model = CookingStepsModel();
 
@@ -36,7 +39,6 @@ class _PostRecipeState extends State<PostRecipe> {
   void initState(){
     steps_model.cooking_steps = new List<String>.empty(growable: true);
     steps_model.cooking_steps!.add("");
-    //steps_model.cooking_steps!.add("");
   }
 
 
@@ -283,7 +285,7 @@ class _PostRecipeState extends State<PostRecipe> {
                           ),*/
 
                           IconButton(
-                              onPressed: ()async{
+                              /*onPressed: ()async{
                                 final results = await FilePicker.platform.pickFiles(
 
                                   allowMultiple: false,
@@ -308,11 +310,11 @@ class _PostRecipeState extends State<PostRecipe> {
                                     .uploadImage(path, fileName)
                                     .then((value)=>print('Done'));
 
-                              },
+                              },*/
                               color: Colors.white,
                               icon: const Icon(Icons.file_upload, size: 35,),
 
-                            //onPressed: () {  },
+                            onPressed: () { uploadImage(); },
                           ),
 
                         ],
@@ -368,13 +370,54 @@ class _PostRecipeState extends State<PostRecipe> {
     }
   }
 
+  uploadImage() async{
+
+    //pick image from gallery
+    //install file_picker package and import necessary library
+    ImagePicker imagePicker = ImagePicker();
+    XFile? file = await  imagePicker.pickImage(source: ImageSource.gallery);
+
+    if(file==null) return;
+
+    String uniqueFileName = DateTime.now().millisecondsSinceEpoch.toString();
+
+    //upload picked image in firestore
+    //install firebase_storage package and import necessary library
+
+    //get a reference to storage
+    Reference referenceroot = FirebaseStorage.instance.ref();
+    Reference referenceDirImages = referenceroot.child('images');
+
+    //create reference for the image to be stored
+    Reference referenceImageToUpload = referenceDirImages.child(uniqueFileName);
+
+    //store image
+    //error handeling
+    try{
+
+      await referenceImageToUpload.putFile(File(file!.path));
+      image_url = await referenceImageToUpload.getDownloadURL();
+
+    } catch(e){print(e);}
+
+
+
+
+  }
+
   Future<void> addRecipe() {
+
+    if(image_url.isEmpty){
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Upload Image')));
+    }
 
     return recipeDetails
         .add({
       'Title': recipe_title,
       'Number of Servings': num_of_servings,
-      'Ingredients': ingredients // 42
+      'Ingredients': ingredients, // 42
+      'Image': image_url
     })
         .then((value) => print("Posted"))
         .catchError((error) => print("Failed to add Recipe: $error"));
