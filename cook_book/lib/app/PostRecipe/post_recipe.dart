@@ -399,9 +399,7 @@ class _PostRecipeState extends State<PostRecipe> {
 
     } catch(e){print(e);}
 
-
-
-
+    
   }
 
   Future<void> addRecipe() {
