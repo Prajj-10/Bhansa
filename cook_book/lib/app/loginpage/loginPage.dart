@@ -1,3 +1,4 @@
+import 'package:cook_book/app/registration_page/signUp.dart';
 import 'package:cook_book/authentication/google_sign_in.dart';
 import 'package:cook_book/program.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -244,7 +245,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
                                   ),
                                 ],
                               ),
-                              Text("Hello"),
+                              Sign_Up(),
                             ],
                           ),
                         ),
