@@ -186,10 +186,9 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
                                       onPressed: () async{
                                         User? user = await loginUsingEmail(_emailController.text,_passwordController.text,context);
                                         print(user);
-                                        if (user !=null){
+                                        if (user != null){
                                           Program.user= user;
                                           Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) =>  const LoggedInWidget2()));
-
                                           //Testing navigation
                                           //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) =>  const Navigation()));
                                         }
@@ -237,6 +236,9 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
                                       onPressed: () {
                                         final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
                                         provider.googleLogin();
+                                        if(provider.googleLogin() ==true){
+                                          Navigator.push(context, MaterialPageRoute(builder: (context) =>  const LoggedInWidget()));
+                                        }
                                       },
                                     ),
                                   ),
