@@ -1,9 +1,11 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cook_book/main.dart';
 
+import '../../model/user_model.dart';
 import 'storage_services.dart';
 
 
@@ -33,12 +35,30 @@ class _PostRecipeState extends State<PostRecipe> {
   GlobalKey<FormState> globalKey = new GlobalKey<FormState>();
   CookingStepsModel steps_model = CookingStepsModel();
 
+  final user = FirebaseAuth.instance.currentUser;
+
+  UserModel loggedInUser = UserModel();
+
+
 
 
   @override
   void initState(){
+
+    super.initState();
+
     steps_model.cooking_steps = new List<String>.empty(growable: true);
     steps_model.cooking_steps!.add("");
+
+    //Fluttertoast.showToast(msg: "Logged In successfully.");
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(user!.uid)
+        .get()
+        .then((value) {
+      loggedInUser = UserModel.fromMap(value.data());
+      setState(() {});
+    });
   }
 
 
@@ -399,7 +419,7 @@ class _PostRecipeState extends State<PostRecipe> {
 
     } catch(e){print(e);}
 
-    
+
   }
 
   Future<void> addRecipe() {
@@ -414,7 +434,8 @@ class _PostRecipeState extends State<PostRecipe> {
       'Title': recipe_title,
       'Number of Servings': num_of_servings,
       'Ingredients': ingredients, // 42
-      'Image': image_url
+      'Image': image_url,
+      'Posted By':loggedInUser.name,
     })
         .then((value) => print("Posted"))
         .catchError((error) => print("Failed to add Recipe: $error"));
