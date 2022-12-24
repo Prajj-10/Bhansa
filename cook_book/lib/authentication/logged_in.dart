@@ -18,8 +18,8 @@ class LoggedInWidget extends StatefulWidget{
     LoggedInWidgetState createState() => LoggedInWidgetState();
 }
 class LoggedInWidgetState extends State<LoggedInWidget> {
-  final user = FirebaseAuth.instance.currentUser;
   final ref = FirebaseDatabase.instance.ref('users');
+  final user = FirebaseAuth.instance.currentUser;
   UserModel loggedInUser = UserModel();
   var name;
   var email;

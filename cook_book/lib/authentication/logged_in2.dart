@@ -19,8 +19,8 @@ class LoggedInWidget2 extends StatefulWidget{
   LoggedInWidgetState2 createState() => LoggedInWidgetState2();
 }
 class LoggedInWidgetState2 extends State<LoggedInWidget2> {
-  final user = FirebaseAuth.instance.currentUser;
   final ref = FirebaseDatabase.instance.ref('users');
+  final user = FirebaseAuth.instance.currentUser;
   UserModel loggedInUser = UserModel();
 
   @override
