@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cook_book/app/EditProfile/imagePicker.dart';
+import 'package:cook_book/custom/CustomButtons/updateElevatedButton.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -119,7 +120,7 @@ class _EditProfileState extends State<EditProfile> {
                                     builder: (builder)=>Image_Picker(pickImage: imagePicker,),
                                   );
                                 },
-                                child: const Text("Upload new profile", style: TextStyle(fontSize: 16),),
+                                child: const Text("Upload new profile", style: TextStyle(fontSize: 16, color: Colors.blue), ),
                               ),
 
                               //Name
@@ -130,6 +131,10 @@ class _EditProfileState extends State<EditProfile> {
 
                               //Description
                               editProfile_InputField(txt_Label: "Description", max_Length: 1000, max_Lines: 5,placeholder: user?.uid,),
+
+                              SizedBox(height: 30,),
+                              //Update Button
+                              UpdateElevatedButton(),
                             ],
                           ),
                         ),

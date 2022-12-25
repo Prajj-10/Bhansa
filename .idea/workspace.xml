@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf33b20f-9bb0-49da-9eb9-3fc611fe96ce" name="Changes" comment="updated myprofile and edit profile page">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cook_book/lib/app/registration_page/signUp.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomButtons/updateElevatedButton.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Cook-Book.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Cook-Book.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages2.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/EditProfile/editProfile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/EditProfile/editProfile.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cook_book/lib/app/loginpage/loginPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/loginpage/loginPage.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
