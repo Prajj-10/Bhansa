@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cook_book/main.dart';
+import 'package:duration_picker/duration_picker.dart';
 
 import '../../model/user_model.dart';
 import 'storage_services.dart';
@@ -28,9 +29,16 @@ class _PostRecipeState extends State<PostRecipe> {
   CollectionReference recipeDetails = FirebaseFirestore.instance.collection('recipe_details');
 
   String? ingredients, recipe_title;
+
   int? num_of_servings;
 
   String image_url = "";
+
+  //var selectedDuration;
+
+  //String selectedDuration = "";
+  //String? selectedDuration;
+
 
   GlobalKey<FormState> globalKey = new GlobalKey<FormState>();
   CookingStepsModel steps_model = CookingStepsModel();
@@ -39,6 +47,9 @@ class _PostRecipeState extends State<PostRecipe> {
 
   UserModel loggedInUser = UserModel();
 
+
+  //Duration _duration = const Duration(hours: 0, minutes: 0);
+  //Duration selectedDuration = const Duration(hours: 0, minutes: 0);
 
 
 
@@ -84,6 +95,7 @@ class _PostRecipeState extends State<PostRecipe> {
             /*SizedBox(
               height: 90,
             ),*/
+            //First Image
             Container(
               height: height/2.2,
               width: width,
@@ -253,6 +265,92 @@ class _PostRecipeState extends State<PostRecipe> {
                     const SizedBox(
                       height: 20,
                     ),
+
+                    /*DurationPicker(
+                        onChange: (val) {
+                          _duration = val;
+                          setState(() {
+
+                          });
+                      },
+                      duration: _duration,
+                      baseUnit: BaseUnit.minute,
+                    ),*/
+
+                    Container(
+                      child: Row(
+                        children: [
+                          const Text(
+                            "Duration: ",
+                            style: TextStyle(fontSize: 20, color: Colors.white),
+                          ),
+                          const SizedBox(
+                            width: 15,
+                          ),
+
+                          IconButton(
+
+                            color: Colors.white,
+                            icon: const Icon(Icons.timer, size: 35,),
+
+                            onPressed: () async {
+
+
+
+                              Duration? selectedDuration = await showDurationPicker(context: context, initialTime: const Duration(minutes: 0));
+
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('Duration is: $selectedDuration')),
+                              );
+
+
+                            },
+                          ),
+
+                        ],
+                      ),
+                    ),
+
+                    const SizedBox(
+                      height: 20,
+                    ),
+
+
+                    /*ElevatedButton(
+                        onPressed: () async{
+                          Duration? selectedDuration = await showDurationPicker(context: context, initialTime: const Duration(minutes: 0));
+
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Duration is: $selectedDuration')),
+                          );
+
+                        },
+                        child: const Text("Pick Duration")
+
+                    ),*/
+
+                    /*const Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Text(
+                        'Duration: $selectedDuration',
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.white),
+                      ),
+                    ),*/
+
+
+
+                    const SizedBox(
+                      height: 10,
+                    ),
+
+                    /*const Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Text(
+                        selectedDuration,
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.white),
+                      ),
+                    ),*/
+
 
                     const Align(
                       alignment: Alignment.bottomLeft,
@@ -433,9 +531,10 @@ class _PostRecipeState extends State<PostRecipe> {
         .add({
       'Title': recipe_title,
       'Number of Servings': num_of_servings,
-      'Ingredients': ingredients, // 42
+      'Ingredients': ingredients,
       'Image': image_url,
       'Posted By':loggedInUser.name,
+      //'Time taken': selectedDuration
     })
         .then((value) => print("Posted"))
         .catchError((error) => print("Failed to add Recipe: $error"));

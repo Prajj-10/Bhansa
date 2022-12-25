@@ -29,6 +29,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  duration_picker: ^1.1.1
   fluttertoast:
   firebase_core: 2.3.0
   file_picker: ^5.2.4
