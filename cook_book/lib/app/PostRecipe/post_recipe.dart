@@ -403,7 +403,7 @@ class _PostRecipeState extends State<PostRecipe> {
                           ),*/
 
                           IconButton(
-                              /*onPressed: ()async{
+                            /*onPressed: ()async{
                                 final results = await FilePicker.platform.pickFiles(
                                   allowMultiple: false,
                                   type: FileType.custom,
@@ -428,8 +428,8 @@ class _PostRecipeState extends State<PostRecipe> {
                                     .then((value)=>print('Done'));
 
                               },*/
-                              color: Colors.white,
-                              icon: const Icon(Icons.file_upload, size: 35,),
+                            color: Colors.white,
+                            icon: const Icon(Icons.file_upload, size: 35,),
 
                             onPressed: () { uploadImage(); },
                           ),
@@ -452,6 +452,7 @@ class _PostRecipeState extends State<PostRecipe> {
                     ElevatedButton(
                         onPressed: () {
                           addRecipe();
+                          print(steps_model.toJson());
                         },
                         child: Text('Post Recipe')
                     ),
@@ -532,6 +533,7 @@ class _PostRecipeState extends State<PostRecipe> {
       'Title': recipe_title,
       'Number of Servings': num_of_servings,
       'Ingredients': ingredients,
+      'Direction': steps_model.toJson(),
       'Image': image_url,
       'Posted By':loggedInUser.name,
       //'Time taken': selectedDuration
@@ -587,9 +589,6 @@ class _PostRecipeState extends State<PostRecipe> {
 
 
 
-          /*SizedBox(
-                  width: 10,
-                ),*/
 
           Visibility(
             child: IconButton(
