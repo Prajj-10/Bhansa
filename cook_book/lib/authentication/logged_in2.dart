@@ -21,6 +21,7 @@ class LoggedInWidget2 extends StatefulWidget{
 class LoggedInWidgetState2 extends State<LoggedInWidget2> {
   final ref = FirebaseDatabase.instance.ref('users');
   final user = FirebaseAuth.instance.currentUser;
+  final googleSignIn = GoogleSignIn();
   UserModel loggedInUser = UserModel();
 
   @override
@@ -92,6 +93,7 @@ class LoggedInWidgetState2 extends State<LoggedInWidget2> {
   }
   Future<void> logout(BuildContext context) async {
     await FirebaseAuth.instance.signOut();
+    await googleSignIn.signOut();
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => const LoginPage()));
         Fluttertoast.showToast(msg: "Logged Out Successfully.");

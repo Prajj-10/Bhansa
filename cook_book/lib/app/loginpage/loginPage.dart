@@ -239,7 +239,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
                                           final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
                                           provider.googleLogin();
                                           if(provider.googleLogin() ==true){
-                                            Navigator.push(context, MaterialPageRoute(builder: (context) =>  const LoggedInWidget()));
+                                            Navigator.push(context, MaterialPageRoute(builder: (context) =>  const LoggedInWidget2()));
                                           }
                                         },
                                       ),

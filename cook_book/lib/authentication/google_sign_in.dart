@@ -1,11 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import '../model/user_model.dart';
 import 'logged_in.dart';
 
 class GoogleSignInProvider extends ChangeNotifier {
   final googleSignIn = GoogleSignIn();
+  final usersRef = FirebaseFirestore.instance.collection('users');
 
   GoogleSignInAccount? _user;
 
@@ -44,6 +47,30 @@ class GoogleSignInProvider extends ChangeNotifier {
     await googleSignIn.signOut();
 
   }
+  createUserInFirestore() async{
+    // check if user exists in the users collection.
+    final GoogleSignInAccount? user = googleSignIn.currentUser;
+    final currentUser = FirebaseAuth.instance.currentUser;
+    final DocumentSnapshot doc = await usersRef.doc(user?.id).get();
+
+    if(!doc.exists){
+      FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+
+      // call user model
+      UserModel userModel = UserModel();
+
+      // writing all values
+      userModel.uid = currentUser?.uid;
+      userModel.name = user?.displayName;
+      userModel.email = user?.email;
+
+      await firebaseFirestore
+          .collection("users")
+          .doc(currentUser?.uid)
+          .set(userModel.toMap());
+    }
+  }
+
 }
 
 /*
