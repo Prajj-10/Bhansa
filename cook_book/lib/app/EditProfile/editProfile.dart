@@ -36,17 +36,32 @@ class _EditProfileState extends State<EditProfile> {
       print("Failed to pick image: $e");
     }
   }
+
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _descriptionController = TextEditingController();
   @override
   void initState() {
     super.initState();
+
     FirebaseFirestore.instance
         .collection("users")
         .doc(user!.uid)
         .get()
         .then((value)=> {
-      loggedInUser = UserModel.fromMap(value.data())
+      loggedInUser = UserModel.fromMap(value.data()),
+    _nameController.text=loggedInUser.name!,
+    _usernameController.text=loggedInUser.email!,
+      _descriptionController.text=loggedInUser.description!,
+    });
+    setState(() {
+
     });
   }
+
+
+
+
 
   @override
   Widget build (BuildContext context) {
@@ -138,19 +153,40 @@ class _EditProfileState extends State<EditProfile> {
                               editProfile_InputField(txt_Label: "Name",
                                 max_Length: 25,
                                 max_Lines: 1,
-                                placeholder: loggedInUser.name,),
+                                placeholder: _nameController,
+                              ),
 
                               //Username
                               editProfile_InputField(txt_Label: "Username",
                                 max_Length: 16,
                                 max_Lines: 1,
-                                placeholder: loggedInUser.email,),
+                                placeholder: _usernameController,),
 
                               //Description
                               editProfile_InputField(txt_Label: "Description",
                                   max_Length: 1000,
                                   max_Lines: 5,
-                                  placeholder: loggedInUser.description),
+                                  placeholder: _descriptionController),
+
+                      TextFormField(
+                        initialValue: loggedInUser.name,
+                        /*onFieldSubmitted: (String value){
+        debugPrint(value);
+      },*/
+                        style: TextStyle(color: Colors.white, fontSize: 12),
+                        decoration: InputDecoration(
+                          counterStyle: TextStyle(color: Colors.white),
+                          labelStyle: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold, fontFamily: "Times New Roman"),
+                          //hintText: "Username",
+                          labelText: "Name",
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.green),
+                          ),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white,),
+                          ),
+                        ),
+                      ),
 
                               SizedBox(height: 30,),
                               //Update Button
@@ -190,7 +226,7 @@ class editProfile_InputField extends StatelessWidget {
       maxLength: max_Length,
       maxLengthEnforcement: MaxLengthEnforcement.enforced,
       maxLines: max_Lines,
-      initialValue: placeholder,
+      controller: placeholder,
       /*onFieldSubmitted: (String value){
         debugPrint(value);
       },*/

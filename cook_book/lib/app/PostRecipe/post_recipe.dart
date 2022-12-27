@@ -68,7 +68,7 @@ class _PostRecipeState extends State<PostRecipe> {
         .doc(user!.uid)
         .get()
         .then((value) {
-      loggedInUser = UserModel.fromMap(value.data());
+      this.loggedInUser = UserModel.fromMap(value.data());
       setState(() {});
     });
   }

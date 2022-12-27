@@ -77,7 +77,12 @@ class _ProfileDetailState extends State<ProfileDetail> {
                             children: [
                               Expanded(child: BtnEditProfile()),
                               SizedBox(width: size.width*0.02,),
-                              Icon(Icons.settings, color: Colors.white, size: 30,),
+                              InkWell(
+                                onTap: (){
+
+                                },
+                                  child: Icon(Icons.settings, color: Colors.white, size: 30,)
+                              ),
 
                             ],
                           ),
