@@ -32,7 +32,7 @@ class _PostRecipeState extends State<PostRecipe> {
 
   int? num_of_servings;
 
-  String image_url = "";
+  //var image_url = "";
 
   //var selectedDuration;
 
@@ -61,6 +61,9 @@ class _PostRecipeState extends State<PostRecipe> {
 
     steps_model.cooking_steps = new List<String>.empty(growable: true);
     steps_model.cooking_steps!.add("");
+
+    steps_model.recipe_ingredients = new List<String>.empty(growable: true);
+    steps_model.recipe_ingredients!.add("");
 
     //Fluttertoast.showToast(msg: "Logged In successfully.");
     FirebaseFirestore.instance
@@ -222,23 +225,23 @@ class _PostRecipeState extends State<PostRecipe> {
                       ),
                     ),
 
-                    const SizedBox(
+                   /* const SizedBox(
                       height: 20,
-                    ),
+                    ),*/
 
-                    const Align(
+                    /*const Align(
                       alignment: Alignment.bottomLeft,
                       child: Text(
                         "Ingredients: ",
                         style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.white),
                       ),
-                    ),
+                    ),*/
 
                     const SizedBox(
                       height: 10,
                     ),
 
-                    Container(
+                    /*Container(
                       height: 50,
                       child:  TextField(
 
@@ -261,7 +264,7 @@ class _PostRecipeState extends State<PostRecipe> {
                           ),
                         ),
                       ),
-                    ),
+                    ),*/
 
                     const SizedBox(
                       height: 20,
@@ -538,7 +541,7 @@ class _PostRecipeState extends State<PostRecipe> {
     try{
 
       await referenceImageToUpload.putFile(File(file!.path));
-      image_url = await referenceImageToUpload.getDownloadURL();
+      steps_model.image_url = await referenceImageToUpload.getDownloadURL();
 
     } catch(e){print(e);}
 
@@ -547,7 +550,7 @@ class _PostRecipeState extends State<PostRecipe> {
 
   Future<void> addRecipe() {
 
-    if(image_url.isEmpty){
+    if(steps_model.image_url!.isEmpty){
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('Upload Image')));
     }
@@ -572,7 +575,7 @@ class _PostRecipeState extends State<PostRecipe> {
       key: globalKey,
       child: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(8.0),
+          padding: EdgeInsets.all(0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -596,6 +599,12 @@ class _PostRecipeState extends State<PostRecipe> {
               //   fontSize: 14,
               //   labelFontSize: 16,
               // ),
+
+              _ingredientsContainer(),
+
+              SizedBox(
+                height: 50,
+              ),
 
               _directionContainer(),
 
@@ -631,7 +640,7 @@ class _PostRecipeState extends State<PostRecipe> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(5),
           child: Text(
             "Directions",
             textAlign: TextAlign.left,
@@ -660,13 +669,13 @@ class _PostRecipeState extends State<PostRecipe> {
   }
 
   Widget stepContainerUI(index){
-    return Padding(padding: EdgeInsets.all(10),
+    return Padding(padding: EdgeInsets.all(5),
       child: Row(
         children: [
           Flexible(child:
           FormHelper.inputFieldWidget(context,
             "step_$index",
-            "add steps",
+            "Add Directions:",
             textColor: Colors.white,
                 (onValidateVal){
               if(onValidateVal.isEmpty){
@@ -730,6 +739,114 @@ class _PostRecipeState extends State<PostRecipe> {
       }
     });
   }
+
+  //Ingredients Widget
+  Widget _ingredientsContainer(){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Text(
+            "Ingredients",
+            textAlign: TextAlign.left,
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+        ),
+
+        //stepContainerUI(0)
+
+        ListView.separated(
+            shrinkWrap: true,
+            physics: const ScrollPhysics(),
+            itemBuilder: (context, index){
+              return Column(
+                children: [
+                  stepContainerUI_ingredients(index),
+                ],
+              );
+            },
+            separatorBuilder: (contex, index)=> const Divider(),
+            itemCount: steps_model.recipe_ingredients!.length)
+
+      ],
+    );
+
+  }
+
+  Widget stepContainerUI_ingredients(index){
+    return Padding(padding: EdgeInsets.all(10),
+      child: Row(
+        children: [
+          Flexible(child:
+          FormHelper.inputFieldWidget(context,
+            "step_$index",
+            "Add Ingredients:",
+            textColor: Colors.white,
+                (onValidateVal){
+              if(onValidateVal.isEmpty){
+                return "Cannot ${index + 1} be empty";
+              }
+              return null;
+            },
+                (onSavedVal){
+              this.steps_model.recipe_ingredients![index] = onSavedVal;
+            },
+            borderColor: Colors.white,
+            borderFocusColor: Colors.white,
+            borderRadius: 2,
+            fontSize: 14,
+            hintColor: Colors.white,
+          ),),
+
+          Visibility(child:
+          SizedBox(
+            width:35 ,
+            child: IconButton(
+              icon: Icon(Icons.add_circle, color: Colors.green,),
+              onPressed: () {
+                addStepControl_ingredients();
+              },
+
+            ),
+          ),
+            visible: index == steps_model.recipe_ingredients!.length-1,
+          ),
+
+          Visibility(child:
+          SizedBox(
+            width:35 ,
+            child: IconButton(
+              icon: Icon(Icons.remove_circle, color: Colors.redAccent,),
+              onPressed: () {
+                removeStepControl_ingredients(index);
+              },
+
+            ),
+          ),
+            visible: index > 0,
+          ),
+
+        ],
+      ),
+    );
+  }
+
+  void addStepControl_ingredients(){
+    setState(() {
+      steps_model.recipe_ingredients!.add("");
+    });
+  }
+
+  void removeStepControl_ingredients(index){
+    setState(() {
+      if(steps_model.recipe_ingredients!.length > 1){
+        steps_model.recipe_ingredients!.removeAt(index);
+      }
+    });
+  }
+
 
   bool validateAndSave(){
     final form = globalKey.currentState;

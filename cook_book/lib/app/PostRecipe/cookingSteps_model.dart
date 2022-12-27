@@ -18,9 +18,10 @@ class CookingStepsModel{
 //Post Recipe Model
 
 class CookingStepsModel{
-  String? recipe_title, recipe_ingredients, cooking_duration, image_url;
+  String? recipe_title, cooking_duration, image_url;
   int? num_of_servings;
   List<String>? cooking_steps;
+  List<String>? recipe_ingredients;
 
   CookingStepsModel({this.recipe_title, this.num_of_servings, this.recipe_ingredients, this.cooking_duration, this.image_url, this.cooking_steps});
 
