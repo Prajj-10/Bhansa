@@ -48,7 +48,8 @@ class _PostRecipeState extends State<PostRecipe> {
   UserModel loggedInUser = UserModel();
 
 
-  //Duration _duration = const Duration(hours: 0, minutes: 0);
+  Duration _duration = const Duration(hours: 0, minutes: 0);
+  //var cook_time;
   //Duration selectedDuration = const Duration(hours: 0, minutes: 0);
 
 
@@ -153,7 +154,7 @@ class _PostRecipeState extends State<PostRecipe> {
                       child:  TextField(
 
                         onChanged: (value){
-                          recipe_title = value;
+                          steps_model.recipe_title = value;
                         },
 
 
@@ -199,7 +200,7 @@ class _PostRecipeState extends State<PostRecipe> {
                         child: TextField(
 
                           onChanged: (value){
-                            num_of_servings = int.parse(value);
+                            steps_model.num_of_servings = int.parse(value);
                             //num_of_servings = value;
                           },
 
@@ -242,7 +243,7 @@ class _PostRecipeState extends State<PostRecipe> {
                       child:  TextField(
 
                         onChanged: (value){
-                          ingredients = value;
+                          steps_model.recipe_ingredients = value;
                         },
 
                         style: TextStyle(fontSize: 20, color: Colors.white),
@@ -303,8 +304,15 @@ class _PostRecipeState extends State<PostRecipe> {
                                 SnackBar(content: Text('Duration is: $selectedDuration')),
                               );
 
+                              setState(() {
+                                steps_model.cooking_duration = selectedDuration.toString();
+                              });
+
+
 
                             },
+
+
                           ),
 
                         ],
@@ -546,13 +554,14 @@ class _PostRecipeState extends State<PostRecipe> {
 
     return recipeDetails
         .add({
-      'Title': recipe_title,
+      /*'Title': recipe_title,
       'Number of Servings': num_of_servings,
       'Ingredients': ingredients,
       'Direction': steps_model.toJson(),
       'Image': image_url,
-      'Posted By':loggedInUser.name,
+      'Posted By':loggedInUser.name,*/
       //'Time taken': selectedDuration
+      'Details': steps_model.toJson(),
     })
         .then((value) => print("Posted"))
         .catchError((error) => print("Failed to add Recipe: $error"));
