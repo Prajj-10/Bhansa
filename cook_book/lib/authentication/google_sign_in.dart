@@ -38,6 +38,7 @@ class GoogleSignInProvider extends ChangeNotifier {
 
     notifyListeners();
     //const LoggedInWidget();
+    createUserInFirestore();
     Fluttertoast.showToast(msg: "Logged In successfully.");
   }
 

@@ -351,30 +351,38 @@ class _PostRecipeState extends State<PostRecipe> {
                       ),
                     ),*/
 
+                    //Rohit code
+                    // const Align(
+                    //   alignment: Alignment.bottomLeft,
+                    //   child: Text(
+                    //     "cooking_steps: ",
+                    //     style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.white),
+                    //   ),
+                    // ),
 
-                    const Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Text(
-                        "Directions: ",
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.white),
-                      ),
-                    ),
 
-                    const SizedBox(
-                      height: 10,
-                    ),
 
-                    ListView.separated(
-                        shrinkWrap: true,
-                        physics: const ScrollPhysics(),
-                        itemBuilder: (context, index){
-                          return Column(
-                            children: [_directions(index)],
-                          );
-                        },
-                        separatorBuilder: (context, index)=> const Divider(),
-                        itemCount: steps_model.cooking_steps!.length
-                    ),
+                    
+                    //Rohit Code
+
+                    //
+                    // const SizedBox(
+                    //   height: 10,
+                    // ),
+                    //
+                    // ListView.separated(
+                    //     shrinkWrap: true,
+                    //     physics: const ScrollPhysics(),
+                    //     itemBuilder: (context, index){
+                    //       return Column(
+                    //         children: [_cooking_steps(index)],
+                    //       );
+                    //     },
+                    //     separatorBuilder: (context, index)=> const Divider(),
+                    //     itemCount: steps_model.cooking_steps!.length
+                    // ),
+                    
+                    
 
                     const SizedBox(
                       height: 20,
@@ -438,6 +446,8 @@ class _PostRecipeState extends State<PostRecipe> {
                       ),
                     ),
 
+                    //Calling own widget
+                    _uiWidget(),
 
 
 
@@ -445,21 +455,27 @@ class _PostRecipeState extends State<PostRecipe> {
 
 
 
-                    const SizedBox(
-                      height: 50,
-                    ),
 
-                    ElevatedButton(
-                        onPressed: () {
-                          addRecipe();
-                          print(steps_model.toJson());
-                        },
-                        child: Text('Post Recipe')
-                    ),
 
-                    const SizedBox(
-                      height: 30,
-                    ),
+
+                    //
+                    //
+                    //
+                    //
+                    // ElevatedButton(
+                    //     onPressed: () {
+                    //
+                    //         addRecipe();
+                    //         //(steps_model.toJson());
+                    //
+                    //
+                    //     },
+                    //     child: Text('Post Recipe')
+                    // ),
+                    //
+                    // const SizedBox(
+                    //   height: 30,
+                    // ),
 
 
 
@@ -542,86 +558,277 @@ class _PostRecipeState extends State<PostRecipe> {
         .catchError((error) => print("Failed to add Recipe: $error"));
   }
 
-  Widget _directions(index){
-    //var index;
-    return Padding(
-      padding: EdgeInsets.all(0),
+  Widget _uiWidget(){
+    return new Form(
+      key: globalKey,
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              // FormHelper.inputFieldWidgetWithLabel(context,
+              //     "username",
+              //     "Username",
+              //     "username",
+              //     (onValidateVal){
+              //   if(onValidateVal.isEmpty){
+              //     return "Cannot be empty";
+              //   }
+              //   return null;
+              //     },
+              //     (onSavedVal){
+              //   this.steps_model.cooking_steps = onSavedVal;
+              //     },
+              //   borderColor: Colors.redAccent,
+              //   borderFocusColor: Colors.redAccent,
+              //   borderRadius: 2,
+              //   fontSize: 14,
+              //   labelFontSize: 16,
+              // ),
 
-      child: Row(
-        children: [
-          Flexible(
-            child: FormHelper.inputFieldWidget(
-              textColor: Colors.white,
+              _directionContainer(),
 
-              context,
-              "steps_$index",
-              "",
-                  (onValidate){
-                if(onValidate.isEmpty){
-                  return 'Step ${index +1} cannot be empty!!!';
-                }
-
-                return null;
-              },
-                  (onSavedVal){
-                steps_model.cooking_steps![index] = onSavedVal;
-              },
-              borderColor: Colors.white,
-              borderFocusColor: Colors.white,
-              borderRadius: 0,
-              fontSize: 16,
-
-
-            ),
-          ),
-
-          Visibility(
-            child: IconButton(
-              icon: Icon(
-                Icons.add_circle,
-                color: Colors.lightGreenAccent,
-                size: 30,
+              const SizedBox(
+                height: 15,
               ),
-              onPressed: (){addSteps();},
-            ),
-            visible: index == steps_model.cooking_steps!.length -1,
+
+              //Post Recipe Button
+              Center(
+                child: FormHelper.submitButton(
+                    btnColor: Colors.green,
+                    borderColor: Colors.green,
+
+                    "Post Recipe",
+                        () {
+                      if(validateAndSave()){
+                        print(steps_model.toJson());
+                        addRecipe();
+                      }
+                    }
+                ),
+              )
+            ],
           ),
-
-
-
-
-          Visibility(
-            child: IconButton(
-              icon: Icon(
-                Icons.remove_circle,
-                color: Colors.redAccent,
-                size: 30,
-              ),
-              onPressed: (){removeSteps(index);},
-            ),
-            visible: index > 0,
-          ),
-
-
-        ],
+        ),
       ),
-
-
     );
   }
 
-  void addSteps(){
+  Widget _directionContainer(){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Text(
+            "Directions",
+            textAlign: TextAlign.left,
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+        ),
+
+        //stepContainerUI(0)
+
+        ListView.separated(
+            shrinkWrap: true,
+            physics: const ScrollPhysics(),
+            itemBuilder: (context, index){
+              return Column(
+                children: [
+                  stepContainerUI(index),
+                ],
+              );
+            },
+            separatorBuilder: (contex, index)=> const Divider(),
+            itemCount: steps_model.cooking_steps!.length)
+
+      ],
+    );
+
+  }
+
+  Widget stepContainerUI(index){
+    return Padding(padding: EdgeInsets.all(10),
+      child: Row(
+        children: [
+          Flexible(child:
+          FormHelper.inputFieldWidget(context,
+            "step_$index",
+            "add steps",
+            textColor: Colors.white,
+                (onValidateVal){
+              if(onValidateVal.isEmpty){
+                return "Cannot ${index + 1} be empty";
+              }
+              return null;
+            },
+                (onSavedVal){
+              this.steps_model.cooking_steps![index] = onSavedVal;
+            },
+            borderColor: Colors.white,
+            borderFocusColor: Colors.white,
+            borderRadius: 2,
+            fontSize: 14,
+            hintColor: Colors.white,
+          ),),
+
+          Visibility(child:
+          SizedBox(
+            width:35 ,
+            child: IconButton(
+              icon: Icon(Icons.add_circle, color: Colors.green,),
+              onPressed: () {
+                addStepControl();
+              },
+
+            ),
+          ),
+            visible: index == steps_model.cooking_steps!.length-1,
+          ),
+
+          Visibility(child:
+          SizedBox(
+            width:35 ,
+            child: IconButton(
+              icon: Icon(Icons.remove_circle, color: Colors.redAccent,),
+              onPressed: () {
+                removeStepControl(index);
+              },
+
+            ),
+          ),
+            visible: index > 0,
+          ),
+
+        ],
+      ),
+    );
+  }
+
+  void addStepControl(){
     setState(() {
       steps_model.cooking_steps!.add("");
     });
   }
 
-  void removeSteps(index){
+  void removeStepControl(index){
     setState(() {
       if(steps_model.cooking_steps!.length > 1){
-
         steps_model.cooking_steps!.removeAt(index);
       }
     });
   }
+
+  bool validateAndSave(){
+    final form = globalKey.currentState;
+    if(form!.validate()){
+      form.save();
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
+
+
+  //Rohit Codes
+  // Widget _cooking_steps(index){
+  //   //var index;
+  //   return Padding(
+  //     padding: EdgeInsets.all(0),
+  //
+  //     child: Row(
+  //       children: [
+  //         Flexible(
+  //           child: FormHelper.inputFieldWidget(
+  //             textColor: Colors.white,
+  //
+  //             context,
+  //             "steps_$index",
+  //             "",
+  //                 (onValidate){
+  //               if(onValidate.isEmpty){
+  //                 return 'Step ${index +1} cannot be empty!!!';
+  //               }
+  //
+  //               return null;
+  //             },
+  //                 (onSavedVal){
+  //               steps_model.cooking_steps![index] = onSavedVal;
+  //             },
+  //             borderColor: Colors.white,
+  //             borderFocusColor: Colors.white,
+  //             borderRadius: 0,
+  //             fontSize: 16,
+  //
+  //
+  //           ),
+  //         ),
+  //
+  //         Visibility(
+  //           child: IconButton(
+  //             icon: Icon(
+  //               Icons.add_circle,
+  //               color: Colors.lightGreenAccent,
+  //               size: 30,
+  //             ),
+  //             onPressed: (){addSteps();},
+  //           ),
+  //           visible: index == steps_model.cooking_steps!.length -1,
+  //         ),
+  //
+  //
+  //
+  //
+  //         Visibility(
+  //           child: IconButton(
+  //             icon: Icon(
+  //               Icons.remove_circle,
+  //               color: Colors.redAccent,
+  //               size: 30,
+  //             ),
+  //             onPressed: (){removeSteps(index);},
+  //           ),
+  //           visible: index > 0,
+  //         ),
+  //
+  //
+  //       ],
+  //     ),
+  //
+  //
+  //   );
+  // }
+  //
+  //
+  // void addSteps(){
+  //   setState(() {
+  //     steps_model.cooking_steps!.add("");
+  //   });
+  // }
+  //
+  // void removeSteps(index){
+  //   setState(() {
+  //     if(steps_model.cooking_steps!.length > 1){
+  //
+  //       steps_model.cooking_steps!.removeAt(index);
+  //     }
+  //   });
+  //
+  // }
+  //
+  // bool validateAndSave(){
+  //   final form = globalKey.currentState;
+  //   if(form!.validate()){
+  //     form.save();
+  //     return true;
+  //   }
+  //   else{
+  //     return false;
+  //   }
+  // }
 }
