@@ -8,7 +8,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import '../../authentication/logged_in.dart';
 import '../../authentication/logged_in2.dart';
 import '../../custom/NavigationBar/navigation_bar.dart';
 

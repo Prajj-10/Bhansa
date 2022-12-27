@@ -6,7 +6,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import '../../authentication/logged_in.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -168,7 +167,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         print(user);
                         if (user !=null){
                           Program.user= user;
-                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) =>  const LoggedInWidget()));
+                          // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) =>  const LoggedInWidget()));
                         }
                       },
                       child: Text("Login",

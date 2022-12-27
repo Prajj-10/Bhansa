@@ -361,7 +361,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
     userModel.uid = user!.uid;
     userModel.name = nametxt;
     userModel.email = user.email;
-    userModel.address = addresstxt;
+    userModel.username = addresstxt;
     userModel.password = passwordtxt;
 
     await firebaseFirestore

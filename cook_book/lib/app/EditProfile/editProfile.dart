@@ -23,16 +23,17 @@ class _EditProfileState extends State<EditProfile> {
   final user = FirebaseAuth.instance.currentUser;
   UserModel loggedInUser = UserModel();
 
+
   File? profilePicture;
-  Future imagePicker(ImageSource source) async{
+
+  Future imagePicker(ImageSource source) async {
     try {
       final img = await ImagePicker().pickImage(source: source);
       if (img == null) return;
       final imageTemporary = File(img.path);
-      setState(()=> this.profilePicture = imageTemporary);
+      setState(() => this.profilePicture = imageTemporary);
     } on PlatformException catch (e) {
       print("Failed to pick image: $e");
-
     }
   }
   @override
@@ -42,19 +43,22 @@ class _EditProfileState extends State<EditProfile> {
         .collection("users")
         .doc(user!.uid)
         .get()
-        .then((value) {
-      loggedInUser = UserModel.fromMap(value.data());
-      setState(() {});
+        .then((value)=> {
+      loggedInUser = UserModel.fromMap(value.data())
     });
   }
+
   @override
-  Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
+  Widget build (BuildContext context) {
+    var size = MediaQuery
+        .of(context)
+        .size;
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(40),
         child: AppBar(
-          title: Center(child: Text("Edit Profile", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),)),
+          title: Center(child: Text("Edit Profile",
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),)),
           backgroundColor: Color(0xFF01231C),
           elevation: 0,
         ),
@@ -81,7 +85,7 @@ class _EditProfileState extends State<EditProfile> {
               child: Column(
                 children: [
                   SizedBox(
-                    height: size.height*0.85,
+                    height: size.height * 0.85,
                     child: DecoratedBox(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
@@ -93,18 +97,23 @@ class _EditProfileState extends State<EditProfile> {
                         child: Form(
                           child: Column(
                             children: [
-                              profilePicture != null?
-                              ClipOval(child: Image.file(profilePicture!, width: 160, height: 160, fit: BoxFit.cover,))
-                              :SizedBox(
+                              profilePicture != null ?
+                              ClipOval(child: Image.file(
+                                profilePicture!, width: 160,
+                                height: 160,
+                                fit: BoxFit.cover,))
+                                  : SizedBox(
                                 height: 160,
                                 width: 160,
 
                                 child: DecoratedBox(
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    border: Border.all(width: 1, color: Colors.white),
+                                    border: Border.all(
+                                        width: 1, color: Colors.white),
                                     image: const DecorationImage(
-                                      image: NetworkImage("https://img.freepik.com/premium-vector/smiling-chef-cartoon-character_8250-10.jpg?w=2000"),
+                                      image: NetworkImage(
+                                          "https://img.freepik.com/premium-vector/smiling-chef-cartoon-character_8250-10.jpg?w=2000"),
 
                                       fit: BoxFit.fill,
                                     ),
@@ -114,23 +123,34 @@ class _EditProfileState extends State<EditProfile> {
                               ),
 
                               TextButton(
-                                onPressed: (){
+                                onPressed: () {
                                   showCupertinoModalPopup(
                                     context: context,
-                                    builder: (builder)=>Image_Picker(pickImage: imagePicker,),
+                                    builder: (builder) =>
+                                        Image_Picker(pickImage: imagePicker,),
                                   );
                                 },
-                                child: const Text("Upload new profile", style: TextStyle(fontSize: 16, color: Colors.blue), ),
+                                child: const Text("Upload new profile",
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.blue),),
                               ),
-
                               //Name
-                              editProfile_InputField(txt_Label: "Name", max_Length: 25, max_Lines: 1,placeholder: user?.displayName,),
+                              editProfile_InputField(txt_Label: "Name",
+                                max_Length: 25,
+                                max_Lines: 1,
+                                placeholder: loggedInUser.name,),
 
                               //Username
-                              editProfile_InputField(txt_Label: "Username", max_Length: 16, max_Lines: 1,placeholder: user?.email,),
+                              editProfile_InputField(txt_Label: "Username",
+                                max_Length: 16,
+                                max_Lines: 1,
+                                placeholder: loggedInUser.email,),
 
                               //Description
-                              editProfile_InputField(txt_Label: "Description", max_Length: 1000, max_Lines: 5,placeholder: user?.uid,),
+                              editProfile_InputField(txt_Label: "Description",
+                                  max_Length: 1000,
+                                  max_Lines: 5,
+                                  placeholder: loggedInUser.description),
 
                               SizedBox(height: 30,),
                               //Update Button
@@ -149,6 +169,7 @@ class _EditProfileState extends State<EditProfile> {
       ),
     );
   }
+
 }
 
 

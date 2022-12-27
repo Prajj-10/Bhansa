@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../app/loginpage/loginPage.dart';
-import '../authentication/logged_in.dart';
 import 'NavigationBar/navigation_bar.dart';
 
 class HomePage extends StatelessWidget{

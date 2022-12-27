@@ -5,7 +5,6 @@ import '../../app/MyProfile/myProfile.dart';
 import '../../app/PostRecipe/post_recipe.dart';
 import '../../app/SearchRecipe/search_recipe.dart';
 import '../../app/registration_page/registration.dart';
-import '../../authentication/logged_in.dart';
 import '../../authentication/logged_in2.dart';
 class Navigation extends StatefulWidget {
   const Navigation({Key? key}) : super(key: key);

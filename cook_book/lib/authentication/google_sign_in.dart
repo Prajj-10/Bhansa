@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../model/user_model.dart';
-import 'logged_in.dart';
+
 
 class GoogleSignInProvider extends ChangeNotifier {
   final googleSignIn = GoogleSignIn();
@@ -37,13 +37,14 @@ class GoogleSignInProvider extends ChangeNotifier {
 
 
     notifyListeners();
+    createUserInFirestore();
     //const LoggedInWidget();
     createUserInFirestore();
     Fluttertoast.showToast(msg: "Logged In successfully.");
   }
 
   Future logout() async {
-    // await googleSignIn.currentUser?.clearAuthCache();
+    await googleSignIn.currentUser?.clearAuthCache();
     await FirebaseAuth.instance.signOut();
     await googleSignIn.signOut();
 
@@ -73,48 +74,3 @@ class GoogleSignInProvider extends ChangeNotifier {
   }
 
 }
-
-/*
-
-----------------Old Code--------------------------
-
-class GoogleSignInProvider extends ChangeNotifier{
-  final googleSignIn = GoogleSignIn();
-
-  GoogleSignInAccount? _user;
-
-  GoogleSignInAccount get user => _user!;
-
-  Future googleLogin() async {
-    try {
-      final googleUser = await googleSignIn.signIn();
-      if (googleUser == null) return;
-      _user = googleUser;
-
-      final googleAuth = await googleUser.authentication;
-
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
-
-      await FirebaseAuth.instance.signInWithCredential(credential);
-
-      // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoggedInWidget(FirebaseAuth.instance.currentUser!)));
-    }
-    catch (e) {
-      print(e.toString());
-    }
-
-
-    notifyListeners();
-  }
-  Future logout() async{
-
-    await googleSignIn.disconnect();
-    FirebaseAuth.instance.signOut();
-  }
-
---------------------------------------------------
-
-}*/
