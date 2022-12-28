@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../EditProfile/btnEditProfile.dart';
@@ -11,6 +13,24 @@ class ProfileDetail extends StatefulWidget {
 }
 
 class _ProfileDetailState extends State<ProfileDetail> {
+  var name;
+  var username;
+
+  void _getProfileDetails() async{
+    User? user = await FirebaseAuth.instance.currentUser;
+    var _userDetails = await FirebaseFirestore.instance.collection('users').doc(user?.uid).get();
+    setState(() {
+      name = _userDetails.data()!['name'];
+      username = _userDetails.data()!['username'];
+    });
+  }
+
+  @override
+  void initState() {
+    _getProfileDetails();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -47,14 +67,14 @@ class _ProfileDetailState extends State<ProfileDetail> {
                             SizedBox(width: size.width*0.05,),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
+                              children: [
 
-                                Text("Master Chef",
+                                Text(name ?? "null",
                                   style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(top: 5),
-                                  child: Text("@master_chef",
+                                  child: Text(username ?? "null",
                                     style: TextStyle(color: Colors.grey, fontSize: 14, fontWeight: FontWeight.bold),
                                   ),
                                 ),
