@@ -53,6 +53,11 @@ class _PostRecipeState extends State<PostRecipe> {
   //Duration selectedDuration = const Duration(hours: 0, minutes: 0);
 
 
+  //To display selected image in UI
+  var file;
+
+
+
 
   @override
   void initState(){
@@ -96,17 +101,25 @@ class _PostRecipeState extends State<PostRecipe> {
         child: Column(
 
           children: [
-            /*SizedBox(
-              height: 90,
-            ),*/
+            const SizedBox(
+              height: 50,
+            ),
             //First Image
-            Container(
+            file != null ?
+            Image.file(
+                file!,
+                height: height/2.2,
+                width: width,
+                fit: BoxFit.cover,)
+                : Container(
               height: height/2.2,
               width: width,
+              //color: Colors.white,
               decoration: const BoxDecoration(
 
                 image: DecorationImage(
-                  image: AssetImage("assets/postRecipe.jpg"),
+
+                  image: AssetImage("assets/Camera.png"),
                   fit: BoxFit.cover,
                 ),
 
@@ -117,6 +130,25 @@ class _PostRecipeState extends State<PostRecipe> {
                 ),
               ),
             ),
+
+            /*Container(
+              height: height/2.2,
+              width: width,
+              decoration: const BoxDecoration(
+
+                image: DecorationImage(
+
+                  image: AssetImage("assets/postRecipe.jpg"),
+                  fit: BoxFit.cover,
+                ),
+
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(25),
+                  bottomRight: Radius.circular(25),
+                ),
+              ),
+            ),*/
 
             const SizedBox(
               height: 30,
@@ -202,6 +234,8 @@ class _PostRecipeState extends State<PostRecipe> {
                         width: 180,
                         child: TextField(
 
+                          keyboardType: TextInputType.number,
+
                           onChanged: (value){
                             steps_model.num_of_servings = int.parse(value);
                             //num_of_servings = value;
@@ -210,6 +244,7 @@ class _PostRecipeState extends State<PostRecipe> {
                           style: TextStyle(fontSize: 20, color: Colors.white),
 
                           decoration: InputDecoration(
+
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 width: 2,
@@ -285,7 +320,53 @@ class _PostRecipeState extends State<PostRecipe> {
                       child: Row(
                         children: [
                           const Text(
-                            "Duration: ",
+                            "Prepare Duration: ",
+                            style: TextStyle(fontSize: 20, color: Colors.white),
+                          ),
+                          const SizedBox(
+                            width: 15,
+                          ),
+
+                          IconButton(
+
+                            color: Colors.white,
+                            icon: const Icon(Icons.timer, size: 35,),
+
+                            onPressed: () async {
+
+
+
+                              Duration? selectedDuration = await showDurationPicker(context: context, initialTime: const Duration(minutes: 0));
+
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('Preparing Duration is: $selectedDuration')),
+                              );
+
+                              setState(() {
+                                steps_model.prepare_duration = selectedDuration.toString();
+                              });
+
+
+
+                            },
+
+
+                          ),
+
+                        ],
+                      ),
+                    ),
+
+                    SizedBox(
+                      height: 25,
+                    ),
+
+
+                    Container(
+                      child: Row(
+                        children: [
+                          const Text(
+                            "Cooking Duration: ",
                             style: TextStyle(fontSize: 20, color: Colors.white),
                           ),
                           const SizedBox(
@@ -397,6 +478,7 @@ class _PostRecipeState extends State<PostRecipe> {
 
                     const SizedBox(
                       height: 20,
+
                     ),
 
 
@@ -457,36 +539,26 @@ class _PostRecipeState extends State<PostRecipe> {
                       ),
                     ),
 
+                    SizedBox(
+                      height: 10,
+                    ),
+
+                    /*file != null ?
+                    Image.file(
+                        file!,
+                        height: 150,
+                        width: 150,
+                        fit: BoxFit.cover)
+                        : FlutterLogo(size: 150,),*/
+
+                    SizedBox(
+                      height: 40,
+                    ),
+
+
                     //Calling own widget
                     _uiWidget(),
 
-
-
-
-
-
-
-
-
-
-                    //
-                    //
-                    //
-                    //
-                    // ElevatedButton(
-                    //     onPressed: () {
-                    //
-                    //         addRecipe();
-                    //         //(steps_model.toJson());
-                    //
-                    //
-                    //     },
-                    //     child: Text('Post Recipe')
-                    // ),
-                    //
-                    // const SizedBox(
-                    //   height: 30,
-                    // ),
 
 
 
@@ -515,14 +587,20 @@ class _PostRecipeState extends State<PostRecipe> {
     }
   }
 
-  uploadImage() async{
+  Future uploadImage() async{
 
     //pick image from gallery
     //install file_picker package and import necessary library
     ImagePicker imagePicker = ImagePicker();
-    XFile? file = await  imagePicker.pickImage(source: ImageSource.gallery);
+    final file = (await  imagePicker.pickImage(source: ImageSource.gallery));
+    //XFile? image = await  imagePicker.pickImage(source: ImageSource.gallery);
 
     if(file==null) return;
+
+    //Added Later
+    final imageTemporary = File(file.path);
+    setState(() => this.file = imageTemporary);
+    //End
 
     String uniqueFileName = DateTime.now().millisecondsSinceEpoch.toString();
 
@@ -565,6 +643,7 @@ class _PostRecipeState extends State<PostRecipe> {
       'Posted By':loggedInUser.name,*/
       //'Time taken': selectedDuration
       'Details': steps_model.toJson(),
+      'Posted By':user?.uid,
     })
         .then((value) => print("Posted"))
         .catchError((error) => print("Failed to add Recipe: $error"));
@@ -626,7 +705,12 @@ class _PostRecipeState extends State<PostRecipe> {
                       }
                     }
                 ),
-              )
+              ),
+
+              SizedBox(
+                height: 50,
+              ),
+
             ],
           ),
         ),
