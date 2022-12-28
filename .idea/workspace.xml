@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf33b20f-9bb0-49da-9eb9-3fc611fe96ce" name="Changes" comment="get user profile data">
+    <list default="true" id="bf33b20f-9bb0-49da-9eb9-3fc611fe96ce" name="Changes" comment="update user profile data">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/EditProfile/editProfile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/EditProfile/editProfile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/profileDetail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/profileDetail.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cook_book/lib/custom/CustomButtons/updateElevatedButton.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomButtons/updateElevatedButton.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/custom/CustomGridView/savedGridView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomGridView/savedGridView.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +153,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672230980355</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="update user profile data">
+      <created>1672236734025</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1672236734025</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -176,6 +182,7 @@
     <MESSAGE value="updated myprofile and edit profile page" />
     <MESSAGE value="added update button" />
     <MESSAGE value="get user profile data" />
-    <option name="LAST_COMMIT_MESSAGE" value="get user profile data" />
+    <MESSAGE value="update user profile data" />
+    <option name="LAST_COMMIT_MESSAGE" value="update user profile data" />
   </component>
 </project>
