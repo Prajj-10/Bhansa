@@ -53,6 +53,11 @@ class _PostRecipeState extends State<PostRecipe> {
   //Duration selectedDuration = const Duration(hours: 0, minutes: 0);
 
 
+  //To display selected image in UI
+  //XFile? file;
+
+
+
 
   @override
   void initState(){
@@ -202,6 +207,8 @@ class _PostRecipeState extends State<PostRecipe> {
                         width: 180,
                         child: TextField(
 
+                          keyboardType: TextInputType.number,
+
                           onChanged: (value){
                             steps_model.num_of_servings = int.parse(value);
                             //num_of_servings = value;
@@ -210,6 +217,7 @@ class _PostRecipeState extends State<PostRecipe> {
                           style: TextStyle(fontSize: 20, color: Colors.white),
 
                           decoration: InputDecoration(
+
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 width: 2,
@@ -285,7 +293,53 @@ class _PostRecipeState extends State<PostRecipe> {
                       child: Row(
                         children: [
                           const Text(
-                            "Duration: ",
+                            "Prepare Duration: ",
+                            style: TextStyle(fontSize: 20, color: Colors.white),
+                          ),
+                          const SizedBox(
+                            width: 15,
+                          ),
+
+                          IconButton(
+
+                            color: Colors.white,
+                            icon: const Icon(Icons.timer, size: 35,),
+
+                            onPressed: () async {
+
+
+
+                              Duration? selectedDuration = await showDurationPicker(context: context, initialTime: const Duration(minutes: 0));
+
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('Preparing Duration is: $selectedDuration')),
+                              );
+
+                              setState(() {
+                                steps_model.prepare_duration = selectedDuration.toString();
+                              });
+
+
+
+                            },
+
+
+                          ),
+
+                        ],
+                      ),
+                    ),
+
+                    SizedBox(
+                      height: 25,
+                    ),
+
+
+                    Container(
+                      child: Row(
+                        children: [
+                          const Text(
+                            "Cooking Duration: ",
                             style: TextStyle(fontSize: 20, color: Colors.white),
                           ),
                           const SizedBox(
@@ -457,36 +511,20 @@ class _PostRecipeState extends State<PostRecipe> {
                       ),
                     ),
 
+                    SizedBox(
+                      height: 10,
+                    ),
+
+                    //if (file != null) Image.file(file!, height: 150, width: 150, fit: BoxFit.cover) else FlutterLogo(size: 150,),
+
+                    SizedBox(
+                      height: 40,
+                    ),
+
+
                     //Calling own widget
                     _uiWidget(),
 
-
-
-
-
-
-
-
-
-
-                    //
-                    //
-                    //
-                    //
-                    // ElevatedButton(
-                    //     onPressed: () {
-                    //
-                    //         addRecipe();
-                    //         //(steps_model.toJson());
-                    //
-                    //
-                    //     },
-                    //     child: Text('Post Recipe')
-                    // ),
-                    //
-                    // const SizedBox(
-                    //   height: 30,
-                    // ),
 
 
 
@@ -521,6 +559,7 @@ class _PostRecipeState extends State<PostRecipe> {
     //install file_picker package and import necessary library
     ImagePicker imagePicker = ImagePicker();
     XFile? file = await  imagePicker.pickImage(source: ImageSource.gallery);
+    //XFile? image = await  imagePicker.pickImage(source: ImageSource.gallery);
 
     if(file==null) return;
 
