@@ -69,12 +69,12 @@ class _ProfileDetailState extends State<ProfileDetail> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
 
-                                Text(name ?? "null",
+                                Text(name ?? "",
                                   style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(top: 5),
-                                  child: Text(username ?? "null",
+                                  child: Text(username ?? "Set your username here.",
                                     style: TextStyle(color: Colors.grey, fontSize: 14, fontWeight: FontWeight.bold),
                                   ),
                                 ),

@@ -37,9 +37,7 @@ class _EditProfileState extends State<EditProfile> {
     }
   }
 
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _usernameController = TextEditingController();
-  TextEditingController _descriptionController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -49,12 +47,15 @@ class _EditProfileState extends State<EditProfile> {
         .get()
         .then((value)=> {
       loggedInUser = UserModel.fromMap(value.data()),
-     _nameController.text=loggedInUser.name ?? "null",
-    _usernameController.text=loggedInUser.username ?? "null",
-      _descriptionController.text=loggedInUser.description ?? "null",
+      _nameController.text=loggedInUser.name!,
+      _usernameController.text=loggedInUser.username!,
+      _descriptionController.text=loggedInUser.description!
     });
     setState(() {});
   }
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
 
   @override
   Widget build (BuildContext context) {
@@ -153,7 +154,7 @@ class _EditProfileState extends State<EditProfile> {
                               editProfile_InputField(txt_Label: "Username",
                                 max_Length: 16,
                                 max_Lines: 1,
-                                placeholder: _usernameController,),
+                                placeholder: _usernameController),
 
                               //Description
                               editProfile_InputField(txt_Label: "Description",
