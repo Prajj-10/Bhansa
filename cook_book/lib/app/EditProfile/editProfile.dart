@@ -168,25 +168,6 @@ class _EditProfileState extends State<EditProfile> {
                                   max_Lines: 5,
                                   placeholder: _descriptionController),
 
-                      TextFormField(
-                        initialValue: loggedInUser.name,
-                        /*onFieldSubmitted: (String value){
-        debugPrint(value);
-      },*/
-                        style: TextStyle(color: Colors.white, fontSize: 12),
-                        decoration: InputDecoration(
-                          counterStyle: TextStyle(color: Colors.white),
-                          labelStyle: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold, fontFamily: "Times New Roman"),
-                          //hintText: "Username",
-                          labelText: "Name",
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.green),
-                          ),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white,),
-                          ),
-                        ),
-                      ),
 
                               SizedBox(height: 30,),
                               //Update Button
