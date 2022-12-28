@@ -43,25 +43,18 @@ class _EditProfileState extends State<EditProfile> {
   @override
   void initState() {
     super.initState();
-
     FirebaseFirestore.instance
         .collection("users")
         .doc(user!.uid)
         .get()
         .then((value)=> {
       loggedInUser = UserModel.fromMap(value.data()),
-    _nameController.text=loggedInUser.name!,
-    _usernameController.text=loggedInUser.email!,
-      _descriptionController.text=loggedInUser.description!,
+     _nameController.text=loggedInUser.name ?? "null",
+    _usernameController.text=loggedInUser.username ?? "null",
+      _descriptionController.text=loggedInUser.description ?? "null",
     });
-    setState(() {
-
-    });
+    setState(() {});
   }
-
-
-
-
 
   @override
   Widget build (BuildContext context) {
@@ -167,7 +160,6 @@ class _EditProfileState extends State<EditProfile> {
                                   max_Length: 1000,
                                   max_Lines: 5,
                                   placeholder: _descriptionController),
-
 
                               SizedBox(height: 30,),
                               //Update Button
