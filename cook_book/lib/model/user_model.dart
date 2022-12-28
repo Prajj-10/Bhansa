@@ -13,7 +13,7 @@ class UserModel{
     return UserModel(
         uid:map['uid'],
         name:map['name'],
-        username:map['address'],
+        username:map['username'],
         email:map['email'],
         password:map['password'],
         description:map['description']
@@ -25,13 +25,10 @@ class UserModel{
     return{
       'uid':uid,
       'name':name,
-      'address':username,
+      'username':username,
       'email':email,
       'password':password,
       'description':description
     };
   }
-
-
-
 }
