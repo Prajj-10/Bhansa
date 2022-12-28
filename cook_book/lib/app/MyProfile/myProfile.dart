@@ -1,8 +1,11 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cook_book/app/MyProfile/profileDetail.dart';
 import 'package:cook_book/custom/CustomListView/recipeListView.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../custom/CustomGridView/savedGridView.dart';
+import '../../model/user_model.dart';
 
 class MyProfile extends StatefulWidget {
   const MyProfile({Key? key}) : super(key: key);
@@ -12,10 +15,38 @@ class MyProfile extends StatefulWidget {
 }
 
 class _MyProfileState extends State<MyProfile> {
+  UserModel loggedInUser = UserModel();
+  User? user = FirebaseAuth.instance.currentUser;
+
+  Future _getData() async => await FirebaseFirestore.instance
+      .collection("users")
+      .doc(user?.uid)
+      .get()
+      .then((value)=> {
+
+    loggedInUser = UserModel.fromMap(value.data()),
+    print(loggedInUser!.name),
+
+  });
+
+  @override
+  void initState() {
+    super.initState();
+    _getData();
+  }
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(30),
+        child: AppBar(
+          leading: Icon(Icons.arrow_back, color: Colors.white,),
+          elevation: 0,
+          backgroundColor: Color(0xFF01231C),
+          title: Text(loggedInUser.username ?? "username"),
+        ),
+      ),
       body: Container(
         height: size.height,
         width: size.width,
@@ -62,7 +93,7 @@ class _MyProfileState extends State<MyProfile> {
                     border: Border.all(color: Colors.white, width: 2),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 15),
+                    padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                     child: Column(
                       children: [
                         TabBar(

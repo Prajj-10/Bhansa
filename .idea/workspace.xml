@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="bf33b20f-9bb0-49da-9eb9-3fc611fe96ce" name="Changes" comment="update user profile data">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/EditProfile/editProfile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/EditProfile/editProfile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/myProfile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/myProfile.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/profileDetail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/profileDetail.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/custom/CustomButtons/updateElevatedButton.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomButtons/updateElevatedButton.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +161,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672236734025</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="update user profile data">
+      <created>1672237630937</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1672237630937</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

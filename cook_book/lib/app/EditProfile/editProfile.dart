@@ -28,7 +28,7 @@ class _EditProfileState extends State<EditProfile> {
 
   File? profilePicture;
 
-  imagePicker(ImageSource source) async {
+  Future imagePicker(ImageSource source) async {
     try {
       final img = await ImagePicker().pickImage(source: source);
       if (img == null) return;
@@ -153,12 +153,17 @@ class _EditProfileState extends State<EditProfile> {
                         child: Form(
                           child: Column(
                             children: [
-                              profilePicture != null ?
+                              if(profilePicture != null )
                               ClipOval(child: Image.file(
                                 profilePicture!, width: 160,
                                 height: 160,
                                 fit: BoxFit.cover,))
-                                  : SizedBox(
+                              else if (loggedInUser.profilePicture!=null)
+                                ClipOval(child: Image.network(
+                                  loggedInUser.profilePicture!, width: 160,
+                                  height: 160,
+                                  fit: BoxFit.cover,))
+                              else SizedBox(
                                 height: 160,
                                 width: 160,
 
@@ -199,7 +204,7 @@ class _EditProfileState extends State<EditProfile> {
 
                               //Username
                               editProfile_InputField(txt_Label: "Username",
-                                max_Length: 16,
+                                max_Length: 20,
                                 max_Lines: 1,
                                 placeholder: _usernameController),
 

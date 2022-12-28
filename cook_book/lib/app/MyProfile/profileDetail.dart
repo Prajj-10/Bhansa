@@ -66,7 +66,13 @@ class _ProfileDetailState extends State<ProfileDetail> {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(color: Colors.white, width: 2),
-                    image: const DecorationImage(
+                    image:
+                    loggedInUser.profilePicture != null ?
+                    DecorationImage(
+                      image: NetworkImage(loggedInUser.profilePicture!),
+                      fit: BoxFit.fill,
+                    )
+                    : DecorationImage(
                       image: NetworkImage("https://st3.depositphotos.com/3935465/12919/i/950/depositphotos_129194616-stock-photo-avocado-tomato-and-arugula-salad.jpg"),
                       fit: BoxFit.fill,
                     ),
