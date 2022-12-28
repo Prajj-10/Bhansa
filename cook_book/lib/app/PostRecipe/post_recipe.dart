@@ -101,17 +101,25 @@ class _PostRecipeState extends State<PostRecipe> {
         child: Column(
 
           children: [
-            /*SizedBox(
-              height: 90,
-            ),*/
+            const SizedBox(
+              height: 50,
+            ),
             //First Image
-            Container(
+            file != null ?
+            Image.file(
+                file!,
+                height: height/2.2,
+                width: width,
+                fit: BoxFit.cover,)
+                : Container(
               height: height/2.2,
               width: width,
+              //color: Colors.white,
               decoration: const BoxDecoration(
 
                 image: DecorationImage(
-                  image: AssetImage("assets/postRecipe.jpg"),
+
+                  image: AssetImage("assets/Camera.png"),
                   fit: BoxFit.cover,
                 ),
 
@@ -122,6 +130,25 @@ class _PostRecipeState extends State<PostRecipe> {
                 ),
               ),
             ),
+
+            /*Container(
+              height: height/2.2,
+              width: width,
+              decoration: const BoxDecoration(
+
+                image: DecorationImage(
+
+                  image: AssetImage("assets/postRecipe.jpg"),
+                  fit: BoxFit.cover,
+                ),
+
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(25),
+                  bottomRight: Radius.circular(25),
+                ),
+              ),
+            ),*/
 
             const SizedBox(
               height: 30,
@@ -516,13 +543,13 @@ class _PostRecipeState extends State<PostRecipe> {
                       height: 10,
                     ),
 
-                    file != null ?
+                    /*file != null ?
                     Image.file(
                         file!,
                         height: 150,
                         width: 150,
                         fit: BoxFit.cover)
-                        : FlutterLogo(size: 150,),
+                        : FlutterLogo(size: 150,),*/
 
                     SizedBox(
                       height: 40,
