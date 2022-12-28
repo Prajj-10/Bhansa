@@ -7,7 +7,7 @@ import '../EditProfile/btnEditProfile.dart';
 import '../../custom/ExpandedWidgets/expandedProfileDescription.dart';
 
 class ProfileDetail extends StatefulWidget {
-  const ProfileDetail({Key? key}) : super(key: key);
+  ProfileDetail({Key? key}) : super(key: key);
 
   @override
   State<ProfileDetail> createState() => _ProfileDetailState();
@@ -48,7 +48,6 @@ class _ProfileDetailState extends State<ProfileDetail> {
     //_getProfileDetails();
     super.initState();
     _getData();
-
   }
 
 
@@ -90,12 +89,12 @@ class _ProfileDetailState extends State<ProfileDetail> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
 
-                                Text(loggedInUser.name ?? "null",
+                                Text(loggedInUser.name??"Your name here.",
                                   style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(top: 5),
-                                  child: Text(loggedInUser.username ?? "null",
+                                  child: Text(loggedInUser.username ?? "Your username here.",
                                     style: TextStyle(color: Colors.grey, fontSize: 14, fontWeight: FontWeight.bold),
                                   ),
                                 ),
