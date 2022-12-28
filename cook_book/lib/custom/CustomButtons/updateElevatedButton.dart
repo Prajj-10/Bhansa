@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 class UpdateElevatedButton extends StatelessWidget {
-  Function ontap;
 
-  UpdateElevatedButton({super.key, required this.ontap});
-
-
+  const UpdateElevatedButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +20,7 @@ class UpdateElevatedButton extends StatelessWidget {
               ),
 
           ),
-          onPressed: ()=>ontap(),
+          onPressed: (){},
           child: Center(
             child: Text("Save Changes"),
           )

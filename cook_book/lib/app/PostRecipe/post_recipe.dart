@@ -105,30 +105,55 @@ class _PostRecipeState extends State<PostRecipe> {
               height: 50,
             ),
             //First Image
-            file != null ?
-            Image.file(
-                file!,
-                height: height/2.2,
-                width: width,
-                fit: BoxFit.cover,)
-                : Container(
-              height: height/2.2,
-              width: width,
-              //color: Colors.white,
-              decoration: const BoxDecoration(
+            Stack(
+              children: [
+                Container(
+                child: file != null ?
+                Image.file(
+                    file!,
+                    height: height/2.2,
+                    width: width,
+                    fit: BoxFit.cover,)
+                    : Container(
+                  height: height/2.2,
+                  width: width,
+                  //color: Colors.white,
+                  decoration: const BoxDecoration(
 
-                image: DecorationImage(
+                    image: DecorationImage(
 
-                  image: AssetImage("assets/Camera.png"),
-                  fit: BoxFit.cover,
-                ),
+                      image: AssetImage("assets/Camera.png"),
+                      fit: BoxFit.cover,
+                    ),
 
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(25),
-                  bottomRight: Radius.circular(25),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(25),
+                      bottomRight: Radius.circular(25),
+                    ),
+                  ),
                 ),
               ),
+                Positioned(
+                  top: 160,
+                  left: 160,
+                  child: Container(
+
+                        child: IconButton(
+
+                          color: Colors.black,
+                          icon: const Icon(Icons.file_upload, size: 50,),
+
+                          onPressed: () { uploadImage(); },
+                          
+                        ),
+
+
+
+                  ),
+                ),
+
+              ]
             ),
 
             /*Container(
@@ -483,7 +508,7 @@ class _PostRecipeState extends State<PostRecipe> {
 
 
 
-                    Container(
+                    /*Container(
                       child: Row(
                         children: [
                           const Text(
@@ -494,41 +519,9 @@ class _PostRecipeState extends State<PostRecipe> {
                             width: 15,
                           ),
 
-                          /*IconButton(
-                              onPressed: (){
-                                //print('Hello');
-                                _getFromCamera();
-                              },
-                              color: Colors.white,
-                              icon: Icon(Icons.camera_alt, size: 35,)
-                          ),*/
 
                           IconButton(
-                            /*onPressed: ()async{
-                                final results = await FilePicker.platform.pickFiles(
-                                  allowMultiple: false,
-                                  type: FileType.custom,
-                                  allowedExtensions: ['png', 'jpg'],
-                                );
 
-                                if(results == null){
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                        content: Text("No Photo selected"),
-                                      )
-                                  );
-
-                                  return null;
-                                }
-
-                                final path = results.files.single.path!;
-                                final fileName = results.files.single.name;
-
-                                storage
-                                    .uploadImage(path, fileName)
-                                    .then((value)=>print('Done'));
-
-                              },*/
                             color: Colors.white,
                             icon: const Icon(Icons.file_upload, size: 35,),
 
@@ -537,7 +530,7 @@ class _PostRecipeState extends State<PostRecipe> {
 
                         ],
                       ),
-                    ),
+                    ),*/
 
                     SizedBox(
                       height: 10,
