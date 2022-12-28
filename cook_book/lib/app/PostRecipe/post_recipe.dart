@@ -54,7 +54,7 @@ class _PostRecipeState extends State<PostRecipe> {
 
 
   //To display selected image in UI
-  //XFile? file;
+  var file;
 
 
 
@@ -451,7 +451,7 @@ class _PostRecipeState extends State<PostRecipe> {
 
                     const SizedBox(
                       height: 20,
-                      
+
                     ),
 
 
@@ -516,7 +516,13 @@ class _PostRecipeState extends State<PostRecipe> {
                       height: 10,
                     ),
 
-                    //if (file != null) Image.file(file!, height: 150, width: 150, fit: BoxFit.cover) else FlutterLogo(size: 150,),
+                    file != null ?
+                    Image.file(
+                        file!,
+                        height: 150,
+                        width: 150,
+                        fit: BoxFit.cover)
+                        : FlutterLogo(size: 150,),
 
                     SizedBox(
                       height: 40,
@@ -554,15 +560,20 @@ class _PostRecipeState extends State<PostRecipe> {
     }
   }
 
-  uploadImage() async{
+  Future uploadImage() async{
 
     //pick image from gallery
     //install file_picker package and import necessary library
     ImagePicker imagePicker = ImagePicker();
-    XFile? file = await  imagePicker.pickImage(source: ImageSource.gallery);
+    final file = (await  imagePicker.pickImage(source: ImageSource.gallery));
     //XFile? image = await  imagePicker.pickImage(source: ImageSource.gallery);
 
     if(file==null) return;
+
+    //Added Later
+    final imageTemporary = File(file.path);
+    setState(() => this.file = imageTemporary);
+    //End
 
     String uniqueFileName = DateTime.now().millisecondsSinceEpoch.toString();
 
@@ -605,6 +616,7 @@ class _PostRecipeState extends State<PostRecipe> {
       'Posted By':loggedInUser.name,*/
       //'Time taken': selectedDuration
       'Details': steps_model.toJson(),
+      'Posted By':user?.uid,
     })
         .then((value) => print("Posted"))
         .catchError((error) => print("Failed to add Recipe: $error"));
@@ -666,7 +678,12 @@ class _PostRecipeState extends State<PostRecipe> {
                       }
                     }
                 ),
-              )
+              ),
+
+              SizedBox(
+                height: 50,
+              ),
+
             ],
           ),
         ),
