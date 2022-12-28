@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../../model/user_model.dart';
 import '../EditProfile/btnEditProfile.dart';
 import '../../custom/ExpandedWidgets/expandedProfileDescription.dart';
 
@@ -13,23 +14,43 @@ class ProfileDetail extends StatefulWidget {
 }
 
 class _ProfileDetailState extends State<ProfileDetail> {
-  var name;
-  var username;
+  User? user = FirebaseAuth.instance.currentUser;
+  UserModel loggedInUser = UserModel();
 
-  void _getProfileDetails() async{
-    User? user = await FirebaseAuth.instance.currentUser;
+  //var name;
+  // var username;
+  // var description;
+
+  /*void _getProfileDetails() async{
+    final user = await FirebaseAuth.instance.currentUser;
+    UserModel loggedInUser = UserModel();
     var _userDetails = await FirebaseFirestore.instance.collection('users').doc(user?.uid).get();
     setState(() {
       name = _userDetails.data()!['name'];
-      username = _userDetails.data()!['username'];
+      username = _userDetails.data()!['email'];
+      description = _userDetails.data()!['description'];
     });
-  }
+  }*/
+
+  Future _getData() async => await FirebaseFirestore.instance
+        .collection("users")
+        .doc(user?.uid)
+        .get()
+        .then((value)=> {
+
+      loggedInUser = UserModel.fromMap(value.data()),
+      print(loggedInUser!.name),
+
+    });
 
   @override
   void initState() {
-    _getProfileDetails();
+    //_getProfileDetails();
     super.initState();
+    _getData();
+
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -69,12 +90,12 @@ class _ProfileDetailState extends State<ProfileDetail> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
 
-                                Text(name ?? "null",
+                                Text(loggedInUser.name ?? "null",
                                   style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(top: 5),
-                                  child: Text(username ?? "null",
+                                  child: Text(loggedInUser.email ?? "null",
                                     style: TextStyle(color: Colors.grey, fontSize: 14, fontWeight: FontWeight.bold),
                                   ),
                                 ),
@@ -121,7 +142,11 @@ class _ProfileDetailState extends State<ProfileDetail> {
             Row(
               children: [
                 Expanded(
-                  child: ExpandedProfileDescription(profileDescription: "This pizza soup is a comfort food recipe to the max! Who wouldn’t want all the flavors of a supreme pizza wrapped up in a cozy bowl? The broth is flavored with pizza sauce, tomatoes, and a little Parmesan to make it creamy. The toppings are swimming along inside: bell peppers, garlic and mushrooms, making for a savory pop that surprises you in every bite. Serve with garlic toast, grilled cheese or simply crusty bread and it’s a meal you’ll want to make over and over…and over."),
+                  //child: ExpandedProfileDescription(profileDescription: "This pizza soup is a comfort food recipe to the max! Who wouldn’t want all the flavors of a supreme pizza wrapped up in a cozy bowl? The broth is flavored with pizza sauce, tomatoes, and a little Parmesan to make it creamy. The toppings are swimming along inside: bell peppers, garlic and mushrooms, making for a savory pop that surprises you in every bite. Serve with garlic toast, grilled cheese or simply crusty bread and it’s a meal you’ll want to make over and over…and over."),
+                  child:
+                  loggedInUser.description != null ?
+                  ExpandedProfileDescription(profileDescription: loggedInUser.description!)
+                  : SizedBox(height: 20,),
                 ),
 
               ],
