@@ -23,6 +23,7 @@ class _EditProfileState extends State<EditProfile> {
   final user = FirebaseAuth.instance.currentUser;
   UserModel loggedInUser = UserModel();
 
+  final CollectionReference _userReference = FirebaseFirestore.instance.collection('users');
 
   File? profilePicture;
 
@@ -54,6 +55,21 @@ class _EditProfileState extends State<EditProfile> {
       _descriptionController.text=loggedInUser.description ?? "null",
     });
     setState(() {});
+  }
+
+
+
+  //Function to update user profile ins=formation
+  Future _updateProfile() async{
+    final String name = _nameController.text;
+    final String description = _descriptionController.text;
+    final String username = _usernameController.text;
+
+    if(description != null)
+    await _userReference
+    .doc(loggedInUser.uid)
+    .update({"name":name,"description":description, "username":username});
+
   }
 
   @override
@@ -163,7 +179,7 @@ class _EditProfileState extends State<EditProfile> {
 
                               SizedBox(height: 30,),
                               //Update Button
-                              UpdateElevatedButton(),
+                              UpdateElevatedButton(ontap: _updateProfile,),
                             ],
                           ),
                         ),

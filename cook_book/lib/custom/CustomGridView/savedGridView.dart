@@ -59,7 +59,7 @@ class Saved extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Recipe', style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),),
+                          Text('Recipe', style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black),),
                           Text("Time: 1hrs 30 min", style: TextStyle(fontSize: 10,fontWeight: FontWeight.normal),),
                         ],
                       ),
