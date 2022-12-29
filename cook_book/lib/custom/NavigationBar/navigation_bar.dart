@@ -16,7 +16,7 @@ class _NavigationState extends State<Navigation> {
   @override
   int index = 0;
   //Calling the pages (most be in sequential order)
-  List screen = [LoggedInWidget2(), SearchRecipe(), PostRecipe(), SignUp(), MyProfile() ];
+  List screen = [LoggedInWidget2(), SearchRecipe(), PostRecipe(), RegistrationPage(), MyProfile() ];
 
 
   Widget build(BuildContext context) {
@@ -110,3 +110,4 @@ class _NavigationState extends State<Navigation> {
     );
   }
 }
+

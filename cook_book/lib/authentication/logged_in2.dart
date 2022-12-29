@@ -10,6 +10,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 
+import '../app/loginpage/login.dart';
 import '../model/user_model.dart';
 
 class LoggedInWidget2 extends StatefulWidget{
@@ -87,7 +88,7 @@ class LoggedInWidgetState2 extends State<LoggedInWidget2> {
     await FirebaseAuth.instance.signOut();
     await googleSignIn.signOut();
     Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const LoginPage()));
+        MaterialPageRoute(builder: (context) => const LoginScreen()));
         Fluttertoast.showToast(msg: "Logged Out Successfully.");
   }
 }
