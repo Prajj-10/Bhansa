@@ -1,14 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cook_book/app/EditProfile/editProfile.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-import '../../model/user_model.dart';
 class UpdateElevatedButton extends StatelessWidget {
-  final user = FirebaseAuth.instance.currentUser;
 
-  UpdateElevatedButton({Key? key}) : super(key: key);
 
+  Function ontap;
+
+  UpdateElevatedButton({super.key, required this.ontap});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,11 +22,7 @@ class UpdateElevatedButton extends StatelessWidget {
               ),
 
           ),
-          onPressed: (){
-            final docUser = FirebaseFirestore.instance
-                .collection("users").doc(user?.uid);
-            // docUser.update(EditProfile())
-          },
+          onPressed: () =>ontap(),
           child: Center(
             child: Text("Save Changes"),
           )

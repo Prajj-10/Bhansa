@@ -15,7 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:snippet_coder_utils/FormHelper.dart';
 import 'package:file_picker/file_picker.dart';
 
-import 'cookingSteps_model.dart';
+import '../../model/cookingSteps_model.dart';
 
 class PostRecipe extends StatefulWidget {
   const PostRecipe({Key? key}) : super(key: key);

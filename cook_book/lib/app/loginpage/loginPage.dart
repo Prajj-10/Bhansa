@@ -246,7 +246,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
                                       ),
                                     ],
                                   ),
-                                  Sign_Up(),
+                                  const RegistrationPage(),
                                 ],
                               ),
                             ),

@@ -1,12 +1,12 @@
 import 'package:cook_book/authentication/google_sign_in.dart';
-import 'package:cook_book/program.dart';
+import 'package:cook_book/authentication/logged_in2.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-
-
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -15,37 +15,118 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  // Login Function
-  static Future<User?> loginUsingEmail(String email, String password, BuildContext context ) async{
-    FirebaseAuth auth = FirebaseAuth.instance;
-    User? user;
-    try{
-      UserCredential userCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
-      user = userCredential.user;
-    }on FirebaseAuthException catch (e){
-      if(e.code == 'user-not-found'){
-        print("No User Found for that email");
-      }
-    }
-    return user;
+class _LoginScreenState extends State<LoginScreen> with InputValidationMixin {
+  // Form Key
+  final formKey = GlobalKey<FormState>();
 
+  // Controllers
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  // Firebase Auth
+  FirebaseAuth auth = FirebaseAuth.instance;
+  String? errorMessage;
+  late bool passwordVisible;
+
+  @override
+  void initState() {
+    passwordVisible = false;
   }
-
 
   @override
   Widget build(BuildContext context) {
-    // TextField Controller
-    TextEditingController _emailController = TextEditingController();
-    TextEditingController _passwordController = TextEditingController();
+
+    // Phone Size
     var size = MediaQuery.of(context).size;
-    bool obscureText = true;
+
+    // Email Field
+    final emailField = TextFormField(
+        autofocus: false,
+        controller: emailController,
+        keyboardType: TextInputType.emailAddress,
+        validator: (email) {
+          if (isEmailValid(email!)) {
+            return null;
+          } else {
+            return 'Enter a valid email address';
+          }
+        },
+        onSaved: (value) {
+          emailController.text = value!;
+        },
+        textInputAction: TextInputAction.next,
+        decoration: InputDecoration(
+          prefixIcon: const Icon(Icons.mail),
+          contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+          hintText: "Email",
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ));
+
+    //Password Field
+
+    final passwordField = TextFormField(
+        autofocus: false,
+        controller: passwordController,
+        obscureText: !passwordVisible,
+        validator: (password) {
+          if (isPasswordValid(password!)) {
+            return null;
+          } else {
+            return 'Enter a valid password';
+          }
+        },
+        onSaved: (value) {
+          passwordController.text = value!;
+        },
+        textInputAction: TextInputAction.done,
+        decoration: InputDecoration(
+          prefixIcon: const Icon(Icons.vpn_key),
+          suffixIcon: IconButton(onPressed:(){
+            setState(() {
+              passwordVisible = !passwordVisible;
+            });
+          }, icon: Icon(
+            passwordVisible
+            ?Icons.visibility:Icons.visibility_off,
+            color: Colors.white,
+          )),
+          contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+          hintText: "Password",
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ));
+
+    // Login Button
+
+    final loginButton = Material(
+      elevation: 5,
+      borderRadius: BorderRadius.circular(30),
+      color: Colors.grey,
+      child: MaterialButton(
+          padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+          minWidth: MediaQuery.of(context).size.width,
+          onPressed: () {
+            signIn(emailController.text, passwordController.text);
+          },
+          child: const Text(
+            "Login",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
+          )),
+    );
+
     return Material(
       child: Container(
         height: size.height,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
+              // Colors.white
               const Color(0xFF061624).withOpacity(1.0),
               const Color(0xFF081017).withOpacity(0.95),
             ],
@@ -57,7 +138,9 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Padding(
             padding: const EdgeInsets.only(top: 150.0, left: 20.0, right: 20.0),
 
-            child: Column(
+            child: Form(
+              key: formKey,
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 //crossAxisAlignment: CrossAxisAlignment.start,
                 //mainAxisSize: MainAxisSize.max,
@@ -107,79 +190,18 @@ class _LoginScreenState extends State<LoginScreen> {
 
                     ],
                   ),
-
-
-
                   const SizedBox(
                     height: 20.0,
                   ),
-                  TextField(
-                    controller: _emailController,
-                    keyboardType: TextInputType.emailAddress,
-                    style: const TextStyle(color: Colors.white),
-                    decoration: const InputDecoration(
-                      hintText: "User Email",
-                      hintStyle: TextStyle(
-                        color: Colors.white38,
-                      ),
-                      prefixIcon: Icon(Icons.mail_lock_outlined, color: Colors.white),
-                    ),
-                  ),
+                  emailField,
                   const SizedBox(
                     height: 30.0,
                   ),
-                  TextField(
-                    controller: _passwordController,
-                    style: const TextStyle(color: Colors.white),
-                    obscureText: obscureText,
-                    decoration: InputDecoration(
-                      hintText: "User Password",
-                      hintStyle: const TextStyle(
-                        color: Colors.white38,
-                      ),
-                      prefixIcon: const Icon(Icons.lock, color: Colors.white),
-                      suffixIcon: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            obscureText = !obscureText;
-                          });
-                        },
-                        child: Icon(obscureText
-                            ? Icons.visibility
-                            : Icons.visibility_off),
-                      ),
-                      ),
-                    ),
+                  passwordField,
                   const SizedBox(
                     height:20.0,
                   ),
-                  SizedBox(
-                    width: size.width/2.5,
-                    child: RawMaterialButton(
-                      fillColor: Colors.grey,
-                      elevation: 4.0,
-                      padding: const EdgeInsets.symmetric(vertical: 15.0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                      ),
-                      onPressed: () async{
-                        User? user = await loginUsingEmail(_emailController.text,_passwordController.text,context);
-                        print(user);
-                        if (user !=null){
-                          Program.user= user;
-                          // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) =>  const LoggedInWidget()));
-                        }
-                      },
-                      child: Text("Login",
-                        style: GoogleFonts.roboto(textStyle: const TextStyle(
-                            fontSize: 25.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black),
-                        ),
-                      ),
-                    ),
-                  ),
-
+                  loginButton,
                   const SizedBox(
                     height: 30.0,
                   ),
@@ -213,16 +235,68 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () {
                         final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
                         provider.googleLogin();
+                        if(provider.googleLogin() == true){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) =>  const LoggedInWidget2()));
+                        }
                       },
                     ),
                   ),
                 ],
               ),
+            ),
 
           ),
         ),
       ),
     );
+  }
 
+  // Login Function
+  void signIn(String email, String password) async {
+    if (formKey.currentState!.validate()) {
+      try {
+        await auth
+            .signInWithEmailAndPassword(email: email, password: password)
+            .then((uid) => {
+          Fluttertoast.showToast(msg: "Login Successful"),
+          Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => const LoggedInWidget2())),
+        });
+      } on FirebaseAuthException catch (error) {
+        switch (error.code) {
+          case "invalid-email":
+            errorMessage = "Your email address appears to be malformed.";
+            break;
+          case "wrong-password":
+            errorMessage = "Your password is wrong.";
+            break;
+          case "user-not-found":
+            errorMessage = "User with this email doesn't exist.";
+            break;
+          case "user-disabled":
+            errorMessage = "User with this email has been disabled.";
+            break;
+          case "too-many-requests":
+            errorMessage = "Too many requests";
+            break;
+          case "operation-not-allowed":
+            errorMessage = "Signing in with Email and Password is not enabled.";
+            break;
+          default:
+            errorMessage = "An undefined Error happened.";
+        }
+        Fluttertoast.showToast(msg: errorMessage!);
+        // print(error.code);
+      }
+    }
+  }
+}
+mixin InputValidationMixin {
+  bool isPasswordValid(String password) => password.length >= 6;
+
+  bool isEmailValid(String email) {
+    String pattern = r'^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    RegExp regex = RegExp(pattern);
+    return regex.hasMatch(email);
   }
 }

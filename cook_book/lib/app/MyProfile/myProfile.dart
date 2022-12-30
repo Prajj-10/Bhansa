@@ -1,8 +1,12 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cook_book/app/MyProfile/profileDetail.dart';
 import 'package:cook_book/custom/CustomListView/recipeListView.dart';
+import 'package:cook_book/model/cookingSteps_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../custom/CustomGridView/savedGridView.dart';
+import '../../model/user_model.dart';
 
 class MyProfile extends StatefulWidget {
   const MyProfile({Key? key}) : super(key: key);
@@ -12,10 +16,61 @@ class MyProfile extends StatefulWidget {
 }
 
 class _MyProfileState extends State<MyProfile> {
+  /*UserModel loggedInUser = UserModel();
+  User? user = FirebaseAuth.instance.currentUser;
+
+  Future _getData() async => await FirebaseFirestore.instance
+      .collection("users")
+      .doc(user?.uid)
+      .get()
+      .then((value)=> {
+
+    loggedInUser = UserModel.fromMap(value.data()),
+    print(loggedInUser!.name),
+
+  });*/
+
+  //Variables
+  var name;
+  var username;
+  var description;
+  var profilePicture;
+  CollectionReference recipeReference =FirebaseFirestore.instance.collection("recipe_details") ;
+
+  //Get user data from firebase
+  void _getUserDetails() async{
+    final user = await FirebaseAuth.instance.currentUser;
+    //UserModel loggedInUser = UserModel();
+    //CookingStepsModel recipeList = new CookingStepsModel();
+    var _userDetails = await FirebaseFirestore.instance.collection('users').doc(user?.uid).get();
+
+    setState(() {
+      name = _userDetails.data()!['name'];
+      username = _userDetails.data()!['username'];
+      description = _userDetails.data()!['description'];
+      profilePicture = _userDetails.data()!['profilePicture'];
+    });
+  }
+
+  @override
+  void initState() {
+    _getUserDetails();
+    super.initState();
+    //_getData();
+  }
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(30),
+        child: AppBar(
+          leading: Icon(Icons.arrow_back, color: Colors.white,),
+          elevation: 0,
+          backgroundColor: Color(0xFF01231C),
+          title: Text(username ?? "username"),
+        ),
+      ),
       body: Container(
         height: size.height,
         width: size.width,
@@ -40,7 +95,7 @@ class _MyProfileState extends State<MyProfile> {
               headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
                 return[
                   SliverList(delegate: SliverChildListDelegate([
-                    ProfileDetail(),
+                    ProfileDetail(name: name, description: description, profilePicture: profilePicture, username: username),
                   ]),)
                 ];
               },
@@ -58,11 +113,11 @@ class _MyProfileState extends State<MyProfile> {
                         ]
 
                     ),
-                    borderRadius: BorderRadius.all(Radius.circular(30)),
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
                     border: Border.all(color: Colors.white, width: 2),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 15),
+                    padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
                     child: Column(
                       children: [
                         TabBar(
@@ -72,17 +127,28 @@ class _MyProfileState extends State<MyProfile> {
                           indicatorColor: Colors.white,
                           tabs: [
                             Tab(
-                              child: Text("Recipes", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                              height: 50,
+                              child: Column(
+                                children: [
+                                  Icon(Icons.food_bank_outlined, size: 30,),
+                                  Text("Recipes", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),),
+                                ],
+                              ),
                             ),
                             Tab(
-                              child: Text("Saved", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                              child: Column(
+                                children: [
+                                  Icon(Icons.bookmark_border_outlined, size: 30,),
+                                  Text("Saved", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),),
+                                ],
+                              ),
                             ),
                           ],
                         ),
                         Expanded(
                           child: TabBarView(
                               children: [
-                                Recipe(),
+                                Recipe(reference: recipeReference),
                                 Saved(),
                               ]),
                         ),

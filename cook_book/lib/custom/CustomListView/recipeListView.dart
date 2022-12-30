@@ -5,39 +5,15 @@ import '../CustomButtons/likebutton.dart';
 
 
 class Recipe extends StatelessWidget {
-  const Recipe({Key? key}) : super(key: key);
+
+  var reference;
+
+  Recipe({super.key, required this.reference});
+
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    /*return SizedBox(
-        width: size.width/2.5,
-
-        child: Card(
-          elevation: 2,
-          child: Padding(
-            padding: const EdgeInsets.all(0),
-            child: Column(
-              children: [
-
-
-                Container(
-                  color: Colors.grey,
-                  height: 200,width: 300,
-                  child: Image.network("https://img.freepik.com/premium-photo/tobacco-whole-chicken-plate-with-herbs-tomato-black-background-top-view-copy-space_89816-31697.jpg?w=2000", height: 200, width: 300,),
-                ),
-                // const SizedBox(width: 8,),
-                const Text("Hello"),
-                const Text("Bye"),
-
-
-
-
-              ],
-            ),
-          ),
-        )
-    );*/
     return ListView.builder(
       primary: true,
       shrinkWrap: true,
@@ -66,6 +42,7 @@ class Recipe extends StatelessWidget {
                 top: 10,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text("Fried Chicken", style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold),),
                       Text("Time: 1hrs 30min", style: TextStyle(color: Colors.white),),

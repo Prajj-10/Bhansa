@@ -2,34 +2,19 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../../model/user_model.dart';
 import '../EditProfile/btnEditProfile.dart';
 import '../../custom/ExpandedWidgets/expandedProfileDescription.dart';
 
-class ProfileDetail extends StatefulWidget {
-  const ProfileDetail({Key? key}) : super(key: key);
+class ProfileDetail extends StatelessWidget {
 
-  @override
-  State<ProfileDetail> createState() => _ProfileDetailState();
-}
-
-class _ProfileDetailState extends State<ProfileDetail> {
+  //Variables
   var name;
   var username;
+  var description;
+  var profilePicture;
 
-  void _getProfileDetails() async{
-    User? user = await FirebaseAuth.instance.currentUser;
-    var _userDetails = await FirebaseFirestore.instance.collection('users').doc(user?.uid).get();
-    setState(() {
-      name = _userDetails.data()!['name'];
-      username = _userDetails.data()!['username'];
-    });
-  }
-
-  @override
-  void initState() {
-    _getProfileDetails();
-    super.initState();
-  }
+  ProfileDetail({super.key, required this.name, required this.username, required this.description, required this.profilePicture});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +31,14 @@ class _ProfileDetailState extends State<ProfileDetail> {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(color: Colors.white, width: 2),
-                    image: const DecorationImage(
+                    image:
+                    //loggedInUser.profilePicture != null ?
+                    profilePicture != null ?
+                    DecorationImage(
+                      image: NetworkImage(profilePicture!),
+                      fit: BoxFit.fill,
+                    )
+                    : DecorationImage(
                       image: NetworkImage("https://st3.depositphotos.com/3935465/12919/i/950/depositphotos_129194616-stock-photo-avocado-tomato-and-arugula-salad.jpg"),
                       fit: BoxFit.fill,
                     ),
@@ -56,7 +48,7 @@ class _ProfileDetailState extends State<ProfileDetail> {
                 //SizedBox(width: size.width*0.05,),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 40),
+                    padding: const EdgeInsets.only(top: 20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -69,12 +61,12 @@ class _ProfileDetailState extends State<ProfileDetail> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
 
-                                Text(name ?? "",
+                                Text(name??"Your name here.",
                                   style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(top: 5),
-                                  child: Text(username ?? "Set your username here.",
+                                  child: Text(username ?? "Your username here.",
                                     style: TextStyle(color: Colors.grey, fontSize: 14, fontWeight: FontWeight.bold),
                                   ),
                                 ),
@@ -92,7 +84,7 @@ class _ProfileDetailState extends State<ProfileDetail> {
                           ],
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 10),
+                          padding: const EdgeInsets.only(top: 5),
                           child: Row(
                             children: [
                               Expanded(child: BtnEditProfile()),
@@ -121,7 +113,10 @@ class _ProfileDetailState extends State<ProfileDetail> {
             Row(
               children: [
                 Expanded(
-                  child: ExpandedProfileDescription(profileDescription: "This pizza soup is a comfort food recipe to the max! Who wouldn’t want all the flavors of a supreme pizza wrapped up in a cozy bowl? The broth is flavored with pizza sauce, tomatoes, and a little Parmesan to make it creamy. The toppings are swimming along inside: bell peppers, garlic and mushrooms, making for a savory pop that surprises you in every bite. Serve with garlic toast, grilled cheese or simply crusty bread and it’s a meal you’ll want to make over and over…and over."),
+                  child:
+                  description != null ?
+                  ExpandedProfileDescription(profileDescription: description!)
+                      :SizedBox(height: 20,),
                 ),
 
               ],
@@ -134,8 +129,6 @@ class _ProfileDetailState extends State<ProfileDetail> {
     );
   }
 }
-
-
 
 class FollowButton extends StatelessWidget {
   //const Button({Key? key}) : super(key: key);

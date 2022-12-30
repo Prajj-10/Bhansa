@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cook_book/app/EditProfile/imagePicker.dart';
 import 'package:cook_book/custom/CustomButtons/updateElevatedButton.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -23,6 +24,7 @@ class _EditProfileState extends State<EditProfile> {
   final user = FirebaseAuth.instance.currentUser;
   UserModel loggedInUser = UserModel();
 
+  final CollectionReference _userReference = FirebaseFirestore.instance.collection('users');
 
   File? profilePicture;
 
@@ -32,9 +34,34 @@ class _EditProfileState extends State<EditProfile> {
       if (img == null) return;
       final imageTemporary = File(img.path);
       setState(() => this.profilePicture = imageTemporary);
+      String uniqueFileName = DateTime.now().millisecondsSinceEpoch.toString();
+
+      //upload picked image in firestore
+      //install firebase_storage package and import necessary library
+
+      //get a reference to storage
+      Reference referenceroot = FirebaseStorage.instance.ref();
+      Reference referenceDirImages = referenceroot.child('Profile Pictures');
+
+      //create reference for the image to be stored
+      Reference referenceImageToUpload = referenceDirImages.child(uniqueFileName);
+
+      //store image
+      //error handeling
+      try{
+
+        await referenceImageToUpload.putFile(File(img!.path));
+        loggedInUser.profilePicture = await referenceImageToUpload.getDownloadURL();
+        await _userReference
+            .doc(loggedInUser.uid)
+            .update({"profile picture":loggedInUser.profilePicture});
+        //print(url);
+
+      } catch(e){print(e);}
     } on PlatformException catch (e) {
       print("Failed to pick image: $e");
     }
+    // print(loggedInUser.profilePicture);
   }
 
 
@@ -56,6 +83,26 @@ class _EditProfileState extends State<EditProfile> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
+
+
+
+  //Function to update user profile ins=formation
+  Future _updateProfile() async{
+    final String name = _nameController.text;
+    final String description = _descriptionController.text;
+    final String username = _usernameController.text;
+    // final String url = imagePicker.toString();
+    // print("Hell oWorld");
+    imagePicker;
+    // print("bye");
+
+    if(description != null) {
+      await _userReference
+    .doc(loggedInUser.uid)
+    .update({"name":name,"description":description, "username":username,});
+    }
+
+  }
 
   @override
   Widget build (BuildContext context) {
@@ -106,12 +153,17 @@ class _EditProfileState extends State<EditProfile> {
                         child: Form(
                           child: Column(
                             children: [
-                              profilePicture != null ?
+                              if(profilePicture != null )
                               ClipOval(child: Image.file(
                                 profilePicture!, width: 160,
                                 height: 160,
                                 fit: BoxFit.cover,))
-                                  : SizedBox(
+                              else if (loggedInUser.profilePicture!=null)
+                                ClipOval(child: Image.network(
+                                  loggedInUser.profilePicture!, width: 160,
+                                  height: 160,
+                                  fit: BoxFit.cover,))
+                              else SizedBox(
                                 height: 160,
                                 width: 160,
 
@@ -152,7 +204,7 @@ class _EditProfileState extends State<EditProfile> {
 
                               //Username
                               editProfile_InputField(txt_Label: "Username",
-                                max_Length: 16,
+                                max_Length: 20,
                                 max_Lines: 1,
                                 placeholder: _usernameController),
 
@@ -164,7 +216,7 @@ class _EditProfileState extends State<EditProfile> {
 
                               SizedBox(height: 30,),
                               //Update Button
-                              UpdateElevatedButton(),
+                              UpdateElevatedButton(ontap: _updateProfile,),
                             ],
                           ),
                         ),
@@ -179,6 +231,47 @@ class _EditProfileState extends State<EditProfile> {
       ),
     );
   }
+  /*Future uploadProfilePicture() async{
+
+    //pick image from gallery
+    //install file_picker package and import necessary library
+    ImagePicker imagePicker = ImagePicker();
+    late this.profilePicture = (await  imagePicker.pickImage(source:ImageSource.gallery));
+
+    //XFile? image = await  imagePicker.pickImage(source: ImageSource.gallery);
+
+    if(this.profilePicture==null) return;
+
+    //Added Later
+    *//*final imageTemporary = File(this.profilePicture?.path);
+    setState(() => this.profilePicture = imageTemporary);*//*
+    //End
+
+    String uniqueFileName = DateTime.now().millisecondsSinceEpoch.toString();
+
+    //upload picked image in firestore
+    //install firebase_storage package and import necessary library
+
+    //get a reference to storage
+    Reference referenceroot = FirebaseStorage.instance.ref();
+    Reference referenceDirImages = referenceroot.child('profilePicture');
+
+    //create reference for the image to be stored
+    Reference referenceImageToUpload = referenceDirImages.child(uniqueFileName);
+
+    //store image
+    //error handeling
+    try{
+
+      await referenceImageToUpload.putFile(File(file!.path));
+      loggedInUser.profilePicture = await referenceImageToUpload.getDownloadURL();
+
+    } catch(e){
+      print(e);
+    }
+
+
+  }*/
 
 }
 
