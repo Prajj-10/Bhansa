@@ -30,6 +30,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   duration_picker: ^1.1.1
+  intl:
   fluttertoast:
   firebase_core: 2.3.0
   file_picker: ^5.2.4

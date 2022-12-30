@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cook_book/main.dart';
 import 'package:duration_picker/duration_picker.dart';
+import 'package:intl/intl.dart';
 
 import '../../model/user_model.dart';
 import 'storage_services.dart';
@@ -43,7 +44,23 @@ class _PostRecipeState extends State<PostRecipe> {
   GlobalKey<FormState> globalKey = new GlobalKey<FormState>();
   CookingStepsModel steps_model = CookingStepsModel();
 
+  DateTime postedDateTime = DateTime.now();
+  //String postedDate = DateTime.now("yyyy-MM-dd").toString();
+
+  //String currentDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
+  //'EEEE, MMM d, yyyy' output=> Tuesday, Jan 25, 2022
+
+  String currentDate = DateFormat('EEEE, MMM d, yyyy').format(DateTime.now());
+
+
+
+
+
+
+
   final user = FirebaseAuth.instance.currentUser;
+
+
 
   UserModel loggedInUser = UserModel();
 
@@ -55,6 +72,13 @@ class _PostRecipeState extends State<PostRecipe> {
 
   //To display selected image in UI
   var file;
+
+  //Duration? total_duration, p_duration, c_duration;
+
+
+
+
+
 
 
 
@@ -145,7 +169,7 @@ class _PostRecipeState extends State<PostRecipe> {
                           icon: const Icon(Icons.file_upload, size: 50,),
 
                           onPressed: () { uploadImage(); },
-                          
+
                         ),
 
 
@@ -285,101 +309,86 @@ class _PostRecipeState extends State<PostRecipe> {
                       ),
                     ),
 
-                   /* const SizedBox(
-                      height: 20,
-                    ),*/
 
-                    /*const Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Text(
-                        "Ingredients: ",
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.white),
-                      ),
-                    ),*/
 
                     const SizedBox(
                       height: 10,
                     ),
 
-                    /*Container(
-                      height: 50,
-                      child:  TextField(
 
-                        onChanged: (value){
-                          steps_model.recipe_ingredients = value;
-                        },
-
-                        style: TextStyle(fontSize: 20, color: Colors.white),
-
-                        decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              width: 2,
-                              color: Colors.white,
-                            ),
-                          ),
-
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
-                          ),
-                        ),
-                      ),
-                    ),*/
 
                     const SizedBox(
                       height: 20,
                     ),
 
-                    /*DurationPicker(
-                        onChange: (val) {
-                          _duration = val;
-                          setState(() {
 
-                          });
-                      },
-                      duration: _duration,
-                      baseUnit: BaseUnit.minute,
-                    ),*/
 
                     Container(
-                      child: Row(
-                        children: [
-                          const Text(
-                            "Prepare Duration: ",
-                            style: TextStyle(fontSize: 20, color: Colors.white),
-                          ),
-                          const SizedBox(
-                            width: 15,
-                          ),
 
-                          IconButton(
+                        child: Row(
+                          children: [
+                            const Text(
+                              "Prepare Duration: ",
+                              style: TextStyle(fontSize: 20, color: Colors.white),
+                            ),
+                            const SizedBox(
+                              width: 15,
+                            ),
 
-                            color: Colors.white,
-                            icon: const Icon(Icons.timer, size: 35,),
+                            IconButton(
 
-                            onPressed: () async {
+                              color: Colors.white,
+                              icon: const Icon(Icons.timer, size: 35,),
 
-
-
-                              Duration? selectedDuration = await showDurationPicker(context: context, initialTime: const Duration(minutes: 0));
-
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text('Preparing Duration is: $selectedDuration')),
-                              );
-
-                              setState(() {
-                                steps_model.prepare_duration = selectedDuration.toString();
-                              });
+                              onPressed: () async {
 
 
 
-                            },
+                                Duration? selectedDuration = await showDurationPicker(context: context, initialTime: const Duration(minutes: 0));
+
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text('Preparing Duration is: $selectedDuration')),
+                                );
+
+                                setState(() {
+
+                                  steps_model.p_duration= selectedDuration;
+
+                                  String testDuration = selectedDuration.toString();
+                                  if(testDuration.substring(0, 1) =='0'){
+                                    steps_model.prepare_duration = testDuration.substring(2, 4) +" min";
+                                  }
+                                  else if(testDuration.substring(2, 4) == '00'){
+                                    steps_model.prepare_duration = testDuration.substring(0, 1) + " hrs ";
+                                  }
+                                  else{
+                                    steps_model.prepare_duration = testDuration.substring(0, 1) + " hrs " + testDuration.substring(2, 4) +" min";
+                                  }
+                                  //steps_model.prepare_duration = testDuration.substring(0, 1) + " Hour(s) " + testDuration.substring(2, 4) +" Minute(s)";
+                                  //steps_model.prepare_duration = selectedDuration?.inMinutes as Duration?;
+
+                                  //var duration1 = steps_model.prepare_duration as int;
+
+                                  //final selectedDuration = DateFormat('yyyy-MM-dd hh:mm');
+
+                                });
 
 
-                          ),
+                              },
 
-                        ],
-                      ),
+
+                            ),
+
+                            Text(
+                              "${steps_model.prepare_duration}",
+                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.white),
+                            ),
+
+
+
+                          ],
+                        ),
+
                     ),
 
                     SizedBox(
@@ -414,15 +423,46 @@ class _PostRecipeState extends State<PostRecipe> {
                               );
 
                               setState(() {
-                                steps_model.cooking_duration = selectedDuration.toString();
+                                //Previous code start
+                                //steps_model.cooking_duration = selectedDuration.toString();
+                                //Previous code end
+
+                                //steps_model.cooking_duration = selectedDuration?.inMinutes as Duration?;
+                                steps_model.c_duration = selectedDuration;
+
+                                String testDuration = selectedDuration.toString();
+                                if(testDuration.substring(0, 1) =='0'){
+                                  steps_model.cooking_duration = testDuration.substring(2, 4) +" min";
+                                }
+                                else if(testDuration.substring(2, 4) == '00'){
+                                  steps_model.cooking_duration = testDuration.substring(0, 1) + " hrs ";
+                                }
+                                else{
+                                  steps_model.cooking_duration = testDuration.substring(0, 1) + " hrs " + testDuration.substring(2, 4) +" min";
+                                }
+
+                                //getTotalDuration();
+
+
+
                               });
+
+
+
 
 
 
                             },
 
 
+
                           ),
+
+                          Text(
+                            "${steps_model.cooking_duration}",
+                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.white),
+                          ),
+
 
                         ],
                       ),
@@ -569,6 +609,17 @@ class _PostRecipeState extends State<PostRecipe> {
     );
   }
 
+  String? getTotalDuration(){
+    steps_model.total_duration = (steps_model.c_duration! + steps_model.p_duration!).toString() as Duration?;
+    steps_model.testDurationFinal = steps_model.total_duration.toString();
+
+
+
+    return steps_model.testDurationFinal;
+
+    //set
+  }
+
   _getFromGallery() async {
     PickedFile? pickedFile = await ImagePicker().getImage(
       source: ImageSource.gallery,
@@ -635,8 +686,18 @@ class _PostRecipeState extends State<PostRecipe> {
       'Image': image_url,
       'Posted By':loggedInUser.name,*/
       //'Time taken': selectedDuration
-      'Details': steps_model.toJson(),
+      //'Details': steps_model.toJson(),
+      'Title' : steps_model.recipe_title,
+      'Number of Servings' : steps_model.num_of_servings,
+      'Ingredients': steps_model.toJson_Ingredients(),
+      'Cooking Direction': steps_model.toJson_CookingDirections(),
+      'Prepare Duration' : steps_model.prepare_duration,
+      'Cooking Duration' : steps_model.cooking_duration,
+      'Total Duration': steps_model.testDurationFinal,
       'Posted By':user?.uid,
+      'Photo' : steps_model.image_url,
+      'Postede On' : currentDate
+
     })
         .then((value) => print("Posted"))
         .catchError((error) => print("Failed to add Recipe: $error"));
@@ -652,25 +713,6 @@ class _PostRecipeState extends State<PostRecipe> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              // FormHelper.inputFieldWidgetWithLabel(context,
-              //     "username",
-              //     "Username",
-              //     "username",
-              //     (onValidateVal){
-              //   if(onValidateVal.isEmpty){
-              //     return "Cannot be empty";
-              //   }
-              //   return null;
-              //     },
-              //     (onSavedVal){
-              //   this.steps_model.cooking_steps = onSavedVal;
-              //     },
-              //   borderColor: Colors.redAccent,
-              //   borderFocusColor: Colors.redAccent,
-              //   borderRadius: 2,
-              //   fontSize: 14,
-              //   labelFontSize: 16,
-              // ),
 
               _ingredientsContainer(),
 
@@ -693,8 +735,14 @@ class _PostRecipeState extends State<PostRecipe> {
                     "Post Recipe",
                         () {
                       if(validateAndSave()){
-                        print(steps_model.toJson());
+                        //print(steps_model.toJson());
                         addRecipe();
+                        print('------------------------------------Duration------------------------------');
+
+                        print(steps_model.total_duration);
+                        print(steps_model.testDurationFinal);
+
+                        print('------------------------------------End------------------------------');
                       }
                     }
                 ),
