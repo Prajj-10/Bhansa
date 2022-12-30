@@ -1,9 +1,13 @@
 
+
 import 'package:flutter/material.dart';
 
 import '../../app/MyProfile/myProfile.dart';
 import '../../app/PostRecipe/post_recipe.dart';
 import '../../app/SearchRecipe/search_recipe.dart';
+import '../../app/SearchRecipe/search_recipe_2.dart';
+
+import '../../app/SearchUser/SearchPerson.dart';
 import '../../app/registration_page/registration.dart';
 import '../../authentication/logged_in2.dart';
 class Navigation extends StatefulWidget {
@@ -15,8 +19,9 @@ class Navigation extends StatefulWidget {
 class _NavigationState extends State<Navigation> {
   @override
   int index = 0;
+
   //Calling the pages (most be in sequential order)
-  List screen = [LoggedInWidget2(), SearchRecipe(), PostRecipe(), RegistrationPage(), MyProfile() ];
+  List screen = [LoggedInWidget2(),  PostRecipe(), RegistrationPage(), MyProfile() ];
 
 
   Widget build(BuildContext context) {
@@ -28,7 +33,7 @@ class _NavigationState extends State<Navigation> {
 
         onPressed: (){
           setState(() {
-            index = 2;
+            index = 1;
           });
 
         },
@@ -64,11 +69,8 @@ class _NavigationState extends State<Navigation> {
 
               //Category
               GestureDetector(
-                onTap: () {
-                  setState(() {
-                    index = 1;
-                  });
-                },
+                onTap: () => showSearch(context: context, delegate: SearchRecipe2()),
+                //onTap: () => showSearch(context: context, delegate: SearchPerson()),
                 child: Icon(Icons.search,
                     size: 24,
                     color: index == 1 ? Colors.cyan : Colors.white),
@@ -80,24 +82,24 @@ class _NavigationState extends State<Navigation> {
               GestureDetector(
                 onTap: () {
                   setState(() {
-                    index = 3;
+                    index = 2;
                   });
                 },
                 child: Icon(Icons.favorite,
                     size: 24,
-                    color: index == 3 ? Colors.cyan : Colors.white),
+                    color: index == 2 ? Colors.cyan : Colors.white),
               ),
 
               //Profile
               GestureDetector(
                 onTap: () {
                   setState(() {
-                    index = 4;
+                    index = 3;
                   });
                 },
                 child: Icon(Icons.person,
                     size: 24,
-                    color: index == 4 ? Colors.cyan : Colors.white),
+                    color: index == 3 ? Colors.cyan : Colors.white),
               ),
             ],
           ),

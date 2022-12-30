@@ -10,6 +10,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 
+import '../app/SearchUser/SearchPerson.dart';
 import '../app/loginpage/login.dart';
 import '../model/user_model.dart';
 
@@ -66,7 +67,11 @@ class LoggedInWidgetState2 extends State<LoggedInWidget2> {
                       logout(context);
                     },
                     child: const Text('Logout'),
-                  )
+                  ),
+
+                  //Testing person search assuming
+                  IconButton(onPressed: () => showSearch(context: context, delegate: SearchPerson()),
+                      icon: Icon(Icons.search_rounded))
                 ],
               ),
               body: Container(
