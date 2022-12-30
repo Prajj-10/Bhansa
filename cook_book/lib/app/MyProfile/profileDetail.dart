@@ -6,50 +6,15 @@ import '../../model/user_model.dart';
 import '../EditProfile/btnEditProfile.dart';
 import '../../custom/ExpandedWidgets/expandedProfileDescription.dart';
 
-class ProfileDetail extends StatefulWidget {
-  ProfileDetail({Key? key}) : super(key: key);
+class ProfileDetail extends StatelessWidget {
 
-  @override
-  State<ProfileDetail> createState() => _ProfileDetailState();
-}
+  //Variables
+  var name;
+  var username;
+  var description;
+  var profilePicture;
 
-class _ProfileDetailState extends State<ProfileDetail> {
-  User? user = FirebaseAuth.instance.currentUser;
-  UserModel loggedInUser = UserModel();
-
-  //var name;
-  // var username;
-  // var description;
-
-  /*void _getProfileDetails() async{
-    final user = await FirebaseAuth.instance.currentUser;
-    UserModel loggedInUser = UserModel();
-    var _userDetails = await FirebaseFirestore.instance.collection('users').doc(user?.uid).get();
-    setState(() {
-      name = _userDetails.data()!['name'];
-      username = _userDetails.data()!['email'];
-      description = _userDetails.data()!['description'];
-    });
-  }*/
-
-  Future _getData() async => await FirebaseFirestore.instance
-      .collection("users")
-      .doc(user?.uid)
-      .get()
-      .then((value)=> {
-
-    loggedInUser = UserModel.fromMap(value.data()),
-    print(loggedInUser!.name),
-
-  });
-
-  @override
-  void initState() {
-    //_getProfileDetails();
-    super.initState();
-    _getData();
-  }
-
+  ProfileDetail({super.key, required this.name, required this.username, required this.description, required this.profilePicture});
 
   @override
   Widget build(BuildContext context) {
@@ -67,9 +32,10 @@ class _ProfileDetailState extends State<ProfileDetail> {
                     shape: BoxShape.circle,
                     border: Border.all(color: Colors.white, width: 2),
                     image:
-                    loggedInUser.profilePicture != null ?
+                    //loggedInUser.profilePicture != null ?
+                    profilePicture != null ?
                     DecorationImage(
-                      image: NetworkImage(loggedInUser.profilePicture!),
+                      image: NetworkImage(profilePicture!),
                       fit: BoxFit.fill,
                     )
                     : DecorationImage(
@@ -82,7 +48,7 @@ class _ProfileDetailState extends State<ProfileDetail> {
                 //SizedBox(width: size.width*0.05,),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 40),
+                    padding: const EdgeInsets.only(top: 20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -95,12 +61,12 @@ class _ProfileDetailState extends State<ProfileDetail> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
 
-                                Text(loggedInUser.name??"Your name here.",
+                                Text(name??"Your name here.",
                                   style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(top: 5),
-                                  child: Text(loggedInUser.username ?? "Your username here.",
+                                  child: Text(username ?? "Your username here.",
                                     style: TextStyle(color: Colors.grey, fontSize: 14, fontWeight: FontWeight.bold),
                                   ),
                                 ),
@@ -118,7 +84,7 @@ class _ProfileDetailState extends State<ProfileDetail> {
                           ],
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 10),
+                          padding: const EdgeInsets.only(top: 5),
                           child: Row(
                             children: [
                               Expanded(child: BtnEditProfile()),
@@ -148,8 +114,8 @@ class _ProfileDetailState extends State<ProfileDetail> {
               children: [
                 Expanded(
                   child:
-                  loggedInUser.description != null ?
-                  ExpandedProfileDescription(profileDescription: loggedInUser.description!)
+                  description != null ?
+                  ExpandedProfileDescription(profileDescription: description!)
                       :SizedBox(height: 20,),
                 ),
 
@@ -163,8 +129,6 @@ class _ProfileDetailState extends State<ProfileDetail> {
     );
   }
 }
-
-
 
 class FollowButton extends StatelessWidget {
   //const Button({Key? key}) : super(key: key);
