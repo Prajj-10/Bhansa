@@ -35,7 +35,7 @@ class _MyProfileState extends State<MyProfile> {
   var username;
   var description;
   var profilePicture;
-  CollectionReference recipeReference =FirebaseFirestore.instance.collection("recipe_details") ;
+  var recipeReference =FirebaseFirestore.instance.collection("recipe_details");
 
   //Get user data from firebase
   void _getUserDetails() async{

@@ -66,6 +66,10 @@ class _PostRecipeState extends State<PostRecipe> {
 
 
   Duration _duration = const Duration(hours: 0, minutes: 0);
+
+  Duration cook_duration = Duration.zero;
+  Duration prep_duration = Duration.zero;
+  Duration t_duration = Duration.zero;
   //var cook_time;
   //Duration selectedDuration = const Duration(hours: 0, minutes: 0);
 
@@ -210,11 +214,9 @@ class _PostRecipeState extends State<PostRecipe> {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.only(left: 15, right: 15),
               child: Container(
-
                 child: Column(
                   children: [
                     const SizedBox(
@@ -236,13 +238,9 @@ class _PostRecipeState extends State<PostRecipe> {
                     Container(
                       height: 50,
                       child:  TextField(
-
                         onChanged: (value){
                           steps_model.recipe_title = value;
                         },
-
-
-
                         style: TextStyle(fontSize: 20, color: Colors.white),
 
                         decoration: InputDecoration(
@@ -351,8 +349,8 @@ class _PostRecipeState extends State<PostRecipe> {
                                 );
 
                                 setState(() {
-
-                                  steps_model.p_duration= selectedDuration;
+                                  prep_duration = selectedDuration!;
+                                  steps_model.p_duration= selectedDuration.toString();
 
                                   String testDuration = selectedDuration.toString();
                                   if(testDuration.substring(0, 1) =='0'){
@@ -370,10 +368,7 @@ class _PostRecipeState extends State<PostRecipe> {
                                   //var duration1 = steps_model.prepare_duration as int;
 
                                   //final selectedDuration = DateFormat('yyyy-MM-dd hh:mm');
-
                                 });
-
-
                               },
 
 
@@ -413,9 +408,6 @@ class _PostRecipeState extends State<PostRecipe> {
                             icon: const Icon(Icons.timer, size: 35,),
 
                             onPressed: () async {
-
-
-
                               Duration? selectedDuration = await showDurationPicker(context: context, initialTime: const Duration(minutes: 0));
 
                               ScaffoldMessenger.of(context).showSnackBar(
@@ -428,7 +420,8 @@ class _PostRecipeState extends State<PostRecipe> {
                                 //Previous code end
 
                                 //steps_model.cooking_duration = selectedDuration?.inMinutes as Duration?;
-                                steps_model.c_duration = selectedDuration;
+                                steps_model.c_duration = selectedDuration.toString();
+                                cook_duration=selectedDuration!;
 
                                 String testDuration = selectedDuration.toString();
                                 if(testDuration.substring(0, 1) =='0'){
@@ -440,17 +433,9 @@ class _PostRecipeState extends State<PostRecipe> {
                                 else{
                                   steps_model.cooking_duration = testDuration.substring(0, 1) + " hrs " + testDuration.substring(2, 4) +" min";
                                 }
-
-                                //getTotalDuration();
-
-
+                                calcTotalDuration();
 
                               });
-
-
-
-
-
 
                             },
 
@@ -462,7 +447,6 @@ class _PostRecipeState extends State<PostRecipe> {
                             "${steps_model.cooking_duration}",
                             style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.white),
                           ),
-
 
                         ],
                       ),
@@ -609,15 +593,23 @@ class _PostRecipeState extends State<PostRecipe> {
     );
   }
 
-  String? getTotalDuration(){
-    steps_model.total_duration = (steps_model.c_duration! + steps_model.p_duration!).toString() as Duration?;
-    steps_model.testDurationFinal = steps_model.total_duration.toString();
+  calcTotalDuration(){
+    t_duration =cook_duration+prep_duration;
+    String totalDuration = t_duration.toString();
 
+    setState(() {
+      //steps_model.testDurationFinal = totalDuration;
+      if(totalDuration.substring(0, 1) =='0'){
+        steps_model.testDurationFinal = totalDuration.substring(2, 4) +" min";
+      }
+      else if(totalDuration.substring(2, 4) == '00'){
+        steps_model.testDurationFinal = totalDuration.substring(0, 1) + " hrs ";
+      }
+      else{
+        steps_model.testDurationFinal = totalDuration.substring(0, 1) + " hrs " + totalDuration.substring(2, 4) +" min";
+      }
+    });
 
-
-    return steps_model.testDurationFinal;
-
-    //set
   }
 
   _getFromGallery() async {
