@@ -40,46 +40,72 @@ class LoggedInWidgetState2 extends State<LoggedInWidget2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Logged In'),
-        centerTitle: true,
-        actions: [
-          TextButton(
-            style: TextButton.styleFrom(foregroundColor: Colors.white),
-            onPressed: () {
-              logout(context);
-            },
-            child: const Text('Logout'),
-          )
-        ],
-      ),
-      body: Container(
-        alignment: Alignment.center,
-        color: Colors.blueGrey.shade900,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              'Profile',
-              style: TextStyle(fontSize: 24),
-            ),
-            const SizedBox(height: 32),
-            /*CircleAvatar(
-                radius: 40,
-                backgroundImage: NetworkImage(photo),
-              ),*/
-            const SizedBox(height: 8),
-            Text(
-              'Name: ${loggedInUser.name!}',
-              style: const TextStyle(color: Colors.white, fontSize: 16),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'Email: ${loggedInUser.email!}',
-              style: const TextStyle(color: Colors.white, fontSize: 16),
-            ),
-          ],
-        ),
+      body: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot){
+          if(snapshot.connectionState == ConnectionState.waiting){
+            return const Center(
+              child: CircularProgressIndicator(
+              color: Colors.white,
+            ),);
+          }
+          else if(snapshot.hasError){
+            const Center(
+              child: Text("Error!! Please check your internet connection."),
+            );
+          }
+          else if(snapshot.hasData){
+            return Scaffold(
+              appBar: AppBar(
+                title: const Text('Logged In'),
+                centerTitle: true,
+                actions: [
+                  TextButton(
+                    style: TextButton.styleFrom(foregroundColor: Colors.white),
+                    onPressed: () {
+                      logout(context);
+                    },
+                    child: const Text('Logout'),
+                  )
+                ],
+              ),
+              body: Container(
+                alignment: Alignment.center,
+                color: Colors.blueGrey.shade900,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Profile',
+                      style: TextStyle(fontSize: 24),
+                    ),
+                    const SizedBox(height: 32),
+                    /*CircleAvatar(
+                      radius: 40,
+                      backgroundImage: NetworkImage(photo),
+                    ),*/
+                    const SizedBox(height: 8),
+                    Text(
+                      'Name: ${loggedInUser.name!}',
+                      style: const TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Email: ${loggedInUser.email!}',
+                      style: const TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }
+          else{
+            return const Center(
+              child: Text("Something went wrong. Please try again later."),
+            );
+          }
+          return const SizedBox();
+        }
       ),
     );
   }
