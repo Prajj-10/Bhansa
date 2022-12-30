@@ -41,50 +41,118 @@ class SearchRecipe2 extends SearchDelegate{
                 .toString().toLowerCase()
                 .contains(query.toLowerCase())).isEmpty
             ){
-              return Center (child: Text("No Found"),);
+              return Center (child: Text("Oops!!! Recipe Not Found"),);
             }
             else{
               //Fetch Data here
               print(snapshot.data);
 
-              return GridView.builder(
-                  itemCount: snapshot.data?.docs.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-                  itemBuilder: (context, index)
-                  {
-                    return Container(
-                      margin: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.red,
-                      ),
-                      child: Column(
+              return ListView(
+                children: [
+
+                  ...snapshot.data!.docs.where((QueryDocumentSnapshot<Object?> element) => element['Title']
+                      .toString().toLowerCase()
+                      .contains(query.toLowerCase())).map((QueryDocumentSnapshot<Object?>  data){
+                    final String title = data.get('Title');
+                    final String image = data.get('Photo');
+
+                    return Padding(
+                      padding: const EdgeInsets.all(5),
+                      child: Stack(
                         children: [
                           ClipRRect(
-                            borderRadius: const BorderRadius.only(
+                            borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 topRight: Radius.circular(10)),
-                            child: Image.network("${snapshot.data?.docs[index]['Photo']}",
+                            child: Image.network('${image}',
                               height: 120,
                               fit: BoxFit.cover,
                               width: double.infinity,),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(children: [
-                              Text(snapshot.data?.docs[index]['Title'], style: const TextStyle(
-                                color: Colors.white, fontWeight: FontWeight.bold,
-                              ),
-                              ),
+                          Positioned(
+                            bottom: 10,
+                              left: 10,
+                              child: Column(
+                                children: [
+                                  Text(title,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),)
+                                ],
+                              ))
 
-                              const Text("9.0",
-                                style: TextStyle(color: Colors.amber),),
 
-                            ],),),
                         ],
+
                       ),
                     );
-                  });
+
+
+                  }),
+
+                ],
+              );
+
+
+              // return Column(
+              //   children: [
+              //     ...snapshot.data!.docs.where((QueryDocumentSnapshot<Object?> element) => element['Title']
+              //         .toString().toLowerCase()
+              //         .contains(query.toLowerCase())).map((QueryDocumentSnapshot<Object?>  data){
+              //       final String title = data.get('Title');
+              //       final String image = data.get('Photo');
+              //
+              //       return Expanded(
+              //         child: GridView.builder(
+              //             itemCount: 1,
+              //             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
+              //             itemBuilder: (context, index)
+              //             {
+              //               return Container(
+              //                 margin: EdgeInsets.all(5),
+              //                 decoration: BoxDecoration(
+              //                   borderRadius: BorderRadius.circular(10),
+              //                   color: Colors.red,
+              //                 ),
+              //                 child: Center(
+              //                   child: Column(
+              //                     children: [
+              //                       ClipRRect(
+              //                         borderRadius: const BorderRadius.only(
+              //                             topLeft: Radius.circular(10),
+              //                             topRight: Radius.circular(10)),
+              //                         child: Image.network("${image}",
+              //                           height: 120,
+              //                           fit: BoxFit.cover,
+              //                           width: double.infinity,),
+              //                       ),
+              //                       Padding(
+              //                         padding: const EdgeInsets.all(8.0),
+              //                         child: Column(children: [
+              //                           Text(title, style: const TextStyle(
+              //                             color: Colors.white, fontWeight: FontWeight.bold,
+              //                           ),
+              //                           ),
+              //
+              //                           const Text("9.0",
+              //                             style: TextStyle(color: Colors.amber),),
+              //
+              //                         ],),),
+              //                     ],
+              //                   ),
+              //                 ),
+              //               );
+              //             }),
+              //       );
+              //
+              //     }),
+              //
+              //   ],
+              // );
+
+
 
             }
 
@@ -94,58 +162,85 @@ class SearchRecipe2 extends SearchDelegate{
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    return StreamBuilder<QuerySnapshot>(
-        stream: _firebaseFirestore.snapshots().asBroadcastStream(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot>snapshot){
-          if (!snapshot.hasData){
-            return Center(child: CircularProgressIndicator());
-          }
-          else
-          {
-              //Fetch Data here
-              //print(snapshot.data);
+    return Center(child: Text("Search Your Favourite  Recipe",
+    style: TextStyle(
+      fontWeight: FontWeight.bold,
+      fontSize: 18,
+      color: Colors.grey,
+    ),),);
 
-              return GridView.builder(
-                  itemCount: snapshot.data?.docs.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-                  itemBuilder: (context, index)
-                  {
-                    return Container(
-                      margin: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.red,
-                      ),
-                      child: Column(
-                        children: [
-                          ClipRRect(
-                            borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(10),
-                                topRight: Radius.circular(10)),
-                            child: Image.network("${snapshot.data?.docs[index]['Photo']}",
-                              height: 120,
-                              fit: BoxFit.cover,
-                              width: double.infinity,),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(children: [
-                              Text(snapshot.data?.docs[index]['Title'], style: const TextStyle(
-                                color: Colors.white, fontWeight: FontWeight.bold,
-                              ),
-                              ),
-
-                              const Text("9.0",
-                                style: TextStyle(color: Colors.amber),),
-
-                            ],),),
-                        ],
-                      ),
-                    );
-                  });
-
-          }
-        });
+    ////#Display Data in the search screen
+    // return  StreamBuilder<QuerySnapshot>(
+    //     stream: _firebaseFirestore.snapshots().asBroadcastStream(),
+    //     builder: (BuildContext context, AsyncSnapshot<QuerySnapshot>snapshot){
+    //       if (!snapshot.hasData){
+    //         return Center(child: CircularProgressIndicator());
+    //       }
+    //       else
+    //       {
+    //         if(
+    //         snapshot.data!.docs.where((QueryDocumentSnapshot<Object?> element) => element['Title']
+    //             .toString().toLowerCase()
+    //             .contains(query.toLowerCase())).isEmpty
+    //         ){
+    //           return Center (child: Text("No Found"),);
+    //         }
+    //         else{
+    //           //Fetch Data here
+    //           print(snapshot.data);
+    //
+    //           return ListView(
+    //             children: [
+    //
+    //               ...snapshot.data!.docs.where((QueryDocumentSnapshot<Object?> element) => element['Title']
+    //                   .toString().toLowerCase()
+    //                   .contains(query.toLowerCase())).map((QueryDocumentSnapshot<Object?>  data){
+    //                 final String title = data.get('Title');
+    //                 final String image = data.get('Photo');
+    //
+    //                 return Padding(
+    //                   padding: const EdgeInsets.all(5),
+    //                   child: Stack(
+    //                     children: [
+    //                       ClipRRect(
+    //                         borderRadius: BorderRadius.only(
+    //                             topLeft: Radius.circular(10),
+    //                             topRight: Radius.circular(10)),
+    //                         child: Image.network('${image}',
+    //                           height: 120,
+    //                           fit: BoxFit.cover,
+    //                           width: double.infinity,),
+    //                       ),
+    //                       Positioned(
+    //                           bottom: 10,
+    //                           left: 10,
+    //                           child: Column(
+    //                             children: [
+    //                               Text(title,
+    //                                 style: TextStyle(
+    //                                   color: Colors.white,
+    //                                   fontSize: 16,
+    //                                   fontWeight: FontWeight.bold,
+    //                                 ),)
+    //                             ],
+    //                           ))
+    //
+    //
+    //                     ],
+    //
+    //                   ),
+    //                 );
+    //
+    //
+    //               }),
+    //
+    //             ],
+    //           );
+    //
+    //         }
+    //
+    //       }
+    //     });
   }
 
 }
