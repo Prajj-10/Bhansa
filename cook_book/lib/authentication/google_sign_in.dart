@@ -39,7 +39,7 @@ class GoogleSignInProvider extends ChangeNotifier {
     notifyListeners();
     createUserInFirestore();
     //const LoggedInWidget();
-    createUserInFirestore();
+    // createUserInFirestore();
     Fluttertoast.showToast(msg: "Logged In successfully.");
   }
 
@@ -55,7 +55,7 @@ class GoogleSignInProvider extends ChangeNotifier {
     final currentUser = FirebaseAuth.instance.currentUser;
     final DocumentSnapshot doc = await usersRef.doc(user?.id).get();
 
-    if(!doc.exists){
+    if(doc.exists){
       FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
       // call user model
