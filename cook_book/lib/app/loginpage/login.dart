@@ -27,6 +27,12 @@ class _LoginScreenState extends State<LoginScreen> with InputValidationMixin {
   // Firebase Auth
   FirebaseAuth auth = FirebaseAuth.instance;
   String? errorMessage;
+  late bool passwordVisible;
+
+  @override
+  void initState() {
+    passwordVisible = false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> with InputValidationMixin {
     final passwordField = TextFormField(
         autofocus: false,
         controller: passwordController,
-        obscureText: true,
+        obscureText: !passwordVisible,
         validator: (password) {
           if (isPasswordValid(password!)) {
             return null;
@@ -78,6 +84,15 @@ class _LoginScreenState extends State<LoginScreen> with InputValidationMixin {
         textInputAction: TextInputAction.done,
         decoration: InputDecoration(
           prefixIcon: const Icon(Icons.vpn_key),
+          suffixIcon: IconButton(onPressed:(){
+            setState(() {
+              passwordVisible = !passwordVisible;
+            });
+          }, icon: Icon(
+            passwordVisible
+            ?Icons.visibility:Icons.visibility_off,
+            color: Colors.white,
+          )),
           contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Password",
           border: OutlineInputBorder(

@@ -56,10 +56,18 @@ class _RegistrationPageState extends State<RegistrationPage> with InputValidatio
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   var confirmPasswordController = TextEditingController();
-  CollectionReference userRegistration = FirebaseFirestore.instance.collection('User Registration');
+  // CollectionReference userRegistration = FirebaseFirestore.instance.collection('User Registration');
 
 
   // final dbRef = FirebaseDatabase.instance.reference();
+
+  late bool passwordVisible;
+
+  @override
+  void initState() {
+    // super.initState();
+    passwordVisible = false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +132,7 @@ class _RegistrationPageState extends State<RegistrationPage> with InputValidatio
     final passwordField = TextFormField(
         autofocus: false,
         controller: passwordController,
-        obscureText: true,
+        obscureText: !passwordVisible,
         validator: (password) {
           if (passwordStructure(password!)) {
             return null;
@@ -144,6 +152,15 @@ class _RegistrationPageState extends State<RegistrationPage> with InputValidatio
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
           prefixIcon: const Icon(Icons.vpn_key),
+          suffixIcon: IconButton(onPressed:(){
+            setState(() {
+              passwordVisible = !passwordVisible;
+            });
+          }, icon: Icon(
+            passwordVisible
+                ?Icons.visibility:Icons.visibility_off,
+            color: Colors.white,
+          )),
           contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Password",
           border: OutlineInputBorder(
@@ -155,7 +172,7 @@ class _RegistrationPageState extends State<RegistrationPage> with InputValidatio
     final confirmPasswordField = TextFormField(
         autofocus: false,
         controller: confirmPasswordController,
-        obscureText: true,
+        obscureText: !passwordVisible,
         validator: (value) {
           if (confirmPasswordController.text !=
               passwordController.text) {
@@ -169,6 +186,15 @@ class _RegistrationPageState extends State<RegistrationPage> with InputValidatio
         textInputAction: TextInputAction.done,
         decoration: InputDecoration(
           prefixIcon: const Icon(Icons.vpn_key),
+          suffixIcon: IconButton(onPressed:(){
+            setState(() {
+              passwordVisible = !passwordVisible;
+            });
+          }, icon: Icon(
+            passwordVisible
+                ?Icons.visibility:Icons.visibility_off,
+            color: Colors.white,
+          )),
           contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Confirm Password",
           border: OutlineInputBorder(
