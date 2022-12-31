@@ -30,7 +30,7 @@ class LoggedInWidgetState2 extends State<LoggedInWidget2> {
   final googleSignIn = GoogleSignIn();
   UserModel loggedInUser = UserModel();
 
-  void getDetails() async{
+  /*void getDetails() async{
     //final user = await FirebaseAuth.instance.currentUser;
     //UserModel loggedInUser = UserModel();
     //CookingStepsModel recipeList = new CookingStepsModel();
@@ -40,13 +40,14 @@ class LoggedInWidgetState2 extends State<LoggedInWidget2> {
       name = userDetails.data()!['name'];
       email = userDetails.data()!['email'];
     });
-  }
+  }*/
 
 
   @override
   void initState() {
-    getDetails();
+    // getDetails();
     super.initState();
+
 
   }
   @override

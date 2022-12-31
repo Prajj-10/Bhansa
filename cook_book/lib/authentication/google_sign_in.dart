@@ -16,7 +16,6 @@ class GoogleSignInProvider extends ChangeNotifier {
 
 
   Future googleLogin() async {
-      if(user.displayName != null){
         try {
         final googleUser = await googleSignIn.signIn();
         if (googleUser == null) return;
@@ -35,8 +34,6 @@ class GoogleSignInProvider extends ChangeNotifier {
         catch (e) {
           print(e.toString());
         }
-    }
-
 
     notifyListeners();
     createUserInFirestore();
