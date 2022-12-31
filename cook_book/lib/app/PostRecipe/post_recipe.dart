@@ -55,9 +55,6 @@ class _PostRecipeState extends State<PostRecipe> {
 
 
 
-
-
-
   final user = FirebaseAuth.instance.currentUser;
 
 
@@ -78,12 +75,6 @@ class _PostRecipeState extends State<PostRecipe> {
   var file;
 
   //Duration? total_duration, p_duration, c_duration;
-
-
-
-
-
-
 
 
 
@@ -119,11 +110,6 @@ class _PostRecipeState extends State<PostRecipe> {
     final Storage storage = Storage();
 
     return Scaffold(
-      //backgroundColor: Colors.black,
-      /*appBar: AppBar(
-        title: const Text("Post Your Recipe"),
-        centerTitle: true,
-      ),*/
 
       body: SingleChildScrollView(
         child: Column(
@@ -184,24 +170,6 @@ class _PostRecipeState extends State<PostRecipe> {
               ]
             ),
 
-            /*Container(
-              height: height/2.2,
-              width: width,
-              decoration: const BoxDecoration(
-
-                image: DecorationImage(
-
-                  image: AssetImage("assets/postRecipe.jpg"),
-                  fit: BoxFit.cover,
-                ),
-
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(25),
-                  bottomRight: Radius.circular(25),
-                ),
-              ),
-            ),*/
 
             const SizedBox(
               height: 30,
@@ -257,6 +225,47 @@ class _PostRecipeState extends State<PostRecipe> {
                         ),
                       ),
                     ),
+
+                    const SizedBox(
+                      height: 20,
+                    ),
+
+
+                    const Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Text(
+                        "Recipe Description: ",
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.white),
+                      ),
+                    ),
+
+                    const SizedBox(
+                      height: 10,
+                    ),
+
+                    Container(
+                      height: 50,
+                      child:  TextField(
+                        onChanged: (value){
+                          steps_model.recipe_description = value;
+                        },
+                        style: TextStyle(fontSize: 20, color: Colors.white),
+
+                        decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              width: 2,
+                              color: Colors.white,
+                            ),
+                          ),
+
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+
 
                     const SizedBox(
                       height: 20,
@@ -362,12 +371,7 @@ class _PostRecipeState extends State<PostRecipe> {
                                   else{
                                     steps_model.prepare_duration = testDuration.substring(0, 1) + " hrs " + testDuration.substring(2, 4) +" min";
                                   }
-                                  //steps_model.prepare_duration = testDuration.substring(0, 1) + " Hour(s) " + testDuration.substring(2, 4) +" Minute(s)";
-                                  //steps_model.prepare_duration = selectedDuration?.inMinutes as Duration?;
 
-                                  //var duration1 = steps_model.prepare_duration as int;
-
-                                  //final selectedDuration = DateFormat('yyyy-MM-dd hh:mm');
                                 });
                               },
 
@@ -456,128 +460,17 @@ class _PostRecipeState extends State<PostRecipe> {
                       height: 20,
                     ),
 
-
-                    /*ElevatedButton(
-                        onPressed: () async{
-                          Duration? selectedDuration = await showDurationPicker(context: context, initialTime: const Duration(minutes: 0));
-
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Duration is: $selectedDuration')),
-                          );
-
-                        },
-                        child: const Text("Pick Duration")
-
-                    ),*/
-
-                    /*const Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Text(
-                        'Duration: $selectedDuration',
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.white),
-                      ),
-                    ),*/
-
-
-
                     const SizedBox(
                       height: 10,
                     ),
 
-                    /*const Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Text(
-                        selectedDuration,
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.white),
-                      ),
-                    ),*/
-
-                    //Rohit code
-                    // const Align(
-                    //   alignment: Alignment.bottomLeft,
-                    //   child: Text(
-                    //     "cooking_steps: ",
-                    //     style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.white),
-                    //   ),
-                    // ),
-
-
-
-                    
-                    //Rohit Code
-
-                    //
-                    // const SizedBox(
-                    //   height: 10,
-                    // ),
-                    //
-                    // ListView.separated(
-                    //     shrinkWrap: true,
-                    //     physics: const ScrollPhysics(),
-                    //     itemBuilder: (context, index){
-                    //       return Column(
-                    //         children: [_cooking_steps(index)],
-                    //       );
-                    //     },
-                    //     separatorBuilder: (context, index)=> const Divider(),
-                    //     itemCount: steps_model.cooking_steps!.length
-                    // ),
-                    
-                    
-
                     const SizedBox(
-                      height: 20,
+                      height: 70,
 
                     ),
-
-
-
-                    /*Container(
-                      child: Row(
-                        children: [
-                          const Text(
-                            "Upload Image: ",
-                            style: TextStyle(fontSize: 20, color: Colors.white),
-                          ),
-                          const SizedBox(
-                            width: 15,
-                          ),
-
-
-                          IconButton(
-
-                            color: Colors.white,
-                            icon: const Icon(Icons.file_upload, size: 35,),
-
-                            onPressed: () { uploadImage(); },
-                          ),
-
-                        ],
-                      ),
-                    ),*/
-
-                    SizedBox(
-                      height: 10,
-                    ),
-
-                    /*file != null ?
-                    Image.file(
-                        file!,
-                        height: 150,
-                        width: 150,
-                        fit: BoxFit.cover)
-                        : FlutterLogo(size: 150,),*/
-
-                    SizedBox(
-                      height: 40,
-                    ),
-
 
                     //Calling own widget
                     _uiWidget(),
-
-
-
 
 
                   ],
@@ -671,15 +564,8 @@ class _PostRecipeState extends State<PostRecipe> {
 
     return recipeDetails
         .add({
-      /*'Title': recipe_title,
-      'Number of Servings': num_of_servings,
-      'Ingredients': ingredients,
-      'Direction': steps_model.toJson(),
-      'Image': image_url,
-      'Posted By':loggedInUser.name,*/
-      //'Time taken': selectedDuration
-      //'Details': steps_model.toJson(),
       'Title' : steps_model.recipe_title,
+      'Description': steps_model.recipe_description,
       'Number of Servings' : steps_model.num_of_servings,
       'Ingredients': steps_model.toJson_Ingredients(),
       'Cooking Direction': steps_model.toJson_CookingDirections(),
@@ -729,12 +615,7 @@ class _PostRecipeState extends State<PostRecipe> {
                       if(validateAndSave()){
                         //print(steps_model.toJson());
                         addRecipe();
-                        print('------------------------------------Duration------------------------------');
 
-                        print(steps_model.total_duration);
-                        print(steps_model.testDurationFinal);
-
-                        print('------------------------------------End------------------------------');
                       }
                     }
                 ),
@@ -976,102 +857,4 @@ class _PostRecipeState extends State<PostRecipe> {
     }
   }
 
-
-
-  //Rohit Codes
-  // Widget _cooking_steps(index){
-  //   //var index;
-  //   return Padding(
-  //     padding: EdgeInsets.all(0),
-  //
-  //     child: Row(
-  //       children: [
-  //         Flexible(
-  //           child: FormHelper.inputFieldWidget(
-  //             textColor: Colors.white,
-  //
-  //             context,
-  //             "steps_$index",
-  //             "",
-  //                 (onValidate){
-  //               if(onValidate.isEmpty){
-  //                 return 'Step ${index +1} cannot be empty!!!';
-  //               }
-  //
-  //               return null;
-  //             },
-  //                 (onSavedVal){
-  //               steps_model.cooking_steps![index] = onSavedVal;
-  //             },
-  //             borderColor: Colors.white,
-  //             borderFocusColor: Colors.white,
-  //             borderRadius: 0,
-  //             fontSize: 16,
-  //
-  //
-  //           ),
-  //         ),
-  //
-  //         Visibility(
-  //           child: IconButton(
-  //             icon: Icon(
-  //               Icons.add_circle,
-  //               color: Colors.lightGreenAccent,
-  //               size: 30,
-  //             ),
-  //             onPressed: (){addSteps();},
-  //           ),
-  //           visible: index == steps_model.cooking_steps!.length -1,
-  //         ),
-  //
-  //
-  //
-  //
-  //         Visibility(
-  //           child: IconButton(
-  //             icon: Icon(
-  //               Icons.remove_circle,
-  //               color: Colors.redAccent,
-  //               size: 30,
-  //             ),
-  //             onPressed: (){removeSteps(index);},
-  //           ),
-  //           visible: index > 0,
-  //         ),
-  //
-  //
-  //       ],
-  //     ),
-  //
-  //
-  //   );
-  // }
-  //
-  //
-  // void addSteps(){
-  //   setState(() {
-  //     steps_model.cooking_steps!.add("");
-  //   });
-  // }
-  //
-  // void removeSteps(index){
-  //   setState(() {
-  //     if(steps_model.cooking_steps!.length > 1){
-  //
-  //       steps_model.cooking_steps!.removeAt(index);
-  //     }
-  //   });
-  //
-  // }
-  //
-  // bool validateAndSave(){
-  //   final form = globalKey.currentState;
-  //   if(form!.validate()){
-  //     form.save();
-  //     return true;
-  //   }
-  //   else{
-  //     return false;
-  //   }
-  // }
 }
