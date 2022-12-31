@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cook_book/app/PostRecipe/reviews.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -75,6 +76,8 @@ class _PostRecipeState extends State<PostRecipe> {
   var file;
 
   //Duration? total_duration, p_duration, c_duration;
+  var postId, ownerId, mediaUrl;
+
 
 
 
@@ -472,6 +475,36 @@ class _PostRecipeState extends State<PostRecipe> {
                     //Calling own widget
                     _uiWidget(),
 
+                    const SizedBox(
+                      height: 20,
+                    ),
+
+                    IconButton(
+                      color: Colors.white,
+
+                        onPressed: (){
+                          showReviews(
+
+                            context,
+                            postId: postId,
+                            ownerId: ownerId,
+                            mediaUrl: mediaUrl,
+
+                          );
+                          //showReviews();
+                          print('--------------------------Hello-------------------------');
+                        } ,
+
+
+                        icon: Icon(Icons.reviews_sharp, size: 35,)
+                    ),
+
+                    const SizedBox(
+                      height: 70,
+
+                    ),
+
+
 
                   ],
                 ),
@@ -564,6 +597,7 @@ class _PostRecipeState extends State<PostRecipe> {
 
     return recipeDetails
         .add({
+      'postId': steps_model.recipe_id_pk = DateTime.now().millisecondsSinceEpoch.toString(),
       'Title' : steps_model.recipe_title,
       'Description': steps_model.recipe_description,
       'Number of Servings' : steps_model.num_of_servings,
@@ -858,3 +892,20 @@ class _PostRecipeState extends State<PostRecipe> {
   }
 
 }
+
+
+showReviews(BuildContext context, { var postId, var ownerId, var mediaUrl }) {
+
+  Navigator.push(context, MaterialPageRoute(builder: (context){
+
+    return Reviews(
+      postId: postId,
+      postOwnerId: ownerId,
+      postMediaUrl: mediaUrl,
+    );
+
+  }));
+
+}
+
+
