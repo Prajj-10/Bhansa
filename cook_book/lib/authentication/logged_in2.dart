@@ -21,22 +21,33 @@ class LoggedInWidget2 extends StatefulWidget{
   LoggedInWidgetState2 createState() => LoggedInWidgetState2();
 }
 class LoggedInWidgetState2 extends State<LoggedInWidget2> {
+
+  var name;
+  var email;
+
   final ref = FirebaseDatabase.instance.ref('users');
   final user = FirebaseAuth.instance.currentUser;
   final googleSignIn = GoogleSignIn();
   UserModel loggedInUser = UserModel();
 
+  void getDetails() async{
+    //final user = await FirebaseAuth.instance.currentUser;
+    //UserModel loggedInUser = UserModel();
+    //CookingStepsModel recipeList = new CookingStepsModel();
+    var userDetails = await FirebaseFirestore.instance.collection('users').doc(user?.uid).get();
+
+    setState(() {
+      name = userDetails.data()!['name'];
+      email = userDetails.data()!['email'];
+    });
+  }
+
+
   @override
   void initState() {
+    getDetails();
     super.initState();
-    FirebaseFirestore.instance
-        .collection("users")
-        .doc(user!.uid)
-        .get()
-        .then((value) {
-      loggedInUser = UserModel.fromMap(value.data());
-      setState(() {});
-    });
+
   }
   @override
   Widget build(BuildContext context) {
@@ -71,7 +82,7 @@ class LoggedInWidgetState2 extends State<LoggedInWidget2> {
 
                   //Testing person search assuming
                   IconButton(onPressed: () => showSearch(context: context, delegate: SearchPerson()),
-                      icon: Icon(Icons.search_rounded))
+                      icon: const Icon(Icons.search_rounded))
                 ],
               ),
               body: Container(
@@ -91,12 +102,12 @@ class LoggedInWidgetState2 extends State<LoggedInWidget2> {
                     ),*/
                     const SizedBox(height: 8),
                     Text(
-                      'Name: ${loggedInUser.name!}',
+                      name?? "Your name here.",
                       style: const TextStyle(color: Colors.white, fontSize: 16),
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Email: ${loggedInUser.email!}',
+                      email?? "Your email here.",
                       style: const TextStyle(color: Colors.white, fontSize: 16),
                     ),
                   ],

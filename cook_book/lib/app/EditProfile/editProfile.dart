@@ -111,11 +111,11 @@ class _EditProfileState extends State<EditProfile> {
         .size;
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(40),
+        preferredSize: const Size.fromHeight(40),
         child: AppBar(
-          title: Center(child: Text("Edit Profile",
+          title: const Center(child: Text("Edit Profile",
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),)),
-          backgroundColor: Color(0xFF01231C),
+          backgroundColor: const Color(0xFF01231C),
           elevation: 0,
         ),
       ),

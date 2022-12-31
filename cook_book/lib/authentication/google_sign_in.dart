@@ -14,25 +14,27 @@ class GoogleSignInProvider extends ChangeNotifier {
 
   GoogleSignInAccount get user => _user!;
 
+
   Future googleLogin() async {
-    try {
-      final googleUser = await googleSignIn.signIn();
-      if (googleUser == null) return;
-      _user = googleUser;
+      if(user.displayName != null){
+        try {
+        final googleUser = await googleSignIn.signIn();
+        if (googleUser == null) return;
+        _user = googleUser;
 
 
-      final googleAuth = await googleUser.authentication;
+        final googleAuth = await googleUser.authentication;
 
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
+        final credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken,
+          idToken: googleAuth.idToken,
 
-      );
-
-
-      await FirebaseAuth.instance.signInWithCredential(credential);
-    } catch (e) {
-      print(e.toString());
+        );
+        await FirebaseAuth.instance.signInWithCredential(credential);
+      }
+        catch (e) {
+          print(e.toString());
+        }
     }
 
 

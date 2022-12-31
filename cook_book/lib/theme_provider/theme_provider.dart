@@ -8,6 +8,7 @@ class MyThemes{
     primarySwatch: Colors.cyan,
     primaryColor: Colors.black,
     scaffoldBackgroundColor: const Color(0xFF061624).withOpacity(1.0),
+
     colorScheme: const ColorScheme.dark(),
 
   );
