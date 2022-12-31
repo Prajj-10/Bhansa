@@ -58,34 +58,38 @@ class SearchRecipe2 extends SearchDelegate{
 
                     return Padding(
                       padding: const EdgeInsets.all(5),
-                      child: Stack(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(10),
-                                topRight: Radius.circular(10)),
-                            child: Image.network('${image}',
-                              height: 120,
-                              fit: BoxFit.cover,
-                              width: double.infinity,),
-                          ),
-                          Positioned(
-                            bottom: 10,
-                              left: 10,
-                              child: Column(
-                                children: [
-                                  Text(title,
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),)
-                                ],
-                              ))
+                      child: GestureDetector(
+                        onTap: (){
+                          
+                          //print("Selected Recipe: $title");
+                        },
+                        child: Stack(
+                          children: [
+                            ClipRRect(
+                              borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                              child: Image.network('${image}',
+                                height: 120,
+                                fit: BoxFit.cover,
+                                width: double.infinity,),
+                            ),
+                            Positioned(
+                              bottom: 10,
+                                left: 10,
+                                child: Column(
+                                  children: [
+                                    Text(title,
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),)
+                                  ],
+                                ))
 
 
-                        ],
+                          ],
 
+                        ),
                       ),
                     );
 
