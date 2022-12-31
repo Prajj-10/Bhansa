@@ -30,16 +30,18 @@ class _MyProfileState extends State<MyProfile> {
 
   });*/
 
+  User? user = FirebaseAuth.instance.currentUser;
+
   //Variables
   var name;
   var username;
   var description;
   var profilePicture;
-  var recipeReference =FirebaseFirestore.instance.collection("recipe_details");
+  var recipeReference = FirebaseFirestore.instance.collection("recipe_details");
 
   //Get user data from firebase
   void _getUserDetails() async{
-    final user = await FirebaseAuth.instance.currentUser;
+    //final user = await FirebaseAuth.instance.currentUser;
     //UserModel loggedInUser = UserModel();
     //CookingStepsModel recipeList = new CookingStepsModel();
     var _userDetails = await FirebaseFirestore.instance.collection('users').doc(user?.uid).get();
@@ -148,7 +150,7 @@ class _MyProfileState extends State<MyProfile> {
                         Expanded(
                           child: TabBarView(
                               children: [
-                                Recipe(reference: recipeReference),
+                                Recipe(reference: recipeReference, userId: user?.uid),
                                 Saved(),
                               ]),
                         ),

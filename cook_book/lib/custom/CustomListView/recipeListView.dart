@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 
@@ -7,9 +8,12 @@ import '../CustomButtons/likebutton.dart';
 
 class Recipe extends StatelessWidget {
 
-  CollectionReference reference;
+  //User? user = FirebaseAuth.instance.currentUser;
 
-  Recipe({super.key, required this.reference});
+  var userId;
+  var reference;
+
+  Recipe({super.key, required this.reference, required this.userId});
 
 
   @override
@@ -17,7 +21,7 @@ class Recipe extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     return StreamBuilder(
       //stream: FirebaseFirestore.instance.collection('recipe_details').snapshots(),
-      stream: reference.snapshots(),
+      stream: reference.where('Posted By', isEqualTo:userId).snapshots(),
       builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
         /*switch(snapshot.connectionState){
           case ConnectionState.none:
@@ -31,7 +35,7 @@ class Recipe extends StatelessWidget {
             if(!snapshot.hasData){
               //no data
               return Container(
-                child: const Text("No news data available"),
+                child: const Text("No data available"),
               );
             }
             else{
@@ -89,8 +93,6 @@ class Recipe extends StatelessWidget {
             );
           },
         );
-
-
       }
     );
   }

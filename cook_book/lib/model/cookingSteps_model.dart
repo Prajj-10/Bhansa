@@ -18,7 +18,8 @@ class CookingStepsModel{
 //Post Recipe Model
 
 class CookingStepsModel{
-  String? recipe_title, prepare_duration, cooking_duration, image_url, posted_date, testDurationFinal;
+  String? recipe_title, prepare_duration, cooking_duration, image_url, testDurationFinal;
+  DateTime? posted_date;
   String?  total_duration, p_duration, c_duration;
   int? num_of_servings;
 

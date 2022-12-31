@@ -50,7 +50,7 @@ class _PostRecipeState extends State<PostRecipe> {
   //String currentDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
   //'EEEE, MMM d, yyyy' output=> Tuesday, Jan 25, 2022
 
-  String currentDate = DateFormat('EEEE, MMM d, yyyy').format(DateTime.now());
+  //String currentDate = DateFormat('EEEE, MMM d, yyyy').format(DateTime.now());
 
 
 
@@ -688,7 +688,7 @@ class _PostRecipeState extends State<PostRecipe> {
       'Total Duration': steps_model.testDurationFinal,
       'Posted By':user?.uid,
       'Photo' : steps_model.image_url,
-      'Postede On' : currentDate
+      'Posted On' : postedDateTime
 
     })
         .then((value) => print("Posted"))
