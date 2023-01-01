@@ -483,14 +483,14 @@ class _PostRecipeState extends State<PostRecipe> {
                       color: Colors.white,
 
                         onPressed: (){
-                          showReviews(
+                          /*showReviews(
 
                             context,
                             postId: postId,
                             ownerId: ownerId,
                             mediaUrl: mediaUrl,
 
-                          );
+                          );*/
                           //showReviews();
                           print('--------------------------Hello-------------------------');
                         } ,
@@ -893,19 +893,19 @@ class _PostRecipeState extends State<PostRecipe> {
 
 }
 
-
+/*
 showReviews(BuildContext context, { var postId, var ownerId, var mediaUrl }) {
 
   Navigator.push(context, MaterialPageRoute(builder: (context){
 
     return Reviews(
-      postId: postId,
+      recipeID: postId,
       postOwnerId: ownerId,
       postMediaUrl: mediaUrl,
     );
 
   }));
 
-}
+}*/
 
 

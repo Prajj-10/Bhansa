@@ -8,15 +8,15 @@ import '../../model/user_model.dart';
 
 class Reviews extends StatefulWidget {
 
-  //final String postId, postOwnerId, postMediaUrl;
-  var postId, postOwnerId, postMediaUrl;
+  //final String recipeID, postOwnerId, postMediaUrl;
+  var recipeID, reviewerID, reviewerProfilePicture;
 
-  Reviews({Key? key, required this.postId, required this.postOwnerId, required this.postMediaUrl}) : super(key: key);
+  Reviews({Key? key, required this.recipeID, required this.reviewerID, required this.reviewerProfilePicture}) : super(key: key);
 
 
 
   @override
-  State<Reviews> createState() => _ReviewsState(postId: this.postId, postOwnerId: this.postOwnerId, postMediaUrl: this.postMediaUrl);
+  State<Reviews> createState() => _ReviewsState(recipeID: this.recipeID, postOwnerId: this.reviewerID, postMediaUrl: this.reviewerProfilePicture);
 }
 
 class _ReviewsState extends State<Reviews> {
@@ -31,16 +31,16 @@ class _ReviewsState extends State<Reviews> {
 
   TextEditingController reviewsController = TextEditingController();
 
-  //late final String postId, postOwnerId, postMediaUrl;
-  var postId, postOwnerId, postMediaUrl;
+  //late final String recipeID, postOwnerId, postMediaUrl;
+  var recipeID, postOwnerId, postMediaUrl;
 
-  _ReviewsState({required this.postId, required this.postOwnerId, required this.postMediaUrl});
+  _ReviewsState({required this.recipeID, required this.postOwnerId, required this.postMediaUrl});
 
 
 
   buildReviews(){
     return StreamBuilder(
-        stream: recipeReviews.doc(postId).collection("recipe_reviews").snapshots(),
+        stream: recipeReviews.doc(recipeID).collection("recipe_reviews").snapshots(),
         builder: (context, snapshot){
 
           if(!snapshot.hasData){
@@ -63,7 +63,7 @@ class _ReviewsState extends State<Reviews> {
   addReview(){
 
     recipeReviews
-        .doc(postId)
+        .doc(recipeID)
         .collection('recipe_reviews')
         .add({
 
