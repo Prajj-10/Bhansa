@@ -30,28 +30,6 @@ class _PostRecipeState extends State<PostRecipe> {
   //int currentStep = 0;
   CollectionReference recipeDetails = FirebaseFirestore.instance.collection('recipe_details');
 
-  DocumentReference recipe_details_doc_reference = FirebaseFirestore.instance.collection('recipe_details').doc();
-  //DocumentSnapshot docSnap = await recipe_details_doc_reference.get()
-
-  String? document_id = "";
-
-  //DocumentSnapshot docSnap = recipe_details_doc_reference.get();
-  Future<String> get_data(DocumentReference doc_ref) async {
-    DocumentSnapshot docSnap = await doc_ref.get();
-    var doc_id2 = docSnap.reference.id;
-    return doc_id2;
-  }
-
-  //To retrieve the string
-  //String documentId = await get_data();
-  //String documentId = await get_data(recipe_details_doc_reference);
-
-
-
-
-
-
-
   String? ingredients, recipe_title;
 
   int? num_of_servings;
@@ -84,21 +62,10 @@ class _PostRecipeState extends State<PostRecipe> {
   Duration cook_duration = Duration.zero;
   Duration prep_duration = Duration.zero;
   Duration t_duration = Duration.zero;
-  //var cook_time;
-  //Duration selectedDuration = const Duration(hours: 0, minutes: 0);
 
 
   //To display selected image in UI
   var file;
-
-  //Duration? total_duration, p_duration, c_duration;
-  //var postId = 'ip5z8vKiaZHGYIEwPQch';
-  var postId = 'jmFMW3la98dG7G9mEmfk';
-  //var ownerId, mediaUrl;
-
-
-
-
 
 
   @override
@@ -443,9 +410,6 @@ class _PostRecipeState extends State<PostRecipe> {
                               );
 
                               setState(() {
-                                //Previous code start
-                                //steps_model.cooking_duration = selectedDuration.toString();
-                                //Previous code end
 
                                 //steps_model.cooking_duration = selectedDuration?.inMinutes as Duration?;
                                 steps_model.c_duration = selectedDuration.toString();
@@ -500,25 +464,6 @@ class _PostRecipeState extends State<PostRecipe> {
                       height: 20,
                     ),
 
-                    IconButton(
-                        color: Colors.white,
-
-                        onPressed: (){
-                          showReviews(
-
-                            context,
-                            postId: postId,
-                            /*ownerId: ownerId,
-                            mediaUrl: mediaUrl,*/
-
-                          );
-                          //showReviews();
-                          print('--------------------------Hello-------------------------');
-                        } ,
-
-
-                        icon: Icon(Icons.reviews_sharp, size: 35,)
-                    ),
 
                     const SizedBox(
                       height: 70,
@@ -618,8 +563,6 @@ class _PostRecipeState extends State<PostRecipe> {
 
     return recipeDetails
         .add({
-      //'Recipe ID': steps_model.recipe_id_pk = DateTime.now().millisecondsSinceEpoch.toString(),
-      //'Recipe ID' : "",
       'Title' : steps_model.recipe_title,
       'Description': steps_model.recipe_description,
       'Number of Servings' : steps_model.num_of_servings,
@@ -633,27 +576,10 @@ class _PostRecipeState extends State<PostRecipe> {
       'Posted On' : postedDateTime
 
     })
-
-    //.then((value) => document_id = value.id.toString())
-    //.whenComplete((value) => document_id = value.id)
-    //.then((value) => recipeDetails.add({"Recipe Id": ${value.id} }))
         .then((value) => print("Posted ${value.id}"))
         .catchError((error) => print("Failed to add Recipe: $error"));
   }
 
-  /*Future<void> updateRecipeId() async {
-
-    var dID = get_data(recipe_details_doc_reference);
-
-    return recipeDetails
-        .doc(recipeDetails.id)
-        .update({'Recipe ID': recipeDetails.id})
-        .then((value) => print("User Updated"))
-        .catchError((error) => print("Failed to update user: $error"));
-
-
-
-  }*/
 
   Widget _uiWidget(){
     return new Form(
@@ -935,18 +861,5 @@ class _PostRecipeState extends State<PostRecipe> {
 }
 
 
-showReviews(BuildContext context, { var postId}) {
-
-  Navigator.push(context, MaterialPageRoute(builder: (context){
-
-    return Reviews(
-      postId: postId,
-      /*postOwnerId: ownerId,
-      postMediaUrl: mediaUrl,*/
-    );
-
-  }));
-
-}
 
 

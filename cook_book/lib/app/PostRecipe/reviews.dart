@@ -3,15 +3,14 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../model/user_model.dart';
 
 class Reviews extends StatefulWidget {
 
-  //final String postId, postOwnerId, postMediaUrl;
   var postId;
-  //, postOwnerId, postMediaUrl;
-
+  
   Reviews({Key? key, required this.postId}) : super(key: key);
 
 
@@ -32,21 +31,13 @@ class _ReviewsState extends State<Reviews> {
 
   TextEditingController reviewsController = TextEditingController();
 
-  //late final String postId, postOwnerId, postMediaUrl;
   var postId;
-  //, postOwnerId, postMediaUrl;
 
   _ReviewsState({required this.postId});
 
 
 
   buildReviews(){
-
-    //QLyNouJdBVUkh5iVbkrE
-    //lLidy7jeEVBuqm2JCtvG
-    //m3qPdGS0vh2PVkTzTNrl
-
-    //from recipe details: ip5z8vKiaZHGYIEwPQch
 
 
     return StreamBuilder(
@@ -77,11 +68,11 @@ class _ReviewsState extends State<Reviews> {
         .collection('recipe_reviews')
         .add({
 
-      //'Name': 'Rohit',
       'Review': reviewsController.text,
-      'Time': DateTime.now(),
-      //'Avatar': "loggedInUser.profilePicture",
-      //'U-Id': "loggedInUser.uid"
+      'Time': DateTime.now().toString(),
+      'Reviewed By': user?.displayName,
+      'Profile Picture': user?.photoURL,
+
 
     });
 
@@ -127,24 +118,18 @@ class _ReviewsState extends State<Reviews> {
 
 class Review extends StatelessWidget {
 
-  final String review;
+  final String review, reviewed_by, profile_picture, posted_time;
   //final String timestamp;
 
-  Review({Key? key, required this.review}) : super(key: key);
+  Review({Key? key, required this.review, required this.reviewed_by, required this.profile_picture, required this.posted_time}) : super(key: key);
 
   factory Review.fromDocument(DocumentSnapshot documentS){
     return Review(
-      /*username: documentS['username'],
-      userId: documentS['userId'],
-      review: documentS['review'],
-      timestamp: documentS['timestamp'],
-      avatarUrl: documentS['avatarUrl'],*/
 
-      //username: documentS['Name'],
-      //userId: documentS['U-Id'],
       review: documentS['Review'],
-      //timestamp: documentS['Time'],
-      //avatarUrl: documentS['Avatar'],
+      reviewed_by: documentS['Reviewed By'],
+      profile_picture: documentS['Profile Picture'],
+      posted_time: documentS['Time'],
 
     );
   }
@@ -155,11 +140,29 @@ class Review extends StatelessWidget {
       children:[
 
         ListTile(
-          title: Text(review),
-          leading: CircleAvatar(
-            backgroundImage: AssetImage("assets/postRecipe.png"),
+          title: Text(
+              reviewed_by,
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
           ),
-          subtitle: Text('2078-01-23'),
+
+          leading: CircleAvatar(
+            backgroundImage: NetworkImage(profile_picture),
+          ),
+          subtitle: Text(
+              review,
+            style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 18),
+          ),
+          //trailing:
+        ),
+
+        Padding(
+          padding: const EdgeInsets.only(left: 30),
+          child: Align(
+            alignment: Alignment.bottomRight,
+            child: Text(
+                posted_time.substring(0, 10)
+            ),
+          ),
         ),
 
         Divider(),
