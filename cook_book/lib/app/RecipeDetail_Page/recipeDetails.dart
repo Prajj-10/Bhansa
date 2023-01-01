@@ -23,6 +23,7 @@ class _RecipeDetailsState extends State<RecipeDetails> with TickerProviderStateM
   var writer_username;
   var writer_profilePicture;
 
+
   void _getCookDetails() async{
     var userID = widget.recipe_snapshot.get('Posted By').toString();
     var userReference = await FirebaseFirestore.instance.collection('users').doc(userID).get();
@@ -219,8 +220,9 @@ class _RecipeDetailsState extends State<RecipeDetails> with TickerProviderStateM
                         children: [
                           Ingredients(ingredientsList: widget.recipe_snapshot['Ingredients']),
                           Directions(directionsList: widget.recipe_snapshot['Cooking Direction'],),
-                          //Text("Bye"),
-                          Text("Hello")
+                          //Reviews(recipeID: widget.recipe_snapshot.id, reviewerID: widget.recipe_snapshot['Posted By'], reviewerProfilePicture: writer_profilePicture),
+                          Reviews(postId: widget.recipe_snapshot.id),
+                          //Text("Hello")
                         ],
                       )
                   )
@@ -234,17 +236,4 @@ class _RecipeDetailsState extends State<RecipeDetails> with TickerProviderStateM
     );
   }
 }
-/*
-showReviews(BuildContext context, { var postId, var ownerId, var mediaUrl }) {
 
-  Navigator.push(context, MaterialPageRoute(builder: (context){
-
-    return Reviews(
-      postId: postId,
-      postOwnerId: ownerId,
-      postMediaUrl: mediaUrl,
-    );
-
-  }));
-
-}*/

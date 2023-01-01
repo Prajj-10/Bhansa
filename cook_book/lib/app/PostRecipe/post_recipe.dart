@@ -180,7 +180,7 @@ class _PostRecipeState extends State<PostRecipe> {
                       child: IconButton(
 
                         color: Colors.black,
-                        icon: const Icon(Icons.file_upload, size: 50,),
+                        icon: const Icon(Icons.add_a_photo, size: 50,),
 
                         onPressed: () { uploadImage();},
 

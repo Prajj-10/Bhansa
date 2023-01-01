@@ -92,38 +92,35 @@ class _ReviewsState extends State<Reviews> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Reviews'),
-        centerTitle: true,
-      ),
+    return Container(
+      color:  Color(0xFF07060E),
+      child: Column(
+          children: [
+            Expanded(
+              child: buildReviews(),
+            ),
 
-      body: Column(
-        children: [
-          Expanded(
-            child: buildReviews(),
-          ),
+            Divider(),
 
-          Divider(),
+            ListTile(
+              title: TextFormField(
 
-          ListTile(
-            title: TextFormField(
+                controller: reviewsController,
 
-              controller: reviewsController,
+                decoration: InputDecoration(
+                    labelText: "Write Review..."
+                ),
 
-              decoration: InputDecoration(
-                  labelText: "Write Review..."
               ),
-
+              trailing: OutlinedButton(
+                onPressed: () => addReview(),
+                child: Text('Post'),
+              ),
             ),
-            trailing: OutlinedButton(
-              onPressed: () => addReview(),
-              child: Text('Post'),
-            ),
-          ),
-        ],
-      ),
+          ],
+        ),
     );
+    //);
   }
 
 }

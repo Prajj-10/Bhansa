@@ -5,9 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf33b20f-9bb0-49da-9eb9-3fc611fe96ce" name="Changes" comment="updated my profile page">
-      <change afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomListView/directionsListView.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomListView/ingredientsListView.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cook_book/lib/custom/ExpandedWidgets/expandedRecipeDescription.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cook_book/lib/app/PostRecipe/post_recipe.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/PostRecipe/post_recipe.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cook_book/lib/app/PostRecipe/reviews.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/PostRecipe/reviews.dart" afterDir="false" />
@@ -52,6 +49,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="cidr.known.project.marker" value="true" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
