@@ -19,11 +19,24 @@ class RecipeDetails extends StatefulWidget {
 }
 
 class _RecipeDetailsState extends State<RecipeDetails> with TickerProviderStateMixin{
+  var writer_name;
+  var writer_username;
+  var writer_profilePicture;
+
+  void _getCookDetails() async{
+    var userID = widget.recipe_snapshot.get('Posted By').toString();
+    var userReference = await FirebaseFirestore.instance.collection('users').doc(userID).get();
+    setState(() {
+      writer_name = userReference.data()!['name'];
+      writer_username = userReference.data()!['username'];
+      writer_profilePicture = userReference.data()!['profile picture'];
+    });
+
+  }
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    var userID = widget.recipe_snapshot.get('Posted By').toString();
-    Stream<DocumentSnapshot> userReference = FirebaseFirestore.instance.collection('users').doc(userID).snapshots();
+
 
     TabController _controller = TabController(length: 3, vsync: this);
     return Scaffold(
@@ -81,7 +94,7 @@ class _RecipeDetailsState extends State<RecipeDetails> with TickerProviderStateM
                         Row(
                           children: [
                             ClipOval(
-                              child: Image.network(widget.recipe_snapshot!.get('Photo') ?? "https://img.freepik.com/premium-vector/smiling-chef-cartoon-character_8250-10.jpg?w=2000",
+                              child: Image.network(writer_profilePicture?? "https://img.freepik.com/premium-vector/smiling-chef-cartoon-character_8250-10.jpg?w=2000",
                                 height: 50,
                                 width: 50,
                                 fit: BoxFit.cover,
@@ -91,8 +104,8 @@ class _RecipeDetailsState extends State<RecipeDetails> with TickerProviderStateM
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("Master Chef", style: TextStyle(decoration: TextDecoration.none, fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white),),
-                                Text("master_chef", style: TextStyle(decoration: TextDecoration.none, fontSize: 12, fontWeight: FontWeight.normal,color: Colors.white),),
+                                Text(writer_name ?? "Master Chef", style: TextStyle(decoration: TextDecoration.none, fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white),),
+                                Text(writer_username ?? "master_chef", style: TextStyle(decoration: TextDecoration.none, fontSize: 12, fontWeight: FontWeight.normal,color: Colors.white),),
                               ],
                             ),
                           ],
