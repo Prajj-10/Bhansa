@@ -9,14 +9,15 @@ import '../../model/user_model.dart';
 class Reviews extends StatefulWidget {
 
   //final String postId, postOwnerId, postMediaUrl;
-  var postId, postOwnerId, postMediaUrl;
+  var postId;
+  //, postOwnerId, postMediaUrl;
 
-  Reviews({Key? key, required this.postId, required this.postOwnerId, required this.postMediaUrl}) : super(key: key);
+  Reviews({Key? key, required this.postId}) : super(key: key);
 
 
 
   @override
-  State<Reviews> createState() => _ReviewsState(postId: this.postId, postOwnerId: this.postOwnerId, postMediaUrl: this.postMediaUrl);
+  State<Reviews> createState() => _ReviewsState(postId: this.postId);
 }
 
 class _ReviewsState extends State<Reviews> {
@@ -32,13 +33,22 @@ class _ReviewsState extends State<Reviews> {
   TextEditingController reviewsController = TextEditingController();
 
   //late final String postId, postOwnerId, postMediaUrl;
-  var postId, postOwnerId, postMediaUrl;
+  var postId;
+  //postOwnerId, postMediaUrl;
 
-  _ReviewsState({required this.postId, required this.postOwnerId, required this.postMediaUrl});
+  _ReviewsState({required this.postId});
 
 
 
   buildReviews(){
+
+    //QLyNouJdBVUkh5iVbkrE
+    //lLidy7jeEVBuqm2JCtvG
+    //m3qPdGS0vh2PVkTzTNrl
+
+    //from recipe details: ip5z8vKiaZHGYIEwPQch
+
+
     return StreamBuilder(
         stream: recipeReviews.doc(postId).collection("recipe_reviews").snapshots(),
         builder: (context, snapshot){
@@ -67,15 +77,18 @@ class _ReviewsState extends State<Reviews> {
         .collection('recipe_reviews')
         .add({
 
-      'Name': loggedInUser.name,
+      /*'Name': 'Rohit',
       'Review': reviewsController.text,
       'Time': DateTime.now(),
-      'Avatar': loggedInUser.profilePicture,
-      'U-Id': loggedInUser.uid
+      'Avatar': "loggedInUser.profilePicture",
+      'U-Id': "loggedInUser.uid"*/
+      'Review': reviewsController.text,
+      'Time': DateTime.now(),
 
     });
 
     reviewsController.clear();
+
 
   }
 
@@ -119,10 +132,10 @@ class _ReviewsState extends State<Reviews> {
 
 class Review extends StatelessWidget {
 
-  final String username, userId, avatarUrl, review;
-  final Timestamp timestamp;
+  final String review;
+  //final Timestamp timestamp;
 
-  Review({Key? key, required this.username, required this.userId, required this.avatarUrl, required this.review, required this.timestamp}) : super(key: key);
+  Review({Key? key, required this.review}) : super(key: key);
 
   factory Review.fromDocument(DocumentSnapshot documentS){
     return Review(
@@ -132,11 +145,14 @@ class Review extends StatelessWidget {
       timestamp: documentS['timestamp'],
       avatarUrl: documentS['avatarUrl'],*/
 
-      username: documentS['Name'],
+      /*username: documentS['Name'],
       userId: documentS['U-Id'],
       review: documentS['Review'],
       timestamp: documentS['Time'],
-      avatarUrl: documentS['Avatar'],
+      avatarUrl: documentS['Avatar'],*/
+
+      review: documentS['Review'],
+
 
     );
   }
@@ -148,9 +164,9 @@ class Review extends StatelessWidget {
 
         ListTile(
           title: Text(review),
-          leading: CircleAvatar(
+          /*leading: CircleAvatar(
            backgroundImage: AssetImage("assets/postRecipe.png"),
-          ),
+          ),*/
           subtitle: Text('2078-01-23'),
         ),
 
