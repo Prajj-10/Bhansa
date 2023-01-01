@@ -619,7 +619,7 @@ class _PostRecipeState extends State<PostRecipe> {
     return recipeDetails
         .add({
       //'Recipe ID': steps_model.recipe_id_pk = DateTime.now().millisecondsSinceEpoch.toString(),
-      'Recipe ID' : "",
+      //'Recipe ID' : "",
       'Title' : steps_model.recipe_title,
       'Description': steps_model.recipe_description,
       'Number of Servings' : steps_model.num_of_servings,
@@ -641,7 +641,7 @@ class _PostRecipeState extends State<PostRecipe> {
         .catchError((error) => print("Failed to add Recipe: $error"));
   }
 
-  Future<void> updateRecipeId() async {
+  /*Future<void> updateRecipeId() async {
 
     var dID = get_data(recipe_details_doc_reference);
 
@@ -653,7 +653,7 @@ class _PostRecipeState extends State<PostRecipe> {
 
 
 
-  }
+  }*/
 
   Widget _uiWidget(){
     return new Form(
@@ -689,7 +689,7 @@ class _PostRecipeState extends State<PostRecipe> {
                       if(validateAndSave()){
                         //print(steps_model.toJson());
                         addRecipe();
-                        updateRecipeId();
+                        //updateRecipeId();
 
                       }
                     }
