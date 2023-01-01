@@ -34,6 +34,14 @@ class _RecipeDetailsState extends State<RecipeDetails> with TickerProviderStateM
 
   }
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _getCookDetails();
+  }
+
+
+  @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
 
