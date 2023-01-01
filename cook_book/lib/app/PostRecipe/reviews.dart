@@ -8,27 +8,16 @@ import '../../model/user_model.dart';
 
 class Reviews extends StatefulWidget {
 
-<<<<<<< HEAD
   //final String postId, postOwnerId, postMediaUrl;
   var postId;
   //, postOwnerId, postMediaUrl;
 
   Reviews({Key? key, required this.postId}) : super(key: key);
-=======
-  //final String recipeID, postOwnerId, postMediaUrl;
-  var recipeID, reviewerID, reviewerProfilePicture;
-
-  Reviews({Key? key, required this.recipeID, required this.reviewerID, required this.reviewerProfilePicture}) : super(key: key);
->>>>>>> a76980426e9db6e05be2aa96e77933f075dd5d8c
 
 
 
   @override
-<<<<<<< HEAD
   State<Reviews> createState() => _ReviewsState(postId: this.postId);
-=======
-  State<Reviews> createState() => _ReviewsState(recipeID: this.recipeID, postOwnerId: this.reviewerID, postMediaUrl: this.reviewerProfilePicture);
->>>>>>> a76980426e9db6e05be2aa96e77933f075dd5d8c
 }
 
 class _ReviewsState extends State<Reviews> {
@@ -43,18 +32,11 @@ class _ReviewsState extends State<Reviews> {
 
   TextEditingController reviewsController = TextEditingController();
 
-<<<<<<< HEAD
   //late final String postId, postOwnerId, postMediaUrl;
   var postId;
-  //postOwnerId, postMediaUrl;
+  //, postOwnerId, postMediaUrl;
 
   _ReviewsState({required this.postId});
-=======
-  //late final String recipeID, postOwnerId, postMediaUrl;
-  var recipeID, postOwnerId, postMediaUrl;
-
-  _ReviewsState({required this.recipeID, required this.postOwnerId, required this.postMediaUrl});
->>>>>>> a76980426e9db6e05be2aa96e77933f075dd5d8c
 
 
 
@@ -68,22 +50,22 @@ class _ReviewsState extends State<Reviews> {
 
 
     return StreamBuilder(
-        stream: recipeReviews.doc(recipeID).collection("recipe_reviews").snapshots(),
-        builder: (context, snapshot){
+      stream: recipeReviews.doc(postId).collection("recipe_reviews").snapshots(),
+      builder: (context, snapshot){
 
-          if(!snapshot.hasData){
-            return CircularProgressIndicator();
-          }
-          List<Review> reviews = [];
+        if(!snapshot.hasData){
+          return CircularProgressIndicator();
+        }
+        List<Review> reviews = [];
 
-          snapshot.data!.docs.forEach((documentS){
-            reviews.add(Review.fromDocument(documentS));
-          });
+        snapshot.data!.docs.forEach((documentS){
+          reviews.add(Review.fromDocument(documentS));
+        });
 
-          return ListView(
-            children: reviews,
-          );
-    },
+        return ListView(
+          children: reviews,
+        );
+      },
 
     );
   }
@@ -91,17 +73,15 @@ class _ReviewsState extends State<Reviews> {
   addReview(){
 
     recipeReviews
-        .doc(recipeID)
+        .doc(postId)
         .collection('recipe_reviews')
         .add({
 
-      /*'Name': 'Rohit',
+      //'Name': 'Rohit',
       'Review': reviewsController.text,
       'Time': DateTime.now(),
-      'Avatar': "loggedInUser.profilePicture",
-      'U-Id': "loggedInUser.uid"*/
-      'Review': reviewsController.text,
-      'Time': DateTime.now(),
+      //'Avatar': "loggedInUser.profilePicture",
+      //'U-Id': "loggedInUser.uid"
 
     });
 
@@ -132,7 +112,7 @@ class _ReviewsState extends State<Reviews> {
               controller: reviewsController,
 
               decoration: InputDecoration(
-                labelText: "Write Review..."
+                  labelText: "Write Review..."
               ),
 
             ),
@@ -151,7 +131,7 @@ class _ReviewsState extends State<Reviews> {
 class Review extends StatelessWidget {
 
   final String review;
-  //final Timestamp timestamp;
+  //final String timestamp;
 
   Review({Key? key, required this.review}) : super(key: key);
 
@@ -163,14 +143,11 @@ class Review extends StatelessWidget {
       timestamp: documentS['timestamp'],
       avatarUrl: documentS['avatarUrl'],*/
 
-      /*username: documentS['Name'],
-      userId: documentS['U-Id'],
+      //username: documentS['Name'],
+      //userId: documentS['U-Id'],
       review: documentS['Review'],
-      timestamp: documentS['Time'],
-      avatarUrl: documentS['Avatar'],*/
-
-      review: documentS['Review'],
-
+      //timestamp: documentS['Time'],
+      //avatarUrl: documentS['Avatar'],
 
     );
   }
@@ -182,9 +159,9 @@ class Review extends StatelessWidget {
 
         ListTile(
           title: Text(review),
-          /*leading: CircleAvatar(
-           backgroundImage: AssetImage("assets/postRecipe.png"),
-          ),*/
+          leading: CircleAvatar(
+            backgroundImage: AssetImage("assets/postRecipe.png"),
+          ),
           subtitle: Text('2078-01-23'),
         ),
 

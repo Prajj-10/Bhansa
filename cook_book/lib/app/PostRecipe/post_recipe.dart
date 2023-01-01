@@ -93,9 +93,11 @@ class _PostRecipeState extends State<PostRecipe> {
 
   //Duration? total_duration, p_duration, c_duration;
   //var postId = 'ip5z8vKiaZHGYIEwPQch';
-  var postId = 'H4kMNTdEH1HGw3gHVOtk';
-
+  var postId = 'jmFMW3la98dG7G9mEmfk';
   //var ownerId, mediaUrl;
+
+
+
 
 
 
@@ -142,54 +144,54 @@ class _PostRecipeState extends State<PostRecipe> {
             ),
             //First Image
             Stack(
-              children: [
-                Container(
-                child: file != null ?
-                Image.file(
-                    file!,
-                    height: height/2.2,
-                    width: width,
-                    fit: BoxFit.cover,)
-                    : Container(
-                  height: height/2.2,
-                  width: width,
-                  //color: Colors.white,
-                  decoration: const BoxDecoration(
+                children: [
+                  Container(
+                    child: file != null ?
+                    Image.file(
+                      file!,
+                      height: height/2.2,
+                      width: width,
+                      fit: BoxFit.cover,)
+                        : Container(
+                      height: height/2.2,
+                      width: width,
+                      //color: Colors.white,
+                      decoration: const BoxDecoration(
 
-                    image: DecorationImage(
+                        image: DecorationImage(
 
-                      image: AssetImage("assets/Camera.png"),
-                      fit: BoxFit.cover,
-                    ),
-
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(25),
-                      bottomRight: Radius.circular(25),
-                    ),
-                  ),
-                ),
-              ),
-                Positioned(
-                  top: 160,
-                  left: 160,
-                  child: Container(
-
-                        child: IconButton(
-
-                          color: Colors.black,
-                          icon: const Icon(Icons.file_upload, size: 50,),
-
-                          onPressed: () { uploadImage();},
-
+                          image: AssetImage("assets/Camera.png"),
+                          fit: BoxFit.cover,
                         ),
 
-
-
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(25),
+                          bottomRight: Radius.circular(25),
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                  Positioned(
+                    top: 160,
+                    left: 160,
+                    child: Container(
 
-              ]
+                      child: IconButton(
+
+                        color: Colors.black,
+                        icon: const Icon(Icons.file_upload, size: 50,),
+
+                        onPressed: () { uploadImage();},
+
+                      ),
+
+
+
+                    ),
+                  ),
+
+                ]
             ),
 
 
@@ -354,61 +356,61 @@ class _PostRecipeState extends State<PostRecipe> {
 
                     Container(
 
-                        child: Row(
-                          children: [
-                            const Text(
-                              "Prepare Duration: ",
-                              style: TextStyle(fontSize: 20, color: Colors.white),
-                            ),
-                            const SizedBox(
-                              width: 15,
-                            ),
+                      child: Row(
+                        children: [
+                          const Text(
+                            "Prepare Duration: ",
+                            style: TextStyle(fontSize: 20, color: Colors.white),
+                          ),
+                          const SizedBox(
+                            width: 15,
+                          ),
 
-                            IconButton(
+                          IconButton(
 
-                              color: Colors.white,
-                              icon: const Icon(Icons.timer, size: 35,),
+                            color: Colors.white,
+                            icon: const Icon(Icons.timer, size: 35,),
 
-                              onPressed: () async {
-
-
-
-                                Duration? selectedDuration = await showDurationPicker(context: context, initialTime: const Duration(minutes: 0));
-
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(content: Text('Preparing Duration is: $selectedDuration')),
-                                );
-
-                                setState(() {
-                                  prep_duration = selectedDuration!;
-                                  steps_model.p_duration= selectedDuration.toString();
-
-                                  String testDuration = selectedDuration.toString();
-                                  if(testDuration.substring(0, 1) =='0'){
-                                    steps_model.prepare_duration = testDuration.substring(2, 4) +" min";
-                                  }
-                                  else if(testDuration.substring(2, 4) == '00'){
-                                    steps_model.prepare_duration = testDuration.substring(0, 1) + " hrs ";
-                                  }
-                                  else{
-                                    steps_model.prepare_duration = testDuration.substring(0, 1) + " hrs " + testDuration.substring(2, 4) +" min";
-                                  }
-
-                                });
-                              },
-
-
-                            ),
-
-                            Text(
-                              "${steps_model.prepare_duration}",
-                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.white),
-                            ),
+                            onPressed: () async {
 
 
 
-                          ],
-                        ),
+                              Duration? selectedDuration = await showDurationPicker(context: context, initialTime: const Duration(minutes: 0));
+
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('Preparing Duration is: $selectedDuration')),
+                              );
+
+                              setState(() {
+                                prep_duration = selectedDuration!;
+                                steps_model.p_duration= selectedDuration.toString();
+
+                                String testDuration = selectedDuration.toString();
+                                if(testDuration.substring(0, 1) =='0'){
+                                  steps_model.prepare_duration = testDuration.substring(2, 4) +" min";
+                                }
+                                else if(testDuration.substring(2, 4) == '00'){
+                                  steps_model.prepare_duration = testDuration.substring(0, 1) + " hrs ";
+                                }
+                                else{
+                                  steps_model.prepare_duration = testDuration.substring(0, 1) + " hrs " + testDuration.substring(2, 4) +" min";
+                                }
+
+                              });
+                            },
+
+
+                          ),
+
+                          Text(
+                            "${steps_model.prepare_duration}",
+                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.white),
+                          ),
+
+
+
+                        ],
+                      ),
 
                     ),
 
@@ -499,17 +501,17 @@ class _PostRecipeState extends State<PostRecipe> {
                     ),
 
                     IconButton(
-                      color: Colors.white,
+                        color: Colors.white,
 
                         onPressed: (){
-                          /*showReviews(
+                          showReviews(
 
                             context,
                             postId: postId,
-                            //ownerId: ownerId,
-                            //mediaUrl: mediaUrl,
+                            /*ownerId: ownerId,
+                            mediaUrl: mediaUrl,*/
 
-                          );*/
+                          );
                           //showReviews();
                           print('--------------------------Hello-------------------------');
                         } ,
@@ -632,9 +634,9 @@ class _PostRecipeState extends State<PostRecipe> {
 
     })
 
-        //.then((value) => document_id = value.id.toString())
-        //.whenComplete((value) => document_id = value.id)
-        //.then((value) => recipeDetails.add({"Recipe Id": ${value.id} }))
+    //.then((value) => document_id = value.id.toString())
+    //.whenComplete((value) => document_id = value.id)
+    //.then((value) => recipeDetails.add({"Recipe Id": ${value.id} }))
         .then((value) => print("Posted ${value.id}"))
         .catchError((error) => print("Failed to add Recipe: $error"));
   }
@@ -643,7 +645,7 @@ class _PostRecipeState extends State<PostRecipe> {
 
     var dID = get_data(recipe_details_doc_reference);
 
-   return recipeDetails
+    return recipeDetails
         .doc(recipeDetails.id)
         .update({'Recipe ID': recipeDetails.id})
         .then((value) => print("User Updated"))
@@ -932,30 +934,19 @@ class _PostRecipeState extends State<PostRecipe> {
 
 }
 
-<<<<<<< HEAD
 
 showReviews(BuildContext context, { var postId}) {
-=======
-/*
-showReviews(BuildContext context, { var postId, var ownerId, var mediaUrl }) {
->>>>>>> a76980426e9db6e05be2aa96e77933f075dd5d8c
 
   Navigator.push(context, MaterialPageRoute(builder: (context){
 
     return Reviews(
-<<<<<<< HEAD
       postId: postId,
-      //postOwnerId: ownerId,
-      //postMediaUrl: mediaUrl,
-=======
-      recipeID: postId,
-      postOwnerId: ownerId,
-      postMediaUrl: mediaUrl,
->>>>>>> a76980426e9db6e05be2aa96e77933f075dd5d8c
+      /*postOwnerId: ownerId,
+      postMediaUrl: mediaUrl,*/
     );
 
   }));
 
-}*/
+}
 
 
