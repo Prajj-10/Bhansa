@@ -8,16 +8,27 @@ import '../../model/user_model.dart';
 
 class Reviews extends StatefulWidget {
 
+<<<<<<< HEAD
   //final String postId, postOwnerId, postMediaUrl;
   var postId;
   //, postOwnerId, postMediaUrl;
 
   Reviews({Key? key, required this.postId}) : super(key: key);
+=======
+  //final String recipeID, postOwnerId, postMediaUrl;
+  var recipeID, reviewerID, reviewerProfilePicture;
+
+  Reviews({Key? key, required this.recipeID, required this.reviewerID, required this.reviewerProfilePicture}) : super(key: key);
+>>>>>>> a76980426e9db6e05be2aa96e77933f075dd5d8c
 
 
 
   @override
+<<<<<<< HEAD
   State<Reviews> createState() => _ReviewsState(postId: this.postId);
+=======
+  State<Reviews> createState() => _ReviewsState(recipeID: this.recipeID, postOwnerId: this.reviewerID, postMediaUrl: this.reviewerProfilePicture);
+>>>>>>> a76980426e9db6e05be2aa96e77933f075dd5d8c
 }
 
 class _ReviewsState extends State<Reviews> {
@@ -32,11 +43,18 @@ class _ReviewsState extends State<Reviews> {
 
   TextEditingController reviewsController = TextEditingController();
 
+<<<<<<< HEAD
   //late final String postId, postOwnerId, postMediaUrl;
   var postId;
   //postOwnerId, postMediaUrl;
 
   _ReviewsState({required this.postId});
+=======
+  //late final String recipeID, postOwnerId, postMediaUrl;
+  var recipeID, postOwnerId, postMediaUrl;
+
+  _ReviewsState({required this.recipeID, required this.postOwnerId, required this.postMediaUrl});
+>>>>>>> a76980426e9db6e05be2aa96e77933f075dd5d8c
 
 
 
@@ -50,7 +68,7 @@ class _ReviewsState extends State<Reviews> {
 
 
     return StreamBuilder(
-        stream: recipeReviews.doc(postId).collection("recipe_reviews").snapshots(),
+        stream: recipeReviews.doc(recipeID).collection("recipe_reviews").snapshots(),
         builder: (context, snapshot){
 
           if(!snapshot.hasData){
@@ -73,7 +91,7 @@ class _ReviewsState extends State<Reviews> {
   addReview(){
 
     recipeReviews
-        .doc(postId)
+        .doc(recipeID)
         .collection('recipe_reviews')
         .add({
 

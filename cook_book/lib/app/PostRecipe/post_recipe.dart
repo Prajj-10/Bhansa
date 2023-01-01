@@ -502,14 +502,14 @@ class _PostRecipeState extends State<PostRecipe> {
                       color: Colors.white,
 
                         onPressed: (){
-                          showReviews(
+                          /*showReviews(
 
                             context,
                             postId: postId,
                             //ownerId: ownerId,
                             //mediaUrl: mediaUrl,
 
-                          );
+                          );*/
                           //showReviews();
                           print('--------------------------Hello-------------------------');
                         } ,
@@ -932,19 +932,30 @@ class _PostRecipeState extends State<PostRecipe> {
 
 }
 
+<<<<<<< HEAD
 
 showReviews(BuildContext context, { var postId}) {
+=======
+/*
+showReviews(BuildContext context, { var postId, var ownerId, var mediaUrl }) {
+>>>>>>> a76980426e9db6e05be2aa96e77933f075dd5d8c
 
   Navigator.push(context, MaterialPageRoute(builder: (context){
 
     return Reviews(
+<<<<<<< HEAD
       postId: postId,
       //postOwnerId: ownerId,
       //postMediaUrl: mediaUrl,
+=======
+      recipeID: postId,
+      postOwnerId: ownerId,
+      postMediaUrl: mediaUrl,
+>>>>>>> a76980426e9db6e05be2aa96e77933f075dd5d8c
     );
 
   }));
 
-}
+}*/
 
 
