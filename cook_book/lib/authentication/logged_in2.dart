@@ -24,13 +24,14 @@ class LoggedInWidgetState2 extends State<LoggedInWidget2> {
 
   var name;
   var email;
+  var photo;
 
   final ref = FirebaseDatabase.instance.ref('users');
   final user = FirebaseAuth.instance.currentUser;
   final googleSignIn = GoogleSignIn();
   UserModel loggedInUser = UserModel();
 
-  /*void getDetails() async{
+  void getDetails() async{
     //final user = await FirebaseAuth.instance.currentUser;
     //UserModel loggedInUser = UserModel();
     //CookingStepsModel recipeList = new CookingStepsModel();
@@ -39,13 +40,14 @@ class LoggedInWidgetState2 extends State<LoggedInWidget2> {
     setState(() {
       name = userDetails.data()!['name'];
       email = userDetails.data()!['email'];
+      photo = userDetails.data()!['profile picture'];
     });
-  }*/
+  }
 
 
   @override
   void initState() {
-    // getDetails();
+    getDetails();
     super.initState();
 
 
@@ -97,10 +99,10 @@ class LoggedInWidgetState2 extends State<LoggedInWidget2> {
                       style: TextStyle(fontSize: 24),
                     ),
                     const SizedBox(height: 32),
-                    /*CircleAvatar(
+                    CircleAvatar(
                       radius: 40,
-                      backgroundImage: NetworkImage(photo),
-                    ),*/
+                      backgroundImage: NetworkImage(photo?? ""),
+                    ),
                     const SizedBox(height: 8),
                     Text(
                       name?? "Your name here.",

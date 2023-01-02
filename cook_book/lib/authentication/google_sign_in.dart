@@ -16,7 +16,7 @@ class GoogleSignInProvider extends ChangeNotifier {
 
 
   Future googleLogin() async {
-        try {
+    try {
         final googleUser = await googleSignIn.signIn();
         if (googleUser == null) return;
         _user = googleUser;
@@ -52,9 +52,9 @@ class GoogleSignInProvider extends ChangeNotifier {
     // check if user exists in the users collection.
     final GoogleSignInAccount? user = googleSignIn.currentUser;
     final currentUser = FirebaseAuth.instance.currentUser;
-    final DocumentSnapshot doc = await usersRef.doc(user?.id).get();
+    final DocumentSnapshot doc = await usersRef.doc(currentUser?.uid).get();
 
-    if(doc.exists){
+    if(!doc.exists){
       FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
       // call user model
@@ -64,11 +64,12 @@ class GoogleSignInProvider extends ChangeNotifier {
       userModel.uid = currentUser?.uid;
       userModel.name = user?.displayName;
       userModel.email = user?.email;
+      userModel.profilePicture = user?.photoUrl;
 
       await firebaseFirestore
           .collection("users")
           .doc(currentUser?.uid)
-          .set(userModel.toMap());
+          .set(userModel.toMap(), SetOptions(merge: true));
     }
   }
 
