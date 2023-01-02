@@ -8,6 +8,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../model/user_model.dart';
 
 
@@ -207,56 +208,72 @@ class _RegistrationPageState extends State<RegistrationPage> with InputValidatio
     final signUpButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(30),
-      color: Colors.white38,
+      color: Colors.grey,
       child: MaterialButton(
           padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-          minWidth: MediaQuery.of(context).size.width,
+          minWidth: MediaQuery.of(context).size.width/1.5,
           onPressed: () {
             signUp(emailController.text, passwordController.text);
           },
-          child: const Text(
-            "SignUp",
+          child: Text(
+            "Sign Up ",
             textAlign: TextAlign.center,
-            style: TextStyle(
-                fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
+              style: GoogleFonts.roboto(textStyle: const TextStyle(
+                fontSize: 25.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,)
           )),
-    );
+    ));
 
-    return Container(
-      padding: const EdgeInsets.only(top: 300),
-      child: Center(
-        child: Center(
-          child: SingleChildScrollView(
-            child: Container(
-              height: size.height,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    // Colors.white
-                    const Color(0xFF061624).withOpacity(1.0),
-                    const Color(0xFF081017).withOpacity(0.95),
-                  ],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white,),
+          onPressed: (){
+            Navigator.of(context).pop();
+          },
+        ),
+      ),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Container(
+            height: size.height,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  // Colors.white
+                  const Color(0xFF061624).withOpacity(1.0),
+                  const Color(0xFF081017).withOpacity(0.95),
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(36.0),
-                child: Form(
-                  key: formKey,
-                  child: Column(
-                    children:   [
-                      nameField,
-                      const SizedBox(height: 20,),
-                      emailField,
-                      const SizedBox(height: 20,),
-                      passwordField,
-                      const SizedBox(height: 20,),
-                      confirmPasswordField,
-                      const SizedBox(height: 20,),
-                      signUpButton
-                    ],
-                  ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(36.0),
+              child: Form(
+                key: formKey,
+                child: Column(
+                  children:   [
+                    const SizedBox(height: 70,),
+                    Text("Create a new Account",
+                        style: GoogleFonts.sacramento(
+                            textStyle: const TextStyle(fontWeight: FontWeight.bold,
+                                fontSize: 55.0, color: Colors.white))
+                    ),
+                    const SizedBox(height: 20,),
+                    nameField,
+                    const SizedBox(height: 20,),
+                    emailField,
+                    const SizedBox(height: 20,),
+                    passwordField,
+                    const SizedBox(height: 20,),
+                    confirmPasswordField,
+                    const SizedBox(height: 20,),
+                    signUpButton
+                  ],
                 ),
               ),
             ),

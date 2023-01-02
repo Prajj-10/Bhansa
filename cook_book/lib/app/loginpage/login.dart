@@ -1,3 +1,4 @@
+import 'package:cook_book/app/registration_page/registration.dart';
 import 'package:cook_book/authentication/google_sign_in.dart';
 import 'package:cook_book/authentication/logged_in2.dart';
 
@@ -108,17 +109,19 @@ class _LoginScreenState extends State<LoginScreen> with InputValidationMixin {
       color: Colors.grey,
       child: MaterialButton(
           padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-          minWidth: MediaQuery.of(context).size.width,
+          minWidth: MediaQuery.of(context).size.width/2,
           onPressed: () {
             signIn(emailController.text, passwordController.text);
           },
-          child: const Text(
+          child: Text(
             "Login",
             textAlign: TextAlign.center,
-            style: TextStyle(
-                fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
+              style: GoogleFonts.roboto(textStyle: const TextStyle(
+                fontSize: 25.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,),
           )),
-    );
+    ));
 
     return Material(
       child: Container(
@@ -147,55 +150,27 @@ class _LoginScreenState extends State<LoginScreen> with InputValidationMixin {
                 // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text('Cook Book',
-                      style: GoogleFonts.yesteryear(
+                      style: GoogleFonts.sacramento(
                           textStyle: const TextStyle(fontWeight: FontWeight.bold,
-                              fontSize: 70.0, color: Colors.white))
+                              fontSize: 85.0, color: Colors.white))
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(top: 20.0, bottom: 15.0),
-                        child: Text("Welcome !",
-                          style: GoogleFonts.roboto(
+                        child: Text("Relive your favourite foods.",
+                          style: GoogleFonts.sacramento(
                             textStyle: const TextStyle(color: Colors.white,
-                                fontSize: 30.0),
+                                fontSize: 35.0),
                           ),
                         ),
                       ),
                     ],
-                  ),
-                  const SizedBox(
-                    height: 15.0,
-                  ),
-                  Row(
-                    children: [
-                      Text("Sign In",
-                        textAlign: TextAlign.left,
-                        style: GoogleFonts.roboto(
-                            textStyle: const TextStyle(fontWeight: FontWeight.bold,
-                                fontSize: 25.0, color: Colors.white)
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20.0),
-                        child: Text("Sign Up",
-                          textAlign: TextAlign.left,
-                          style: GoogleFonts.roboto(
-                              textStyle: const TextStyle(fontWeight: FontWeight.bold,
-                                  fontSize: 25.0, color: Colors.white38)
-                          ),
-                        ),
-                      ),
-
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20.0,
                   ),
                   emailField,
                   const SizedBox(
-                    height: 30.0,
+                    height: 20.0,
                   ),
                   passwordField,
                   const SizedBox(
@@ -203,18 +178,18 @@ class _LoginScreenState extends State<LoginScreen> with InputValidationMixin {
                   ),
                   loginButton,
                   const SizedBox(
-                    height: 30.0,
+                    height: 20.0,
                   ),
-                  Text("Or Connect using",
+                  Text("or connect using",
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.roboto(textStyle: const TextStyle(
-                        fontSize: 20.0,
+                    style: GoogleFonts.sacramento(textStyle: const TextStyle(
+                        fontSize: 35.0,
                         fontWeight: FontWeight.bold,
-                        color: Colors.grey),
+                        color: Colors.white),
                     ),
                   ),
                   const SizedBox(
-                    height: 10.0,
+                    height: 20.0,
                   ),
                   SizedBox(
                     width: size.width/1.3,
@@ -240,6 +215,36 @@ class _LoginScreenState extends State<LoginScreen> with InputValidationMixin {
                         }
                       },
                     ),
+                  ),
+                  const SizedBox(
+                    height: 20.0,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text("Don't have an account ? ",
+                      style: GoogleFonts.roboto(textStyle: const TextStyle(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey
+                      )),
+                      ),
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => const RegistrationPage()
+                              ));
+                        },
+                        child: Text(
+                          "Sign Up",
+                          style: GoogleFonts.roboto(textStyle: const TextStyle(
+                              fontSize: 15.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blue),
+                          ),
+                      ),
+                      ),
+                    ],
                   ),
                 ],
               ),
