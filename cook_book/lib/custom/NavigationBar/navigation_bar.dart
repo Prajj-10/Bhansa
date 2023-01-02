@@ -1,5 +1,6 @@
 
 
+import 'package:cook_book/Home/recipe_home_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/MyProfile/myProfile.dart';
@@ -21,14 +22,14 @@ class _NavigationState extends State<Navigation> {
   int index = 0;
 
   //Calling the pages (most be in sequential order)
-  List screen = [LoggedInWidget2(),  PostRecipe(), RegistrationPage(), MyProfile() ];
+  List screen = [LoggedInWidget2(),  PostRecipe(), RecipeHomePage(), MyProfile() ];
 
 
   Widget build(BuildContext context) {
     bool isKeyboardOpen = MediaQuery.of(context).viewInsets.bottom != 0.0;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.black12,
+      backgroundColor: const Color(0xFF061624),
       floatingActionButton: FloatingActionButton(
 
         onPressed: (){
@@ -46,7 +47,7 @@ class _NavigationState extends State<Navigation> {
       bottomNavigationBar: isKeyboardOpen? null :  BottomAppBar(
         shape: CircularNotchedRectangle(),
         notchMargin: 5,
-        color: Colors.blueGrey,
+        color: const Color(0xFF061624),
 
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 12),

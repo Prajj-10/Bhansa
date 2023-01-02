@@ -10,6 +10,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 
+import '../Home/Home_Custom_Widget/info_widget.dart';
 import '../app/SearchUser/SearchPerson.dart';
 import '../app/loginpage/login.dart';
 import '../model/user_model.dart';
@@ -113,6 +114,7 @@ class LoggedInWidgetState2 extends State<LoggedInWidget2> {
                       email?? "Your email here.",
                       style: const TextStyle(color: Colors.white, fontSize: 16),
                     ),
+
                   ],
                 ),
               ),

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import 'ShowRecipeDetails.dart';
+import '../RecipeDetail_Page/recipeDetails.dart';
 
 class SearchRecipe2 extends SearchDelegate{
   CollectionReference _firebaseFirestore = FirebaseFirestore.instance.collection("recipe_details");
@@ -62,7 +62,7 @@ class SearchRecipe2 extends SearchDelegate{
                       padding: const EdgeInsets.all(5),
                       child: GestureDetector(
                         onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> ShowRecipeDetails(data: data)));
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> RecipeDetails(recipe_snapshot: data)));
                           //print("Selected Recipe: $title");
                         },
                         child: Stack(

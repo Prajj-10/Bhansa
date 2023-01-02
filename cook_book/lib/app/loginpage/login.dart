@@ -9,6 +9,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../../custom/NavigationBar/navigation_bar.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -265,7 +267,7 @@ class _LoginScreenState extends State<LoginScreen> with InputValidationMixin {
             .then((uid) => {
           Fluttertoast.showToast(msg: "Login Successful"),
           Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => const LoggedInWidget2())),
+              MaterialPageRoute(builder: (context) => const Navigation())),
         });
       } on FirebaseAuthException catch (error) {
         switch (error.code) {
