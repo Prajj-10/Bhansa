@@ -140,9 +140,18 @@ class Review extends StatelessWidget {
       children:[
 
         ListTile(
-          title: Text(
-              reviewed_by,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                  reviewed_by,
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              ),
+              Text(
+                posted_time.substring(0, 10),
+                style: TextStyle(fontSize: 12),
+              ),
+            ],
           ),
 
           leading: CircleAvatar(
@@ -150,22 +159,13 @@ class Review extends StatelessWidget {
           ),
           subtitle: Text(
               review,
-            style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 18),
+            style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
           ),
           //trailing:
         ),
+        
 
-        Padding(
-          padding: const EdgeInsets.only(left: 30),
-          child: Align(
-            alignment: Alignment.bottomRight,
-            child: Text(
-                posted_time.substring(0, 10)
-            ),
-          ),
-        ),
-
-        Divider(),
+        Divider(color: Colors.grey.withOpacity(1),endIndent: 5, indent: 5,),
       ],
     );
   }

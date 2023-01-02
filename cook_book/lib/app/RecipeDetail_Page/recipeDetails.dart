@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cook_book/app/UserProfile/userProfile.dart';
 import 'package:cook_book/custom/CustomListView/ingredientsListView.dart';
 import 'package:flutter/material.dart';
 
@@ -22,6 +23,7 @@ class _RecipeDetailsState extends State<RecipeDetails> with TickerProviderStateM
   var writer_name;
   var writer_username;
   var writer_profilePicture;
+  var writer_id;
 
 
   void _getCookDetails() async{
@@ -31,6 +33,7 @@ class _RecipeDetailsState extends State<RecipeDetails> with TickerProviderStateM
       writer_name = userReference.data()!['name'];
       writer_username = userReference.data()!['username'];
       writer_profilePicture = userReference.data()!['profile picture'];
+      writer_id = userID;
     });
 
   }
@@ -100,24 +103,31 @@ class _RecipeDetailsState extends State<RecipeDetails> with TickerProviderStateM
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
-                          children: [
-                            ClipOval(
-                              child: Image.network(writer_profilePicture?? "https://img.freepik.com/premium-vector/smiling-chef-cartoon-character_8250-10.jpg?w=2000",
-                                height: 50,
-                                width: 50,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            SizedBox(width: 10,),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                        GestureDetector(
+                          onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>UserProfile(userId: writer_id))),
+                          child: Container(
+                            child: Row(
                               children: [
-                                Text(writer_name ?? "Master Chef", style: TextStyle(decoration: TextDecoration.none, fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white),),
-                                Text(writer_username ?? "master_chef", style: TextStyle(decoration: TextDecoration.none, fontSize: 12, fontWeight: FontWeight.normal,color: Colors.white),),
+                                Center(
+                                  child: ClipOval(
+                                    child: Image.network(writer_profilePicture?? "https://img.freepik.com/premium-vector/smiling-chef-cartoon-character_8250-10.jpg?w=2000",
+                                      height: 50,
+                                      width: 50,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(width: 10,),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(writer_name ?? "Master Chef", style: TextStyle(decoration: TextDecoration.none, fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white),),
+                                    Text(writer_username ?? "master_chef", style: TextStyle(decoration: TextDecoration.none, fontSize: 12, fontWeight: FontWeight.normal,color: Colors.white),),
+                                  ],
+                                ),
                               ],
                             ),
-                          ],
+                          ),
                         ),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.end,

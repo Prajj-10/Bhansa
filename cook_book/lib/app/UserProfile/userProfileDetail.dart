@@ -1,12 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../../model/user_model.dart';
 import '../../custom/ExpandedWidgets/expandedProfileDescription.dart';
 import '../EditProfile/editProfile.dart';
 
-class ProfileDetail extends StatelessWidget {
+class UserProfileDetail extends StatelessWidget {
 
   //Variables
   var name;
@@ -14,7 +11,7 @@ class ProfileDetail extends StatelessWidget {
   var description;
   var profilePicture;
 
-  ProfileDetail({super.key, required this.name, required this.username, required this.description, required this.profilePicture});
+  UserProfileDetail({super.key, required this.name, required this.username, required this.description, required this.profilePicture});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +40,6 @@ class ProfileDetail extends StatelessWidget {
                       fit: BoxFit.fill,
                     ),
                   ),
-                  //child: Image.network("https://media.istockphoto.com/id/1190330112/photo/fried-pork-and-vegetables-on-white-background.jpg?s=612x612&w=0&k=20&c=TzvLLGGvPAmxhKJ6fz91UGek-zLNNCh4iq7MVWLnFwo=",fit: BoxFit.fill,)
                 ),
                 //SizedBox(width: size.width*0.05,),
                 Expanded(
@@ -88,9 +84,7 @@ class ProfileDetail extends StatelessWidget {
                           child: Row(
                             children: [
                               Expanded(child: OutlinedButton(
-                                onPressed: (){
-                                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>EditProfile()));
-                                },
+                                onPressed: (){ },
 
                                 style: OutlinedButton.styleFrom(
                                   //backgroundColor: Colors.white,
@@ -100,16 +94,10 @@ class ProfileDetail extends StatelessWidget {
                                 ),
 
 
-                                child: Text("Edit Profile"),
+                                child: Text("Follow"),
 
                               ),),
                               SizedBox(width: size.width*0.02,),
-                              InkWell(
-                                onTap: (){
-
-                                },
-                                  child: Icon(Icons.settings, color: Colors.white, size: 30,)
-                              ),
 
                             ],
                           ),

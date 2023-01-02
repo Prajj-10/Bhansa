@@ -12,17 +12,18 @@ class Recipe extends StatelessWidget {
   //User? user = FirebaseAuth.instance.currentUser;
 
   var userId;
-  var reference;
+  //var reference;
 
-  Recipe({super.key, required this.reference, required this.userId});
+  Recipe({super.key, required this.userId});
 
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    var recipeReference = FirebaseFirestore.instance.collection("recipe_details");
     return StreamBuilder(
       //stream: FirebaseFirestore.instance.collection('recipe_details').snapshots(),
-      stream: reference.where('Posted By', isEqualTo:userId).snapshots(),
+      stream: recipeReference.where('Posted By', isEqualTo:userId).snapshots(),
       builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
         /*switch(snapshot.connectionState){
           case ConnectionState.none:

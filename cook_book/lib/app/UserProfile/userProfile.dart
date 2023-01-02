@@ -1,6 +1,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cook_book/app/MyProfile/profileDetail.dart';
+import 'package:cook_book/app/UserProfile/userProfileDetail.dart';
 import 'package:cook_book/custom/CustomListView/recipeListView.dart';
 import 'package:cook_book/model/cookingSteps_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,43 +9,26 @@ import 'package:flutter/material.dart';
 import '../../custom/CustomGridView/savedGridView.dart';
 import '../../model/user_model.dart';
 
-class MyProfile extends StatefulWidget {
-  const MyProfile({Key? key}) : super(key: key);
+class UserProfile extends StatefulWidget {
+  var userId;
+  UserProfile({Key? key, required this.userId}) : super(key: key);
 
   @override
-  State<MyProfile> createState() => _MyProfileState();
+  State<UserProfile> createState() => _UserProfileState();
 }
 
-class _MyProfileState extends State<MyProfile> {
-  /*UserModel loggedInUser = UserModel();
-  User? user = FirebaseAuth.instance.currentUser;
-
-  Future _getData() async => await FirebaseFirestore.instance
-      .collection("users")
-      .doc(user?.uid)
-      .get()
-      .then((value)=> {
-
-    loggedInUser = UserModel.fromMap(value.data()),
-    print(loggedInUser!.name),
-
-  });*/
-
-  User? user = FirebaseAuth.instance.currentUser;
+class _UserProfileState extends State<UserProfile> {
 
   //Variables
   var name;
   var username;
   var description;
   var profilePicture;
-  //var recipeReference = FirebaseFirestore.instance.collection("recipe_details");
+  var recipeReference = FirebaseFirestore.instance.collection("recipe_details");
 
   //Get user data from firebase
-  void _getUserDetails() async{
-    //final user = await FirebaseAuth.instance.currentUser;
-    //UserModel loggedInUser = UserModel();
-    //CookingStepsModel recipeList = new CookingStepsModel();
-    var _userDetails = await FirebaseFirestore.instance.collection('users').doc(user?.uid).get();
+  void _getUserDetails(var userId) async{
+    var _userDetails = await FirebaseFirestore.instance.collection('users').doc(userId).get();
 
     setState(() {
       name = _userDetails.data()!['name'];
@@ -56,12 +40,13 @@ class _MyProfileState extends State<MyProfile> {
 
   @override
   void initState() {
-    _getUserDetails();
+
     super.initState();
     //_getData();
   }
   @override
   Widget build(BuildContext context) {
+    _getUserDetails(widget.userId);
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: PreferredSize(
@@ -90,14 +75,14 @@ class _MyProfileState extends State<MyProfile> {
             ),
         ),
         child: DefaultTabController(
-          length: 2,
+          length: 1,
           child: Padding(
             padding: const EdgeInsets.all(10),
             child: NestedScrollView(
               headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
                 return[
                   SliverList(delegate: SliverChildListDelegate([
-                    ProfileDetail(name: name, description: description, profilePicture: profilePicture, username: username),
+                    UserProfileDetail(name: name, description: description, profilePicture: profilePicture, username: username),
                   ]),)
                 ];
               },
@@ -130,28 +115,31 @@ class _MyProfileState extends State<MyProfile> {
                           tabs: [
                             Tab(
                               height: 50,
-                              child: Column(
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Icon(Icons.food_bank_outlined, size: 30,),
-                                  Text("Recipes", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),),
+                                  Icon(Icons.food_bank_outlined, size:25,),
+                                  SizedBox(width: 10,),
+                                  Text("Recipes", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
                                 ],
                               ),
                             ),
-                            Tab(
+                            /*Tab(
                               child: Column(
                                 children: [
                                   Icon(Icons.bookmark_border_outlined, size: 30,),
                                   Text("Saved", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),),
                                 ],
                               ),
-                            ),
+                            ),*/
                           ],
                         ),
                         Expanded(
                           child: TabBarView(
                               children: [
-                                Recipe(userId: user?.uid),
-                                Saved(),
+                                Recipe(userId: widget.userId),
+                                //Saved(),
                               ]),
                         ),
                       ],
