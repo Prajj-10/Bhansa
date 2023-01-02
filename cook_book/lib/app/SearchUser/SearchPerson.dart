@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cook_book/app/SearchUser/ShowUserDetails.dart';
 import 'package:flutter/material.dart';
 
+import '../UserProfile/userProfile.dart';
+
 class SearchPerson extends SearchDelegate{
   CollectionReference _firebaseFirestore = FirebaseFirestore.instance.collection("users");
 
@@ -54,12 +56,13 @@ class SearchPerson extends SearchDelegate{
                       .toString().toLowerCase()
                       .contains(query.toLowerCase())).map((QueryDocumentSnapshot<Object?>  data){
                     final String name = data.get('name');
+                    var uid  = data.get('uid');
 
                     return ListTile(
                       onTap: () {
                         //print("User: $name");
                         Navigator.push(context, MaterialPageRoute(
-                            builder: (context)=> ShowUserDetails(data: data)));
+                            builder: (context)=> UserProfile(userId: uid,)));
 
                       }
                       ,
