@@ -163,7 +163,7 @@ class Review extends StatelessWidget {
           ),
           //trailing:
         ),
-        
+
 
         Divider(color: Colors.grey.withOpacity(1),endIndent: 5, indent: 5,),
       ],
