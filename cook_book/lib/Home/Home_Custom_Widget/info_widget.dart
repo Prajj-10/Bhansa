@@ -1,5 +1,8 @@
+import 'package:cook_book/Home/Home_Custom_Widget/big_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../app/SearchUser/SearchPerson.dart';
 
 class InfoWidget extends StatelessWidget{
   @override
@@ -13,15 +16,8 @@ class InfoWidget extends StatelessWidget{
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-
-            Text("WHAT YOU WILL MAKE \n TODAY ?", style: GoogleFonts.sora(
-              textStyle: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            ),
-
+            BigText(text: "WHAT YOU WILL MAKE \n TODAY ?", size: 22, fontWeight: FontWeight.w700),
+            
             //TopRight Search Icon Button
             Center(
               child: Container(
@@ -32,9 +28,7 @@ class InfoWidget extends StatelessWidget{
 
                 child: IconButton(
 
-                    onPressed: (){
-
-                    },
+                    onPressed: () => showSearch(context: context, delegate: SearchPerson()),
                     icon: Icon(Icons.search_rounded)),
               ),
             ),

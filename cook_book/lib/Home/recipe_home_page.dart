@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'Home_Custom_Widget/info_widget.dart';
+import 'food_body_page.dart';
 
 class RecipeHomePage extends StatefulWidget {
   const RecipeHomePage({Key? key}) : super(key: key);
@@ -24,7 +25,7 @@ class _RecipeHomePageState extends State<RecipeHomePage> {
           body: Column(
             children: [
               InfoWidget(),
-
+              FoodBodyPage(),
             ],
           ),
         ));

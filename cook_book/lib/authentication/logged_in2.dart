@@ -84,9 +84,6 @@ class LoggedInWidgetState2 extends State<LoggedInWidget2> {
                     child: const Text('Logout'),
                   ),
 
-                  //Testing person search assuming
-                  IconButton(onPressed: () => showSearch(context: context, delegate: SearchPerson()),
-                      icon: const Icon(Icons.search_rounded))
                 ],
               ),
               body: Container(
