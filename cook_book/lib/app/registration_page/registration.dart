@@ -43,6 +43,10 @@ class _RegistrationPageState extends State<RegistrationPage> with InputValidatio
   // Form Key for validation
   final formKey = GlobalKey<FormState>();
 
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+
+
   // Auth Instance
 
   final auth = FirebaseAuth.instance;
@@ -57,6 +61,7 @@ class _RegistrationPageState extends State<RegistrationPage> with InputValidatio
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   var confirmPasswordController = TextEditingController();
+  var userNameController = TextEditingController();
   // CollectionReference userRegistration = FirebaseFirestore.instance.collection('User Registration');
 
 
@@ -127,6 +132,38 @@ class _RegistrationPageState extends State<RegistrationPage> with InputValidatio
             borderRadius: BorderRadius.circular(10),
           ),
         ));
+
+    // Username Field
+    final userNameField = TextFormField(
+
+        autofocus: false,
+        controller: userNameController,
+        // keyboardType: TextInputType.,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Please enter a username';
+          }
+          return null;
+        },
+        /*onChanged:(value){
+          checkUsernameExists(value);
+        },*/
+        onSaved: (value) {
+          nameController.text = value!;
+        },
+        textInputAction: TextInputAction.next,
+        decoration: InputDecoration(
+          prefixIcon: const Icon(Icons.abc_outlined),
+          prefixText: "@",
+          contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+          hintText: "Username",
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+    );
+        // Use the CheckUsernameExistsWidget as the child of the TextFormField
+
 
     // Password Field
 
@@ -212,8 +249,9 @@ class _RegistrationPageState extends State<RegistrationPage> with InputValidatio
       child: MaterialButton(
           padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           minWidth: MediaQuery.of(context).size.width/1.5,
-          onPressed: () {
-            signUp(emailController.text, passwordController.text);
+          onPressed: () async{
+
+              signUp(emailController.text, passwordController.text);
           },
           child: Text(
             "Sign Up ",
@@ -224,6 +262,7 @@ class _RegistrationPageState extends State<RegistrationPage> with InputValidatio
                 color: Colors.black,)
           )),
     ));
+
 
     return Scaffold(
       appBar: AppBar(
@@ -265,6 +304,8 @@ class _RegistrationPageState extends State<RegistrationPage> with InputValidatio
                     ),
                     const SizedBox(height: 20,),
                     nameField,
+                    const SizedBox(height: 20,),
+                    userNameField,
                     const SizedBox(height: 20,),
                     emailField,
                     const SizedBox(height: 20,),
@@ -331,6 +372,7 @@ class _RegistrationPageState extends State<RegistrationPage> with InputValidatio
     userModel.uid = user!.uid;
     userModel.name = nameController.text;
     userModel.email = user.email;
+    userModel.username = "@${userNameController.text}";
     //userModel.address = password;
     userModel.password = passwordController.text;
 
@@ -344,68 +386,22 @@ class _RegistrationPageState extends State<RegistrationPage> with InputValidatio
         builder: (context)=>const LoginScreen()),
             (route) => false);
   }
-  /*clearControllers(){
-    nameController.clear();
-    //addressController.clear();
-    emailController.clear();
-    passwordController.clear();
-    confirmPasswordController.clear();
-  }*/
 
-  /*void signUp(String email, String password) async{
-    await auth.createUserWithEmailAndPassword(email: email,
-        password:password).then((value)=> {
-      postDetailsToFireStore()
-    }).catchError((e){
-      Fluttertoast.showToast(msg: e!.message);
-      *//*if(_formKey.currentState!.validate()){
-        });*//*
-    });
-  }*/
- /* Future<void> createUserWithEmailAndPassword() async {
-    try {
-      await Auth().createUserWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
-      );
-    } on FirebaseAuthException catch (e) {
-      setState(() {
-        // errorMessage = e.message;
-      });
-    }
-  }*/
+  Future<bool> isUsernameTaken(String username) async {
+    // Query the Firestore database for a document with the desired username
+    final QuerySnapshot snapshot = await firestore
+        .collection('users')
+        .where('username', isEqualTo: username)
+        .get();
+
+    // If the snapshot is not empty, it means the username is already taken
+    return snapshot.docs.isNotEmpty;
+  }
 
 
-
-/*
-  register users in old way
-  Future<void> registerUsers() {
-    // Call the user's CollectionReference to add a new user
-    return userRegistration
-        .add({
-      'Name': nametxt,
-      'Address': addresstxt,
-      'Email Address': emailtxt, // 42
-      'Password': passwordtxt,
-      'Confirm Password':confirmPasswordtxt
-    })
-        .then((value) => print("Posted"))
-        .catchError((error){
-          Fluttertoast.showToast(msg: error!.message);
-    });
-  }*/
-
-
-
-
-/*void registerUser(context){
-    final String email = emailController.text.trim();
-    final String passowrd = passController.text.trim();
-
-    context.read<AuthService>().signUp(email, passowrd);
-  }*/
 
 }
+
 mixin InputValidationMixin {
 
   bool isNameValid(String name) => name.length >=6 && name.isNotEmpty;
@@ -422,3 +418,62 @@ mixin InputValidationMixin {
     return regex.hasMatch(email);
   }
 }
+/*
+
+class CheckUsernameExistsWidget extends StatefulWidget {
+  final String value;
+  final ValueChanged<String> onErrorMessageChanged;
+
+
+  const CheckUsernameExistsWidget({required Key key, required this.value, required this.onErrorMessageChanged}) : super(key: key);
+
+  @override
+  _CheckUsernameExistsWidgetState createState() => _CheckUsernameExistsWidgetState();
+}
+
+class _CheckUsernameExistsWidgetState extends State<CheckUsernameExistsWidget> {
+  late Future<String> _errorMessageFuture;
+
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  @override
+  void initState() {
+    super.initState();
+    _errorMessageFuture = checkUsernameExists(widget.value);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<String>(
+      future: _errorMessageFuture,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          widget.onErrorMessageChanged(snapshot.data!);
+        } else {
+          widget.onErrorMessageChanged("");
+        }
+        return Container();
+      },
+    );
+  }
+
+  Future<bool> doesUsernameExist(String username) async {
+    // Perform the query
+    QuerySnapshot querySnapshot = await firestore
+        .collection('users')
+        .where('username', isEqualTo: username)
+        .get();
+
+    // If the query returns a non-empty list of documents, it means that the username exists
+    return querySnapshot.docs.isNotEmpty;
+  }
+
+  Future<String> checkUsernameExists(String value) {
+    return doesUsernameExist(value).then((exists) {
+      if (exists) {
+        return 'This username is already taken';
+      }
+      return "";
+    });
+  }
+}*/
