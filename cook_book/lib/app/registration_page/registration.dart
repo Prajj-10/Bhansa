@@ -325,7 +325,7 @@ class _RegistrationPageState extends State<RegistrationPage> with InputValidatio
   }
   void signUp(String email, String password) async {
     if (formKey.currentState!.validate()) {
-      bool usernameTaken = await isUsernameTaken("@${userNameController.text}") as bool;
+      bool usernameTaken = await isUsernameTaken("@${userNameController.text}");
       if(usernameTaken){
         Fluttertoast.showToast(msg: "This username is taken.");
       }
@@ -404,28 +404,6 @@ class _RegistrationPageState extends State<RegistrationPage> with InputValidatio
     // If the snapshot is not empty, it means the username is already taken
     return snapshot.docs.isNotEmpty;
   }
-
-  doesUsernameExist(String username) async {
-    // Perform the query
-    QuerySnapshot querySnapshot = await firestore
-        .collection('users')
-        .where('username', isEqualTo: username)
-        .get();
-
-    // If the query returns a non-empty list of documents, it means that the username exists
-    return querySnapshot.docs.isNotEmpty;
-  }
-
-  checkUsernameExists(String value) {
-    return doesUsernameExist(value).then((exists) {
-      if (exists) {
-        return 'This username is already taken';
-      }
-      return "";
-    });
-  }
-
-
 
 }
 
