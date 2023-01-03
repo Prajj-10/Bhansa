@@ -1,3 +1,4 @@
+import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:cook_book/app/registration_page/registration.dart';
 import 'package:cook_book/authentication/google_sign_in.dart';
 import 'package:cook_book/authentication/logged_in2.dart';
@@ -265,7 +266,14 @@ class _LoginScreenState extends State<LoginScreen> with InputValidationMixin {
         await auth
             .signInWithEmailAndPassword(email: email, password: password)
             .then((uid) => {
-          Fluttertoast.showToast(msg: "Login Successful"),
+        AnimatedSnackBar.material("Login Successful",
+        type: AnimatedSnackBarType.success,
+        mobileSnackBarPosition: MobileSnackBarPosition.top,
+        desktopSnackBarPosition:
+        DesktopSnackBarPosition.topRight)
+            .show(context),
+          // Fluttertoast.showToast(msg: "Login Successful"),
+
           Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (context) => const Navigation())),
         });
@@ -292,7 +300,14 @@ class _LoginScreenState extends State<LoginScreen> with InputValidationMixin {
           default:
             errorMessage = "An undefined Error happened.";
         }
-        Fluttertoast.showToast(msg: errorMessage!);
+        // Fluttertoast.showToast(msg: errorMessage!);
+        AnimatedSnackBar.material(
+            errorMessage!,
+            type: AnimatedSnackBarType.success,
+            mobileSnackBarPosition: MobileSnackBarPosition.top,
+            desktopSnackBarPosition:
+            DesktopSnackBarPosition.topRight)
+            .show(context);
         // print(error.code);
       }
     }

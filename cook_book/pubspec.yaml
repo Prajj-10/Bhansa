@@ -40,6 +40,9 @@ dependencies:
   firebase_database: 10.0.6
   cloud_firestore:
   easy_splash_screen:
+  awesome_snackbar_content:
+  animated_snack_bar:
+  flutter_spinkit:
   flutter:
     sdk: flutter
 

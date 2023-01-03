@@ -39,7 +39,7 @@ class GoogleSignInProvider extends ChangeNotifier {
     createUserInFirestore();
     //const LoggedInWidget();
     // createUserInFirestore();
-    Fluttertoast.showToast(msg: "Logged In successfully.");
+    // Fluttertoast.showToast(msg: "Logged In successfully.");
   }
 
   Future logout() async {

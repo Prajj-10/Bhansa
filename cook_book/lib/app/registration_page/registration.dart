@@ -1,4 +1,6 @@
 
+import 'package:animated_snack_bar/animated_snack_bar.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cook_book/app/loginpage/login.dart';
 import 'package:cook_book/app/loginpage/loginPage.dart';
@@ -7,6 +9,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../model/user_model.dart';
@@ -143,11 +146,11 @@ class _RegistrationPageState extends State<RegistrationPage> with InputValidatio
           if (value == null || value.isEmpty) {
             return 'Please enter a username';
           }
+          if(value.length >20){
+            return 'This username is too long.';
+          }
           return null;
         },
-        /*onChanged:(value){
-          checkUsernameExists(value);
-        },*/
         onSaved: (value) {
           nameController.text = value!;
         },
@@ -327,7 +330,25 @@ class _RegistrationPageState extends State<RegistrationPage> with InputValidatio
     if (formKey.currentState!.validate()) {
       bool usernameTaken = await isUsernameTaken("@${userNameController.text}");
       if(usernameTaken){
-        Fluttertoast.showToast(msg: "This username is taken.");
+        // Fluttertoast.showToast(msg: "This username is taken.");
+        /*final snackBar = SnackBar(
+          elevation: 0,
+            behavior: SnackBarBehavior.floating,
+            backgroundColor: const Color(0xFF081017).withOpacity(0.95),
+            content: AwesomeSnackbarContent(
+              title: "Username Error!",
+              message:
+              "This username is already taken. Please enter another username.",
+              contentType: ContentType.failure,
+            ));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);*/
+        AnimatedSnackBar.material(
+            'This username is already taken. Please enter another username',
+            type: AnimatedSnackBarType.error,
+            mobileSnackBarPosition: MobileSnackBarPosition.top,
+            desktopSnackBarPosition:
+            DesktopSnackBarPosition.topRight)
+            .show(context);
       }
       else{
         try {
@@ -335,7 +356,14 @@ class _RegistrationPageState extends State<RegistrationPage> with InputValidatio
               .createUserWithEmailAndPassword(email: email, password: password)
               .then((value) => {postDetailsToFireStore()})
               .catchError((e) {
-            Fluttertoast.showToast(msg: e!.message);
+            // Fluttertoast.showToast(msg: e!.message);
+            AnimatedSnackBar.material(
+                e!.message,
+                type: AnimatedSnackBarType.error,
+                mobileSnackBarPosition: MobileSnackBarPosition.top,
+                desktopSnackBarPosition:
+                DesktopSnackBarPosition.topRight)
+                .show(context);
           });
         } on FirebaseAuthException catch (error) {
           switch (error.code) {
@@ -361,6 +389,13 @@ class _RegistrationPageState extends State<RegistrationPage> with InputValidatio
               errorMessage = "An undefined Error happened.";
           }
           Fluttertoast.showToast(msg: errorMessage!);
+          AnimatedSnackBar.material(
+              errorMessage!,
+              type: AnimatedSnackBarType.error,
+              mobileSnackBarPosition: MobileSnackBarPosition.top,
+              desktopSnackBarPosition:
+              DesktopSnackBarPosition.topRight)
+              .show(context);
           print(error.code);
         }
       }
@@ -387,7 +422,16 @@ class _RegistrationPageState extends State<RegistrationPage> with InputValidatio
         .collection("users")
         .doc(user.uid)
         .set(userModel.toMap());
-    Fluttertoast.showToast(msg: "Account created successfully");
+    // Fluttertoast.showToast(msg: "Account created successfully");
+
+    AnimatedSnackBar.material(
+        'Account created sucessfully.',
+        type: AnimatedSnackBarType.success,
+        mobileSnackBarPosition: MobileSnackBarPosition.top,
+        desktopSnackBarPosition:
+        DesktopSnackBarPosition.topRight)
+        .show(context);
+
     Navigator.pushAndRemoveUntil(
         context, MaterialPageRoute(
         builder: (context)=>const LoginScreen()),

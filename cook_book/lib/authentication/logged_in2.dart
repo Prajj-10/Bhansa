@@ -1,4 +1,5 @@
 
+import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cook_book/app/loginpage/loginPage.dart';
 import 'package:cook_book/authentication/google_sign_in.dart';
@@ -50,7 +51,6 @@ class LoggedInWidgetState2 extends State<LoggedInWidget2> {
   void initState() {
     getDetails();
     super.initState();
-
 
   }
   @override
