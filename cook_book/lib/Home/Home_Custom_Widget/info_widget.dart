@@ -12,7 +12,6 @@ class InfoWidget extends StatelessWidget{
         margin: EdgeInsets.only(top:10, bottom: 15),
         padding: EdgeInsets.only(left: 20, right: 20),
         //color: Colors.blue,
-
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'Home_Custom_Widget/info_widget.dart';
+import 'Home_Custom_Widget/info_widget_2.dart';
+import 'Home_Custom_Widget/recipe_listview_widget.dart';
 import 'food_body_page.dart';
 
 class RecipeHomePage extends StatefulWidget {
@@ -15,18 +17,23 @@ class _RecipeHomePageState extends State<RecipeHomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-          // appBar: AppBar(
-          //   title: Text("Cook Book", style: TextStyle(
-          //     fontSize: 16,
-          //     fontWeight: FontWeight.w500,
-          //   ),),
-          // ),
-
           body: Column(
             children: [
               InfoWidget(),
-              FoodBodyPage(),
+              Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        FoodBodyPage(),
+                        InfoWidget2(),
+                        SizedBox(height: 20,),
+                        RecipeListViewWidget(),
+                      ],
+                    ),
+                  )),
+
             ],
+
           ),
         ));
   }

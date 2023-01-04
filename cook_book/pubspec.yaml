@@ -63,6 +63,8 @@ dependencies:
   image_picker: ^0.8.6
 
   hexcolor:
+  #dotindicator
+  dots_indicator: ^2.0.0
 
 
 
