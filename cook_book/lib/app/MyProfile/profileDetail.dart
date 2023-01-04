@@ -25,8 +25,8 @@ class ProfileDetail extends StatelessWidget {
             Row(
               children: [
                 Container(
-                  height: size.width/2.7,
-                  width: size.width/2.7,
+                  height: size.width/2.8,
+                  width: size.width/2.8,
 
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
@@ -43,7 +43,6 @@ class ProfileDetail extends StatelessWidget {
                       fit: BoxFit.fill,
                     ),
                   ),
-                  //child: Image.network("https://media.istockphoto.com/id/1190330112/photo/fried-pork-and-vegetables-on-white-background.jpg?s=612x612&w=0&k=20&c=TzvLLGGvPAmxhKJ6fz91UGek-zLNNCh4iq7MVWLnFwo=",fit: BoxFit.fill,)
                 ),
                 //SizedBox(width: size.width*0.05,),
                 Expanded(
@@ -61,7 +60,7 @@ class ProfileDetail extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
 
-                                Text(name??"Your name here.",
+                                Text(name??"Your name here",
                                   style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                                 ),
                                 Padding(

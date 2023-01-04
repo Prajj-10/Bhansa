@@ -231,48 +231,6 @@ class _EditProfileState extends State<EditProfile> {
       ),
     );
   }
-  /*Future uploadProfilePicture() async{
-
-    //pick image from gallery
-    //install file_picker package and import necessary library
-    ImagePicker imagePicker = ImagePicker();
-    late this.profilePicture = (await  imagePicker.pickImage(source:ImageSource.gallery));
-
-    //XFile? image = await  imagePicker.pickImage(source: ImageSource.gallery);
-
-    if(this.profilePicture==null) return;
-
-    //Added Later
-    *//*final imageTemporary = File(this.profilePicture?.path);
-    setState(() => this.profilePicture = imageTemporary);*//*
-    //End
-
-    String uniqueFileName = DateTime.now().millisecondsSinceEpoch.toString();
-
-    //upload picked image in firestore
-    //install firebase_storage package and import necessary library
-
-    //get a reference to storage
-    Reference referenceroot = FirebaseStorage.instance.ref();
-    Reference referenceDirImages = referenceroot.child('profilePicture');
-
-    //create reference for the image to be stored
-    Reference referenceImageToUpload = referenceDirImages.child(uniqueFileName);
-
-    //store image
-    //error handeling
-    try{
-
-      await referenceImageToUpload.putFile(File(file!.path));
-      loggedInUser.profilePicture = await referenceImageToUpload.getDownloadURL();
-
-    } catch(e){
-      print(e);
-    }
-
-
-  }*/
-
 }
 
 

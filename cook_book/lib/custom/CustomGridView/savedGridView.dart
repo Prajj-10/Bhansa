@@ -17,7 +17,7 @@ class Saved extends StatelessWidget {
             child: DecoratedBox(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: Color(0xFFFFFFFF).withOpacity(1),
+                color: Color(0xFF94C9E8FF).withOpacity(1),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

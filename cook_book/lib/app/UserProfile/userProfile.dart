@@ -42,11 +42,12 @@ class _UserProfileState extends State<UserProfile> {
   void initState() {
 
     super.initState();
+    _getUserDetails(widget.userId);
     //_getData();
   }
   @override
   Widget build(BuildContext context) {
-    _getUserDetails(widget.userId);
+
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: PreferredSize(
@@ -125,14 +126,6 @@ class _UserProfileState extends State<UserProfile> {
                                 ],
                               ),
                             ),
-                            /*Tab(
-                              child: Column(
-                                children: [
-                                  Icon(Icons.bookmark_border_outlined, size: 30,),
-                                  Text("Saved", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),),
-                                ],
-                              ),
-                            ),*/
                           ],
                         ),
                         Expanded(

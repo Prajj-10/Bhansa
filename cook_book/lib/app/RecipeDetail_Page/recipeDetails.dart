@@ -24,6 +24,8 @@ class _RecipeDetailsState extends State<RecipeDetails> with TickerProviderStateM
   var writer_username;
   var writer_profilePicture;
   var writer_id;
+  late TabController _controller ;
+
 
 
   void _getCookDetails() async{
@@ -41,16 +43,16 @@ class _RecipeDetailsState extends State<RecipeDetails> with TickerProviderStateM
   void initState() {
     // TODO: implement initState
     super.initState();
+    _controller = TabController(length: 3, vsync: this);
     _getCookDetails();
   }
-
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
 
 
-    TabController _controller = TabController(length: 3, vsync: this);
+
     return Scaffold(
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
