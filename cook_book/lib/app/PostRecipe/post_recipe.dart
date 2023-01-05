@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cook_book/main.dart';
@@ -101,6 +102,16 @@ class _PostRecipeState extends State<PostRecipe> {
 
     return Scaffold(
 
+      appBar: AppBar(
+        title: Text(
+            'Recipe Details',
+          style: GoogleFonts.dancingScript(
+              textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 40, color: Colors.white)
+          ),
+        ),
+        centerTitle: true,
+      ),
+
       body: SingleChildScrollView(
         child: Column(
 
@@ -108,6 +119,21 @@ class _PostRecipeState extends State<PostRecipe> {
             const SizedBox(
               height: 50,
             ),
+
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: Text(
+                "Upload Image: ",
+                style: GoogleFonts.robotoMono(
+                    textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white)
+                ),
+              ),
+            ),
+
+            SizedBox(
+              height: 10,
+            ),
+
             //First Image
             Stack(
                 children: [
@@ -131,22 +157,23 @@ class _PostRecipeState extends State<PostRecipe> {
                         ),
 
                         color: Colors.white,
-                        borderRadius: BorderRadius.only(
+                        borderRadius: BorderRadius.all(Radius.circular(60)),
+                        /*borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(25),
                           bottomRight: Radius.circular(25),
-                        ),
+                        ),*/
                       ),
                     ),
                   ),
                   Positioned(
-                    top: 160,
-                    left: 160,
+                    left: width * .4,
+                    top: height * .2,
                     child: Container(
 
                       child: IconButton(
 
-                        color: Colors.black,
-                        icon: const Icon(Icons.add_a_photo, size: 50,),
+                        color: Colors.grey,
+                        icon: const Icon(Icons.add_a_photo, size: 40,),
 
                         onPressed: () { uploadImage();},
 
@@ -162,16 +189,20 @@ class _PostRecipeState extends State<PostRecipe> {
 
 
             const SizedBox(
-              height: 30,
+              height: 20,
             ),
 
-            const Align(
+            /*Align(
               alignment: Alignment.center,
               child: Text(
                 "Recipe Details",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                  style: GoogleFonts.dancingScript(
+                    textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 40, color: Colors.white)
+                  ),
               ),
-            ),
+            ),*/
+
+
             Padding(
               padding: const EdgeInsets.only(left: 15, right: 15),
               child: Container(
@@ -181,11 +212,14 @@ class _PostRecipeState extends State<PostRecipe> {
                       height: 30,
                     ),
 
-                    const Align(
+                    Align(
                       alignment: Alignment.bottomLeft,
                       child: Text(
                         "Recipe Title: ",
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.white),
+                        //style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.white),
+                        style: GoogleFonts.robotoMono(
+                            textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white)
+                        ),
                       ),
                     ),
 
@@ -194,8 +228,9 @@ class _PostRecipeState extends State<PostRecipe> {
                     ),
 
                     Container(
-                      height: 50,
+                      height: 65,
                       child:  TextField(
+
                         onChanged: (value){
                           steps_model.recipe_title = value;
                         },
@@ -203,6 +238,7 @@ class _PostRecipeState extends State<PostRecipe> {
 
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.0),
                             borderSide: BorderSide(
                               width: 2,
                               color: Colors.white,
@@ -210,6 +246,7 @@ class _PostRecipeState extends State<PostRecipe> {
                           ),
 
                           focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.0),
                             borderSide: BorderSide(color: Colors.white),
                           ),
                         ),
@@ -221,11 +258,13 @@ class _PostRecipeState extends State<PostRecipe> {
                     ),
 
 
-                    const Align(
+                    Align(
                       alignment: Alignment.bottomLeft,
                       child: Text(
                         "Recipe Description: ",
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.white),
+                        style: GoogleFonts.robotoMono(
+                            textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white)
+                        ),
                       ),
                     ),
 
@@ -234,15 +273,19 @@ class _PostRecipeState extends State<PostRecipe> {
                     ),
 
                     Container(
-                      height: 50,
+                      height: 160,
                       child:  TextField(
+                        expands: true,
+                        maxLines: null,
                         onChanged: (value){
                           steps_model.recipe_description = value;
                         },
                         style: TextStyle(fontSize: 20, color: Colors.white),
 
                         decoration: InputDecoration(
+                          hintText: 'Write a small description of your Recipe...',
                           enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.0),
                             borderSide: BorderSide(
                               width: 2,
                               color: Colors.white,
@@ -250,6 +293,7 @@ class _PostRecipeState extends State<PostRecipe> {
                           ),
 
                           focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.0),
                             borderSide: BorderSide(color: Colors.white),
                           ),
                         ),
@@ -261,11 +305,14 @@ class _PostRecipeState extends State<PostRecipe> {
                       height: 20,
                     ),
 
-                    const Align(
+                    Align(
                       alignment: Alignment.bottomLeft,
                       child: Text(
                         "Number of Servings: ",
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.white),
+                        style: GoogleFonts.robotoMono(
+                            textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white)
+                        ),
+
                       ),
                     ),
 
@@ -292,6 +339,7 @@ class _PostRecipeState extends State<PostRecipe> {
                           decoration: InputDecoration(
 
                             enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
                               borderSide: BorderSide(
                                 width: 2,
                                 color: Colors.white,
@@ -299,6 +347,7 @@ class _PostRecipeState extends State<PostRecipe> {
                             ),
 
                             focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
                               borderSide: BorderSide(color: Colors.white),
                             ),
                           ),
@@ -322,60 +371,69 @@ class _PostRecipeState extends State<PostRecipe> {
 
                     Container(
 
-                      child: Row(
-                        children: [
-                          const Text(
-                            "Prepare Duration: ",
-                            style: TextStyle(fontSize: 20, color: Colors.white),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              Text(
+                                "Prepare Duration: ",
+                                style: GoogleFonts.robotoMono(
+                                    textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white)
+                                ),
+                              ),
+
+
+                              IconButton(
+
+                                color: Colors.white,
+                                icon: const Icon(Icons.timer, size: 35,),
+
+                                onPressed: () async {
+
+
+
+                                  Duration? selectedDuration = await showDurationPicker(context: context, initialTime: const Duration(minutes: 0));
+
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text('Preparing Duration is: $selectedDuration')),
+                                  );
+
+                                  setState(() {
+                                    prep_duration = selectedDuration!;
+                                    steps_model.p_duration= selectedDuration.toString();
+
+                                    String testDuration = selectedDuration.toString();
+                                    if(testDuration.substring(0, 1) =='0'){
+                                      steps_model.prepare_duration = testDuration.substring(2, 4) +" min";
+                                    }
+                                    else if(testDuration.substring(2, 4) == '00'){
+                                      steps_model.prepare_duration = testDuration.substring(0, 1) + " hrs ";
+                                    }
+                                    else{
+                                      steps_model.prepare_duration = testDuration.substring(0, 1) + " hrs " + testDuration.substring(2, 4) +" min";
+                                    }
+
+                                  });
+                                },
+
+
+                              ),
+
+                              Text(
+                                "${steps_model.prepare_duration}",
+                                //style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.white),
+                                style: GoogleFonts.robotoMono(
+                                    textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: Colors.white)
+                                ),
+                              ),
+
+
+
+                            ],
                           ),
-                          const SizedBox(
-                            width: 15,
-                          ),
-
-                          IconButton(
-
-                            color: Colors.white,
-                            icon: const Icon(Icons.timer, size: 35,),
-
-                            onPressed: () async {
-
-
-
-                              Duration? selectedDuration = await showDurationPicker(context: context, initialTime: const Duration(minutes: 0));
-
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text('Preparing Duration is: $selectedDuration')),
-                              );
-
-                              setState(() {
-                                prep_duration = selectedDuration!;
-                                steps_model.p_duration= selectedDuration.toString();
-
-                                String testDuration = selectedDuration.toString();
-                                if(testDuration.substring(0, 1) =='0'){
-                                  steps_model.prepare_duration = testDuration.substring(2, 4) +" min";
-                                }
-                                else if(testDuration.substring(2, 4) == '00'){
-                                  steps_model.prepare_duration = testDuration.substring(0, 1) + " hrs ";
-                                }
-                                else{
-                                  steps_model.prepare_duration = testDuration.substring(0, 1) + " hrs " + testDuration.substring(2, 4) +" min";
-                                }
-
-                              });
-                            },
-
-
-                          ),
-
-                          Text(
-                            "${steps_model.prepare_duration}",
-                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.white),
-                          ),
-
-
-
-                        ],
+                        ),
                       ),
 
                     ),
@@ -386,60 +444,67 @@ class _PostRecipeState extends State<PostRecipe> {
 
 
                     Container(
-                      child: Row(
-                        children: [
-                          const Text(
-                            "Cooking Duration: ",
-                            style: TextStyle(fontSize: 20, color: Colors.white),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              Text(
+                                "Cooking Duration: ",
+                                style: GoogleFonts.robotoMono(
+                                    textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white)
+                                ),
+                              ),
+
+                              IconButton(
+
+                                color: Colors.white,
+                                icon: const Icon(Icons.timer, size: 35,),
+
+                                onPressed: () async {
+                                  Duration? selectedDuration = await showDurationPicker(context: context, initialTime: const Duration(minutes: 0));
+
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text('Duration is: $selectedDuration')),
+                                  );
+
+                                  setState(() {
+
+                                    //steps_model.cooking_duration = selectedDuration?.inMinutes as Duration?;
+                                    steps_model.c_duration = selectedDuration.toString();
+                                    cook_duration=selectedDuration!;
+
+                                    String testDuration = selectedDuration.toString();
+                                    if(testDuration.substring(0, 1) =='0'){
+                                      steps_model.cooking_duration = testDuration.substring(2, 4) +" min";
+                                    }
+                                    else if(testDuration.substring(2, 4) == '00'){
+                                      steps_model.cooking_duration = testDuration.substring(0, 1) + " hrs ";
+                                    }
+                                    else{
+                                      steps_model.cooking_duration = testDuration.substring(0, 1) + " hrs " + testDuration.substring(2, 4) +" min";
+                                    }
+                                    calcTotalDuration();
+
+                                  });
+
+                                },
+
+
+
+                              ),
+
+                              Text(
+                                "${steps_model.cooking_duration}",
+                                style: GoogleFonts.robotoMono(
+                                    textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: Colors.white)
+                                ),
+                              ),
+
+                            ],
                           ),
-                          const SizedBox(
-                            width: 15,
-                          ),
-
-                          IconButton(
-
-                            color: Colors.white,
-                            icon: const Icon(Icons.timer, size: 35,),
-
-                            onPressed: () async {
-                              Duration? selectedDuration = await showDurationPicker(context: context, initialTime: const Duration(minutes: 0));
-
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text('Duration is: $selectedDuration')),
-                              );
-
-                              setState(() {
-
-                                //steps_model.cooking_duration = selectedDuration?.inMinutes as Duration?;
-                                steps_model.c_duration = selectedDuration.toString();
-                                cook_duration=selectedDuration!;
-
-                                String testDuration = selectedDuration.toString();
-                                if(testDuration.substring(0, 1) =='0'){
-                                  steps_model.cooking_duration = testDuration.substring(2, 4) +" min";
-                                }
-                                else if(testDuration.substring(2, 4) == '00'){
-                                  steps_model.cooking_duration = testDuration.substring(0, 1) + " hrs ";
-                                }
-                                else{
-                                  steps_model.cooking_duration = testDuration.substring(0, 1) + " hrs " + testDuration.substring(2, 4) +" min";
-                                }
-                                calcTotalDuration();
-
-                              });
-
-                            },
-
-
-
-                          ),
-
-                          Text(
-                            "${steps_model.cooking_duration}",
-                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.white),
-                          ),
-
-                        ],
+                        ),
                       ),
                     ),
 
@@ -451,22 +516,11 @@ class _PostRecipeState extends State<PostRecipe> {
                       height: 10,
                     ),
 
-                    const SizedBox(
-                      height: 70,
-
-                    ),
-
                     //Calling own widget
                     _uiWidget(),
 
                     const SizedBox(
                       height: 20,
-                    ),
-
-
-                    const SizedBox(
-                      height: 70,
-
                     ),
 
 
@@ -600,7 +654,7 @@ class _PostRecipeState extends State<PostRecipe> {
               _directionContainer(),
 
               const SizedBox(
-                height: 15,
+                height: 50,
               ),
 
               //Post Recipe Button
@@ -640,9 +694,11 @@ class _PostRecipeState extends State<PostRecipe> {
         Padding(
           padding: const EdgeInsets.all(5),
           child: Text(
-            "Directions",
+            "Directions:",
             textAlign: TextAlign.left,
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: GoogleFonts.robotoMono(
+                textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white)
+            ),
           ),
         ),
 
@@ -745,11 +801,13 @@ class _PostRecipeState extends State<PostRecipe> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(0),
           child: Text(
-            "Ingredients",
+            "Ingredients:",
             textAlign: TextAlign.left,
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: GoogleFonts.robotoMono(
+                textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white)
+            ),
           ),
         ),
 
@@ -781,7 +839,9 @@ class _PostRecipeState extends State<PostRecipe> {
           FormHelper.inputFieldWidget(context,
             "step_$index",
             "Add Ingredients:",
+
             textColor: Colors.white,
+
                 (onValidateVal){
               if(onValidateVal.isEmpty){
                 return "Cannot ${index + 1} be empty";

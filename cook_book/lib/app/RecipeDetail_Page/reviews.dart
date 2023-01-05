@@ -230,7 +230,7 @@ class _ReviewState extends State<Review> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                u_name ?? 'Guest',
+                reviewed_by ?? 'Guest',
                 style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
               Text(
