@@ -6,7 +6,7 @@ import '../../model/user_model.dart';
 import '../../custom/ExpandedWidgets/expandedProfileDescription.dart';
 import '../EditProfile/editProfile.dart';
 
-class ProfileDetail extends StatelessWidget {
+class ProfileDetail extends StatefulWidget {
 
   //Variables
   var name;
@@ -17,7 +17,48 @@ class ProfileDetail extends StatelessWidget {
   ProfileDetail({super.key, required this.name, required this.username, required this.description, required this.profilePicture});
 
   @override
+  State<ProfileDetail> createState() => _ProfileDetailState();
+}
+
+class _ProfileDetailState extends State<ProfileDetail> {
+  int noOfFollowers = 0;
+  int noOfFollowing = 0;
+  var currentUserId = FirebaseAuth.instance.currentUser?.uid;
+
+  final followersRef = FirebaseFirestore.instance.collection('Followers');
+  final followingRef = FirebaseFirestore.instance.collection('Following');
+
+  getFollowers() async {
+    QuerySnapshot snapshot = await followersRef
+        .doc(currentUserId)
+        .collection('userFollowers')
+        .get();
+    setState(() {
+      noOfFollowers = snapshot.docs.length;
+    });
+  }
+
+  getFollowings() async {
+    QuerySnapshot snapshot = await followingRef
+        .doc(currentUserId)
+        .collection('userFollowing')
+        .get();
+    setState(() {
+      noOfFollowing = snapshot.docs.length;
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print(currentUserId);
+    getFollowings();
+    getFollowers();
+  }
+  @override
   Widget build(BuildContext context) {
+
     var size = MediaQuery.of(context).size;
     return Column(
       children: [
@@ -33,9 +74,9 @@ class ProfileDetail extends StatelessWidget {
                     border: Border.all(color: Colors.white, width: 2),
                     image:
                     //loggedInUser.profilePicture != null ?
-                    profilePicture != null ?
+                    widget.profilePicture != null ?
                     DecorationImage(
-                      image: NetworkImage(profilePicture!),
+                      image: NetworkImage(widget.profilePicture!),
                       fit: BoxFit.fill,
                     )
                     : DecorationImage(
@@ -60,12 +101,12 @@ class ProfileDetail extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
 
-                                Text(name??"Your name here",
+                                Text(widget.name??"Your name here",
                                   style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(top: 5),
-                                  child: Text(username ?? "Your username here.",
+                                  child: Text(widget.username ?? "Your username here.",
                                     style: TextStyle(color: Colors.grey, fontSize: 14, fontWeight: FontWeight.bold),
                                   ),
                                 ),
@@ -77,9 +118,9 @@ class ProfileDetail extends StatelessWidget {
                         Row(
                           children: [
                             SizedBox(width: size.width*0.03,),
-                            Expanded(child: FollowButton(btnHeight: 35, btnWidth: 60, number: "100K", name: "Followers")),
+                            Expanded(child: FollowButton(btnHeight: 35, btnWidth: 60, number: noOfFollowers.toString(), name: "Followers")),
                             SizedBox(width: size.width*0.02,),
-                            Expanded(child: FollowButton(btnHeight: 35, btnWidth: 60, number: "100K", name: "Following")),
+                            Expanded(child: FollowButton(btnHeight: 35, btnWidth: 60, number: noOfFollowing.toString(), name: "Following")),
                           ],
                         ),
                         Padding(
@@ -128,8 +169,8 @@ class ProfileDetail extends StatelessWidget {
               children: [
                 Expanded(
                   child:
-                  description != null ?
-                  ExpandedProfileDescription(profileDescription: description!)
+                  widget.description != null ?
+                  ExpandedProfileDescription(profileDescription: widget.description!)
                       :SizedBox(height: 20,),
                 ),
 

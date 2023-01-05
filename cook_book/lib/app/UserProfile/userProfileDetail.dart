@@ -53,7 +53,7 @@ class _UserProfileDetailState extends State<UserProfileDetail> {
   }
 
   getFollowings() async {
-    QuerySnapshot snapshot = await followersRef
+    QuerySnapshot snapshot = await followingRef
         .doc(widget.profileId)
         .collection('userFollowing')
         .get();
@@ -74,7 +74,7 @@ class _UserProfileDetailState extends State<UserProfileDetail> {
 
     followingRef
         .doc(user?.uid)
-        .collection('userFollowers')
+        .collection('userFollowing')
         .doc(widget.profileId)
         .set({});
   }
@@ -98,7 +98,7 @@ class _UserProfileDetailState extends State<UserProfileDetail> {
 
     followingRef
         .doc(user?.uid)
-        .collection('userFollowers')
+        .collection('userFollowing')
         .doc(widget.profileId)
         .get().then((data) {
         if (data.exists){
