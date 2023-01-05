@@ -12,7 +12,7 @@ class Reviews extends StatefulWidget {
 
   var postId;
 
-  
+
   Reviews({Key? key, required this.postId}) : super(key: key);
 
 
@@ -30,8 +30,7 @@ class _ReviewsState extends State<Reviews> {
 
   final ref = FirebaseDatabase.instance.ref('users');
   final user = FirebaseAuth.instance.currentUser;
-  //final googleSignIn = GoogleSignIn();
-  //UserModel loggedInUser = UserModel();
+
 
   void getDetails() async{
 
@@ -48,7 +47,6 @@ class _ReviewsState extends State<Reviews> {
   void initState() {
     getDetails();
     super.initState();
-
 
   }
 
@@ -103,6 +101,7 @@ class _ReviewsState extends State<Reviews> {
       'Time': DateTime.now().toString(),
       'Reviewed By': u_name,
       'Profile Picture': photo,
+      'U-ID': user?.uid
 
     });
 
@@ -116,54 +115,110 @@ class _ReviewsState extends State<Reviews> {
     return Container(
       color:  Color(0xFF07060E),
       child: Column(
-          children: [
-            Expanded(
-              child: buildReviews(),
-            ),
+        children: [
+          Expanded(
+            child: buildReviews(),
+          ),
 
-            Divider(),
+          Divider(),
 
-            ListTile(
-              title: TextFormField(
+          ListTile(
+            title: TextFormField(
 
-                controller: reviewsController,
+              controller: reviewsController,
 
-                decoration: InputDecoration(
-                    labelText: "Write Review..."
-                ),
-
+              decoration: const InputDecoration(
+                  labelText: "Write Review..."
               ),
-              trailing: OutlinedButton(
-                onPressed: () => addReview(),
-                child: Text('Post'),
-              ),
+
             ),
-          ],
-        ),
+            trailing: OutlinedButton(
+              onPressed: () => addReview(),
+              child: const Text('Post'),
+            ),
+          ),
+        ],
+      ),
     );
     //);
   }
 
 }
 
-class Review extends StatelessWidget {
 
-  //final String review, reviewed_by, profile_picture, posted_time;
-  //final String timestamp;
+
+
+
+
+
+//------------------------Review UI--------------------//
+
+class Review extends StatefulWidget {
+
   var review, reviewed_by, profile_picture, posted_time;
 
   Review({Key? key, required this.review, required this.reviewed_by, required this.profile_picture, required this.posted_time}) : super(key: key);
 
+  @override
+  State<Review> createState() => _ReviewState(review: this.review, reviewed_by: this.reviewed_by, profile_picture: this.profile_picture, posted_time: this.posted_time);
+
   factory Review.fromDocument(DocumentSnapshot documentS){
     return Review(
-
       review: documentS['Review'],
       reviewed_by: documentS['Reviewed By'],
       profile_picture: documentS['Profile Picture'],
       posted_time: documentS['Time'],
-
     );
   }
+}
+
+class _ReviewState extends State<Review> {
+  CollectionReference recipeReviews = FirebaseFirestore.instance.collection('recipe_reviews');
+
+  var u_name;
+  var photo;
+
+  var review_data;
+  var date_data;
+
+  final ref = FirebaseDatabase.instance.ref('users');
+  final user = FirebaseAuth.instance.currentUser;
+
+
+
+  void getDetails() async{
+
+    var userDetails = await FirebaseFirestore.instance.collection('users').doc(user?.uid).get();
+
+    setState(() {
+      u_name = userDetails.data()!['username'];
+      photo = userDetails.data()!['profile picture'];
+    });
+  }
+
+  var review, reviewed_by, profile_picture, posted_time;
+
+  _ReviewState({required this.review, required this.reviewed_by, required this.profile_picture, required this.posted_time,});
+
+
+  factory _ReviewState.fromDocument(DocumentSnapshot documentS){
+    return _ReviewState(
+      review: documentS['Review'],
+      reviewed_by: documentS['Reviewed By'],
+      profile_picture: documentS['Profile Picture'],
+      posted_time: documentS['Time'],
+    );
+  }
+
+
+
+  @override
+  void initState() {
+    getDetails();
+    super.initState();
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -175,22 +230,26 @@ class Review extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                  reviewed_by ?? 'Guest',
+                u_name ?? 'Guest',
                 style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
               Text(
-                posted_time.substring(0, 10) ?? '',
-                  //posted_time,
+                //posted_time.substring(0, 10) ?? '',
+                //'Time',
+                posted_time.substring(0, 10) ?? 'Null',
+                //posted_time,
                 style: TextStyle(fontSize: 12),
               ),
             ],
           ),
 
           leading: CircleAvatar(
-            backgroundImage: NetworkImage(profile_picture ?? 'https://cdn-icons-png.flaticon.com/512/3177/3177440.png'),
+            backgroundImage: NetworkImage(photo ?? 'https://cdn-icons-png.flaticon.com/512/3177/3177440.png'),
           ),
           subtitle: Text(
-              review ?? 'reviews',
+            //reviewsController ?? 'reviews',
+            //'This is good',
+            review ?? 'Null',
             style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
           ),
           //trailing:
@@ -202,4 +261,6 @@ class Review extends StatelessWidget {
     );
   }
 }
+
+
 
