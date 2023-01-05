@@ -20,6 +20,7 @@ class UserProfile extends StatefulWidget {
 class _UserProfileState extends State<UserProfile> {
 
   //Variables
+  var profileId;
   var name;
   var username;
   var description;
@@ -31,6 +32,7 @@ class _UserProfileState extends State<UserProfile> {
     var _userDetails = await FirebaseFirestore.instance.collection('users').doc(userId).get();
 
     setState(() {
+      profileId = _userDetails.id;
       name = _userDetails.data()!['name'];
       username = _userDetails.data()!['username'];
       description = _userDetails.data()!['description'];
@@ -83,7 +85,7 @@ class _UserProfileState extends State<UserProfile> {
               headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
                 return[
                   SliverList(delegate: SliverChildListDelegate([
-                    UserProfileDetail(name: name, description: description, profilePicture: profilePicture, username: username),
+                    UserProfileDetail(profileId: profileId, name: name, description: description, profilePicture: profilePicture, username: username),
                   ]),)
                 ];
               },

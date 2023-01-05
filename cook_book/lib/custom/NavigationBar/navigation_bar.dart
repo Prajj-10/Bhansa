@@ -1,6 +1,7 @@
 
 
 import 'package:cook_book/Home/recipe_home_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/MyProfile/myProfile.dart';
@@ -22,7 +23,7 @@ class _NavigationState extends State<Navigation> {
   int index = 0;
 
   //Calling the pages (most be in sequential order)
-  List screen = [LoggedInWidget2(),  PostRecipe(), RecipeHomePage(), MyProfile() ];
+  List screen = [LoggedInWidget2(),  PostRecipe(), RecipeHomePage(), MyProfile(userId: FirebaseAuth.instance.currentUser?.uid,) ];
 
 
   Widget build(BuildContext context) {

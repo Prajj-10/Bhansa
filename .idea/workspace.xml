@@ -4,15 +4,17 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf33b20f-9bb0-49da-9eb9-3fc611fe96ce" name="Changes" comment="added user profile view">
+    <list default="true" id="bf33b20f-9bb0-49da-9eb9-3fc611fe96ce" name="Changes" comment="update tab state">
+      <change afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomButtons/follow_UnFollowButton.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/EditProfile/editProfile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/EditProfile/editProfile.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/profileDetail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/profileDetail.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/myProfile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/myProfile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/PostRecipe/post_recipe.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/PostRecipe/post_recipe.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/PostRecipe/reviews.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/RecipeDetail_Page/reviews.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cook_book/lib/app/RecipeDetail_Page/recipeDetails.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/RecipeDetail_Page/recipeDetails.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cook_book/lib/app/UserProfile/userProfile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/UserProfile/userProfile.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/custom/CustomGridView/savedGridView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomGridView/savedGridView.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/custom/CustomListView/recipeListView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomListView/recipeListView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/UserProfile/userProfileDetail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/UserProfile/userProfileDetail.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/custom/NavigationBar/navigation_bar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/NavigationBar/navigation_bar.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,11 +72,11 @@
       <recent name="E:\College\L5-2\Mobile app development\Final Assignment\Cook-Book\cook_book\lib\app" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\College\L5-2\Mobile app development\Final Assignment\Cook-Book\cook_book\lib\app\RecipeDetail_Page" />
       <recent name="E:\College\L5-2\Mobile app development\Final Assignment\Cook-Book\cook_book\lib\app\EditProfile" />
       <recent name="E:\College\L5-2\Mobile app development\Final Assignment\Cook-Book\cook_book\lib\app" />
       <recent name="E:\College\L5-2\Mobile app development\Final Assignment\Cook-Book\cook_book\lib\custom\CustomGridView" />
       <recent name="E:\College\L5-2\Mobile app development\Final Assignment\Cook-Book\cook_book\lib\custom\CustomListView" />
-      <recent name="E:\College\L5-2\Mobile app development\Final Assignment\Cook-Book\cook_book\lib\custom\CustomButtons" />
     </key>
   </component>
   <component name="RunManager">
@@ -188,7 +190,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672646658582</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="update tab state">
+      <created>1672830748071</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1672830748071</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -213,6 +222,7 @@
     <MESSAGE value="update user profile data" />
     <MESSAGE value="updated my profile page" />
     <MESSAGE value="added user profile view" />
-    <option name="LAST_COMMIT_MESSAGE" value="added user profile view" />
+    <MESSAGE value="update tab state" />
+    <option name="LAST_COMMIT_MESSAGE" value="update tab state" />
   </component>
 </project>

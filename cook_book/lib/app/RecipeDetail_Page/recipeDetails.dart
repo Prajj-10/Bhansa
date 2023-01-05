@@ -1,13 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cook_book/app/UserProfile/userProfile.dart';
 import 'package:cook_book/custom/CustomListView/ingredientsListView.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../custom/CustomButtons/likebutton.dart';
 import '../../custom/CustomButtons/saveButton.dart';
 import '../../custom/CustomListView/directionsListView.dart';
 import '../../custom/ExpandedWidgets/expandedRecipeDescription.dart';
-import '../PostRecipe/reviews.dart';
+import '../MyProfile/myProfile.dart';
+import 'reviews.dart';
 
 class RecipeDetails extends StatefulWidget {
 
@@ -25,10 +27,9 @@ class _RecipeDetailsState extends State<RecipeDetails> with TickerProviderStateM
   var writer_profilePicture;
   var writer_id;
   late TabController _controller ;
+  var currentUserId;
 
-
-
-  void _getCookDetails() async{
+  void _getWriterDetails() async{
     var userID = widget.recipe_snapshot.get('Posted By').toString();
     var userReference = await FirebaseFirestore.instance.collection('users').doc(userID).get();
     setState(() {
@@ -44,7 +45,8 @@ class _RecipeDetailsState extends State<RecipeDetails> with TickerProviderStateM
     // TODO: implement initState
     super.initState();
     _controller = TabController(length: 3, vsync: this);
-    _getCookDetails();
+    _getWriterDetails();
+    currentUserId = FirebaseAuth.instance.currentUser?.uid;
   }
 
   @override
@@ -106,7 +108,9 @@ class _RecipeDetailsState extends State<RecipeDetails> with TickerProviderStateM
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         GestureDetector(
-                          onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>UserProfile(userId: writer_id))),
+                          onTap: ()=> currentUserId==writer_id?
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>MyProfile(userId: writer_id)))
+                          :Navigator.push(context, MaterialPageRoute(builder: (context)=>UserProfile(userId: writer_id,))),
                           child: Container(
                             child: Row(
                               children: [

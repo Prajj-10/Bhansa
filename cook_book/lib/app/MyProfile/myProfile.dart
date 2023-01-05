@@ -9,7 +9,7 @@ import '../../custom/CustomGridView/savedGridView.dart';
 import '../../model/user_model.dart';
 
 class MyProfile extends StatefulWidget {
-  const MyProfile({Key? key}) : super(key: key);
+  const MyProfile({Key? key, required userId}) : super(key: key);
 
   @override
   State<MyProfile> createState() => _MyProfileState();
