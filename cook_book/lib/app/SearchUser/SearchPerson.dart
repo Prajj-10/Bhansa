@@ -1,14 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cook_book/app/SearchUser/ShowUserDetails.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../MyProfile/myProfile.dart';
 import '../UserProfile/userProfile.dart';
 
 class SearchPerson extends SearchDelegate{
   CollectionReference _firebaseFirestore = FirebaseFirestore.instance.collection("users");
 
   var firestoreDB = FirebaseFirestore.instance.collection("recipe_details").snapshots();
-
+  var  currentUserId = FirebaseAuth.instance.currentUser?.uid;
   @override
   List<Widget>? buildActions(BuildContext context) {
     return <Widget> [
@@ -59,13 +61,18 @@ class SearchPerson extends SearchDelegate{
                     var uid  = data.get('uid');
 
                     return ListTile(
-                      onTap: () {
-                        //print("User: $name");
-                        Navigator.push(context, MaterialPageRoute(
-                            builder: (context)=> UserProfile(userId: uid,)));
+                      // onTap: () {
+                      //   //print("User: $name");
+                      //   if (currentUserId = uid)
+                      //   Navigator.push(context, MaterialPageRoute(
+                      //       builder: (context)=> UserProfile(userId: uid,)));
+                      //
+                      // }
+                      //
+                      onTap: ()=> currentUserId==uid?
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>MyProfile(userId: uid)))
+                          :Navigator.push(context, MaterialPageRoute(builder: (context)=>UserProfile(userId: uid,))),
 
-                      }
-                      ,
                       title: Text(name),
                       subtitle: Text("Hello"),
                       leading: Icon(Icons.person),
