@@ -28,8 +28,9 @@ class CookingStepsModel{
 
   List<String>? cooking_steps;
   List<String>? recipe_ingredients;
+  List<String>? likes;
 
-  CookingStepsModel({this.recipe_id_pk, this.recipe_title, this.recipe_description,this.num_of_servings, this.recipe_ingredients, this.prepare_duration ,this.cooking_duration, this.image_url, this.cooking_steps, this.posted_date, this.total_duration, this.p_duration, this.c_duration, this.testDurationFinal});
+  CookingStepsModel({this.recipe_id_pk, this.recipe_title, this.recipe_description,this.num_of_servings, this.recipe_ingredients, this.prepare_duration ,this.cooking_duration, this.image_url, this.cooking_steps, this.posted_date, this.total_duration, this.p_duration, this.c_duration, this.testDurationFinal, this.likes});
 
   List<String>? toJson_CookingDirections(){
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -59,4 +60,11 @@ class CookingStepsModel{
 
     return recipe_ingredients;
   }
+
+  List<String>? toJson_Likes(){
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+
+    return likes;
+  }
+
 }
