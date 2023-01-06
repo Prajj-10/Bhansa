@@ -101,7 +101,7 @@ class _ReviewsState extends State<Reviews> {
       'Time': DateTime.now().toString(),
       'Reviewed By': u_name,
       'Profile Picture': photo,
-      'U-ID': user?.uid
+      'Posted byId': user?.uid
 
     });
 
@@ -155,12 +155,12 @@ class _ReviewsState extends State<Reviews> {
 
 class Review extends StatefulWidget {
 
-  var review, reviewed_by, profile_picture, posted_time;
+  var review, reviewed_by, profile_picture, posted_time, posted_byId;
 
-  Review({Key? key, required this.review, required this.reviewed_by, required this.profile_picture, required this.posted_time}) : super(key: key);
+  Review({Key? key, required this.review, required this.reviewed_by, required this.profile_picture, required this.posted_time, required this.posted_byId}) : super(key: key);
 
   @override
-  State<Review> createState() => _ReviewState(review: this.review, reviewed_by: this.reviewed_by, profile_picture: this.profile_picture, posted_time: this.posted_time);
+  State<Review> createState() => _ReviewState();
 
   factory Review.fromDocument(DocumentSnapshot documentS){
     return Review(
@@ -168,6 +168,8 @@ class Review extends StatefulWidget {
       reviewed_by: documentS['Reviewed By'],
       profile_picture: documentS['Profile Picture'],
       posted_time: documentS['Time'],
+      posted_byId: documentS['Posted byId'],
+
     );
   }
 }
@@ -175,53 +177,32 @@ class Review extends StatefulWidget {
 class _ReviewState extends State<Review> {
   CollectionReference recipeReviews = FirebaseFirestore.instance.collection('recipe_reviews');
 
-  var u_name;
-  var photo;
+  var current_u_name;
+  var current_photo;
 
-  var review_data;
-  var date_data;
 
   final ref = FirebaseDatabase.instance.ref('users');
   final user = FirebaseAuth.instance.currentUser;
 
 
 
-  void getDetails() async{
+  void getCurrentDetails(String docId) async{
 
-    var userDetails = await FirebaseFirestore.instance.collection('users').doc(user?.uid).get();
+    var userDetails = await FirebaseFirestore.instance.collection('users').doc(docId).get();
 
     setState(() {
-      u_name = userDetails.data()!['username'];
-      photo = userDetails.data()!['profile picture'];
+      current_u_name = userDetails.data()!['username'];
+      current_photo = userDetails.data()!['profile picture'];
     });
   }
-
-  var review, reviewed_by, profile_picture, posted_time;
-
-  _ReviewState({required this.review, required this.reviewed_by, required this.profile_picture, required this.posted_time,});
-
-
-  factory _ReviewState.fromDocument(DocumentSnapshot documentS){
-    return _ReviewState(
-      review: documentS['Review'],
-      reviewed_by: documentS['Reviewed By'],
-      profile_picture: documentS['Profile Picture'],
-      posted_time: documentS['Time'],
-    );
-  }
-
-
-
-  @override
-  void initState() {
-    getDetails();
-    super.initState();
-  }
-
+  
 
 
   @override
   Widget build(BuildContext context) {
+
+    getCurrentDetails(widget.posted_byId);
+
     return Column(
       children:[
 
@@ -230,13 +211,14 @@ class _ReviewState extends State<Review> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                reviewed_by ?? 'Guest',
+                 current_u_name ?? 'Guest',
+                //widget.reviewed_by,
                 style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
               Text(
                 //posted_time.substring(0, 10) ?? '',
                 //'Time',
-                posted_time.substring(0, 10) ?? 'Null',
+                widget.posted_time.substring(0, 10) ?? 'Null',
                 //posted_time,
                 style: TextStyle(fontSize: 12),
               ),
@@ -244,12 +226,12 @@ class _ReviewState extends State<Review> {
           ),
 
           leading: CircleAvatar(
-            backgroundImage: NetworkImage(photo ?? 'https://cdn-icons-png.flaticon.com/512/3177/3177440.png'),
+            backgroundImage: NetworkImage(current_photo ?? 'https://cdn-icons-png.flaticon.com/512/3177/3177440.png'),
           ),
           subtitle: Text(
             //reviewsController ?? 'reviews',
             //'This is good',
-            review ?? 'Null',
+            widget.review ?? 'Null',
             style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
           ),
           //trailing:
@@ -261,6 +243,3 @@ class _ReviewState extends State<Review> {
     );
   }
 }
-
-
-
