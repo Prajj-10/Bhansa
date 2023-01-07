@@ -12,7 +12,9 @@ class Save_Button extends StatelessWidget {
       circleSize: 0,
       likeBuilder: (bool isSaved){
         return Icon(
-          isSaved? Icons.bookmark : Icons.bookmark_border_outlined, color: Colors.blue,
+          isSaved? Icons.bookmark : Icons.bookmark_border_outlined,
+          color: isSaved ? Colors.blue : Colors.grey,
+          size: 25,
         );
       },
     );

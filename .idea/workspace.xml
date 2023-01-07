@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf33b20f-9bb0-49da-9eb9-3fc611fe96ce" name="Changes" comment="follow and unfollow users">
+    <list default="true" id="bf33b20f-9bb0-49da-9eb9-3fc611fe96ce" name="Changes" comment="followers following count">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_30_2022_2_48_PM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_30_2022_2_48_PM__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/profileDetail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/profileDetail.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/UserProfile/userProfileDetail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/UserProfile/userProfileDetail.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/RecipeDetail_Page/recipeDetails.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/RecipeDetail_Page/recipeDetails.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/custom/CustomButtons/likebutton.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomButtons/likebutton.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/custom/CustomButtons/saveButton.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomButtons/saveButton.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/custom/CustomListView/recipeListView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomListView/recipeListView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/model/cookingSteps_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/model/cookingSteps_model.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,7 +202,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672916399238</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="followers following count">
+      <created>1672918050570</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1672918050570</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -224,6 +236,7 @@
     <MESSAGE value="added user profile view" />
     <MESSAGE value="update tab state" />
     <MESSAGE value="follow and unfollow users" />
-    <option name="LAST_COMMIT_MESSAGE" value="follow and unfollow users" />
+    <MESSAGE value="followers following count" />
+    <option name="LAST_COMMIT_MESSAGE" value="followers following count" />
   </component>
 </project>

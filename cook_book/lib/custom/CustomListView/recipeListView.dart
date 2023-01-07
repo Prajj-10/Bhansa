@@ -89,8 +89,8 @@ class Recipe extends StatelessWidget {
                             Positioned(
                               right: 10,
                               bottom: 10,
-                              //child: Text("Bye", style: TextStyle(color: Colors.white),),
-                              child: Likes_Button(),
+                              child: Text("Bye", style: TextStyle(color: Colors.white),),
+                              //child: Likes_Button(),
                             )
                           ],
                         ),

@@ -1,19 +1,86 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 
-class Likes_Button extends StatelessWidget {
-   Likes_Button({Key? key}) : super(key: key);
-  var buttonSize=25.0;
+class Likes_Button extends StatefulWidget {
+  var recipeId;
+   Likes_Button({Key? key, this.recipeId}) : super(key: key);
+
+  @override
+  State<Likes_Button> createState() => _Likes_ButtonState();
+}
+
+class _Likes_ButtonState extends State<Likes_Button> {
+  int likeCount=0;
+  var currentUserId = FirebaseAuth.instance.currentUser?.uid;
+  var recipeReference = FirebaseFirestore.instance.collection("recipe_details");
+  List like_list = [];
+
+  Future<void> handleLike() async{
+    try{
+      if(like_list.contains(currentUserId)){
+        await recipeReference.doc(widget.recipeId)
+            .update({
+          'Likes':FieldValue.arrayRemove([currentUserId]),
+        });
+      }else {
+        await recipeReference.doc(widget.recipeId)
+            .update({
+          'Likes':FieldValue.arrayUnion([currentUserId]),
+        });
+      };
+    } catch(e){
+      print(e.toString());
+    }
+
+  }
+
+  void getLikes() async{
+    var like_ref = await FirebaseFirestore.instance.collection('recipe_details').doc(widget.recipeId).get();
+    setState(() {
+      like_list = like_ref.data()!['Likes'];
+      likeCount = like_list.length-1;
+    });
+
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return Container(
+
+    getLikes();
+    //likeCount = getLikeCount();
+    //likeCount = widget.likes_map.length.toInt()-1;
+    //isLiked = (likes[currentUserId]==true);
+    return Row(
+      children: [
+        IconButton(
+          onPressed: handleLike,
+          icon: Icon(
+              like_list.contains(currentUserId)? Icons.favorite : Icons.favorite_border_outlined,
+              color: like_list.contains(currentUserId)?  Colors.red : Colors.grey,
+              //isLiked ? Icons.favorite : Icons.favorite_border_outlined
+          ),
+
+        ),
+        Text(likeCount.toString()),
+      ],
+    );
+
+      /*Container(
       height: 30,
       width: 80,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
         color: Color(0xFF000000).withOpacity(0.5),
       ),
+
 
       child: LikeButton(
         size: buttonSize,
@@ -25,12 +92,12 @@ class Likes_Button extends StatelessWidget {
         ),
         likeBuilder: (bool isLiked) {
           return Icon(
-            Icons.heart_broken,
+            isLiked ? Icons.favorite : Icons.favorite_border_outlined,
             color: isLiked ? Colors.red : Colors.grey,
             size: buttonSize,
           );
         },
-        likeCount: 100,
+        *//*likeCount: getLikeCount(),
         countBuilder: (int? count, bool isLiked, String text) {
           var color = isLiked ? Colors.white : Colors.grey;
           if (count == 0) {
@@ -39,14 +106,13 @@ class Likes_Button extends StatelessWidget {
               style: TextStyle(color: color),
             );
           }
-
              return Text(
               text,
               style: TextStyle(color: color),
             );
-        },
+        },*//*
       ),
-    );
+    );*/
   }
 }
 

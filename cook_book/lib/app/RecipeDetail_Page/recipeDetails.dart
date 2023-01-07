@@ -138,7 +138,7 @@ class _RecipeDetailsState extends State<RecipeDetails> with TickerProviderStateM
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            Likes_Button(),
+                            Likes_Button(recipeId: widget.recipe_snapshot.id,),
                             Save_Button(),
                           ],
                         ),
