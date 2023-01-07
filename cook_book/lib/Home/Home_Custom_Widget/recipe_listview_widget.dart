@@ -28,7 +28,8 @@ class _RecipeListViewWidgetState extends State<RecipeListViewWidget> {
           height: 600,
           // color: Colors.red,
           child: ListView.builder(
-            physics: NeverScrollableScrollPhysics(),
+              physics: NeverScrollableScrollPhysics(),
+              //physics: AlwaysScrollableScrollPhysics(),
             //shrinkWrap: true,
               itemCount: snapshot.data?.docs.length,
               itemBuilder: (context, index){

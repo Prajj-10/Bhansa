@@ -80,24 +80,25 @@ class LoggedInWidgetState2 extends State<LoggedInWidget2> {
               appBar: AppBar(
                 backgroundColor: Color(0xFF061624).withOpacity(1.0),
 
-                //Old code
-                // title: const Text('Logged In'),
-                // centerTitle: true,
+                //Prajjwal Code
+                title: const Text('Logged In'),
+                centerTitle: true,
 
 
-                title: Row(
-                  children: [
-                    SizedBox(width: 10,),
-                    CircleAvatar(
-                      radius: 18,
-                      backgroundImage: NetworkImage(photo?? ""),
-                    ),
-                    SizedBox(width: 10,),
-
-                    BigText(text: "Hi! ${name} ", size: 16,)
-
-                  ],
-                ),
+                //New Code
+                // title: Row(
+                //   children: [
+                //     SizedBox(width: 10,),
+                //     CircleAvatar(
+                //       radius: 18,
+                //       backgroundImage: NetworkImage(photo?? ""),
+                //     ),
+                //     SizedBox(width: 10,),
+                //
+                //     BigText(text: "Hi! ${name} ", size: 16,)
+                //
+                //   ],
+                // ),
 
 
                 actions: [
@@ -112,57 +113,56 @@ class LoggedInWidgetState2 extends State<LoggedInWidget2> {
                 ],
               ),
 
-              //New Code
-              body: Column(
-                children: [
-                  InfoWidget(),
-                  Expanded(
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            FoodBodyPage(),
-                            InfoWidget2(),
-                            SizedBox(height: 20,),
-                            RecipeListViewWidget(),
-                          ],
-                        ),
-                      )),
-
-                ],
-
-              ),
-
-
-              // //The this the old code wirtten by Prajjwal
-              // body: Container(
-              //   alignment: Alignment.center,
-              //   color: Colors.blueGrey.shade900,
-              //   child: Column(
-              //     mainAxisAlignment: MainAxisAlignment.center,
-              //     children: [
-              //       const Text(
-              //         'Profile',
-              //         style: TextStyle(fontSize: 24),
-              //       ),
-              //       const SizedBox(height: 32),
-              //       CircleAvatar(
-              //         radius: 40,
-              //         backgroundImage: NetworkImage(photo?? ""),
-              //       ),
-              //       const SizedBox(height: 8),
-              //       Text(
-              //         name?? "Your name here.",
-              //         style: const TextStyle(color: Colors.white, fontSize: 16),
-              //       ),
-              //       const SizedBox(height: 8),
-              //       Text(
-              //         email?? "Your email here.",
-              //         style: const TextStyle(color: Colors.white, fontSize: 16),
-              //       ),
+              // //New Code
+              // body: NestedScrollView(
+              //   headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled){
+              //     return[
+              //       SliverList(delegate: SliverChildListDelegate([
+              //         InfoWidget(),
+              //         FoodBodyPage(),
+              //         InfoWidget2(),
+              //         SizedBox(height: 20,),
+              //       ]),)
+              //     ];
+              //   },
+              //   body: Expanded(
+              //     child: RecipeListViewWidget(),
               //
-              //     ],
               //   ),
+              //
               // ),
+
+
+              //The this the old code wirtten by Prajjwal
+              body: Container(
+                alignment: Alignment.center,
+                color: Colors.blueGrey.shade900,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Profile',
+                      style: TextStyle(fontSize: 24),
+                    ),
+                    const SizedBox(height: 32),
+                    CircleAvatar(
+                      radius: 40,
+                      backgroundImage: NetworkImage(photo?? ""),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      name?? "Your name here.",
+                      style: const TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      email?? "Your email here.",
+                      style: const TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+
+                  ],
+                ),
+              ),
             );
           }
           else{

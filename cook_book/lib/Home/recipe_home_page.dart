@@ -17,24 +17,25 @@ class _RecipeHomePageState extends State<RecipeHomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-          body: Column(
-            children: [
-              InfoWidget(),
-              Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        FoodBodyPage(),
-                        InfoWidget2(),
-                        SizedBox(height: 20,),
-                        RecipeListViewWidget(),
-                      ],
-                    ),
-                  )),
-
-            ],
+          body: NestedScrollView(
+            headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled){
+              return[
+                SliverList(delegate: SliverChildListDelegate([
+                  InfoWidget(),
+                  FoodBodyPage(),
+                  InfoWidget2(),
+                  SizedBox(height: 20,),
+                ]),)
+              ];
+            },
+            body: Expanded(
+              child: RecipeListViewWidget(),
 
           ),
+
+          ),
+
+
         ));
   }
 }

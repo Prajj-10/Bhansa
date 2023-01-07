@@ -23,7 +23,7 @@ class _NavigationState extends State<Navigation> {
   int index = 0;
 
   //Calling the pages (most be in sequential order)
-  List screen = [LoggedInWidget2(),  PostRecipe(), RecipeHomePage(), MyProfile(userId: FirebaseAuth.instance.currentUser?.uid,) ];
+  List screen = [RecipeHomePage(),  PostRecipe(), LoggedInWidget2(), MyProfile(userId: FirebaseAuth.instance.currentUser?.uid,) ];
 
 
   Widget build(BuildContext context) {
