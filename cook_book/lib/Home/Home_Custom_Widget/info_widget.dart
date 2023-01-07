@@ -15,13 +15,13 @@ class InfoWidget extends StatelessWidget{
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            BigText(text: "WHAT YOU WILL MAKE \n TODAY ?", size: 22, fontWeight: FontWeight.w700),
+            BigText(text: "WHAT YOU WILL MAKE \n TODAY ?", size: 18, fontWeight: FontWeight.w700),
             
             //TopRight Search Icon Button
             Center(
               child: Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
+                  borderRadius: BorderRadius.circular(40),
                   color: Color(0xFF89dad0),
                 ),
 

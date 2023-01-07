@@ -17,11 +17,14 @@ class _RecipeHomePageState extends State<RecipeHomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+          appBar: AppBar(
+            title: InfoWidget(),
+          ),
           body: NestedScrollView(
             headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled){
               return[
                 SliverList(delegate: SliverChildListDelegate([
-                  InfoWidget(),
+                  //InfoWidget(),
                   FoodBodyPage(),
                   InfoWidget2(),
                   SizedBox(height: 20,),
