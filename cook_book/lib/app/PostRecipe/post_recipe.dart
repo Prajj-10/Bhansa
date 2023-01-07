@@ -630,7 +630,7 @@ class _PostRecipeState extends State<PostRecipe> {
       'Posted By':user?.uid,
       'Photo' : steps_model.image_url,
       'Posted On' : postedDateTime,
-      'Likes': 'test Like',
+      'Likes': steps_model.toJson_Likes(),
 
 
     })
