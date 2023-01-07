@@ -79,6 +79,9 @@ class _PostRecipeState extends State<PostRecipe> {
     steps_model.recipe_ingredients = new List<String>.empty(growable: true);
     steps_model.recipe_ingredients!.add("");
 
+    steps_model.likes = new List<String>.empty(growable: true);
+    steps_model.likes!.add("");
+
     //Fluttertoast.showToast(msg: "Logged In successfully.");
     FirebaseFirestore.instance
         .collection("users")
@@ -627,7 +630,7 @@ class _PostRecipeState extends State<PostRecipe> {
       'Posted By':user?.uid,
       'Photo' : steps_model.image_url,
       'Posted On' : postedDateTime,
-      'Likes': steps_model.likes,
+      'Likes': 'test Like',
 
 
     })
