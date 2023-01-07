@@ -626,7 +626,9 @@ class _PostRecipeState extends State<PostRecipe> {
       'Total Duration': steps_model.testDurationFinal,
       'Posted By':user?.uid,
       'Photo' : steps_model.image_url,
-      'Posted On' : postedDateTime
+      'Posted On' : postedDateTime,
+      'Likes': steps_model.likes,
+
 
     })
         .then((value) => print("Posted ${value.id}"))

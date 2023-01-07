@@ -61,8 +61,8 @@ class CookingStepsModel{
     return recipe_ingredients;
   }
 
-  List<String>? toJson_Likes(){
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+  Map<String,dynamic> toJson_Likes(){
+    final Map<String, dynamic> likes = new Map<String, dynamic>();
 
     return likes;
   }
