@@ -5,6 +5,7 @@ import 'package:cook_book/Home/Home_Custom_Widget/small_text2.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/RecipeDetail_Page/recipeDetails.dart';
+import '../../custom/CustomButtons/likebutton.dart';
 import 'icon_and_text.dart';
 
 class RecipeListViewWidget extends StatefulWidget {
@@ -82,12 +83,22 @@ class _RecipeListViewWidgetState extends State<RecipeListViewWidget> {
                                     SizedBox(height: 10,),
                                     Row(
                                       children: [
-                                        IconAndTextWidget(
-                                            icon: Icons.circle_sharp,
-                                            text: "Normal",
-                                            iconColor: Colors.orangeAccent),
+                                        Container(
+                                            height: 27,
+                                            width: 70,
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(30),
+                                              //color: Color(0xFF000000).withOpacity(0.5),
+                                              color: index.isEven? Color(0xFF69c5df).withOpacity(0.5) : Color(0xFF9294cc).withOpacity(0.5),
+                                            ),
+                                            child: Likes_Button(recipeId: snapshot.data?.docs[index].id)
+                                        ),
 
-                                        SizedBox(width: 2,),
+                                        // IconAndTextWidget(
+                                        //     icon: Icons.circle_sharp,
+                                        //     text: "Normal",
+                                        //     iconColor: Colors.orangeAccent),
+
                                         IconAndTextWidget(
                                             icon: Icons.cookie_outlined,
                                             text: "${snapshot.data?.docs[index]['Number of Servings']}",

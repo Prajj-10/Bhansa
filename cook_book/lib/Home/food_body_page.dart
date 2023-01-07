@@ -5,6 +5,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 
 import '../app/RecipeDetail_Page/recipeDetails.dart';
+import '../custom/CustomButtons/likebutton.dart';
 import 'Home_Custom_Widget/info_widget_2.dart';
 import 'Home_Custom_Widget/recipe_listview_widget.dart';
 import 'Home_Custom_Widget/small_text.dart';
@@ -139,10 +140,20 @@ class _FoodBodyPageState extends State<FoodBodyPage> {
                                         Row(
                                           children: [
 
-                                            //For Rating Star
-                                            Wrap(
-                                              children: List.generate(5, (index) => Icon(Icons.star, color: Colors.cyanAccent, size: 15,)),
+                                            Container(
+                                              height: 30,
+                                              width: 80,
+                                              decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(30),
+                                                  //color: Color(0xFF000000).withOpacity(0.5),
+                                                color: index.isEven? Color(0xFF69c5df).withOpacity(0.5) : Color(0xFF9294cc).withOpacity(0.5),
+                                              ),
+                                                child: Likes_Button(recipeId: snapshot.data?.docs[index].id)
                                             ),
+                                            //For Rating Star
+                                            // Wrap(
+                                            //   children: List.generate(5, (index) => Icon(Icons.star, color: Colors.cyanAccent, size: 15,)),
+                                            // ),
 
                                             SizedBox(width: 10,),
                                             SmallText(text: "4.5",),
@@ -156,6 +167,8 @@ class _FoodBodyPageState extends State<FoodBodyPage> {
 
                                           ],
                                         ),
+
+
 
                                         // SizedBox(height: 10,),
                                         //
