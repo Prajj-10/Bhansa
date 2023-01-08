@@ -72,9 +72,9 @@ class _RecipeDetailsState extends State<RecipeDetails> with TickerProviderStateM
                 ),
               ],
               flexibleSpace: FlexibleSpaceBar(
-                background: Image.network(widget.recipe_snapshot!.get('Photo') ?? "https://t4.ftcdn.net/jpg/05/03/18/69/360_F_503186921_YSvAEFFLL56hfLH9UEW0RTJ7sqk3XhvY.jpg",
+                background: Image.network(widget.recipe_snapshot!.get('Photo'),
                   fit: BoxFit.cover,
-                ),
+                ) ?? Image.asset("assets/error.jpg", fit: BoxFit.cover,),
                 title: Container(
                   width: size.width*0.6,
                   child: Text(widget.recipe_snapshot!.get('Title') ?? "Recipe Title",
@@ -117,7 +117,8 @@ class _RecipeDetailsState extends State<RecipeDetails> with TickerProviderStateM
                                 Center(
                                   child: ClipOval(
                                     child: Image.network(writer_profilePicture?? "https://img.freepik.com/premium-vector/smiling-chef-cartoon-character_8250-10.jpg?w=2000",
-                                      height: 50,
+                                    //child: Image.network("https://img.freepik.com/premium-vector/smiling-chef-cartoon-character_8250-10.jpg?w=2000",
+                                height: 50,
                                       width: 50,
                                       fit: BoxFit.cover,
                                     ),
@@ -135,12 +136,19 @@ class _RecipeDetailsState extends State<RecipeDetails> with TickerProviderStateM
                             ),
                           ),
                         ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Likes_Button(recipeId: widget.recipe_snapshot.id,),
-                            Save_Button(),
-                          ],
+                        Container(
+                          height: 30,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            color: Color(0xFFFFFFFF).withOpacity(0.2),
+                          ),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Likes_Button(recipeId: widget.recipe_snapshot.id,),
+                              Save_Button(),
+                            ],
+                          ),
                         ),
                       ],
                     ),

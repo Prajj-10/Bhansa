@@ -4,15 +4,17 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf33b20f-9bb0-49da-9eb9-3fc611fe96ce" name="Changes" comment="followers following count">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_30_2022_2_48_PM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_30_2022_2_48_PM__Changes_.xml" beforeDir="false" />
+    <list default="true" id="bf33b20f-9bb0-49da-9eb9-3fc611fe96ce" name="Changes" comment="added like function">
+      <change afterPath="$PROJECT_DIR$/cook_book/assets/error.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/Home/Home_Custom_Widget/recipe_listview_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/Home/Home_Custom_Widget/recipe_listview_widget.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/Home/food_body_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/Home/food_body_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cook_book/lib/app/RecipeDetail_Page/recipeDetails.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/RecipeDetail_Page/recipeDetails.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cook_book/lib/custom/CustomButtons/likebutton.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomButtons/likebutton.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cook_book/lib/custom/CustomButtons/saveButton.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomButtons/saveButton.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/custom/CustomListView/directionsListView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomListView/directionsListView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/custom/CustomListView/ingredientsListView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomListView/ingredientsListView.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cook_book/lib/custom/CustomListView/recipeListView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomListView/recipeListView.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/model/cookingSteps_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/model/cookingSteps_model.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +56,7 @@
     <property name="cidr.known.project.marker" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/cook_book/lib/app/UserProfile" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/cook_book/assets" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -63,11 +65,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\College\L5-2\Mobile app development\Final Assignment\Cook-Book\cook_book\assets" />
       <recent name="E:\College\L5-2\Mobile app development\Final Assignment\Cook-Book\cook_book\lib\app\UserProfile" />
       <recent name="E:\College\L5-2\Mobile app development\Final Assignment\Cook-Book\cook_book\lib\custom\ExpandedWidgets" />
       <recent name="E:\College\L5-2\Mobile app development\Final Assignment\Cook-Book\cook_book\lib\app\RecipeDetail_Page" />
       <recent name="D:\L5\Assignment\Mobile Application\Assignment-2\Cook Book Codes\cook_book\assets" />
-      <recent name="E:\College\L5-2\Mobile app development\Final Assignment\Cook-Book\cook_book\lib\app" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\College\L5-2\Mobile app development\Final Assignment\Cook-Book\cook_book\lib\app\RecipeDetail_Page" />
@@ -209,7 +211,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672918050570</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="added like function">
+      <created>1673114741776</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1673114741776</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -237,6 +246,7 @@
     <MESSAGE value="update tab state" />
     <MESSAGE value="follow and unfollow users" />
     <MESSAGE value="followers following count" />
-    <option name="LAST_COMMIT_MESSAGE" value="followers following count" />
+    <MESSAGE value="added like function" />
+    <option name="LAST_COMMIT_MESSAGE" value="added like function" />
   </component>
 </project>

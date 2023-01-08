@@ -14,6 +14,7 @@ class Directions extends StatelessWidget {
 
     //print(ingList);
     return ListView(
+      padding: EdgeInsets.only(top:15),
       /*mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,*/
       children: ingredients.entries.map((entry) {

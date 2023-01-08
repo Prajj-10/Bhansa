@@ -40,12 +40,15 @@ class Recipe extends StatelessWidget {
           case ConnectionState.active:
             if(!snapshot.hasData){
               //no data
-              return Container(
-                child: const Text("No data available"),
+              return Center(
+                child: Container(
+                  child: const Text("No data available"),
+                ),
               );
             }
             else{
               return ListView.builder(
+                padding: EdgeInsets.only(top: 2),
                 primary: true,
                 shrinkWrap: true,
                 scrollDirection: Axis.vertical,

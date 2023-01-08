@@ -84,8 +84,8 @@ class _RecipeListViewWidgetState extends State<RecipeListViewWidget> {
                                     Row(
                                       children: [
                                         Container(
-                                            height: 27,
-                                            width: 70,
+                                            height: 30,
+                                            //width: 90,
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(30),
                                               //color: Color(0xFF000000).withOpacity(0.5),

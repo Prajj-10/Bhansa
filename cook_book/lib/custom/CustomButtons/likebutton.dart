@@ -5,7 +5,7 @@ import 'package:like_button/like_button.dart';
 
 class Likes_Button extends StatefulWidget {
   var recipeId;
-   Likes_Button({Key? key, this.recipeId}) : super(key: key);
+   Likes_Button({Key? key, required this.recipeId}) : super(key: key);
 
   @override
   State<Likes_Button> createState() => _Likes_ButtonState();
@@ -58,19 +58,26 @@ class _Likes_ButtonState extends State<Likes_Button> {
     //likeCount = getLikeCount();
     //likeCount = widget.likes_map.length.toInt()-1;
     //isLiked = (likes[currentUserId]==true);
-    return Row(
-      children: [
-        IconButton(
-          onPressed: handleLike,
-          icon: Icon(
-              like_list.contains(currentUserId)? Icons.favorite : Icons.favorite_border_outlined,
-              color: like_list.contains(currentUserId)?  Colors.red : Colors.grey,
-              //isLiked ? Icons.favorite : Icons.favorite_border_outlined
-          ),
+    return Padding(
+        padding: const EdgeInsets.only(right: 10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            IconButton(
+              padding: EdgeInsets.all(0),
+              onPressed: handleLike,
+              icon: Icon(
+                  like_list.contains(currentUserId)? Icons.favorite : Icons.favorite_border_outlined,
+                  color: like_list.contains(currentUserId)?  Colors.red : Colors.grey,
+                  size: 28,
+                  //isLiked ? Icons.favorite : Icons.favorite_border_outlined
+              ),
 
+            ),
+            Text(likeCount.toString(), style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,),),
+          ],
         ),
-        Text(likeCount.toString()),
-      ],
     );
 
       /*Container(

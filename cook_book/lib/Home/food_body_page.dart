@@ -142,7 +142,7 @@ class _FoodBodyPageState extends State<FoodBodyPage> {
 
                                             Container(
                                               height: 30,
-                                              width: 80,
+                                              //width: 90,
                                               decoration: BoxDecoration(
                                                   borderRadius: BorderRadius.circular(30),
                                                   //color: Color(0xFF000000).withOpacity(0.5),

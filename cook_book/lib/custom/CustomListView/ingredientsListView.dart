@@ -15,6 +15,7 @@ class Ingredients extends StatelessWidget {
 
     //print(ingList);
     return ListView(
+      padding: EdgeInsets.only(top: 15),
         children: ingredients.entries.map((entry) {
          // var w = Text(entry.value +": " +entry.key.toString());
 
