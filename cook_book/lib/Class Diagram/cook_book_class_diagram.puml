@@ -1,0 +1,838 @@
+@startuml
+set namespaceSeparator ::
+
+class "cook_book::app::EditProfile::editProfile.dart::EditProfile" {
+  +State<EditProfile> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "cook_book::app::EditProfile::editProfile.dart::EditProfile"
+
+class "cook_book::app::EditProfile::editProfile.dart::_EditProfileState" {
+  +User? user
+  +UserModel loggedInUser
+  -CollectionReference<Object?> _userReference
+  +File? profilePicture
+  -TextEditingController _nameController
+  -TextEditingController _usernameController
+  -TextEditingController _descriptionController
+  +Future<dynamic> imagePicker()
+  +void initState()
+  -Future<dynamic> _updateProfile()
+  +Widget build()
+}
+
+"cook_book::app::EditProfile::editProfile.dart::_EditProfileState" o-- "firebase_auth::firebase_auth.dart::User"
+"cook_book::app::EditProfile::editProfile.dart::_EditProfileState" o-- "cook_book::model::user_model.dart::UserModel"
+"cook_book::app::EditProfile::editProfile.dart::_EditProfileState" o-- "cloud_firestore::cloud_firestore.dart::CollectionReference<Object>"
+"cook_book::app::EditProfile::editProfile.dart::_EditProfileState" o-- "dart::io::File"
+"cook_book::app::EditProfile::editProfile.dart::_EditProfileState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State" <|-- "cook_book::app::EditProfile::editProfile.dart::_EditProfileState"
+
+class "cook_book::app::EditProfile::editProfile.dart::editProfile_InputField" {
+  +dynamic txt_Label
+  +int max_Length
+  +int max_Lines
+  +dynamic placeholder
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "cook_book::app::EditProfile::editProfile.dart::editProfile_InputField"
+
+class "cook_book::app::EditProfile::editProfile.dart::FetchData" {
+  +State<FetchData> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "cook_book::app::EditProfile::editProfile.dart::FetchData"
+
+class "cook_book::app::EditProfile::editProfile.dart::_FetchDataState" {
+  +User? user
+  +UserModel loggedInUser
+  +void initState()
+  +Widget build()
+}
+
+"cook_book::app::EditProfile::editProfile.dart::_FetchDataState" o-- "firebase_auth::firebase_auth.dart::User"
+"cook_book::app::EditProfile::editProfile.dart::_FetchDataState" o-- "cook_book::model::user_model.dart::UserModel"
+"flutter::src::widgets::framework.dart::State" <|-- "cook_book::app::EditProfile::editProfile.dart::_FetchDataState"
+
+class "cook_book::app::EditProfile::imagePicker.dart::Image_Picker" {
+  +Function pickImage
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "cook_book::app::EditProfile::imagePicker.dart::Image_Picker"
+
+class "cook_book::app::loginpage::login.dart::LoginScreen" {
+  +State<LoginScreen> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "cook_book::app::loginpage::login.dart::LoginScreen"
+
+class "cook_book::app::loginpage::login.dart::_LoginScreenState" {
+  +GlobalKey<FormState> formKey
+  +TextEditingController emailController
+  +TextEditingController passwordController
+  +FirebaseAuth auth
+  +String? errorMessage
+  +bool passwordVisible
+  +void initState()
+  +Widget build()
+  +void signIn()
+}
+
+"cook_book::app::loginpage::login.dart::_LoginScreenState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"cook_book::app::loginpage::login.dart::_LoginScreenState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"cook_book::app::loginpage::login.dart::_LoginScreenState" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth"
+"flutter::src::widgets::framework.dart::State" <|-- "cook_book::app::loginpage::login.dart::_LoginScreenState"
+"cook_book::app::loginpage::login.dart::InputValidationMixin" <|-- "cook_book::app::loginpage::login.dart::_LoginScreenState"
+
+abstract class "cook_book::app::loginpage::login.dart::InputValidationMixin" {
+  +bool isPasswordValid()
+  +bool isEmailValid()
+}
+
+class "cook_book::app::loginpage::loginPage.dart::LoginPage" {
+  +State<LoginPage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "cook_book::app::loginpage::loginPage.dart::LoginPage"
+
+class "cook_book::app::loginpage::loginPage.dart::_LoginPageState" {
+  {static} +Future<User?> loginUsingEmail()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "cook_book::app::loginpage::loginPage.dart::_LoginPageState"
+"flutter::src::widgets::ticker_provider.dart::TickerProviderStateMixin" <|-- "cook_book::app::loginpage::loginPage.dart::_LoginPageState"
+
+class "cook_book::app::MyProfile::myProfile.dart::MyProfile" {
+  +State<MyProfile> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "cook_book::app::MyProfile::myProfile.dart::MyProfile"
+
+class "cook_book::app::MyProfile::myProfile.dart::_MyProfileState" {
+  +User? user
+  +dynamic name
+  +dynamic username
+  +dynamic description
+  +dynamic profilePicture
+  -void _getUserDetails()
+  +void initState()
+  +Widget build()
+}
+
+"cook_book::app::MyProfile::myProfile.dart::_MyProfileState" o-- "firebase_auth::firebase_auth.dart::User"
+"flutter::src::widgets::framework.dart::State" <|-- "cook_book::app::MyProfile::myProfile.dart::_MyProfileState"
+
+class "cook_book::app::MyProfile::profileDetail.dart::ProfileDetail" {
+  +dynamic name
+  +dynamic username
+  +dynamic description
+  +dynamic profilePicture
+  +State<ProfileDetail> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "cook_book::app::MyProfile::profileDetail.dart::ProfileDetail"
+
+class "cook_book::app::MyProfile::profileDetail.dart::_ProfileDetailState" {
+  +int noOfFollowers
+  +int noOfFollowing
+  +String? currentUserId
+  +CollectionReference<Map<String, dynamic>> followersRef
+  +CollectionReference<Map<String, dynamic>> followingRef
+  +dynamic getFollowers()
+  +dynamic getFollowings()
+  +void initState()
+  +Widget build()
+}
+
+"cook_book::app::MyProfile::profileDetail.dart::_ProfileDetailState" o-- "cloud_firestore::cloud_firestore.dart::CollectionReference<Map<String, dynamic>>"
+"flutter::src::widgets::framework.dart::State" <|-- "cook_book::app::MyProfile::profileDetail.dart::_ProfileDetailState"
+
+class "cook_book::app::MyProfile::profileDetail.dart::FollowButton" {
+  +double btnHeight
+  +double btnWidth
+  +String number
+  +String name
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "cook_book::app::MyProfile::profileDetail.dart::FollowButton"
+
+class "cook_book::app::PostRecipe::post_recipe.dart::PostRecipe" {
+  +State<PostRecipe> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "cook_book::app::PostRecipe::post_recipe.dart::PostRecipe"
+
+class "cook_book::app::PostRecipe::post_recipe.dart::_PostRecipeState" {
+  +CollectionReference<Object?> recipeDetails
+  +String? ingredients
+  +String? recipe_title
+  +int? num_of_servings
+  +GlobalKey<FormState> globalKey
+  +CookingStepsModel steps_model
+  +DateTime postedDateTime
+  +User? user
+  +UserModel loggedInUser
+  -Duration _duration
+  +Duration cook_duration
+  +Duration prep_duration
+  +Duration t_duration
+  +dynamic file
+  +void initState()
+  +Widget build()
+  +dynamic calcTotalDuration()
+  -dynamic _getFromGallery()
+  +Future<dynamic> uploadImage()
+  +Future<void> addRecipe()
+  -Widget _uiWidget()
+  -Widget _directionContainer()
+  +Widget stepContainerUI()
+  +void addStepControl()
+  +void removeStepControl()
+  -Widget _ingredientsContainer()
+  +Widget stepContainerUI_ingredients()
+  +void addStepControl_ingredients()
+  +void removeStepControl_ingredients()
+  +bool validateAndSave()
+}
+
+"cook_book::app::PostRecipe::post_recipe.dart::_PostRecipeState" o-- "cloud_firestore::cloud_firestore.dart::CollectionReference<Object>"
+"cook_book::app::PostRecipe::post_recipe.dart::_PostRecipeState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"cook_book::app::PostRecipe::post_recipe.dart::_PostRecipeState" o-- "cook_book::model::cookingSteps_model.dart::CookingStepsModel"
+"cook_book::app::PostRecipe::post_recipe.dart::_PostRecipeState" o-- "firebase_auth::firebase_auth.dart::User"
+"cook_book::app::PostRecipe::post_recipe.dart::_PostRecipeState" o-- "cook_book::model::user_model.dart::UserModel"
+"flutter::src::widgets::framework.dart::State" <|-- "cook_book::app::PostRecipe::post_recipe.dart::_PostRecipeState"
+
+class "cook_book::app::PostRecipe::storage_services.dart::Storage" {
+  +FirebaseStorage storage
+  +Future<void> uploadImage()
+}
+
+"cook_book::app::PostRecipe::storage_services.dart::Storage" o-- "firebase_storage::firebase_storage.dart::FirebaseStorage"
+
+class "cook_book::app::Preferences::preferences.dart::Preferences" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "cook_book::app::Preferences::preferences.dart::Preferences"
+
+class "cook_book::app::RecipeDetail_Page::recipeDetails.dart::RecipeDetails" {
+  +DocumentSnapshot<Object?> recipe_snapshot
+  +State<RecipeDetails> createState()
+}
+
+"cook_book::app::RecipeDetail_Page::recipeDetails.dart::RecipeDetails" o-- "cloud_firestore::cloud_firestore.dart::DocumentSnapshot<Object>"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "cook_book::app::RecipeDetail_Page::recipeDetails.dart::RecipeDetails"
+
+class "cook_book::app::RecipeDetail_Page::recipeDetails.dart::_RecipeDetailsState" {
+  +dynamic writer_name
+  +dynamic writer_username
+  +dynamic writer_profilePicture
+  +dynamic writer_id
+  -TabController _controller
+  +dynamic currentUserId
+  -void _getWriterDetails()
+  +void initState()
+  +Widget build()
+}
+
+"cook_book::app::RecipeDetail_Page::recipeDetails.dart::_RecipeDetailsState" o-- "flutter::src::material::tab_controller.dart::TabController"
+"flutter::src::widgets::framework.dart::State" <|-- "cook_book::app::RecipeDetail_Page::recipeDetails.dart::_RecipeDetailsState"
+"flutter::src::widgets::ticker_provider.dart::TickerProviderStateMixin" <|-- "cook_book::app::RecipeDetail_Page::recipeDetails.dart::_RecipeDetailsState"
+
+class "cook_book::app::RecipeDetail_Page::reviews.dart::Reviews" {
+  +dynamic postId
+  +State<Reviews> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "cook_book::app::RecipeDetail_Page::reviews.dart::Reviews"
+
+class "cook_book::app::RecipeDetail_Page::reviews.dart::_ReviewsState" {
+  +CollectionReference<Object?> recipeReviews
+  +dynamic u_name
+  +dynamic photo
+  +DatabaseReference ref
+  +User? user
+  +TextEditingController reviewsController
+  +dynamic postId
+  +void getDetails()
+  +void initState()
+  +dynamic buildReviews()
+  +dynamic addReview()
+  +Widget build()
+}
+
+"cook_book::app::RecipeDetail_Page::reviews.dart::_ReviewsState" o-- "cloud_firestore::cloud_firestore.dart::CollectionReference<Object>"
+"cook_book::app::RecipeDetail_Page::reviews.dart::_ReviewsState" o-- "firebase_database::firebase_database.dart::DatabaseReference"
+"cook_book::app::RecipeDetail_Page::reviews.dart::_ReviewsState" o-- "firebase_auth::firebase_auth.dart::User"
+"cook_book::app::RecipeDetail_Page::reviews.dart::_ReviewsState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State" <|-- "cook_book::app::RecipeDetail_Page::reviews.dart::_ReviewsState"
+
+class "cook_book::app::RecipeDetail_Page::reviews.dart::Review" {
+  +dynamic review
+  +dynamic reviewed_by
+  +dynamic profile_picture
+  +dynamic posted_time
+  +dynamic posted_byId
+  +State<Review> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "cook_book::app::RecipeDetail_Page::reviews.dart::Review"
+
+class "cook_book::app::RecipeDetail_Page::reviews.dart::_ReviewState" {
+  +CollectionReference<Object?> recipeReviews
+  +dynamic current_u_name
+  +dynamic current_photo
+  +DatabaseReference ref
+  +User? user
+  +void getCurrentDetails()
+  +Widget build()
+}
+
+"cook_book::app::RecipeDetail_Page::reviews.dart::_ReviewState" o-- "cloud_firestore::cloud_firestore.dart::CollectionReference<Object>"
+"cook_book::app::RecipeDetail_Page::reviews.dart::_ReviewState" o-- "firebase_database::firebase_database.dart::DatabaseReference"
+"cook_book::app::RecipeDetail_Page::reviews.dart::_ReviewState" o-- "firebase_auth::firebase_auth.dart::User"
+"flutter::src::widgets::framework.dart::State" <|-- "cook_book::app::RecipeDetail_Page::reviews.dart::_ReviewState"
+
+class "cook_book::app::registration_page::auth_services.dart::Auth" {
+  -FirebaseAuth _firebaseAuth
+  +User? currentUser
+  +Stream<User?> authStateChanges
+  +Future<void> sendPasswordResetEmail()
+  +Future<void> signInWithEmailAndPassword()
+  +Future<void> createUserWithEmailAndPassword()
+  +Future<void> signOut()
+}
+
+"cook_book::app::registration_page::auth_services.dart::Auth" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth"
+"cook_book::app::registration_page::auth_services.dart::Auth" o-- "firebase_auth::firebase_auth.dart::User"
+"cook_book::app::registration_page::auth_services.dart::Auth" o-- "dart::async::Stream<User>"
+
+class "cook_book::app::registration_page::registration.dart::RegistrationPage" {
+  +State<RegistrationPage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "cook_book::app::registration_page::registration.dart::RegistrationPage"
+
+class "cook_book::app::registration_page::registration.dart::_RegistrationPageState" {
+  +GlobalKey<FormState> formKey
+  +FirebaseFirestore firestore
+  +FirebaseAuth auth
+  +String? errorMessage
+  +TextEditingController nameController
+  +TextEditingController emailController
+  +TextEditingController passwordController
+  +TextEditingController confirmPasswordController
+  +TextEditingController userNameController
+  +bool passwordVisible
+  +void initState()
+  +Widget build()
+  +void signUp()
+  +dynamic postDetailsToFireStore()
+  +dynamic isUsernameTaken()
+}
+
+"cook_book::app::registration_page::registration.dart::_RegistrationPageState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"cook_book::app::registration_page::registration.dart::_RegistrationPageState" o-- "cloud_firestore::cloud_firestore.dart::FirebaseFirestore"
+"cook_book::app::registration_page::registration.dart::_RegistrationPageState" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth"
+"cook_book::app::registration_page::registration.dart::_RegistrationPageState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State" <|-- "cook_book::app::registration_page::registration.dart::_RegistrationPageState"
+"cook_book::app::registration_page::registration.dart::InputValidationMixin" <|-- "cook_book::app::registration_page::registration.dart::_RegistrationPageState"
+
+abstract class "cook_book::app::registration_page::registration.dart::InputValidationMixin" {
+  +bool isNameValid()
+  +bool passwordStructure()
+  +bool isEmailValid()
+}
+
+class "cook_book::app::registration_page::signUp.dart::RegistrationPage" {
+  +State<RegistrationPage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "cook_book::app::registration_page::signUp.dart::RegistrationPage"
+
+class "cook_book::app::registration_page::signUp.dart::_RegistrationPageState" {
+  +GlobalKey<FormState> formKey
+  +FirebaseAuth auth
+  +String? errorMessage
+  +TextEditingController nameController
+  +TextEditingController emailController
+  +TextEditingController passwordController
+  +TextEditingController confirmPasswordController
+  +CollectionReference<Object?> userRegistration
+  +String? nametxt
+  +String? emailtxt
+  +String? passwordtxt
+  +String? confirmPasswordtxt
+  +Widget build()
+  +void signUp()
+  +dynamic clearControllers()
+  +Future<void> createUserWithEmailAndPassword()
+  +dynamic postDetailsToFireStore()
+}
+
+"cook_book::app::registration_page::signUp.dart::_RegistrationPageState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"cook_book::app::registration_page::signUp.dart::_RegistrationPageState" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth"
+"cook_book::app::registration_page::signUp.dart::_RegistrationPageState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"cook_book::app::registration_page::signUp.dart::_RegistrationPageState" o-- "cloud_firestore::cloud_firestore.dart::CollectionReference<Object>"
+"flutter::src::widgets::framework.dart::State" <|-- "cook_book::app::registration_page::signUp.dart::_RegistrationPageState"
+
+abstract class "cook_book::app::registration_page::signUp.dart::InputValidationMixin" {
+  +bool isPasswordValid()
+  +bool isNameValid()
+  +bool isEmailValid()
+}
+
+class "cook_book::app::SearchRecipe::search_recipe.dart::SearchRecipe" {
+  +State<SearchRecipe> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "cook_book::app::SearchRecipe::search_recipe.dart::SearchRecipe"
+
+class "cook_book::app::SearchRecipe::search_recipe.dart::_SearchRecipeState" {
+  {static} +List<RecipeModel> main_recipes_list
+  +List<RecipeModel> display_list
+  +void updateList()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "cook_book::app::SearchRecipe::search_recipe.dart::_SearchRecipeState"
+
+class "cook_book::app::SearchRecipe::search_recipe_2.dart::SearchRecipe2" {
+  -CollectionReference<Object?> _firebaseFirestore
+  +List<Widget>? buildActions()
+  +Widget? buildLeading()
+  +Widget buildResults()
+  +Widget buildSuggestions()
+}
+
+"cook_book::app::SearchRecipe::search_recipe_2.dart::SearchRecipe2" o-- "cloud_firestore::cloud_firestore.dart::CollectionReference<Object>"
+"flutter::src::material::search.dart::SearchDelegate" <|-- "cook_book::app::SearchRecipe::search_recipe_2.dart::SearchRecipe2"
+
+class "cook_book::app::SearchUser::SearchPerson.dart::SearchPerson" {
+  -CollectionReference<Object?> _firebaseFirestore
+  +Stream<QuerySnapshot<Map<String, dynamic>>> firestoreDB
+  +String? currentUserId
+  +List<Widget>? buildActions()
+  +Widget? buildLeading()
+  +Widget buildResults()
+  +Widget buildSuggestions()
+}
+
+"cook_book::app::SearchUser::SearchPerson.dart::SearchPerson" o-- "cloud_firestore::cloud_firestore.dart::CollectionReference<Object>"
+"cook_book::app::SearchUser::SearchPerson.dart::SearchPerson" o-- "dart::async::Stream<QuerySnapshot<Map<String, dynamic>>>"
+"flutter::src::material::search.dart::SearchDelegate" <|-- "cook_book::app::SearchUser::SearchPerson.dart::SearchPerson"
+
+class "cook_book::app::SearchUser::ShowUserDetails.dart::ShowUserDetails" {
+  +QueryDocumentSnapshot<Object?>? data
+  +State<ShowUserDetails> createState()
+}
+
+"cook_book::app::SearchUser::ShowUserDetails.dart::ShowUserDetails" o-- "cloud_firestore::cloud_firestore.dart::QueryDocumentSnapshot<Object>"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "cook_book::app::SearchUser::ShowUserDetails.dart::ShowUserDetails"
+
+class "cook_book::app::SearchUser::ShowUserDetails.dart::_ShowUserDetailsState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "cook_book::app::SearchUser::ShowUserDetails.dart::_ShowUserDetailsState"
+
+class "cook_book::app::UserProfile::userProfile.dart::UserProfile" {
+  +dynamic userId
+  +State<UserProfile> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "cook_book::app::UserProfile::userProfile.dart::UserProfile"
+
+class "cook_book::app::UserProfile::userProfile.dart::_UserProfileState" {
+  +dynamic profileId
+  +dynamic name
+  +dynamic username
+  +dynamic description
+  +dynamic profilePicture
+  +CollectionReference<Map<String, dynamic>> recipeReference
+  -void _getUserDetails()
+  +void initState()
+  +Widget build()
+}
+
+"cook_book::app::UserProfile::userProfile.dart::_UserProfileState" o-- "cloud_firestore::cloud_firestore.dart::CollectionReference<Map<String, dynamic>>"
+"flutter::src::widgets::framework.dart::State" <|-- "cook_book::app::UserProfile::userProfile.dart::_UserProfileState"
+
+class "cook_book::app::UserProfile::userProfileDetail.dart::UserProfileDetail" {
+  +dynamic profileId
+  +dynamic name
+  +dynamic username
+  +dynamic description
+  +dynamic profilePicture
+  +State<UserProfileDetail> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "cook_book::app::UserProfile::userProfileDetail.dart::UserProfileDetail"
+
+class "cook_book::app::UserProfile::userProfileDetail.dart::_UserProfileDetailState" {
+  +bool isFollowing
+  +int noOfFollowers
+  +int noOfFollowing
+  +CollectionReference<Map<String, dynamic>> followersRef
+  +CollectionReference<Map<String, dynamic>> followingRef
+  +User? user
+  +dynamic checkIfFollowing()
+  +dynamic getFollowers()
+  +dynamic getFollowings()
+  +dynamic handleFollow()
+  +dynamic handleUnfollow()
+  +Widget build()
+}
+
+"cook_book::app::UserProfile::userProfileDetail.dart::_UserProfileDetailState" o-- "cloud_firestore::cloud_firestore.dart::CollectionReference<Map<String, dynamic>>"
+"cook_book::app::UserProfile::userProfileDetail.dart::_UserProfileDetailState" o-- "firebase_auth::firebase_auth.dart::User"
+"flutter::src::widgets::framework.dart::State" <|-- "cook_book::app::UserProfile::userProfileDetail.dart::_UserProfileDetailState"
+
+class "cook_book::app::UserProfile::userProfileDetail.dart::Follower_Following" {
+  +double btnHeight
+  +double btnWidth
+  +int number
+  +String name
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "cook_book::app::UserProfile::userProfileDetail.dart::Follower_Following"
+
+class "cook_book::authentication::google_sign_in.dart::GoogleSignInProvider" {
+  +GoogleSignIn googleSignIn
+  +CollectionReference<Map<String, dynamic>> usersRef
+  -GoogleSignInAccount? _user
+  +GoogleSignInAccount user
+  +Future<dynamic> googleLogin()
+  +Future<dynamic> logout()
+  +dynamic createUserInFirestore()
+}
+
+"cook_book::authentication::google_sign_in.dart::GoogleSignInProvider" o-- "google_sign_in::google_sign_in.dart::GoogleSignIn"
+"cook_book::authentication::google_sign_in.dart::GoogleSignInProvider" o-- "cloud_firestore::cloud_firestore.dart::CollectionReference<Map<String, dynamic>>"
+"cook_book::authentication::google_sign_in.dart::GoogleSignInProvider" o-- "google_sign_in::google_sign_in.dart::GoogleSignInAccount"
+"flutter::src::foundation::change_notifier.dart::ChangeNotifier" <|-- "cook_book::authentication::google_sign_in.dart::GoogleSignInProvider"
+
+class "cook_book::authentication::logged_in2.dart::LoggedInWidget2" {
+  +LoggedInWidgetState2 createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "cook_book::authentication::logged_in2.dart::LoggedInWidget2"
+
+class "cook_book::authentication::logged_in2.dart::LoggedInWidgetState2" {
+  +dynamic name
+  +dynamic email
+  +dynamic photo
+  +DatabaseReference ref
+  +User? user
+  +GoogleSignIn googleSignIn
+  +UserModel loggedInUser
+  +void getDetails()
+  +void initState()
+  +Widget build()
+  +Future<void> logout()
+}
+
+"cook_book::authentication::logged_in2.dart::LoggedInWidgetState2" o-- "firebase_database::firebase_database.dart::DatabaseReference"
+"cook_book::authentication::logged_in2.dart::LoggedInWidgetState2" o-- "firebase_auth::firebase_auth.dart::User"
+"cook_book::authentication::logged_in2.dart::LoggedInWidgetState2" o-- "google_sign_in::google_sign_in.dart::GoogleSignIn"
+"cook_book::authentication::logged_in2.dart::LoggedInWidgetState2" o-- "cook_book::model::user_model.dart::UserModel"
+"flutter::src::widgets::framework.dart::State" <|-- "cook_book::authentication::logged_in2.dart::LoggedInWidgetState2"
+
+class "cook_book::Controller::data_controller.dart::DataController" {
+  +FirebaseFirestore firebaseInstance
+}
+
+"cook_book::Controller::data_controller.dart::DataController" o-- "cloud_firestore::cloud_firestore.dart::FirebaseFirestore"
+
+class "cook_book::custom::CustomButtons::follow_UnFollowButton.dart::Follow_Unfollow" {
+  +Function function
+  +String text
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "cook_book::custom::CustomButtons::follow_UnFollowButton.dart::Follow_Unfollow"
+
+class "cook_book::custom::CustomButtons::likebutton.dart::Likes_Button" {
+  +dynamic recipeId
+  +State<Likes_Button> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "cook_book::custom::CustomButtons::likebutton.dart::Likes_Button"
+
+class "cook_book::custom::CustomButtons::likebutton.dart::_Likes_ButtonState" {
+  +int likeCount
+  +String? currentUserId
+  +CollectionReference<Map<String, dynamic>> recipeReference
+  +List<dynamic> like_list
+  +Future<void> handleLike()
+  +void getLikes()
+  +void initState()
+  +Widget build()
+}
+
+"cook_book::custom::CustomButtons::likebutton.dart::_Likes_ButtonState" o-- "cloud_firestore::cloud_firestore.dart::CollectionReference<Map<String, dynamic>>"
+"flutter::src::widgets::framework.dart::State" <|-- "cook_book::custom::CustomButtons::likebutton.dart::_Likes_ButtonState"
+
+class "cook_book::custom::CustomButtons::saveButton.dart::Save_Button" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "cook_book::custom::CustomButtons::saveButton.dart::Save_Button"
+
+class "cook_book::custom::CustomButtons::updateElevatedButton.dart::UpdateElevatedButton" {
+  +Function ontap
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "cook_book::custom::CustomButtons::updateElevatedButton.dart::UpdateElevatedButton"
+
+class "cook_book::custom::CustomGridView::savedGridView.dart::Saved" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "cook_book::custom::CustomGridView::savedGridView.dart::Saved"
+
+class "cook_book::custom::CustomListView::directionsListView.dart::Directions" {
+  +List<dynamic> directionsList
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "cook_book::custom::CustomListView::directionsListView.dart::Directions"
+
+class "cook_book::custom::CustomListView::ingredientsListView.dart::Ingredients" {
+  +List<dynamic> ingredientsList
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "cook_book::custom::CustomListView::ingredientsListView.dart::Ingredients"
+
+class "cook_book::custom::CustomListView::recipeListView.dart::Recipe" {
+  +dynamic userId
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "cook_book::custom::CustomListView::recipeListView.dart::Recipe"
+
+class "cook_book::custom::ExpandedWidgets::expandedProfileDescription.dart::ExpandedProfileDescription" {
+  +String profileDescription
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "cook_book::custom::ExpandedWidgets::expandedProfileDescription.dart::ExpandedProfileDescription"
+
+class "cook_book::custom::ExpandedWidgets::expandedRecipeDescription.dart::ExpandedRecipeDescription" {
+  +dynamic recipeDescription
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "cook_book::custom::ExpandedWidgets::expandedRecipeDescription.dart::ExpandedRecipeDescription"
+
+class "cook_book::custom::home_page.dart::HomePage" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "cook_book::custom::home_page.dart::HomePage"
+
+class "cook_book::custom::NavigationBar::navigation_bar.dart::Navigation" {
+  +State<Navigation> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "cook_book::custom::NavigationBar::navigation_bar.dart::Navigation"
+
+class "cook_book::custom::NavigationBar::navigation_bar.dart::_NavigationState" {
+  +int index
+  +List<dynamic> screen
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "cook_book::custom::NavigationBar::navigation_bar.dart::_NavigationState"
+
+class "cook_book::Home::food_body_page.dart::FoodBodyPage" {
+  +State<FoodBodyPage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "cook_book::Home::food_body_page.dart::FoodBodyPage"
+
+class "cook_book::Home::food_body_page.dart::_FoodBodyPageState" {
+  -Stream<QuerySnapshot<Map<String, dynamic>>> _firestoreDB
+  +PageController pageController
+  -double _currPageValue
+  -double _scaleFactor
+  -double _height
+  +void initState()
+  +void dispose()
+  +Widget build()
+}
+
+"cook_book::Home::food_body_page.dart::_FoodBodyPageState" o-- "dart::async::Stream<QuerySnapshot<Map<String, dynamic>>>"
+"cook_book::Home::food_body_page.dart::_FoodBodyPageState" o-- "flutter::src::widgets::page_view.dart::PageController"
+"flutter::src::widgets::framework.dart::State" <|-- "cook_book::Home::food_body_page.dart::_FoodBodyPageState"
+
+class "cook_book::Home::Home_Custom_Widget::big_text.dart::BigText" {
+  +Color? color
+  +String text
+  +double size
+  +TextOverflow overFlow
+  +FontWeight fontWeight
+  +Widget build()
+}
+
+"cook_book::Home::Home_Custom_Widget::big_text.dart::BigText" o-- "dart::ui::Color"
+"cook_book::Home::Home_Custom_Widget::big_text.dart::BigText" o-- "flutter::src::painting::text_painter.dart::TextOverflow"
+"cook_book::Home::Home_Custom_Widget::big_text.dart::BigText" o-- "dart::ui::FontWeight"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "cook_book::Home::Home_Custom_Widget::big_text.dart::BigText"
+
+class "cook_book::Home::Home_Custom_Widget::icon_and_text.dart::IconAndTextWidget" {
+  +IconData icon
+  +String text
+  +Color iconColor
+  +Widget build()
+}
+
+"cook_book::Home::Home_Custom_Widget::icon_and_text.dart::IconAndTextWidget" o-- "flutter::src::widgets::icon_data.dart::IconData"
+"cook_book::Home::Home_Custom_Widget::icon_and_text.dart::IconAndTextWidget" o-- "dart::ui::Color"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "cook_book::Home::Home_Custom_Widget::icon_and_text.dart::IconAndTextWidget"
+
+class "cook_book::Home::Home_Custom_Widget::info_widget.dart::InfoWidget" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "cook_book::Home::Home_Custom_Widget::info_widget.dart::InfoWidget"
+
+class "cook_book::Home::Home_Custom_Widget::info_widget_2.dart::InfoWidget2" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "cook_book::Home::Home_Custom_Widget::info_widget_2.dart::InfoWidget2"
+
+class "cook_book::Home::Home_Custom_Widget::recipe_listview_widget.dart::RecipeListViewWidget" {
+  +State<RecipeListViewWidget> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "cook_book::Home::Home_Custom_Widget::recipe_listview_widget.dart::RecipeListViewWidget"
+
+class "cook_book::Home::Home_Custom_Widget::recipe_listview_widget.dart::_RecipeListViewWidgetState" {
+  -Stream<QuerySnapshot<Map<String, dynamic>>> _firestoreDB
+  +Widget build()
+}
+
+"cook_book::Home::Home_Custom_Widget::recipe_listview_widget.dart::_RecipeListViewWidgetState" o-- "dart::async::Stream<QuerySnapshot<Map<String, dynamic>>>"
+"flutter::src::widgets::framework.dart::State" <|-- "cook_book::Home::Home_Custom_Widget::recipe_listview_widget.dart::_RecipeListViewWidgetState"
+
+class "cook_book::Home::Home_Custom_Widget::small_text.dart::SmallText" {
+  +Color? color
+  +String text
+  +double size
+  +double height
+  +FontWeight fontWeight
+  +Widget build()
+}
+
+"cook_book::Home::Home_Custom_Widget::small_text.dart::SmallText" o-- "dart::ui::Color"
+"cook_book::Home::Home_Custom_Widget::small_text.dart::SmallText" o-- "dart::ui::FontWeight"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "cook_book::Home::Home_Custom_Widget::small_text.dart::SmallText"
+
+class "cook_book::Home::Home_Custom_Widget::small_text2.dart::SmallText2" {
+  +Color? color
+  +String text
+  +double size
+  +double height
+  +TextOverflow overFlow
+  +FontWeight fontWeight
+  +Widget build()
+}
+
+"cook_book::Home::Home_Custom_Widget::small_text2.dart::SmallText2" o-- "dart::ui::Color"
+"cook_book::Home::Home_Custom_Widget::small_text2.dart::SmallText2" o-- "flutter::src::painting::text_painter.dart::TextOverflow"
+"cook_book::Home::Home_Custom_Widget::small_text2.dart::SmallText2" o-- "dart::ui::FontWeight"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "cook_book::Home::Home_Custom_Widget::small_text2.dart::SmallText2"
+
+class "cook_book::Home::recipe_home_page.dart::RecipeHomePage" {
+  +State<RecipeHomePage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "cook_book::Home::recipe_home_page.dart::RecipeHomePage"
+
+class "cook_book::Home::recipe_home_page.dart::_RecipeHomePageState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "cook_book::Home::recipe_home_page.dart::_RecipeHomePageState"
+
+class "cook_book::main.dart::MyApp" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "cook_book::main.dart::MyApp"
+
+class "cook_book::model::cookingSteps_model.dart::CookingStepsModel" {
+  +String? recipe_id_pk
+  +String? recipe_title
+  +String? recipe_description
+  +String? prepare_duration
+  +String? cooking_duration
+  +String? image_url
+  +String? testDurationFinal
+  +DateTime? posted_date
+  +String? total_duration
+  +String? p_duration
+  +String? c_duration
+  +int? num_of_servings
+  +List<String>? cooking_steps
+  +List<String>? recipe_ingredients
+  +List<String>? likes
+  +List<String>? toJson_CookingDirections()
+  +List<String>? toJson_Ingredients()
+  +List<String>? toJson_Likes()
+}
+
+class "cook_book::model::recipe_model.dart::RecipeModel" {
+  +String? recipe_title
+  +String? recipe_poster_url
+  +String? recipe_short_desc
+  +double? rating
+}
+
+class "cook_book::model::user_model.dart::UserModel" {
+  +String? uid
+  +String? name
+  +String? username
+  +String? email
+  +String? password
+  +String? description
+  +String? profilePicture
+  +Map<String, dynamic> toMap()
+}
+
+class "cook_book::program.dart::Program" {
+  {static} +User? user
+}
+
+"cook_book::program.dart::Program" o-- "firebase_auth::firebase_auth.dart::User"
+
+class "cook_book::splash_screen.dart::SplashPage" {
+  +State<SplashPage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "cook_book::splash_screen.dart::SplashPage"
+
+class "cook_book::splash_screen.dart::_SplashPageState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "cook_book::splash_screen.dart::_SplashPageState"
+
+class "cook_book::theme_provider::theme_provider.dart::MyThemes" {
+  {static} +ThemeData darkTheme
+  {static} +ThemeData lightTheme
+}
+
+"cook_book::theme_provider::theme_provider.dart::MyThemes" o-- "flutter::src::material::theme_data.dart::ThemeData"
+
+
+@enduml
