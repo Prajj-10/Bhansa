@@ -15,7 +15,7 @@ class InfoWidget extends StatelessWidget{
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            BigText(text: "WHAT YOU WILL MAKE \n TODAY ?", size: 18, fontWeight: FontWeight.w700),
+            BigText(text: "WHAT WILL YOU MAKE \n TODAY ?", size: 18, fontWeight: FontWeight.w700),
             
             //TopRight Search Icon Button
             Center(

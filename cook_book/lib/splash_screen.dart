@@ -17,14 +17,15 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return EasySplashScreen(
-        logo: Image.asset('assets/CB2.png'),
-        title: const Text(
-          "Cook Book",
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        logo: Image.asset('assets/BhansaWhite.png' ),
+        logoWidth: 130,
+        // title: const Text(
+        //   " ",
+        //   style: TextStyle(
+        //     fontSize: 18,
+        //     fontWeight: FontWeight.bold,
+        //   ),
+        // ),
         showLoader: true,
         backgroundColor: const Color(0xFF061624).withOpacity(1.0),
         loaderColor: Colors.white,
