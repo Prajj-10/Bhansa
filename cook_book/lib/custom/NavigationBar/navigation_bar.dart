@@ -39,9 +39,9 @@ class _NavigationState extends State<Navigation> {
           });
 
         },
-        child: Icon(Icons.add,
+        child: Icon(Icons.add_outlined,
           color: Colors.white,
-          size: 26,),
+          size: 28,),
         backgroundColor: Colors.cyan,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -63,8 +63,8 @@ class _NavigationState extends State<Navigation> {
                     index = 0;
                   });
                 },
-                child: Icon(Icons.home,
-                    size: 24,
+                child: Icon(Icons.home_outlined,
+                    size: 28,
                     color: index == 0 ? Colors.cyan : Colors.white),
               ),
 
@@ -73,8 +73,8 @@ class _NavigationState extends State<Navigation> {
               GestureDetector(
                 onTap: () => showSearch(context: context, delegate: SearchRecipe2()),
                 //onTap: () => showSearch(context: context, delegate: SearchPerson()),
-                child: Icon(Icons.search,
-                    size: 24,
+                child: Icon(Icons.search_outlined,
+                    size: 28,
                     color: index == 1 ? Colors.cyan : Colors.white),
               ),
 
@@ -87,8 +87,8 @@ class _NavigationState extends State<Navigation> {
                     index = 2;
                   });
                 },
-                child: Icon(Icons.favorite,
-                    size: 24,
+                child: Icon(Icons.local_grocery_store_outlined,
+                    size: 28,
                     color: index == 2 ? Colors.cyan : Colors.white),
               ),
 
@@ -99,8 +99,8 @@ class _NavigationState extends State<Navigation> {
                     index = 3;
                   });
                 },
-                child: Icon(Icons.person,
-                    size: 24,
+                child: Icon(Icons.person_outline,
+                    size: 28,
                     color: index == 3 ? Colors.cyan : Colors.white),
               ),
             ],

@@ -4,17 +4,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf33b20f-9bb0-49da-9eb9-3fc611fe96ce" name="Changes" comment="added like function">
-      <change afterPath="$PROJECT_DIR$/cook_book/assets/error.jpg" afterDir="false" />
+    <list default="true" id="bf33b20f-9bb0-49da-9eb9-3fc611fe96ce" name="Changes" comment="updated like button">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/Home/Home_Custom_Widget/recipe_listview_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/Home/Home_Custom_Widget/recipe_listview_widget.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/Home/food_body_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/Home/food_body_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/RecipeDetail_Page/recipeDetails.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/RecipeDetail_Page/recipeDetails.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/custom/CustomButtons/likebutton.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomButtons/likebutton.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/custom/CustomButtons/saveButton.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomButtons/saveButton.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/custom/CustomListView/directionsListView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomListView/directionsListView.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/custom/CustomListView/ingredientsListView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomListView/ingredientsListView.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/custom/CustomListView/recipeListView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomListView/recipeListView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/loginpage/login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/loginpage/login.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/custom/NavigationBar/navigation_bar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/NavigationBar/navigation_bar.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,7 +211,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673114741776</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="updated like button">
+      <created>1673162223489</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1673162223489</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -247,6 +247,7 @@
     <MESSAGE value="follow and unfollow users" />
     <MESSAGE value="followers following count" />
     <MESSAGE value="added like function" />
-    <option name="LAST_COMMIT_MESSAGE" value="added like function" />
+    <MESSAGE value="updated like button" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated like button" />
   </component>
 </project>

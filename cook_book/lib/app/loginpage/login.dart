@@ -148,15 +148,8 @@ class _LoginScreenState extends State<LoginScreen> with InputValidationMixin {
               key: formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
-                //crossAxisAlignment: CrossAxisAlignment.start,
-                //mainAxisSize: MainAxisSize.max,
-                // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Cook Book',
-                      style: GoogleFonts.sacramento(
-                          textStyle: const TextStyle(fontWeight: FontWeight.bold,
-                              fontSize: 85.0, color: Colors.white))
-                  ),
+                  Image.asset("assets/BhansaWhite.png", width: 200),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
