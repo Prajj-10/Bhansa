@@ -107,7 +107,7 @@ class _PostRecipeState extends State<PostRecipe> {
 
       appBar: AppBar(
         title: Text(
-            'Recipe Details',
+          'Post Recipe',
           style: GoogleFonts.dancingScript(
               textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 40, color: Colors.white)
           ),
@@ -128,7 +128,7 @@ class _PostRecipeState extends State<PostRecipe> {
               child: Text(
                 "Upload Image: ",
                 style: GoogleFonts.robotoMono(
-                    textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white)
+                    textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white)
                 ),
               ),
             ),
@@ -221,7 +221,7 @@ class _PostRecipeState extends State<PostRecipe> {
                         "Recipe Title: ",
                         //style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.white),
                         style: GoogleFonts.robotoMono(
-                            textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white)
+                            textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white)
                         ),
                       ),
                     ),
@@ -266,7 +266,7 @@ class _PostRecipeState extends State<PostRecipe> {
                       child: Text(
                         "Recipe Description: ",
                         style: GoogleFonts.robotoMono(
-                            textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white)
+                            textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white)
                         ),
                       ),
                     ),
@@ -286,7 +286,8 @@ class _PostRecipeState extends State<PostRecipe> {
                         style: TextStyle(fontSize: 20, color: Colors.white),
 
                         decoration: InputDecoration(
-                          hintText: 'Write a small description of your Recipe...',
+                          hintText: 'Write a short description of your Recipe...',
+                          hintStyle: TextStyle(fontSize: 16),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20.0),
                             borderSide: BorderSide(
@@ -313,7 +314,7 @@ class _PostRecipeState extends State<PostRecipe> {
                       child: Text(
                         "Number of Servings: ",
                         style: GoogleFonts.robotoMono(
-                            textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white)
+                            textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white)
                         ),
 
                       ),
@@ -383,7 +384,7 @@ class _PostRecipeState extends State<PostRecipe> {
                               Text(
                                 "Prepare Duration: ",
                                 style: GoogleFonts.robotoMono(
-                                    textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white)
+                                    textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white)
                                 ),
                               ),
 
@@ -428,10 +429,9 @@ class _PostRecipeState extends State<PostRecipe> {
                                 "${steps_model.prepare_duration}",
                                 //style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.white),
                                 style: GoogleFonts.robotoMono(
-                                    textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: Colors.white)
+                                    textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white)
                                 ),
                               ),
-
 
 
                             ],
@@ -456,7 +456,7 @@ class _PostRecipeState extends State<PostRecipe> {
                               Text(
                                 "Cooking Duration: ",
                                 style: GoogleFonts.robotoMono(
-                                    textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white)
+                                    textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white)
                                 ),
                               ),
 
@@ -501,7 +501,7 @@ class _PostRecipeState extends State<PostRecipe> {
                               Text(
                                 "${steps_model.cooking_duration}",
                                 style: GoogleFonts.robotoMono(
-                                    textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: Colors.white)
+                                    textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white)
                                 ),
                               ),
 
@@ -702,7 +702,7 @@ class _PostRecipeState extends State<PostRecipe> {
             "Directions:",
             textAlign: TextAlign.left,
             style: GoogleFonts.robotoMono(
-                textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white)
+                textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white)
             ),
           ),
         ),
@@ -811,7 +811,7 @@ class _PostRecipeState extends State<PostRecipe> {
             "Ingredients:",
             textAlign: TextAlign.left,
             style: GoogleFonts.robotoMono(
-                textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white)
+                textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white)
             ),
           ),
         ),
