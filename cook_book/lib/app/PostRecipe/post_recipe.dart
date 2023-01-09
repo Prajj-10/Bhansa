@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,6 +8,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cook_book/main.dart';
 import 'package:duration_picker/duration_picker.dart';
 import 'package:intl/intl.dart';
+
 
 import '../../model/user_model.dart';
 import 'storage_services.dart';
@@ -17,6 +19,8 @@ import 'package:snippet_coder_utils/FormHelper.dart';
 import 'package:file_picker/file_picker.dart';
 
 import '../../model/cookingSteps_model.dart';
+
+
 
 class PostRecipe extends StatefulWidget {
   const PostRecipe({Key? key}) : super(key: key);
@@ -57,6 +61,10 @@ class _PostRecipeState extends State<PostRecipe> {
 
   //To display selected image in UI
   var file;
+
+  var _counterTextRecipeTitle = "";
+  var _counterTextRecipeDescription= "";
+
 
   @override
   void initState(){
@@ -175,15 +183,6 @@ class _PostRecipeState extends State<PostRecipe> {
               height: 20,
             ),
 
-            /*Align(
-              alignment: Alignment.center,
-              child: Text(
-                "Recipe Details",
-                  style: GoogleFonts.dancingScript(
-                    textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 40, color: Colors.white)
-                  ),
-              ),
-            ),*/
 
             Padding(
               padding: const EdgeInsets.only(left: 15, right: 15),
@@ -210,12 +209,19 @@ class _PostRecipeState extends State<PostRecipe> {
                     ),
 
                     Container(
-                      height: 65,
+                      height: 85,
                       child:  TextField(
                         onChanged: (value){
                           steps_model.recipe_title = value;
+
+                          setState(() {
+                            _counterTextRecipeTitle = (50 - value.length).toString();
+                          });
                         },
-                        style: TextStyle(fontSize: 20, color: Colors.white),
+
+                        maxLength: 50,
+
+                        style: TextStyle(fontSize: 16, color: Colors.white),
 
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
@@ -230,6 +236,8 @@ class _PostRecipeState extends State<PostRecipe> {
                             borderRadius: BorderRadius.circular(20.0),
                             borderSide: BorderSide(color: Colors.white),
                           ),
+                          counterText: "$_counterTextRecipeTitle / 50",
+                          counterStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
@@ -254,14 +262,20 @@ class _PostRecipeState extends State<PostRecipe> {
                     ),
 
                     Container(
-                      height: 160,
+                      height: 180,
                       child:  TextField(
                         expands: true,
                         maxLines: null,
                         onChanged: (value){
                           steps_model.recipe_description = value;
+
+                          setState(() {
+                            _counterTextRecipeDescription = (500 - value.length).toString();
+                          });
                         },
-                        style: TextStyle(fontSize: 20, color: Colors.white),
+                        maxLength: 500,
+
+                        style: TextStyle(fontSize: 16, color: Colors.white),
 
                         decoration: InputDecoration(
                           hintText: 'Write a short description of your Recipe...',
@@ -278,6 +292,8 @@ class _PostRecipeState extends State<PostRecipe> {
                             borderRadius: BorderRadius.circular(20.0),
                             borderSide: BorderSide(color: Colors.white),
                           ),
+                          counterText: "$_counterTextRecipeDescription / 500",
+                          counterStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
@@ -599,9 +615,24 @@ class _PostRecipeState extends State<PostRecipe> {
                     "Post Recipe",
                         () {
                       if(validateAndSave()){
-                        //print(steps_model.toJson());
-                        addRecipe();
-                        //updateRecipeId();
+
+
+                        if(steps_model.recipe_title == null || steps_model.recipe_description == null || steps_model.num_of_servings == null || steps_model.p_duration == null || steps_model.c_duration == null || file == null){
+                          //print('All fields are Required!!!');
+
+                          AnimatedSnackBar.material(
+                              'All fields are required including Image!!!',
+                              type: AnimatedSnackBarType.error,
+                              mobileSnackBarPosition: MobileSnackBarPosition.top,
+                              desktopSnackBarPosition:
+                              DesktopSnackBarPosition.topRight)
+                              .show(context);
+
+                        }
+
+                        else{
+                          addRecipe();
+                        }
 
                       }
                     }
@@ -666,7 +697,7 @@ class _PostRecipeState extends State<PostRecipe> {
             textColor: Colors.white,
                 (onValidateVal){
               if(onValidateVal.isEmpty){
-                return "Cannot ${index + 1} be empty";
+                return "Direction ${index + 1} be empty";
               }
               return null;
             },
@@ -777,7 +808,7 @@ class _PostRecipeState extends State<PostRecipe> {
 
                 (onValidateVal){
               if(onValidateVal.isEmpty){
-                return "Cannot ${index + 1} be empty";
+                return "Ingredients ${index + 1} be empty";
               }
               return null;
             },
