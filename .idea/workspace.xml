@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf33b20f-9bb0-49da-9eb9-3fc611fe96ce" name="Changes" comment="updated like button">
+    <list default="true" id="bf33b20f-9bb0-49da-9eb9-3fc611fe96ce" name="Changes" comment="increase navbar height">
+      <change afterPath="$PROJECT_DIR$/cook_book/assets/recipe.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/loginpage/login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/loginpage/login.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/custom/NavigationBar/navigation_bar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/NavigationBar/navigation_bar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/Home/Home_Custom_Widget/recipe_listview_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/Home/Home_Custom_Widget/recipe_listview_widget.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/PostRecipe/post_recipe.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/PostRecipe/post_recipe.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/RecipeDetail_Page/recipeDetails.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/RecipeDetail_Page/recipeDetails.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/SearchRecipe/search_recipe_2.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/SearchRecipe/search_recipe_2.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/custom/CustomButtons/likebutton.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomButtons/likebutton.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,7 +223,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673162223489</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="increase navbar height">
+      <created>1673203568536</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1673203568536</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -248,6 +260,14 @@
     <MESSAGE value="followers following count" />
     <MESSAGE value="added like function" />
     <MESSAGE value="updated like button" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated like button" />
+    <MESSAGE value="increase navbar height" />
+    <option name="LAST_COMMIT_MESSAGE" value="increase navbar height" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint suspend="THREAD" type="dart-exception" />
+      </default-breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

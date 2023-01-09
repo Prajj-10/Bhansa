@@ -30,6 +30,10 @@ class _Likes_ButtonState extends State<Likes_Button> {
           'Likes':FieldValue.arrayUnion([currentUserId]),
         });
       };
+
+      setState(() {
+        getLikes();
+      });
     } catch(e){
       print(e.toString());
     }
@@ -48,13 +52,13 @@ class _Likes_ButtonState extends State<Likes_Button> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    getLikes();
+
   }
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-
-    getLikes();
     //likeCount = getLikeCount();
     //likeCount = widget.likes_map.length.toInt()-1;
     //isLiked = (likes[currentUserId]==true);

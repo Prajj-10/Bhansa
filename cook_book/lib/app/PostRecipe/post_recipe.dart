@@ -34,8 +34,6 @@ class _PostRecipeState extends State<PostRecipe> {
 
   int? num_of_servings;
 
-
-
   GlobalKey<FormState> globalKey = new GlobalKey<FormState>();
   CookingStepsModel steps_model = CookingStepsModel();
 
@@ -47,15 +45,9 @@ class _PostRecipeState extends State<PostRecipe> {
 
   //String currentDate = DateFormat('EEEE, MMM d, yyyy').format(DateTime.now());
 
-
-
-
   final user = FirebaseAuth.instance.currentUser;
 
-
-
   UserModel loggedInUser = UserModel();
-
 
   Duration _duration = const Duration(hours: 0, minutes: 0);
 
@@ -63,16 +55,12 @@ class _PostRecipeState extends State<PostRecipe> {
   Duration prep_duration = Duration.zero;
   Duration t_duration = Duration.zero;
 
-
   //To display selected image in UI
   var file;
 
-
   @override
   void initState(){
-
     super.initState();
-
     steps_model.cooking_steps = new List<String>.empty(growable: true);
     steps_model.cooking_steps!.add("");
 
@@ -154,7 +142,6 @@ class _PostRecipeState extends State<PostRecipe> {
                       decoration: const BoxDecoration(
 
                         image: DecorationImage(
-
                           image: AssetImage("assets/Camera.png"),
                           fit: BoxFit.cover,
                         ),
@@ -172,18 +159,11 @@ class _PostRecipeState extends State<PostRecipe> {
                     left: width * .4,
                     top: height * .2,
                     child: Container(
-
                       child: IconButton(
-
                         color: Colors.grey,
                         icon: const Icon(Icons.add_a_photo, size: 40,),
-
                         onPressed: () { uploadImage();},
-
                       ),
-
-
-
                     ),
                   ),
 
@@ -204,7 +184,6 @@ class _PostRecipeState extends State<PostRecipe> {
                   ),
               ),
             ),*/
-
 
             Padding(
               padding: const EdgeInsets.only(left: 15, right: 15),
@@ -233,7 +212,6 @@ class _PostRecipeState extends State<PostRecipe> {
                     Container(
                       height: 65,
                       child:  TextField(
-
                         onChanged: (value){
                           steps_model.recipe_title = value;
                         },
@@ -308,7 +286,6 @@ class _PostRecipeState extends State<PostRecipe> {
                     const SizedBox(
                       height: 20,
                     ),
-
                     Align(
                       alignment: Alignment.bottomLeft,
                       child: Text(
@@ -316,32 +293,25 @@ class _PostRecipeState extends State<PostRecipe> {
                         style: GoogleFonts.robotoMono(
                             textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white)
                         ),
-
                       ),
                     ),
 
                     const SizedBox(
                       height: 10,
                     ),
-
                     Align(
                       alignment: Alignment.bottomLeft,
                       child: Container(
                         height: 50,
                         width: 180,
                         child: TextField(
-
                           keyboardType: TextInputType.number,
-
                           onChanged: (value){
                             steps_model.num_of_servings = int.parse(value);
                             //num_of_servings = value;
                           },
-
                           style: TextStyle(fontSize: 20, color: Colors.white),
-
                           decoration: InputDecoration(
-
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20.0),
                               borderSide: BorderSide(
@@ -359,22 +329,15 @@ class _PostRecipeState extends State<PostRecipe> {
                       ),
                     ),
 
-
-
                     const SizedBox(
                       height: 10,
                     ),
-
-
 
                     const SizedBox(
                       height: 20,
                     ),
 
-
-
                     Container(
-
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: SingleChildScrollView(
@@ -388,22 +351,11 @@ class _PostRecipeState extends State<PostRecipe> {
                                 ),
                               ),
 
-
                               IconButton(
-
                                 color: Colors.white,
                                 icon: const Icon(Icons.timer, size: 35,),
-
                                 onPressed: () async {
-
-
-
                                   Duration? selectedDuration = await showDurationPicker(context: context, initialTime: const Duration(minutes: 0));
-
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(content: Text('Preparing Duration is: $selectedDuration')),
-                                  );
-
                                   setState(() {
                                     prep_duration = selectedDuration!;
                                     steps_model.p_duration= selectedDuration.toString();
@@ -418,11 +370,8 @@ class _PostRecipeState extends State<PostRecipe> {
                                     else{
                                       steps_model.prepare_duration = testDuration.substring(0, 1) + " hrs " + testDuration.substring(2, 4) +" min";
                                     }
-
                                   });
                                 },
-
-
                               ),
 
                               Text(
@@ -432,19 +381,15 @@ class _PostRecipeState extends State<PostRecipe> {
                                     textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white)
                                 ),
                               ),
-
-
                             ],
                           ),
                         ),
                       ),
-
                     ),
 
                     SizedBox(
                       height: 25,
                     ),
-
 
                     Container(
                       child: Align(
@@ -461,19 +406,11 @@ class _PostRecipeState extends State<PostRecipe> {
                               ),
 
                               IconButton(
-
                                 color: Colors.white,
                                 icon: const Icon(Icons.timer, size: 35,),
-
                                 onPressed: () async {
                                   Duration? selectedDuration = await showDurationPicker(context: context, initialTime: const Duration(minutes: 0));
-
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(content: Text('Duration is: $selectedDuration')),
-                                  );
-
                                   setState(() {
-
                                     //steps_model.cooking_duration = selectedDuration?.inMinutes as Duration?;
                                     steps_model.c_duration = selectedDuration.toString();
                                     cook_duration=selectedDuration!;
@@ -489,12 +426,8 @@ class _PostRecipeState extends State<PostRecipe> {
                                       steps_model.cooking_duration = testDuration.substring(0, 1) + " hrs " + testDuration.substring(2, 4) +" min";
                                     }
                                     calcTotalDuration();
-
                                   });
-
                                 },
-
-
 
                               ),
 
@@ -518,16 +451,11 @@ class _PostRecipeState extends State<PostRecipe> {
                     const SizedBox(
                       height: 10,
                     ),
-
                     //Calling own widget
                     _uiWidget(),
-
                     const SizedBox(
                       height: 20,
                     ),
-
-
-
                   ],
                 ),
 

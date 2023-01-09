@@ -53,6 +53,7 @@ class _RecipeListViewWidgetState extends State<RecipeListViewWidget> {
                               image: DecorationImage(
                                 fit : BoxFit.cover,
                                 image: NetworkImage('${snapshot.data?.docs[index]['Photo']}'),
+
                               )
                           ),
                         ),

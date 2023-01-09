@@ -72,9 +72,9 @@ class _RecipeDetailsState extends State<RecipeDetails> with TickerProviderStateM
                 ),
               ],
               flexibleSpace: FlexibleSpaceBar(
-                background: Image.network(widget.recipe_snapshot!.get('Photo'),
+                background: /*Image.network(widget.recipe_snapshot!.get('Photo'),
                   fit: BoxFit.cover,
-                ) ?? Image.asset("assets/error.jpg", fit: BoxFit.cover,),
+                ) ?? */Image.asset("assets/recipe.jpg", fit: BoxFit.cover,),
                 title: Container(
                   width: size.width*0.6,
                   child: Text(widget.recipe_snapshot!.get('Title') ?? "Recipe Title",
@@ -116,8 +116,8 @@ class _RecipeDetailsState extends State<RecipeDetails> with TickerProviderStateM
                               children: [
                                 Center(
                                   child: ClipOval(
-                                    child: Image.network(writer_profilePicture?? "https://img.freepik.com/premium-vector/smiling-chef-cartoon-character_8250-10.jpg?w=2000",
-                                    //child: Image.network("https://img.freepik.com/premium-vector/smiling-chef-cartoon-character_8250-10.jpg?w=2000",
+                                    //child: Image.network(writer_profilePicture?? "https://img.freepik.com/premium-vector/smiling-chef-cartoon-character_8250-10.jpg?w=2000",
+                                    child: Image.network("https://img.freepik.com/premium-vector/smiling-chef-cartoon-character_8250-10.jpg?w=2000",
                                 height: 50,
                                       width: 50,
                                       fit: BoxFit.cover,
