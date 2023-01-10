@@ -10,6 +10,8 @@ import 'package:duration_picker/duration_picker.dart';
 import 'package:intl/intl.dart';
 
 
+import '../../Home/recipe_home_page.dart';
+import '../../custom/NavigationBar/navigation_bar.dart';
 import '../../model/user_model.dart';
 import 'storage_services.dart';
 
@@ -66,6 +68,7 @@ class _PostRecipeState extends State<PostRecipe> {
   var _counterTextRecipeDescription= "";
 
 
+
   @override
   void initState(){
     super.initState();
@@ -103,7 +106,7 @@ class _PostRecipeState extends State<PostRecipe> {
 
       appBar: AppBar(
         title: Text(
-          'Post Recipe',
+          'Cook To Serve Love',
           style: GoogleFonts.dancingScript(
               textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 40, color: Colors.white)
           ),
@@ -211,6 +214,7 @@ class _PostRecipeState extends State<PostRecipe> {
                     Container(
                       height: 85,
                       child:  TextField(
+
                         onChanged: (value){
                           steps_model.recipe_title = value;
 
@@ -632,6 +636,20 @@ class _PostRecipeState extends State<PostRecipe> {
 
                         else{
                           addRecipe();
+
+                          AnimatedSnackBar.material(
+                              'Your Recipe is POSTED!!!',
+                              type: AnimatedSnackBarType.success,
+                              mobileSnackBarPosition: MobileSnackBarPosition.top,
+                              desktopSnackBarPosition:
+                              DesktopSnackBarPosition.topRight)
+                              .show(context);
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Navigation()),
+                          );
+
                         }
 
                       }
