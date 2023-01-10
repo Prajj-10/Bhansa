@@ -195,13 +195,23 @@ class _ReviewState extends State<Review> {
       current_photo = userDetails.data()!['profile picture'];
     });
   }
+  //getCurrentDetails(widget.posted_byId);
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getCurrentDetails(widget.posted_byId);
+  }
+
+
 
 
 
   @override
   Widget build(BuildContext context) {
 
-    getCurrentDetails(widget.posted_byId);
+    //getCurrentDetails(widget.posted_byId);
 
     return Column(
       children:[
