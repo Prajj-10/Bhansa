@@ -80,6 +80,7 @@ class _UserProfileDetailState extends State<UserProfileDetail> {
         .set({
       "name" : widget.name,
       "profile_picture" : widget.profilePicture,
+      "user": user?.uid,
     });
   }
 

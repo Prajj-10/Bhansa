@@ -43,6 +43,8 @@ dependencies:
   awesome_snackbar_content:
   animated_snack_bar:
   flutter_spinkit:
+  google_maps_flutter: ^2.2.1
+  location: ^4.4.0
   flutter:
     sdk: flutter
 
