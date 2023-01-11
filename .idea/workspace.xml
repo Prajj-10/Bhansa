@@ -4,15 +4,16 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf33b20f-9bb0-49da-9eb9-3fc611fe96ce" name="Changes" comment="increase navbar height">
-      <change afterPath="$PROJECT_DIR$/cook_book/assets/recipe.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+    <list default="true" id="bf33b20f-9bb0-49da-9eb9-3fc611fe96ce" name="Changes" comment="duration picker">
+      <change afterPath="$PROJECT_DIR$/cook_book/lib/app/RecipeDetail_Page/recipe_detail.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/Home/Home_Custom_Widget/recipe_listview_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/Home/Home_Custom_Widget/recipe_listview_widget.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/PostRecipe/post_recipe.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/PostRecipe/post_recipe.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/myProfile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/myProfile.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cook_book/lib/app/RecipeDetail_Page/recipeDetails.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/RecipeDetail_Page/recipeDetails.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/SearchRecipe/search_recipe_2.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/SearchRecipe/search_recipe_2.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/custom/CustomButtons/likebutton.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomButtons/likebutton.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/UserProfile/userProfile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/UserProfile/userProfile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/UserProfile/userProfileDetail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/UserProfile/userProfileDetail.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/custom/CustomButtons/saveButton.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomButtons/saveButton.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/custom/CustomGridView/savedGridView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomGridView/savedGridView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/custom/CustomListView/recipeListView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomListView/recipeListView.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +55,7 @@
     <property name="cidr.known.project.marker" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/cook_book/assets" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/cook_book/lib/app/RecipeDetail_Page" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -63,10 +64,10 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\College\L5-2\Mobile app development\Final Assignment\Cook-Book\cook_book\lib\app\RecipeDetail_Page" />
       <recent name="E:\College\L5-2\Mobile app development\Final Assignment\Cook-Book\cook_book\assets" />
       <recent name="E:\College\L5-2\Mobile app development\Final Assignment\Cook-Book\cook_book\lib\app\UserProfile" />
       <recent name="E:\College\L5-2\Mobile app development\Final Assignment\Cook-Book\cook_book\lib\custom\ExpandedWidgets" />
-      <recent name="E:\College\L5-2\Mobile app development\Final Assignment\Cook-Book\cook_book\lib\app\RecipeDetail_Page" />
       <recent name="D:\L5\Assignment\Mobile Application\Assignment-2\Cook Book Codes\cook_book\assets" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -230,7 +231,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673203568536</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="duration picker">
+      <created>1673254511637</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1673254511637</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -261,7 +269,8 @@
     <MESSAGE value="added like function" />
     <MESSAGE value="updated like button" />
     <MESSAGE value="increase navbar height" />
-    <option name="LAST_COMMIT_MESSAGE" value="increase navbar height" />
+    <MESSAGE value="duration picker" />
+    <option name="LAST_COMMIT_MESSAGE" value="duration picker" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

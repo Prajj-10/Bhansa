@@ -30,23 +30,18 @@ class Recipe extends StatelessWidget {
             return Container(
               child: Text("Try loading again"),
             );
+
           case ConnectionState.waiting:
             return Container(
               height: 80,
                 width: 80,
                 child: CircularProgressIndicator(color: Color(0xFF09274A),)
             );
-          case ConnectionState.done:
           case ConnectionState.active:
-            if(!snapshot.hasData){
+          case ConnectionState.done:
+
+            if(snapshot.hasData){
               //no data
-              return Center(
-                child: Container(
-                  child: const Text("No data available"),
-                ),
-              );
-            }
-            else{
               return ListView.builder(
                 padding: EdgeInsets.only(top: 2),
                 primary: true,
@@ -102,6 +97,12 @@ class Recipe extends StatelessWidget {
                     ),
                   );
                 },
+              );
+
+            }
+            else{
+              return Center(
+                child: const Text("No data available",style: TextStyle(color: Colors.white, fontSize: 16),),
               );
             }
         }

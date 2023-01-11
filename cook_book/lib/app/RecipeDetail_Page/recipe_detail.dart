@@ -1,3 +1,4 @@
+/*
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cook_book/app/UserProfile/userProfile.dart';
 import 'package:cook_book/custom/CustomListView/ingredientsListView.dart';
@@ -11,17 +12,17 @@ import '../../custom/ExpandedWidgets/expandedRecipeDescription.dart';
 import '../MyProfile/myProfile.dart';
 import 'reviews.dart';
 
-class RecipeDetails extends StatefulWidget {
+class Recipe_Detail extends StatefulWidget {
 
-  final DocumentSnapshot recipe_snapshot;
+  final recipeId;
 
-  const RecipeDetails({Key? key, required this.recipe_snapshot}) : super(key: key);
+  const Recipe_Detail({Key? key, required this.recipeId}) : super(key: key);
 
   @override
-  State<RecipeDetails> createState() => _RecipeDetailsState();
+  State<Recipe_Detail> createState() => _Recipe_DetailsState();
 }
 
-class _RecipeDetailsState extends State<RecipeDetails> with TickerProviderStateMixin{
+class _Recipe_DetailsState extends State<Recipe_Detail> with TickerProviderStateMixin{
   var writer_name;
   var writer_username;
   var writer_profilePicture;
@@ -262,3 +263,4 @@ class _RecipeDetailsState extends State<RecipeDetails> with TickerProviderStateM
   }
 }
 
+*/

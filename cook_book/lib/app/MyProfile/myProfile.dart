@@ -151,7 +151,7 @@ class _MyProfileState extends State<MyProfile> {
                           child: TabBarView(
                               children: [
                                 Recipe(userId: user?.uid),
-                                Saved(),
+                                Saved(userId: user?.uid),
                               ]),
                         ),
                       ],

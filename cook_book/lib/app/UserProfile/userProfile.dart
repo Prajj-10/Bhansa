@@ -42,14 +42,12 @@ class _UserProfileState extends State<UserProfile> {
 
   @override
   void initState() {
-
     super.initState();
     _getUserDetails(widget.userId);
     //_getData();
   }
   @override
   Widget build(BuildContext context) {
-
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: PreferredSize(
