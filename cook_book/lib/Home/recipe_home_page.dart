@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'Home_Custom_Widget/UserFollowings.dart';
 import 'Home_Custom_Widget/info_widget.dart';
 import 'Home_Custom_Widget/info_widget_2.dart';
 import 'Home_Custom_Widget/recipe_listview_widget.dart';
@@ -25,6 +26,7 @@ class _RecipeHomePageState extends State<RecipeHomePage> {
               return[
                 SliverList(delegate: SliverChildListDelegate([
                   //InfoWidget(),
+                  FollowingUsersList(),
                   FoodBodyPage(),
                   InfoWidget2(),
                   SizedBox(height: 20,),
