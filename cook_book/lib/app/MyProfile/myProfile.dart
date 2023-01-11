@@ -16,20 +16,6 @@ class MyProfile extends StatefulWidget {
 }
 
 class _MyProfileState extends State<MyProfile> {
-  /*UserModel loggedInUser = UserModel();
-  User? user = FirebaseAuth.instance.currentUser;
-
-  Future _getData() async => await FirebaseFirestore.instance
-      .collection("users")
-      .doc(user?.uid)
-      .get()
-      .then((value)=> {
-
-    loggedInUser = UserModel.fromMap(value.data()),
-    print(loggedInUser!.name),
-
-  });*/
-
   User? user = FirebaseAuth.instance.currentUser;
 
   //Variables
@@ -37,13 +23,9 @@ class _MyProfileState extends State<MyProfile> {
   var username;
   var description;
   var profilePicture;
-  //var recipeReference = FirebaseFirestore.instance.collection("recipe_details");
 
   //Get user data from firebase
   void _getUserDetails() async{
-    //final user = await FirebaseAuth.instance.currentUser;
-    //UserModel loggedInUser = UserModel();
-    //CookingStepsModel recipeList = new CookingStepsModel();
     var _userDetails = await FirebaseFirestore.instance.collection('users').doc(user?.uid).get();
 
     setState(() {

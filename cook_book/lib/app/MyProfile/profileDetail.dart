@@ -1,10 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../model/user_model.dart';
 import '../../custom/ExpandedWidgets/expandedProfileDescription.dart';
 import '../EditProfile/editProfile.dart';
+import '../loginpage/login.dart';
 
 class ProfileDetail extends StatefulWidget {
 
@@ -48,11 +52,23 @@ class _ProfileDetailState extends State<ProfileDetail> {
     });
   }
 
+  final ref = FirebaseDatabase.instance.ref('users');
+  final user = FirebaseAuth.instance.currentUser;
+  final googleSignIn = GoogleSignIn();
+  UserModel loggedInUser = UserModel();
+
+  Future<void> logout(BuildContext context) async {
+    await googleSignIn.currentUser?.clearAuthCache();
+    await FirebaseAuth.instance.signOut();
+    await googleSignIn.signOut();
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const LoginScreen()));
+    Fluttertoast.showToast(msg: "Logged Out Successfully.");
+  }
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    print(currentUserId);
     getFollowings();
     getFollowers();
   }
@@ -62,7 +78,6 @@ class _ProfileDetailState extends State<ProfileDetail> {
     var size = MediaQuery.of(context).size;
     return Column(
       children: [
-
             Row(
               children: [
                 Container(
@@ -92,8 +107,6 @@ class _ProfileDetailState extends State<ProfileDetail> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-
-
                         Row(
                           children: [
                             SizedBox(width: size.width*0.05,),
@@ -146,9 +159,33 @@ class _ProfileDetailState extends State<ProfileDetail> {
                               SizedBox(width: size.width*0.02,),
                               InkWell(
                                 onTap: (){
-
+                                  showDialog(
+                                      context: context,
+                                      builder: (builder){
+                                        return AlertDialog(
+                                          backgroundColor: Colors.white,
+                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                                          title: Text("Are you sure you want to Logout?", style: TextStyle(color: Colors.black),),
+                                          actions: [
+                                            TextButton(
+                                                onPressed: (){
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text("Cancel", style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),)
+                                            ),
+                                            TextButton(
+                                                onPressed: (){
+                                                  logout(context);
+                                                },
+                                                child: Text("Yes, Logout", style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
+                                            ),
+                                          ],
+                                        );
+                                      }
+                                  );
+                                  //logout(context);
                                 },
-                                  child: Icon(Icons.settings, color: Colors.white, size: 30,)
+                                  child: Icon(Icons.logout, color: Colors.red, size: 30,)
                               ),
 
                             ],

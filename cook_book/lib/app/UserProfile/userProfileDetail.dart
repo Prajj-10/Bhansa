@@ -17,26 +17,14 @@ class UserProfileDetail extends StatefulWidget {
 
   UserProfileDetail({super.key,required this.profileId, required this.name, required this.username, required this.description, required this.profilePicture});
   @override
-  State<UserProfileDetail> createState() => _UserProfileDetailState(
-    profile_id: this.profileId,
-  );
+  State<UserProfileDetail> createState() => _UserProfileDetailState();
 }
 
 class _UserProfileDetailState extends State<UserProfileDetail> {
-  var profile_id;
-  _UserProfileDetailState({this.profile_id});
-  @override
-  void initState() {
-    super.initState();
-    print("profile id________________" +profile_id.toString());
-  }
-
   //Variables
   bool isFollowing = false;
   int noOfFollowers = 0;
   int noOfFollowing = 0;
-
-
 
   //Firestore references
   final followersRef = FirebaseFirestore.instance.collection('Followers');
@@ -46,14 +34,12 @@ class _UserProfileDetailState extends State<UserProfileDetail> {
   void checkIfFollowing() async {
 
     DocumentSnapshot docSnapshot = await followersRef
-        //.doc(widget.profileId)
-        .doc(profile_id)
+        .doc(widget.profileId)
         .collection('userFollowers')
         .doc(user?.uid)
         .get();
     setState(() {
       isFollowing = docSnapshot.exists;
-      //print("Check: "+isFollowing.toString());
     });
   }
 
@@ -80,9 +66,6 @@ class _UserProfileDetailState extends State<UserProfileDetail> {
   handleFollow(){
     setState(() {
       isFollowing = true;
-      //checkIfFollowing();
-      getFollowers();
-      getFollowings();
     });
     followersRef
         .doc(widget.profileId)
@@ -101,9 +84,6 @@ class _UserProfileDetailState extends State<UserProfileDetail> {
     //print("Hello");
     setState(() {
       isFollowing = false;
-      //checkIfFollowing();
-      getFollowers();
-      getFollowings();
     });
 
     //Remove Followers
@@ -128,23 +108,12 @@ class _UserProfileDetailState extends State<UserProfileDetail> {
          });
   }
 
-  /*@override
-  void initState() {
-    super.initState();
-    print("profile id________________" +profile_id.toString());
-    checkIfFollowing();
-    print(isFollowing);
-    getFollowers();
-    getFollowings();
-  }*/
-
   @override
   Widget build(BuildContext context) {
-
     var size = MediaQuery.of(context).size;
-    /*checkIfFollowing();
+    checkIfFollowing();
     getFollowers();
-    getFollowings();*/
+    getFollowings();
     return Column(
       children: [
 
