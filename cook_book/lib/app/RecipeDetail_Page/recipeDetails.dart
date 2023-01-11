@@ -42,7 +42,6 @@ class _RecipeDetailsState extends State<RecipeDetails> with TickerProviderStateM
   }
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _controller = TabController(length: 3, vsync: this);
     _getWriterDetails();
@@ -52,8 +51,6 @@ class _RecipeDetailsState extends State<RecipeDetails> with TickerProviderStateM
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-
-
 
     return Scaffold(
       body: NestedScrollView(
@@ -83,8 +80,6 @@ class _RecipeDetailsState extends State<RecipeDetails> with TickerProviderStateM
                   ),
                 ),
                 centerTitle: true,
-
-
               ),
 
             ),
@@ -116,9 +111,7 @@ class _RecipeDetailsState extends State<RecipeDetails> with TickerProviderStateM
                               children: [
                                 Center(
                                   child: ClipOval(
-                                    //child: Image.network(writer_profilePicture?? "https://img.freepik.com/premium-vector/smiling-chef-cartoon-character_8250-10.jpg?w=2000",
-                                    child: Image.network("https://img.freepik.com/premium-vector/smiling-chef-cartoon-character_8250-10.jpg?w=2000",
-
+                                    child: Image.network(writer_profilePicture?? "https://img.freepik.com/premium-vector/smiling-chef-cartoon-character_8250-10.jpg?w=2000",
                                       height: 50,
                                       width: 50,
                                       fit: BoxFit.cover,

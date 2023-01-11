@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cook_book/app/RecipeDetail_Page/recipe_detail.dart';
 import 'package:cook_book/custom/CustomButtons/saveButton.dart';
 import 'package:flutter/material.dart';
 
@@ -55,7 +56,7 @@ class _SavedState extends State<Saved> {
 
             return GestureDetector(
               onTap: (){
-                //Navigator.push(context, MaterialPageRoute(builder: (context)=> RecipeDetails(recipe_snapshot: ),),);
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> Recipe_Detail(recipeId: recipe_id, ),),);
               },
               child: Padding(
                 padding: const EdgeInsets.all(10),
@@ -95,14 +96,14 @@ class _SavedState extends State<Saved> {
                           ),
                         ),
                         Container(
-                          //height: 120,
+                          height: 100,
                           width: size.width,
                           child: Image.network(recipe_Snapshot['recipe_image'] ?? "https://media.istockphoto.com/id/1166171010/photo/spicy-grilled-jerk-chicken-on-a-plate.jpg?s=612x612&w=0&k=20&c=AEY55ma7yVvL4YUb4HPxaD7MJ7YcJ2g2sYWHnMXTJDk=",
-                          fit: BoxFit.fitWidth,
+                          fit: BoxFit.fill,
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 10, bottom: 10, top: 10),
+                          padding: const EdgeInsets.only(left: 10, top: 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [

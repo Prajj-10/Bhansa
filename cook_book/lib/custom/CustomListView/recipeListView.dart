@@ -84,12 +84,19 @@ class Recipe extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            /*Positioned(
+                            Positioned(
                               right: 10,
-                              bottom: 10,
-                              child: Text("Bye", style: TextStyle(color: Colors.white),),
-                              //child: Likes_Button(),
-                            )*/
+                              bottom: 3,
+                              //child: Text("Bye", style: TextStyle(color: Colors.white),),
+                              child: Container(
+                                height: 30,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30),
+                                    color: Colors.black.withOpacity(0.7),
+                                  ),
+                                  child: Likes_Button(recipeId: recipe_Snapshot.id,)
+                              ),
+                            )
                           ],
                         ),
 
