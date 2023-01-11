@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf33b20f-9bb0-49da-9eb9-3fc611fe96ce" name="Changes" comment="added like button to recipe list view and added saved recipe detail view page by passing recipe id">
+    <list default="true" id="bf33b20f-9bb0-49da-9eb9-3fc611fe96ce" name="Changes" comment="added signout alert">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/myProfile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/myProfile.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/profileDetail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/profileDetail.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cook_book/lib/app/UserProfile/userProfileDetail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/UserProfile/userProfileDetail.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,7 +48,7 @@
     <property name="cidr.known.project.marker" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Practical/cook_book_test" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -247,7 +245,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673429147867</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="added signout alert">
+      <created>1673444263606</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1673444263606</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -281,7 +286,8 @@
     <MESSAGE value="duration picker" />
     <MESSAGE value="saved recipe added" />
     <MESSAGE value="added like button to recipe list view and added saved recipe detail view page by passing recipe id" />
-    <option name="LAST_COMMIT_MESSAGE" value="added like button to recipe list view and added saved recipe detail view page by passing recipe id" />
+    <MESSAGE value="added signout alert" />
+    <option name="LAST_COMMIT_MESSAGE" value="added signout alert" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

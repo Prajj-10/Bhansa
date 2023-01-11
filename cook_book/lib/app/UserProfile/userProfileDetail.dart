@@ -77,7 +77,10 @@ class _UserProfileDetailState extends State<UserProfileDetail> {
         .doc(user?.uid)
         .collection('userFollowing')
         .doc(widget.profileId)
-        .set({});
+        .set({
+      "name" : widget.name,
+      "profile_picture" : widget.profilePicture,
+    });
   }
 
   handleUnfollow(){
