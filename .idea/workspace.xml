@@ -9,16 +9,8 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf33b20f-9bb0-49da-9eb9-3fc611fe96ce" name="Changes" comment="added following id detail">
-      <change afterPath="$PROJECT_DIR$/cook_book/assets/camera.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/android/app/src/main/AndroidManifest.xml" afterDir="false" />
+    <list default="true" id="bf33b20f-9bb0-49da-9eb9-3fc611fe96ce" name="Changes" comment="updated map and ui">
       <change beforePath="$PROJECT_DIR$/cook_book/lib/Home/Home_Custom_Widget/UserFollowings.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/Home/Home_Custom_Widget/UserFollowings.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/GoogleMap/googlemap.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/GoogleMap/googlemap.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/myProfile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/MyProfile/myProfile.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/PostRecipe/post_recipe.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/PostRecipe/post_recipe.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/custom/CustomGridView/savedGridView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomGridView/savedGridView.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/custom/CustomListView/recipeListView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/custom/CustomListView/recipeListView.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -278,7 +270,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673463251301</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="updated map and ui">
+      <created>1673511915876</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1673511915876</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -314,7 +313,8 @@
     <MESSAGE value="added like button to recipe list view and added saved recipe detail view page by passing recipe id" />
     <MESSAGE value="added signout alert" />
     <MESSAGE value="added following id detail" />
-    <option name="LAST_COMMIT_MESSAGE" value="added following id detail" />
+    <MESSAGE value="updated map and ui" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated map and ui" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

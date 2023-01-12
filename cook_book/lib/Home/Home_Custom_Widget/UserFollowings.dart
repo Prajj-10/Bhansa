@@ -48,8 +48,8 @@ class FollowingUsersList extends StatelessWidget{
                             children: [
                               CircleAvatar(
                                 radius: 30,
-                                //backgroundImage: NetworkImage('${snapshot.data?.docs[index]['profile_picture']}'),
-                                backgroundImage: NetworkImage('https://i.pinimg.com/736x/59/37/5f/59375f2046d3b594d59039e8ffbf485a.jpg'),
+                                backgroundImage: NetworkImage('${snapshot.data?.docs[index]['profile_picture']}'),
+                                //backgroundImage: NetworkImage('https://i.pinimg.com/736x/59/37/5f/59375f2046d3b594d59039e8ffbf485a.jpg'),
                               ),
                               Container(
                                   width: 80,
