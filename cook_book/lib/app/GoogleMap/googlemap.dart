@@ -52,7 +52,7 @@ class Google_MapState extends State<Google_Map> {
 
     _kGooglePlex = CameraPosition(
       target: _latlng!,
-    zoom: 15,
+    zoom: 16,
     );
     setState(() {});
   }
@@ -62,13 +62,14 @@ class Google_MapState extends State<Google_Map> {
   void addMarker(LatLng latlng){
     // adding marker in the clicked latitude longitude
     _markers.add(Marker(
-        markerId: MarkerId("adding markers"),
+        markerId: MarkerId("currentLocation"),
         draggable: true,
         position: latlng,
         onTap: (){
           //Show details of the place
           //Show distance
         },
+        icon: BitmapDescriptor.defaultMarker,
         onDrag: (newlatlng){
           latLng_global = newlatlng;
           setState(() {
@@ -78,11 +79,6 @@ class Google_MapState extends State<Google_Map> {
     ));
   }
 
-  static const CameraPosition _kLake = CameraPosition(
-    // bearing: 192.8334901395799,
-      target: LatLng(15.386033, 73.844040),
-      tilt: 20,
-      zoom: 15);
   @override
   void initState() {
     super.initState();
@@ -95,17 +91,34 @@ class Google_MapState extends State<Google_Map> {
   Widget build(BuildContext context) {
     var size= MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xFF07060E),
+        title: Text("Running out of ingredients? \nGet it from the nearest store now.", style: TextStyle(color: Colors.white)),
+      ),
       body: SizedBox(
         height: size.height,
         width: size.width,
         child: GoogleMap(
           mapType: MapType.normal,
           initialCameraPosition: _kGooglePlex,
-          markers: <Marker>{
-            _setMarker()
-          },
           myLocationEnabled: true,
           myLocationButtonEnabled: true,
+          markers: <Marker>{
+            _setMarker(_latlng!)
+          },
+
+          circles: {
+            Circle(
+              circleId: CircleId('currentLocation'),
+              center: _latlng!,
+              radius: 600,
+              strokeColor: Colors.blue,
+              strokeWidth: 2,
+              fillColor: Colors.blue.withOpacity(0.2)
+            )
+          },
+
+
           onTap: (latlong){
             setState(() {
               addMarker(latlong);
@@ -119,25 +132,22 @@ class Google_MapState extends State<Google_Map> {
           },
         ),
       ),
+      /*floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: _goToTheLake,
-        label: Text('To the lake!'),
-        icon: Icon(Icons.directions_boat),
-      ),
+        onPressed: _goToCurrentLocation,
+        icon: Icon(Icons.location_on_outlined), label: Text('Current'),
+      ),*/
     );
   }
 
-  _setMarker(){
+  _setMarker(LatLng _latlng){
     return Marker(markerId: MarkerId("marker"),
-    icon: BitmapDescriptor.defaultMarker,
-      position: LatLng(27.700769, 85.300140),
+    icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+      position: _latlng,
     );
   }
 
-  Future<void> _goToTheLake() async {
-    final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
-  }
+
 
 }
 

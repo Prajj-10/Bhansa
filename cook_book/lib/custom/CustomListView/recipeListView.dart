@@ -62,7 +62,7 @@ class Recipe extends StatelessWidget {
 
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Colors.white,
+                            color: Colors.blueGrey,
                             image: DecorationImage(
                               //image: NetworkImage("https://img.freepik.com/premium-photo/half-grilled-chicken-plate-black-background-top-view-copy-space_89816-10440.jpg?w=2000",),
                               image: NetworkImage(recipe_Snapshot['Photo']??"https://img.freepik.com/free-vector/graphic-design-vector-illustration_24908-54512.jpg?w=2000"),

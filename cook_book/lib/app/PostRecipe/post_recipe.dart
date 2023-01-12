@@ -115,222 +115,113 @@ class _PostRecipeState extends State<PostRecipe> {
       ),
 
       body: SingleChildScrollView(
-        child: Column(
+        child: Padding(
+          padding: const EdgeInsets.all(5),
+          child: Column(
+            children: [
 
-          children: [
-            const SizedBox(
-              height: 50,
-            ),
 
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: Text(
-                "Upload Image: ",
-                style: GoogleFonts.robotoMono(
-                    textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white)
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: Text(
+                  "Upload Image: ",
+                  style: GoogleFonts.robotoMono(
+                      textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white)
+                  ),
                 ),
               ),
-            ),
 
-            SizedBox(
-              height: 10,
-            ),
+              SizedBox(
+                height: 10,
+              ),
 
-            //First Image
-            Stack(
-                children: [
-                  Container(
-                    child: file != null ?
-                    Image.file(
-                      file!,
-                      height: height/2.2,
-                      width: width,
-                      fit: BoxFit.cover,)
-                        : Container(
-                      height: height/2.2,
-                      width: width,
-                      //color: Colors.white,
-                      decoration: const BoxDecoration(
-
-                        image: DecorationImage(
-                          image: AssetImage("assets/Camera.png"),
-                          fit: BoxFit.cover,
-                        ),
-
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(60)),
-                        /*borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(25),
-                          bottomRight: Radius.circular(25),
-                        ),*/
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: width * .4,
-                    top: height * .2,
-                    child: Container(
-                      child: IconButton(
-                        color: Colors.grey,
-                        icon: const Icon(Icons.add_a_photo, size: 40,),
-                        onPressed: () { uploadImage();},
-                      ),
-                    ),
-                  ),
-
-                ]
-            ),
-
-
-            const SizedBox(
-              height: 20,
-            ),
-
-
-            Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15),
-              child: Container(
-                child: Column(
+              //First Image
+              Stack(
                   children: [
-                    const SizedBox(
-                      height: 30,
-                    ),
-
-                    Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Text(
-                        "Recipe Title: ",
-                        //style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.white),
-                        style: GoogleFonts.robotoMono(
-                            textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white)
-                        ),
-                      ),
-                    ),
-
-                    const SizedBox(
-                      height: 10,
-                    ),
-
                     Container(
-                      height: 85,
-                      child:  TextField(
+                      child: file != null ?
+                      Image.file(
+                        file!,
+                        height: height/2.2,
+                        width: width,
+                        fit: BoxFit.cover,)
+                          : Container(
+                        height: height/2.2,
+                        width: width,
+                        //color: Colors.white,
+                        decoration: const BoxDecoration(
 
-                        onChanged: (value){
-                          steps_model.recipe_title = value;
-
-                          setState(() {
-                            _counterTextRecipeTitle = (50 - value.length).toString();
-                          });
-                        },
-
-                        maxLength: 50,
-
-                        style: TextStyle(fontSize: 16, color: Colors.white),
-
-                        decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                            borderSide: BorderSide(
-                              width: 2,
-                              color: Colors.white,
-                            ),
+                          image: DecorationImage(
+                            image: AssetImage("assets/camera.jpg"),
+                            fit: BoxFit.fitWidth,
                           ),
 
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                            borderSide: BorderSide(color: Colors.white),
-                          ),
-                          counterText: "$_counterTextRecipeTitle / 50",
-                          counterStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(30)),
                         ),
                       ),
                     ),
-
-                    const SizedBox(
-                      height: 20,
-                    ),
-
-
-                    Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Text(
-                        "Recipe Description: ",
-                        style: GoogleFonts.robotoMono(
-                            textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white)
-                        ),
-                      ),
-                    ),
-
-                    const SizedBox(
-                      height: 10,
-                    ),
-
-                    Container(
-                      height: 180,
-                      child:  TextField(
-                        expands: true,
-                        maxLines: null,
-                        onChanged: (value){
-                          steps_model.recipe_description = value;
-
-                          setState(() {
-                            _counterTextRecipeDescription = (500 - value.length).toString();
-                          });
-                        },
-                        maxLength: 500,
-
-                        style: TextStyle(fontSize: 16, color: Colors.white),
-
-                        decoration: InputDecoration(
-                          hintText: 'Write a short description of your Recipe...',
-                          hintStyle: TextStyle(fontSize: 16),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                            borderSide: BorderSide(
-                              width: 2,
-                              color: Colors.white,
-                            ),
-                          ),
-
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                            borderSide: BorderSide(color: Colors.white),
-                          ),
-                          counterText: "$_counterTextRecipeDescription / 500",
-                          counterStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-
-
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Text(
-                        "Number of Servings: ",
-                        style: GoogleFonts.robotoMono(
-                            textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white)
-                        ),
-                      ),
-                    ),
-
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Align(
-                      alignment: Alignment.bottomLeft,
+                    Positioned(
+                      left: width * .4,
+                      top: height * .2,
                       child: Container(
-                        height: 50,
-                        width: 180,
-                        child: TextField(
-                          keyboardType: TextInputType.number,
+                        child: IconButton(
+                          color: Colors.blue,
+                          icon: const Icon(Icons.add_a_photo, size: 40,),
+                          onPressed: () { uploadImage();},
+                        ),
+                      ),
+                    ),
+
+                  ]
+              ),
+
+
+              const SizedBox(
+                height: 20,
+              ),
+
+
+              Padding(
+                padding: const EdgeInsets.only(left: 15, right: 15),
+                child: Container(
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 30,
+                      ),
+
+                      Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Text(
+                          "Recipe Title: ",
+                          //style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.white),
+                          style: GoogleFonts.robotoMono(
+                              textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white)
+                          ),
+                        ),
+                      ),
+
+                      const SizedBox(
+                        height: 10,
+                      ),
+
+                      Container(
+                        height: 85,
+                        child:  TextField(
+
                           onChanged: (value){
-                            steps_model.num_of_servings = int.parse(value);
-                            //num_of_servings = value;
+                            steps_model.recipe_title = value;
+
+                            setState(() {
+                              _counterTextRecipeTitle = (100 - value.length).toString();
+                            });
                           },
-                          style: TextStyle(fontSize: 20, color: Colors.white),
+
+                          maxLength: 100,
+
+                          style: TextStyle(fontSize: 16, color: Colors.white),
+
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20.0),
@@ -344,145 +235,250 @@ class _PostRecipeState extends State<PostRecipe> {
                               borderRadius: BorderRadius.circular(20.0),
                               borderSide: BorderSide(color: Colors.white),
                             ),
+                            counterText: "$_counterTextRecipeTitle / 100",
+                            counterStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),
-                    ),
 
-                    const SizedBox(
-                      height: 10,
-                    ),
+                      const SizedBox(
+                        height: 20,
+                      ),
 
-                    const SizedBox(
-                      height: 20,
-                    ),
 
-                    Container(
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              Text(
-                                "Prepare Duration: ",
-                                style: GoogleFonts.robotoMono(
-                                    textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white)
-                                ),
-                              ),
+                      Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Text(
+                          "Recipe Description: ",
+                          style: GoogleFonts.robotoMono(
+                              textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white)
+                          ),
+                        ),
+                      ),
 
-                              IconButton(
+                      const SizedBox(
+                        height: 10,
+                      ),
+
+                      Container(
+                        height: 180,
+                        child:  TextField(
+                          expands: true,
+                          maxLines: null,
+                          onChanged: (value){
+                            steps_model.recipe_description = value;
+
+                            setState(() {
+                              _counterTextRecipeDescription = (500 - value.length).toString();
+                            });
+                          },
+                          maxLength: 500,
+
+                          style: TextStyle(fontSize: 16, color: Colors.white),
+
+                          decoration: InputDecoration(
+                            hintText: 'Write a short description of your Recipe...',
+                            hintStyle: TextStyle(fontSize: 16),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                              borderSide: BorderSide(
+                                width: 2,
                                 color: Colors.white,
-                                icon: const Icon(Icons.timer, size: 35,),
-                                onPressed: () async {
-                                  Duration? selectedDuration = await showDurationPicker(context: context, initialTime: const Duration(minutes: 0));
-                                  setState(() {
-                                    prep_duration = selectedDuration!;
-                                    steps_model.p_duration= selectedDuration.toString();
-
-                                    String testDuration = selectedDuration.toString();
-                                    if(testDuration.substring(0, 1) =='0'){
-                                      steps_model.prepare_duration = testDuration.substring(2, 4) +" min";
-                                    }
-                                    else if(testDuration.substring(2, 4) == '00'){
-                                      steps_model.prepare_duration = testDuration.substring(0, 1) + " hrs ";
-                                    }
-                                    else{
-                                      steps_model.prepare_duration = testDuration.substring(0, 1) + " hrs " + testDuration.substring(2, 4) +" min";
-                                    }
-                                  });
-                                },
                               ),
+                            ),
 
-                              Text(
-                                "${steps_model.prepare_duration}",
-                                //style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.white),
-                                style: GoogleFonts.robotoMono(
-                                    textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white)
-                                ),
-                              ),
-                            ],
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                              borderSide: BorderSide(color: Colors.white),
+                            ),
+                            counterText: "$_counterTextRecipeDescription / 500",
+                            counterStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),
-                    ),
 
-                    SizedBox(
-                      height: 25,
-                    ),
 
-                    Container(
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              Text(
-                                "Cooking Duration: ",
-                                style: GoogleFonts.robotoMono(
-                                    textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white)
-                                ),
-                              ),
-
-                              IconButton(
-                                color: Colors.white,
-                                icon: const Icon(Icons.timer, size: 35,),
-                                onPressed: () async {
-                                  Duration? selectedDuration = await showDurationPicker(context: context, initialTime: const Duration(minutes: 0));
-                                  setState(() {
-                                    //steps_model.cooking_duration = selectedDuration?.inMinutes as Duration?;
-                                    steps_model.c_duration = selectedDuration.toString();
-                                    cook_duration=selectedDuration!;
-
-                                    String testDuration = selectedDuration.toString();
-                                    if(testDuration.substring(0, 1) =='0'){
-                                      steps_model.cooking_duration = testDuration.substring(2, 4) +" min";
-                                    }
-                                    else if(testDuration.substring(2, 4) == '00'){
-                                      steps_model.cooking_duration = testDuration.substring(0, 1) + " hrs ";
-                                    }
-                                    else{
-                                      steps_model.cooking_duration = testDuration.substring(0, 1) + " hrs " + testDuration.substring(2, 4) +" min";
-                                    }
-                                    calcTotalDuration();
-                                  });
-                                },
-
-                              ),
-
-                              Text(
-                                "${steps_model.cooking_duration}",
-                                style: GoogleFonts.robotoMono(
-                                    textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white)
-                                ),
-                              ),
-
-                            ],
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Text(
+                          "Number of Servings: ",
+                          style: GoogleFonts.robotoMono(
+                              textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white)
                           ),
                         ),
                       ),
-                    ),
 
-                    const SizedBox(
-                      height: 20,
-                    ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Container(
+                          height: 50,
+                          width: 180,
+                          child: TextField(
+                            keyboardType: TextInputType.number,
+                            onChanged: (value){
+                              steps_model.num_of_servings = int.parse(value);
+                              //num_of_servings = value;
+                            },
+                            style: TextStyle(fontSize: 20, color: Colors.white),
+                            decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                                borderSide: BorderSide(
+                                  width: 2,
+                                  color: Colors.white,
+                                ),
+                              ),
 
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    //Calling own widget
-                    _uiWidget(),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                  ],
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      const SizedBox(
+                        height: 10,
+                      ),
+
+                      const SizedBox(
+                        height: 20,
+                      ),
+
+                      Container(
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                Text(
+                                  "Prepare Duration: ",
+                                  style: GoogleFonts.robotoMono(
+                                      textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white)
+                                  ),
+                                ),
+
+                                IconButton(
+                                  color: Colors.white,
+                                  icon: const Icon(Icons.timer, size: 35,),
+                                  onPressed: () async {
+                                    Duration? selectedDuration = await showDurationPicker(context: context, initialTime: const Duration(minutes: 0));
+                                    setState(() {
+                                      prep_duration = selectedDuration!;
+                                      steps_model.p_duration= selectedDuration.toString();
+
+                                      String testDuration = selectedDuration.toString();
+                                      if(testDuration.substring(0, 1) =='0'){
+                                        steps_model.prepare_duration = testDuration.substring(2, 4) +" min";
+                                      }
+                                      else if(testDuration.substring(2, 4) == '00'){
+                                        steps_model.prepare_duration = testDuration.substring(0, 1) + " hrs ";
+                                      }
+                                      else{
+                                        steps_model.prepare_duration = testDuration.substring(0, 1) + " hrs " + testDuration.substring(2, 4) +" min";
+                                      }
+                                    });
+                                  },
+                                ),
+
+                                Text(
+                                  "${steps_model.prepare_duration}",
+                                  //style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.white),
+                                  style: GoogleFonts.robotoMono(
+                                      textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white)
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      SizedBox(
+                        height: 25,
+                      ),
+
+                      Container(
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                Text(
+                                  "Cooking Duration: ",
+                                  style: GoogleFonts.robotoMono(
+                                      textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white)
+                                  ),
+                                ),
+
+                                IconButton(
+                                  color: Colors.white,
+                                  icon: const Icon(Icons.timer, size: 35,),
+                                  onPressed: () async {
+                                    Duration? selectedDuration = await showDurationPicker(context: context, initialTime: const Duration(minutes: 0));
+                                    setState(() {
+                                      //steps_model.cooking_duration = selectedDuration?.inMinutes as Duration?;
+                                      steps_model.c_duration = selectedDuration.toString();
+                                      cook_duration=selectedDuration!;
+
+                                      String testDuration = selectedDuration.toString();
+                                      if(testDuration.substring(0, 1) =='0'){
+                                        steps_model.cooking_duration = testDuration.substring(2, 4) +" min";
+                                      }
+                                      else if(testDuration.substring(2, 4) == '00'){
+                                        steps_model.cooking_duration = testDuration.substring(0, 1) + " hrs ";
+                                      }
+                                      else{
+                                        steps_model.cooking_duration = testDuration.substring(0, 1) + " hrs " + testDuration.substring(2, 4) +" min";
+                                      }
+                                      calcTotalDuration();
+                                    });
+                                  },
+
+                                ),
+
+                                Text(
+                                  "${steps_model.cooking_duration}",
+                                  style: GoogleFonts.robotoMono(
+                                      textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white)
+                                  ),
+                                ),
+
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      const SizedBox(
+                        height: 20,
+                      ),
+
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      //Calling own widget
+                      _uiWidget(),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                    ],
+                  ),
+
                 ),
-
               ),
-            ),
 
-          ],
+            ],
+          ),
         ),
       ),
 

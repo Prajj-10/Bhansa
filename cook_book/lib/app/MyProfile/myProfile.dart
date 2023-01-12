@@ -98,7 +98,7 @@ class _MyProfileState extends State<MyProfile> {
 
                     ),
                     borderRadius: BorderRadius.all(Radius.circular(20)),
-                    border: Border.all(color: Colors.white, width: 2),
+                    border: Border.all(color: Colors.white, width: 1.5),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),

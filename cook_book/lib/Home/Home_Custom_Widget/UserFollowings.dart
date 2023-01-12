@@ -26,38 +26,43 @@ class FollowingUsersList extends StatelessWidget{
     return StreamBuilder(
         stream: firestoreDB,
         builder: (context, snapshot){
-          if(!snapshot.hasData) return Center(child: Text("No Data"),);
-
-          return Container(
-              height: 100,
-              //color: Colors.red,
-              child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: snapshot.data?.docs.length,
-                  itemBuilder: (context, index){
-                    var uid = snapshot.data?.docs[index].id;
-                    return GestureDetector(
-                      onTap: ()=> currUserId==uid?
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>MyProfile(userId: uid)))
-                          :Navigator.push(context, MaterialPageRoute(builder: (context)=>UserProfile(userId: uid,))),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            CircleAvatar(
-                              radius: 30,
-                              //backgroundImage: NetworkImage('${snapshot.data?.docs[index]['profile_picture']}'),
-                              backgroundImage: NetworkImage('https://i.pinimg.com/736x/59/37/5f/59375f2046d3b594d59039e8ffbf485a.jpg'),
-                            ),
-                            Container(
-                                width: 80,
-                                child: BigText(text: '${snapshot.data?.docs[index]['name']}', size: 14,))
-                          ],
+          if(!snapshot.hasData){
+            return Center(child: Text("You are not following anyone."),);
+          }
+          else{
+            return Container(
+                height: 100,
+                //color: Colors.red,
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: snapshot.data?.docs.length,
+                    itemBuilder: (context, index){
+                      var uid = snapshot.data?.docs[index].id;
+                      return GestureDetector(
+                        onTap: ()=> currUserId==uid?
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>MyProfile(userId: uid)))
+                            :Navigator.push(context, MaterialPageRoute(builder: (context)=>UserProfile(userId: uid,))),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              CircleAvatar(
+                                radius: 30,
+                                //backgroundImage: NetworkImage('${snapshot.data?.docs[index]['profile_picture']}'),
+                                backgroundImage: NetworkImage('https://i.pinimg.com/736x/59/37/5f/59375f2046d3b594d59039e8ffbf485a.jpg'),
+                              ),
+                              Container(
+                                  width: 80,
+                                  child: BigText(text: '${snapshot.data?.docs[index]['name']}', size: 14,))
+                            ],
+                          ),
                         ),
-                      ),
-                    );
-                  })
-          );
+                      );
+                    })
+            );
+          }
+
+
         });
   }
 
