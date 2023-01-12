@@ -69,8 +69,8 @@ class SearchRecipe2 extends SearchDelegate{
                           children: [
                             ClipRRect(
                               borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-                              //child: Image.network('${image}',
-                              child: Image.network('https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/british_shakshuka_26737_16x9.jpg',
+                              child: Image.network('${image}',
+                              //child: Image.network('https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/british_shakshuka_26737_16x9.jpg',
                                 height: 120,
                                 fit: BoxFit.cover,
                                 width: double.infinity,),

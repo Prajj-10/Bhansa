@@ -10,7 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf33b20f-9bb0-49da-9eb9-3fc611fe96ce" name="Changes" comment="updated map and ui">
-      <change beforePath="$PROJECT_DIR$/cook_book/lib/Home/Home_Custom_Widget/UserFollowings.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/Home/Home_Custom_Widget/UserFollowings.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/SearchRecipe/search_recipe_2.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/SearchRecipe/search_recipe_2.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cook_book/lib/app/SearchUser/SearchPerson.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cook_book/lib/app/SearchUser/SearchPerson.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -277,7 +279,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673511915876</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="updated map and ui">
+      <created>1673512420278</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1673512420278</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -89,7 +89,7 @@ class SearchPerson extends SearchDelegate{
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    return Center(child: Text("Search Here"),);
+    return Center(child: Text("Search Users"),);
     // return  StreamBuilder<QuerySnapshot>(
     //     stream: _firebaseFirestore.snapshots().asBroadcastStream(),
     //     builder: (BuildContext context, AsyncSnapshot<QuerySnapshot>snapshot){
