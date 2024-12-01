@@ -278,8 +278,7 @@ class _RegistrationPageState extends State<RegistrationPage> with InputValidatio
           },
         ),
       ),
-      body: Center(
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
           child: Container(
             height: size.height,
             decoration: BoxDecoration(

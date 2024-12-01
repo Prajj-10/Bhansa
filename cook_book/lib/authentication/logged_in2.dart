@@ -1,4 +1,3 @@
-
 import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cook_book/Home/Home_Custom_Widget/big_text.dart';
@@ -21,14 +20,14 @@ import '../app/SearchUser/SearchPerson.dart';
 import '../app/loginpage/login.dart';
 import '../model/user_model.dart';
 
-class LoggedInWidget2 extends StatefulWidget{
+class LoggedInWidget2 extends StatefulWidget {
   const LoggedInWidget2({super.key});
 
   @override
   LoggedInWidgetState2 createState() => LoggedInWidgetState2();
 }
-class LoggedInWidgetState2 extends State<LoggedInWidget2> {
 
+class LoggedInWidgetState2 extends State<LoggedInWidget2> {
   var name;
   var email;
   var photo;
@@ -38,11 +37,14 @@ class LoggedInWidgetState2 extends State<LoggedInWidget2> {
   final googleSignIn = GoogleSignIn();
   UserModel loggedInUser = UserModel();
 
-  void getDetails() async{
+  void getDetails() async {
     //final user = await FirebaseAuth.instance.currentUser;
     //UserModel loggedInUser = UserModel();
     //CookingStepsModel recipeList = new CookingStepsModel();
-    var userDetails = await FirebaseFirestore.instance.collection('users').doc(user?.uid).get();
+    var userDetails = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user?.uid)
+        .get();
 
     setState(() {
       name = userDetails.data()!['name'];
@@ -51,138 +53,131 @@ class LoggedInWidgetState2 extends State<LoggedInWidget2> {
     });
   }
 
-
   @override
   void initState() {
     getDetails();
     super.initState();
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot){
-          if(snapshot.connectionState == ConnectionState.waiting){
-            return const Center(
-              child: CircularProgressIndicator(
-              color: Colors.white,
-            ),);
-          }
-          else if(snapshot.hasError){
-            const Center(
-              child: Text("Error!! Please check your internet connection."),
-            );
-          }
-          else if(snapshot.hasData){
-            return Scaffold(
-              appBar: AppBar(
-                backgroundColor: Color(0xFF061624).withOpacity(1.0),
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(
+                  color: Colors.white,
+                ),
+              );
+            } else if (snapshot.hasError) {
+              const Center(
+                child: Text("Error!! Please check your internet connection."),
+              );
+            } else if (snapshot.hasData) {
+              return Scaffold(
+                appBar: AppBar(
+                  backgroundColor: Color(0xFF061624).withOpacity(1.0),
 
-                //Prajjwal Code
-                title: const Text('Logged In'),
-                centerTitle: true,
+                  //Prajjwal Code
+                  title: const Text('Logged In'),
+                  centerTitle: true,
 
+                  //New Code
+                  // title: Row(
+                  //   children: [
+                  //     SizedBox(width: 10,),
+                  //     CircleAvatar(
+                  //       radius: 18,
+                  //       backgroundImage: NetworkImage(photo?? ""),
+                  //     ),
+                  //     SizedBox(width: 10,),
+                  //
+                  //     BigText(text: "Hi! ${name} ", size: 16,)
+                  //
+                  //   ],
+                  // ),
 
-                //New Code
-                // title: Row(
-                //   children: [
-                //     SizedBox(width: 10,),
-                //     CircleAvatar(
-                //       radius: 18,
-                //       backgroundImage: NetworkImage(photo?? ""),
-                //     ),
-                //     SizedBox(width: 10,),
-                //
-                //     BigText(text: "Hi! ${name} ", size: 16,)
-                //
-                //   ],
-                // ),
-
-
-                actions: [
-                  TextButton(
-                    style: TextButton.styleFrom(foregroundColor: Colors.white),
-                    onPressed: () {
-                      logout(context);
-                    },
-                    child: const Text('Logout'),
-                  ),
-
-                ],
-              ),
-
-              // //New Code
-              // body: NestedScrollView(
-              //   headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled){
-              //     return[
-              //       SliverList(delegate: SliverChildListDelegate([
-              //         InfoWidget(),
-              //         FoodBodyPage(),
-              //         InfoWidget2(),
-              //         SizedBox(height: 20,),
-              //       ]),)
-              //     ];
-              //   },
-              //   body: Expanded(
-              //     child: RecipeListViewWidget(),
-              //
-              //   ),
-              //
-              // ),
-
-
-              //The this the old code wirtten by Prajjwal
-              body: Container(
-                alignment: Alignment.center,
-                color: Colors.blueGrey.shade900,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'Profile',
-                      style: TextStyle(fontSize: 24),
+                  actions: [
+                    TextButton(
+                      style:
+                          TextButton.styleFrom(foregroundColor: Colors.white),
+                      onPressed: () {
+                        logout(context);
+                      },
+                      child: const Text('Logout'),
                     ),
-                    const SizedBox(height: 32),
-                    CircleAvatar(
-                      radius: 40,
-                      backgroundImage: NetworkImage(photo?? ""),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      name?? "Your name here.",
-                      style: const TextStyle(color: Colors.white, fontSize: 16),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      email?? "Your email here.",
-                      style: const TextStyle(color: Colors.white, fontSize: 16),
-                    ),
-
                   ],
                 ),
-              ),
-            );
-          }
-          else{
-            return const Center(
-              child: Text("Something went wrong. Please try again later."),
-            );
-          }
-          return const SizedBox();
-        }
-      ),
+
+                // //New Code
+                // body: NestedScrollView(
+                //   headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled){
+                //     return[
+                //       SliverList(delegate: SliverChildListDelegate([
+                //         InfoWidget(),
+                //         FoodBodyPage(),
+                //         InfoWidget2(),
+                //         SizedBox(height: 20,),
+                //       ]),)
+                //     ];
+                //   },
+                //   body: Expanded(
+                //     child: RecipeListViewWidget(),
+                //
+                //   ),
+                //
+                // ),
+
+                //The this the old code wirtten by Prajjwal
+                body: Container(
+                  alignment: Alignment.center,
+                  color: Colors.blueGrey.shade900,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'Profile',
+                        style: TextStyle(fontSize: 24),
+                      ),
+                      const SizedBox(height: 32),
+                      CircleAvatar(
+                        radius: 40,
+                        backgroundImage: NetworkImage(photo ?? ""),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        name ?? "Your name here.",
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        email ?? "Your email here.",
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            } else {
+              return const Center(
+                child: Text("Something went wrong. Please try again later."),
+              );
+            }
+            return const SizedBox();
+          }),
     );
   }
+
   Future<void> logout(BuildContext context) async {
     await googleSignIn.currentUser?.clearAuthCache();
     await FirebaseAuth.instance.signOut();
     await googleSignIn.signOut();
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => const LoginScreen()));
-        Fluttertoast.showToast(msg: "Logged Out Successfully.");
+    Fluttertoast.showToast(msg: "Logged Out Successfully.");
   }
 }
-
-

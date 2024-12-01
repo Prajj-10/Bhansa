@@ -296,7 +296,7 @@ class _LoginScreenState extends State<LoginScreen> with InputValidationMixin {
         // Fluttertoast.showToast(msg: errorMessage!);
         AnimatedSnackBar.material(
             errorMessage!,
-            type: AnimatedSnackBarType.success,
+            type: AnimatedSnackBarType.error,
             mobileSnackBarPosition: MobileSnackBarPosition.top,
             desktopSnackBarPosition:
             DesktopSnackBarPosition.topRight)
